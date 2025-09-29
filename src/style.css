@@ -1,0 +1,297 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html { 
+    font-family: theme('fontFamily.sans');
+    scroll-behavior: smooth;
+    /* Performance optimizations */
+    text-rendering: optimizeSpeed;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  * { 
+    border-radius: 0; 
+  }
+  
+  /* Performance optimizations */
+  * {
+    box-sizing: border-box;
+  }
+  
+  /* Content visibility for performance */
+  .content-visibility-auto {
+    content-visibility: auto;
+    contain-intrinsic-size: 0 500px;
+  }
+  
+  /* Will-change hints for animated elements */
+  .will-change-transform {
+    will-change: transform;
+  }
+  
+  .will-change-opacity {
+    will-change: opacity;
+  }
+  
+  .will-change-scroll {
+    will-change: scroll-position;
+  }
+  
+  /* Animazioni di base per fluidità */
+  * {
+    transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 300ms;
+  }
+  
+  /* GPU acceleration for smooth animations */
+  .gpu-accelerated {
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    perspective: 1000px;
+  }
+  
+  /* Optimize repaints */
+  .optimize-repaints {
+    contain: layout style paint;
+  }
+}
+
+@layer components {
+  .section-y { @apply py-10 md:py-14 lg:py-20; }
+  .h1-hero { @apply uppercase tracking-wider text-[32px] md:text-[40px] lg:text-[56px] leading-tight; }
+  .h2-title { @apply uppercase tracking-wider text-[24px] md:text-[28px] lg:text-[32px]; }
+  .h3-title { @apply uppercase tracking-wider text-[18px] md:text-[20px] lg:text-[24px]; }
+  .btn { 
+    @apply rounded-none border border-charcoal px-4 py-2 transition-all duration-300 ease-out;
+    @apply hover:bg-charcoal hover:text-white hover:scale-105 hover:shadow-lg;
+    @apply active:scale-95;
+  }
+  
+  /* Animazioni personalizzate */
+  .fade-in {
+    animation: fadeIn 0.6s ease-out forwards;
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  
+  .fade-in-up {
+    animation: fadeInUp 0.8s ease-out forwards;
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  
+  .fade-in-left {
+    animation: fadeInLeft 0.7s ease-out forwards;
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  
+  .fade-in-right {
+    animation: fadeInRight 0.7s ease-out forwards;
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  
+  .scale-in {
+    animation: scaleIn 0.5s ease-out forwards;
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  
+  .slide-in-bottom {
+    animation: slideInBottom 0.6s ease-out forwards;
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  
+  /* Hover effects avanzati */
+  .hover-lift {
+    @apply transition-all duration-300 ease-out;
+    @apply hover:transform hover:-translate-y-2 hover:shadow-xl;
+  }
+  
+  .hover-glow {
+    @apply transition-all duration-300 ease-out;
+    @apply hover:shadow-2xl hover:shadow-charcoal/20;
+  }
+  
+  .hover-scale {
+    @apply transition-transform duration-300 ease-out;
+    @apply hover:scale-105;
+  }
+  
+  .hover-rotate {
+    @apply transition-transform duration-300 ease-out;
+    @apply hover:rotate-1;
+  }
+  
+  /* Animazioni per le immagini */
+  .image-zoom {
+    @apply transition-transform duration-500 ease-out will-change-transform gpu-accelerated;
+    @apply hover:scale-110;
+  }
+  
+  .image-overlay {
+    @apply absolute inset-0 bg-black/0 transition-all duration-300 ease-out will-change-opacity;
+    @apply group-hover:bg-black/20;
+  }
+  
+  /* Performance optimized image loading */
+  .image-lazy {
+    @apply transition-opacity duration-300;
+    @apply opacity-100;
+  }
+  
+  .image-lazy.loaded {
+    @apply opacity-100;
+  }
+  
+  /* Masonry content optimization */
+  .masonry-content {
+    @apply transition-opacity duration-500;
+    @apply opacity-100;
+  }
+  
+  /* Animazioni per il testo */
+  .text-reveal {
+    @apply overflow-hidden;
+  }
+  
+  .text-reveal span {
+    @apply inline-block transform translate-y-full transition-transform duration-500 ease-out;
+  }
+  
+  .text-reveal.animate span {
+    @apply translate-y-0;
+  }
+  
+  /* Animazioni per i pulsanti */
+  .btn-animated {
+    @apply relative overflow-hidden;
+  }
+  
+  .btn-animated::before {
+    content: '';
+    @apply absolute inset-0 bg-charcoal transform -translate-x-full transition-transform duration-300 ease-out;
+  }
+  
+  .btn-animated:hover::before {
+    @apply translate-x-0;
+  }
+  
+  .btn-animated span {
+    @apply relative z-10;
+  }
+  
+  /* Animazioni per le card */
+  .card-hover {
+    @apply transition-all duration-300 ease-out;
+    @apply hover:shadow-2xl hover:shadow-charcoal/10 hover:-translate-y-1;
+  }
+  
+  /* Animazioni per il loading */
+  .loading-pulse {
+    animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+  
+  .loading-spin {
+    animation: spin 1s linear infinite;
+  }
+  
+  /* Animazioni per il menu */
+  .nav-link {
+    @apply relative transition-all duration-300 ease-out;
+  }
+  
+  .nav-link::after {
+    content: '';
+    @apply absolute bottom-0 left-0 w-0 h-0.5 bg-charcoal transition-all duration-300 ease-out;
+  }
+  
+  .nav-link:hover::after,
+  .nav-link.active::after {
+    @apply w-full;
+  }
+  
+  /* Animazioni per il lightbox */
+  .lightbox-backdrop {
+    animation: fadeIn 0.3s ease-out;
+  }
+  
+  .lightbox-content {
+    animation: scaleIn 0.3s ease-out;
+  }
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInLeft {
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeInRight {
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes scaleIn {
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes slideInBottom {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Animazioni per dispositivi con preferenza per movimento ridotto */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

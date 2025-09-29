@@ -1,0 +1,27 @@
+{
+  "name": "Inside.FaraoStudio",
+  "short_name": "FaraoStudio",
+  "description": "Fotografia professionale in bianco e nero",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#ffffff",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/logo.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/logo.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["photography", "art", "portfolio"],
+  "lang": "it",
+  "dir": "ltr"
+}
