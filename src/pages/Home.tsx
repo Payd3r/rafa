@@ -59,7 +59,12 @@ export default function Home() {
             <p className="mt-4 max-w-2xl text-gray700 animate-fade-in">
               {t('home.heroDescription')}
             </p>
-            <button className="btn btn-animated mt-6 group">
+            <button 
+              type="button"
+              onClick={() => window.open('https://www.instagram.com/andreaafarao/', '_blank', 'noopener,noreferrer')}
+              className="btn btn-animated mt-6 group"
+              aria-label="Instagram - About me"
+            >
               <span className="relative z-10">{t('home.readMore')}</span>
             </button>
           </div>
