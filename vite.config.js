@@ -6,6 +6,11 @@ export default defineConfig({
     jsxRuntime: 'automatic'
   })],
   
+  // Forza Vite a usare il file PostCSS esplicito (Tailwind + Autoprefixer)
+  css: {
+    postcss: './postcss.config.cjs'
+  },
+  
   // Ottimizzazioni per le performance
   build: {
     // Genera source maps solo in development
