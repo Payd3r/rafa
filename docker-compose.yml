@@ -1,12 +1,12 @@
 version: '3.8'
 
 services:
-  # Frontend React - I Gladiatori Landing Page
-  igladiatori-frontend:
+  # Frontend React - sito-rafa
+  sito-rafa:
     build:
       context: .
       dockerfile: Dockerfile
-    container_name: igladiatori_frontend
+    container_name: sito-rafa
     restart: unless-stopped
     environment:
       NODE_ENV: production
