@@ -1,5 +1,5 @@
 # Build stage
-FROM node:18-alpine as build
+FROM node:20-bookworm-slim as build
 
 WORKDIR /app
 
@@ -7,7 +7,8 @@ WORKDIR /app
 COPY package*.json ./
 
 # Install all dependencies (including devDependencies for build)
-RUN npm ci
+ENV CI=true
+RUN npm ci --no-audit --no-fund
 
 # Copy source code
 COPY . .
