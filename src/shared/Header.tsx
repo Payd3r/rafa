@@ -98,7 +98,9 @@ export function Header() {
             </NavLink>
           </nav>
         </div>
-        <LanguageToggle />
+        <div className="sm:block sm:ms-4 lg:ms-6">
+          <LanguageToggle />
+        </div>
       </div>
     </header>
   )

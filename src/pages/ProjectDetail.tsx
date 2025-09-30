@@ -32,7 +32,7 @@ export default function ProjectDetail() {
   return (
     <div className="min-h-screen bg-white text-black">
       <Header />
-      <main className="section-y max-w-7xl mx-auto px-4">
+      <main className="section-y max-w-6xl mx-auto px-4">
         {/* Breadcrumb */}
         <nav className="mb-8">
           <Link to="/projects" className="text-gray500 hover:text-charcoal transition-colors">

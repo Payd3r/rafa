@@ -16,9 +16,10 @@ export function PhotoCard({
 }) {
   const meta = imageMeta[photo.src] as { ratio: number; placeholder: string } | undefined
   const { ref, isVisible } = useAnimation({ 
-    threshold: 0.1, 
+    threshold: 0, 
+    rootMargin: '300px 0px',
     triggerOnce: true,
-    delay: index * 100 
+    delay: Math.min(index * 60, 240) 
   })
   const { ref: hoverRef, isHovered } = useHoverAnimation()
   
