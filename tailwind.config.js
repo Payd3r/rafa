@@ -4,6 +4,33 @@ export default {
     './index.html',
     './src/**/*.{ts,tsx,js,jsx}',
   ],
+  safelist: [
+    { pattern: /^(container|block|inline|inline-block|flex|inline-flex|grid|hidden)$/ },
+    { pattern: /^(items|justify|content|place)-(start|end|center|between|around|evenly)$/ },
+    { pattern: /^flex-(row|col|wrap|nowrap|1|auto|initial|none)$/ },
+    { pattern: /^(self|place-self)-(auto|start|end|center|stretch)$/ },
+    { pattern: /^(order|col|row)-/ },
+    { pattern: /^(w|h|min-w|min-h|max-w|max-h)-/ },
+    { pattern: /^(p|px|py|pt|pr|pb|pl|m|mx|my|mt|mr|mb|ml|gap)-/ },
+    { pattern: /^space-[xy]-/ },
+    { pattern: /^(rounded|rounded-[trbl]|rounded-[sm|md|lg|xl|2xl|3xl|full])/ },
+    { pattern: /^(border|border-[trbl]|border-[0-9]|border-(solid|dashed|dotted)|border-(charcoal|black|white|gray700|gray400|sand)|border-[a-z0-9-]+)$/ },
+    { pattern: /^(bg|from|via|to)-/ },
+    { pattern: /^text-(left|center|right|justify|[0-9]+|[a-z0-9-]+)$/ },
+    { pattern: /^(leading|tracking|font|uppercase|lowercase|capitalize|normal-case)/ },
+    { pattern: /^(grid-cols|grid-rows|col-span|row-span)-/ },
+    { pattern: /^(place-items|place-content|place-self)-/ },
+    { pattern: /^(overflow|overscroll)-/ },
+    { pattern: /^(z|top|left|right|bottom|inset)-/ },
+    { pattern: /^(opacity|shadow|shadow-[a-z0-9/]+)$/ },
+    { pattern: /^(transition|duration|ease|delay|animate)-/ },
+    { pattern: /^(scale|rotate|translate|skew)-/ },
+    { pattern: /^(cursor|select|pointer-events)-/ },
+    { pattern: /^(sr-only|not-sr-only)$/ },
+    // Varianti responsive e di stato
+    { pattern: /^(sm:|md:|lg:|xl:|2xl:)/ },
+    { pattern: /^(hover:|focus:|active:|disabled:|group-hover:|aria-)/ },
+  ],
   theme: {
     extend: {
       colors: {
