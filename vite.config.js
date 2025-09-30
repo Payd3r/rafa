@@ -15,6 +15,10 @@ export default defineConfig({
     }
   },
   
+  // Assicura che Tailwind usi la config CJS esplicita in ambienti dove ESM può fallire
+  // Tailwind la rileva automaticamente, ma in alcuni contesti di build dockerizzati
+  // è più affidabile avere il file .cjs presente accanto.
+  
   // Ottimizzazioni per le performance
   build: {
     // Genera source maps solo in development

@@ -1,5 +1,5 @@
 /** @type {import('tailwindcss').Config} */
-export default {
+module.exports = {
   content: [
     './index.html',
     './src/**/*.{ts,tsx,js,jsx}',
@@ -27,7 +27,6 @@ export default {
     { pattern: /^(scale|rotate|translate|skew)-/ },
     { pattern: /^(cursor|select|pointer-events)-/ },
     { pattern: /^(sr-only|not-sr-only)$/ },
-    // Varianti responsive e di stato
     { pattern: /^(sm:|md:|lg:|xl:|2xl:)/ },
     { pattern: /^(hover:|focus:|active:|disabled:|group-hover:|aria-)/ },
   ],
@@ -123,4 +122,5 @@ export default {
   },
   plugins: [],
 }
+
 
