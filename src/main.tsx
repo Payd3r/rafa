@@ -10,18 +10,7 @@ if (typeof window !== 'undefined') {
   (window as any).React = React
 }
 
-// Registra il service worker per il caching
-if ('serviceWorker' in navigator) {
-  window.addEventListener('load', () => {
-    navigator.serviceWorker.register('/sw.js')
-      .then((registration) => {
-        console.log('SW registered: ', registration)
-      })
-      .catch((registrationError) => {
-        console.log('SW registration failed: ', registrationError)
-      })
-  })
-}
+// Service worker completamente rimosso per evitare problemi di caching
 
 // Lazy con retry per gestire errori di rete/cache temporanei
 function lazyWithRetry<T extends React.ComponentType<any>>(importer: () => Promise<{ default: T }>) {

@@ -11,6 +11,7 @@
     "optimize-images": "node --loader=ts-node/esm --no-warnings ./scripts/optimize-images.js || node ./scripts/optimize-images.js"
   },
   "devDependencies": {
+    "@vitejs/plugin-react": "^4.3.4",
     "@typescript-eslint/eslint-plugin": "^8.44.1",
     "@typescript-eslint/parser": "^8.44.1",
     "autoprefixer": "^10.4.21",
