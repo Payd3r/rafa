@@ -1,14 +1,18 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
+import tailwindcss from 'tailwindcss'
+import autoprefixer from 'autoprefixer'
 
 export default defineConfig({
   plugins: [react({
     jsxRuntime: 'automatic'
   })],
   
-  // Forza Vite a usare il file PostCSS esplicito (Tailwind + Autoprefixer)
+  // PostCSS inline: garantisce l'esecuzione di Tailwind/Autoprefixer in build
   css: {
-    postcss: './postcss.config.cjs'
+    postcss: {
+      plugins: [tailwindcss(), autoprefixer()]
+    }
   },
   
   // Ottimizzazioni per le performance
