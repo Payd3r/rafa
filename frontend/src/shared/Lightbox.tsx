@@ -1,5 +1,6 @@
 import { useEffect, useRef } from 'react'
 import type { Photo } from './types'
+import { useImagePreloader } from './hooks/useImagePreloader'
 
 export function Lightbox({ photos, index, onClose, onPrev, onNext }: { photos: Photo[]; index: number | null; onClose: () => void; onPrev: () => void; onNext: () => void }) {
   const overlayRef = useRef<HTMLDivElement | null>(null)
@@ -89,6 +90,9 @@ export function Lightbox({ photos, index, onClose, onPrev, onNext }: { photos: P
   const next = photos[index + 1]
   const prevFull = resolveFull(prev)
   const nextFull = resolveFull(next)
+
+  // Precarica immagini in modo imperativo per una navigazione fluida
+  useImagePreloader(currentFull, prevFull, nextFull, index !== null)
 
   return (
     <div
