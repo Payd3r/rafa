@@ -67,8 +67,8 @@ export function Lightbox({ photos, index, onClose, onPrev, onNext }: { photos: P
     return () => overlay.removeEventListener('keydown', trap as any)
   }, [index])
 
-  if (index === null) return null
-  const current = photos[index]
+  // Calcola i path delle immagini da precaricare (PRIMA del return condizionale)
+  const current = index !== null ? photos[index] : undefined
   const resolveFull = (p: Photo | undefined) => {
     if (!p) return undefined
     if (p.src.startsWith('/optimized/') && p.src.endsWith('/thumb.webp')) {
@@ -83,16 +83,17 @@ export function Lightbox({ photos, index, onClose, onPrev, onNext }: { photos: P
     }
     return p.src
   }
-  const currentFull = resolveFull(current)!
-
-  // Prefetch adiacenti
-  const prev = photos[index - 1]
-  const next = photos[index + 1]
+  const currentFull = current ? resolveFull(current) : undefined
+  const prev = index !== null ? photos[index - 1] : undefined
+  const next = index !== null ? photos[index + 1] : undefined
   const prevFull = resolveFull(prev)
   const nextFull = resolveFull(next)
 
   // Precarica immagini in modo imperativo per una navigazione fluida
-  useImagePreloader(currentFull, prevFull, nextFull, index !== null)
+  // IMPORTANTE: Questo hook deve essere chiamato PRIMA del return condizionale!
+  useImagePreloader(currentFull || '', prevFull, nextFull, index !== null && !!currentFull)
+
+  if (index === null) return null
 
   return (
     <div
@@ -117,8 +118,8 @@ export function Lightbox({ photos, index, onClose, onPrev, onNext }: { photos: P
         ×
       </button>
       <img
-        src={currentFull}
-        alt={current.alt}
+        src={currentFull!}
+        alt={current!.alt}
         className="lightbox-content object-contain transition-all duration-500 ease-out"
         style={{
           maxWidth: '95svw',
@@ -136,7 +137,7 @@ export function Lightbox({ photos, index, onClose, onPrev, onNext }: { photos: P
         </button>
         <a
           className="bg-white dark:bg-black text-black dark:text-white border-2 border-black dark:border-white px-4 py-2 sm:px-4 sm:py-2 text-center shadow-md w-full sm:w-auto min-w-[120px] h-10 leading-none flex items-center justify-center transition-colors duration-300"
-          href={current.originalUrl}
+          href={current!.originalUrl}
           download
           aria-label="Scarica immagine originale"
         >
