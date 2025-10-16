@@ -1,0 +1,27 @@
+FROM node:20-bookworm-slim
+
+WORKDIR /app
+
+# Installa dipendenze di sistema necessarie per Sharp
+RUN apt-get update && apt-get install -y \
+    libc6 \
+    libgcc-s1 \
+    libstdc++6 \
+    && rm -rf /var/lib/apt/lists/*
+
+# Copia package.json e installa dipendenze
+COPY package*.json ./
+RUN npm ci --only=production --no-audit --no-fund
+
+# Copia il codice sorgente
+COPY . .
+
+# Crea directory per dati persistenti
+RUN mkdir -p /app/data
+
+# Esponi la porta
+EXPOSE 3001
+
+# Avvia il server
+CMD ["npm", "start"]
+

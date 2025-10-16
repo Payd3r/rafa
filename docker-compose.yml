@@ -1,22 +1,65 @@
 version: '3.8'
 
 services:
+  # Backend Node.js - CMS Admin
+  sito-rafa-backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile.backend
+    container_name: sito-rafa-backend
+    restart: unless-stopped
+    ports:
+      - "${BACKEND_PORT:-3001}:${BACKEND_PORT:-3001}"
+    env_file:
+      - .env
+    environment:
+      NODE_ENV: production
+      # Override per produzione (usa PROD_* paths dal .env)
+      PUBLIC_PATH: ${PROD_PUBLIC_PATH}
+      SRC_PATH: ${PROD_SRC_PATH}
+      DATA_PATH: ${PROD_DATA_PATH}
+      PORT: ${BACKEND_PORT:-3001}
+    volumes:
+      # Volume condiviso per le immagini ottimizzate
+      - ./frontend/public/optimized:/app/public/optimized
+      # Volume condiviso per i file generati (projects.ts, imageMeta.ts)
+      - ./frontend/src/shared/data:/app/src/shared/data
+      # Volume persistente per il database JSON
+      - ${BACKEND_DATA_VOLUME:-backend_data}:/app/data
+    networks:
+      - ${DOCKER_NETWORK:-web-proxy}
+    healthcheck:
+      test: ["CMD", "node", "-e", "fetch('http://localhost:${BACKEND_PORT:-3001}/api/admin/health').then(r => r.ok ? process.exit(0) : process.exit(1)).catch(() => process.exit(1))"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
   # Frontend React - sito-rafa
   sito-rafa:
     build:
-      context: .
+      context: ./frontend
       dockerfile: Dockerfile
+      args:
+        # Durante il build, usa il backend interno per produzione
+        - VITE_BACKEND_URL=http://sito-rafa-backend:${BACKEND_PORT:-3001}
     container_name: sito-rafa
     restart: unless-stopped
+    env_file:
+      - .env
     environment:
       NODE_ENV: production
     volumes:
-      - frontend_build:/app/dist
+      - ${FRONTEND_BUILD_VOLUME:-frontend_build}:/app/dist
     networks:
-      - web-proxy
+      - ${DOCKER_NETWORK:-web-proxy}
+    depends_on:
+      sito-rafa-backend:
+        condition: service_healthy
 
 volumes:
   frontend_build:
+    driver: local
+  backend_data:
     driver: local
 
 networks:
