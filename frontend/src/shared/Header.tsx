@@ -3,7 +3,6 @@ import { useTranslation } from './hooks/useTranslation'
 import { LanguageToggle } from './components/LanguageToggle'
 import { ThemeToggle } from './components/ThemeToggle'
 import { useAnimation } from './hooks/useAnimation'
-import { usePrefetch } from './hooks/usePrefetch'
 
 export function Header() {
   const { t } = useTranslation()
@@ -11,42 +10,6 @@ export function Header() {
     threshold: 0.1,
     triggerOnce: true
   })
-  const { prefetchOnHover } = usePrefetch()
-
-  // Prefetch delle immagini della gallery al hover
-  const handleGalleryHover = (element: HTMLAnchorElement | null) => {
-    if (!element) return
-
-    const galleryImages = [
-      '/optimized/progetto1/1/thumb.webp',
-      '/optimized/progetto1/2/thumb.webp',
-      '/optimized/progetto1/3/thumb.webp',
-      '/optimized/progetto2/1/thumb.webp',
-      '/optimized/progetto2/2/thumb.webp',
-      '/optimized/progetto3/1/thumb.webp',
-      '/optimized/progetto4/1/thumb.webp',
-      '/optimized/progetto5/1/thumb.webp'
-    ]
-
-    return prefetchOnHover(galleryImages, element)
-  }
-
-  // Prefetch delle immagini dei progetti al hover
-  const handleProjectsHover = (element: HTMLAnchorElement | null) => {
-    if (!element) return
-
-    const projectImages = [
-      '/optimized/progetto1/1/thumb.webp',
-      '/optimized/progetto2/1/thumb.webp',
-      '/optimized/progetto3/1/thumb.webp',
-      '/optimized/progetto4/1/thumb.webp',
-      '/optimized/progetto5/1/thumb.webp',
-      '/optimized/progetto6/1/thumb.webp',
-      '/optimized/progetto7/1/thumb.webp'
-    ]
-
-    return prefetchOnHover(projectImages, element)
-  }
 
   return (
     <header
@@ -85,7 +48,6 @@ export function Header() {
             </NavLink>
             <NavLink
               to="/gallery"
-              ref={handleGalleryHover}
               className={({ isActive }) =>
                 `nav-link transition-all duration-300 hover:text-charcoal dark:hover:text-white will-change-transform ${isActive ? 'text-charcoal dark:text-white font-medium' : 'text-gray700 dark:text-gray-300'
                 }`
@@ -95,7 +57,6 @@ export function Header() {
             </NavLink>
             <NavLink
               to="/projects"
-              ref={handleProjectsHover}
               className={({ isActive }) =>
                 `nav-link transition-all duration-300 hover:text-charcoal dark:hover:text-white will-change-transform ${isActive ? 'text-charcoal dark:text-white font-medium' : 'text-gray700 dark:text-gray-300'
                 }`
