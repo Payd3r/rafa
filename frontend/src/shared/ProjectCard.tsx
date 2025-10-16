@@ -32,7 +32,7 @@ export function ProjectCard({ project, index = 0 }: { project: Project; index?: 
   return (
     <article 
       ref={ref}
-      className={`border border-charcoal dark:border-white bg-white dark:bg-black group cursor-pointer h-[420px] flex flex-col transition-all duration-500 content-visibility-auto ${
+      className={`border border-charcoal dark:border-white bg-white dark:bg-black group cursor-pointer min-h-[420px] flex flex-col transition-all duration-500 content-visibility-auto ${
         isVisible ? 'fade-in-up' : 'opacity-0 translate-y-8'
       }`}
       onClick={handleClick}
@@ -61,8 +61,8 @@ export function ProjectCard({ project, index = 0 }: { project: Project; index?: 
 
         {/* Overlay di hover con informazioni */}
         <div className={`absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500 flex items-end p-6`}>
-          <div className="text-white transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
-            <h4 className="text-lg font-bold mb-2">{project.title}</h4>
+          <div className="text-white transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500 w-full">
+            <h4 className="text-lg font-bold mb-2 break-words hyphens-auto leading-tight">{project.title}</h4>
             <p className="text-sm opacity-90">
               {project.gallery.length} {t('projectDetail.photo')}
             </p>
@@ -72,13 +72,13 @@ export function ProjectCard({ project, index = 0 }: { project: Project; index?: 
       
       <div className="p-6 flex flex-col flex-1">
         {/* Layout mobile: colonna a sinistra, desktop: anno a destra */}
-        <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start mb-3">
-          <div className="flex flex-col sm:flex-row sm:items-start sm:gap-3">
-            <h3 className="h3-title text-lg font-bold transition-colors duration-300 group-hover:text-charcoal dark:group-hover:text-white">
+        <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start mb-3 gap-2">
+          <div className="flex-1 min-w-0">
+            <h3 className="h3-title text-lg font-bold transition-colors duration-300 group-hover:text-charcoal dark:group-hover:text-white break-words hyphens-auto leading-tight">
               {project.title}
             </h3>
           </div>
-          <span className="text-sm text-gray400 dark:text-gray-600 font-medium mb-1 sm:mb-0 transition-colors duration-300 group-hover:text-charcoal dark:group-hover:text-white">
+          <span className="text-sm text-gray400 dark:text-gray-600 font-medium flex-shrink-0 transition-colors duration-300 group-hover:text-charcoal dark:group-hover:text-white">
             {new Date(project.dateISO).getFullYear()}
           </span>
         </div>
