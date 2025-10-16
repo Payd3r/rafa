@@ -32,7 +32,7 @@ export function ProjectCard({ project, index = 0 }: { project: Project; index?: 
   return (
     <article 
       ref={ref}
-      className={`border border-charcoal dark:border-white bg-white dark:bg-black group cursor-pointer min-h-[420px] flex flex-col transition-all duration-500 content-visibility-auto ${
+      className={`border border-charcoal dark:border-white bg-white dark:bg-black group cursor-pointer h-[420px] flex flex-col transition-all duration-500 content-visibility-auto ${
         isVisible ? 'fade-in-up' : 'opacity-0 translate-y-8'
       }`}
       onClick={handleClick}
@@ -70,7 +70,7 @@ export function ProjectCard({ project, index = 0 }: { project: Project; index?: 
         </div>
       </div>
       
-      <div className="p-6 flex flex-col flex-1">
+      <div className="p-4 flex flex-col flex-1">
         {/* Layout mobile: colonna a sinistra, desktop: anno a destra */}
         <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start mb-3 gap-2">
           <div className="flex-1 min-w-0">
@@ -88,8 +88,9 @@ export function ProjectCard({ project, index = 0 }: { project: Project; index?: 
           <span className="text-xs text-gray400 dark:text-gray-600 hidden sm:block transition-colors duration-300 group-hover:text-gray700 dark:group-hover:text-gray-300">
             {project.gallery.length} {t('projectDetail.photo')}
           </span>
-          <span className="text-xs text-charcoal dark:text-white font-medium group-hover:text-gray700 dark:group-hover:text-gray-300 transition-all duration-300 group-hover:translate-x-1">
+          <span className="text-xs text-charcoal dark:text-white font-medium group-hover:text-gray700 dark:group-hover:text-gray-300 transition-all duration-300 group-hover:translate-x-1 flex items-center gap-1">
             {t('projectDetail.viewProject')}
+            <span className="transition-transform duration-300 group-hover:translate-x-1">→</span>
           </span>
         </div>
       </div>
