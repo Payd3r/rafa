@@ -8,8 +8,7 @@ services:
       dockerfile: Dockerfile.backend
     container_name: sito-rafa-backend
     restart: unless-stopped
-    ports:
-      - "${BACKEND_PORT:-3001}:${BACKEND_PORT:-3001}"
+    # Porta NON esposta pubblicamente - solo comunicazione interna via Nginx proxy
     environment:
       NODE_ENV: production
       ADMIN_USER: ${ADMIN_USER:-andrea}
@@ -39,8 +38,8 @@ services:
       context: ./frontend
       dockerfile: Dockerfile
       args:
-        # Durante il build, usa il backend interno per produzione
-        - VITE_BACKEND_URL=http://sito-rafa-backend:${BACKEND_PORT:-3001}
+        # In produzione usa path relativo (reverse proxy gestisce /api/)
+        - VITE_BACKEND_URL=
     container_name: sito-rafa
     restart: unless-stopped
     environment:

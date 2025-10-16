@@ -127,7 +127,9 @@ export default function Admin() {
         formData.append('images', img.file)
       })
 
-      const backendUrl = import.meta.env.VITE_BACKEND_URL || 'http://localhost:3001'
+      // 🔥 Usa path relativo in produzione, URL completo in dev
+      const backendUrl = import.meta.env.VITE_BACKEND_URL || ''
+      const apiUrl = backendUrl ? `${backendUrl}/api/admin/projects` : '/api/admin/projects'
 
       // 🔥 XMLHttpRequest per progress reale
       const response = await new Promise<string>((resolve, reject) => {
@@ -156,7 +158,7 @@ export default function Admin() {
         })
         
         // Invio
-        xhr.open('POST', `${backendUrl}/api/admin/projects`)
+        xhr.open('POST', apiUrl)
         xhr.setRequestHeader('Authorization', 'Basic ' + btoa('andrea:andrea2004'))
         xhr.send(formData)
       })

@@ -31,21 +31,41 @@ cd frontend && npm run dev
 
 ## Deploy Portainer
 
+### 1. Configura Environment Variables in Portainer:
+
+```env
+ADMIN_USER=andrea
+ADMIN_PASS=andrea2004
+BACKEND_PORT=3001
+PROD_PUBLIC_PATH=/app/public
+PROD_SRC_PATH=/app/src
+PROD_DATA_PATH=/app/data/projects.json
+DOCKER_NETWORK=web-proxy
+BACKEND_DATA_VOLUME=backend_data
+FRONTEND_BUILD_VOLUME=frontend_build
+```
+
+**⚠️ Cambia le credenziali admin per sicurezza!**
+
+### 2. Deploy stack:
+
 ```bash
 docker-compose up -d
 ```
 
-Configurazione centralizzata in `.env` alla root.
+### 3. Configurazione Automatica
 
-## Configurazione
+Il frontend include **Nginx che fa proxy** delle richieste `/api/` al backend interno.
+
+✅ Nessuna configurazione reverse proxy aggiuntiva necessaria!
+✅ Tutto passa attraverso HTTPS automaticamente
+
+## Configurazione Locale
 
 File `.env` (già pronto per dev):
+- `VITE_BACKEND_URL=http://localhost:3001` - Backend locale
 - `ADMIN_USER=andrea` - Username admin
 - `ADMIN_PASS=andrea2004` - Password admin
-- `BACKEND_PORT=3001` - Porta backend
-- `VITE_BACKEND_URL=http://localhost:3001` - URL backend per frontend
-
-**Cambia le credenziali per produzione!**
 
 ## Admin Panel
 
