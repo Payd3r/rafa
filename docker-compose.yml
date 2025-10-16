@@ -13,15 +13,13 @@ services:
       NODE_ENV: production
       ADMIN_USER: ${ADMIN_USER:-andrea}
       ADMIN_PASS: ${ADMIN_PASS:-andrea2004}
-      PUBLIC_PATH: ${PROD_PUBLIC_PATH:-/app/public}
+      PUBLIC_PATH: /usr/share/nginx/html
       SRC_PATH: ${PROD_SRC_PATH:-/app/src}
       DATA_PATH: ${PROD_DATA_PATH:-/app/data/projects.json}
       PORT: ${BACKEND_PORT:-3001}
     volumes:
-      # Volume condiviso per le immagini ottimizzate
-      - ./frontend/public/optimized:/app/public/optimized
-      # Volume condiviso per i file generati (projects.ts, imageMeta.ts)
-      - ./frontend/src/shared/data:/app/src/shared/data
+      # Volume condiviso con frontend - backend scrive, frontend serve
+      - public_assets:/usr/share/nginx/html
       # Volume persistente per il database JSON
       - ${BACKEND_DATA_VOLUME:-backend_data}:/app/data
     networks:
@@ -45,7 +43,8 @@ services:
     environment:
       NODE_ENV: production
     volumes:
-      - ${FRONTEND_BUILD_VOLUME:-frontend_build}:/app/dist
+      # Volume condiviso per file dinamici (projects.json, imageMeta.json, optimized/)
+      - public_assets:/usr/share/nginx/html
     networks:
       - ${DOCKER_NETWORK:-web-proxy}
     depends_on:
@@ -53,7 +52,7 @@ services:
         condition: service_healthy
 
 volumes:
-  frontend_build:
+  public_assets:
     driver: local
   backend_data:
     driver: local

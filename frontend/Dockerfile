@@ -23,16 +23,21 @@ RUN npm run build
 # Production stage
 FROM nginx:alpine
 
-# Copy built app from build stage
-COPY --from=build /app/dist /usr/share/nginx/html
-
 # Copy custom nginx configuration
 COPY nginx.conf /etc/nginx/nginx.conf
+
+# Copy built app to temporary location
+# Verrà copiato nel volume all'avvio tramite entrypoint
+COPY --from=build /app/dist /app/dist
+
+# Copy entrypoint script
+COPY docker-entrypoint.sh /docker-entrypoint.sh
+RUN chmod +x /docker-entrypoint.sh
 
 # Expose port 80
 EXPOSE 80
 
-# Start nginx
-CMD ["nginx", "-g", "daemon off;"]
+# Use custom entrypoint
+ENTRYPOINT ["/docker-entrypoint.sh"]
 
 
