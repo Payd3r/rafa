@@ -85,10 +85,11 @@ export default function Home() {
                 <div className="inline-block w-8 h-8 border-2 border-charcoal dark:border-white border-t-transparent rounded-full animate-spin" />
               </div>
             ) : (
-              <MasonryGrid 
-                photos={projects.flatMap(p => p.gallery).slice(0, 8)} 
-                onPhotoClick={handlePhotoClick}
-              />
+            <MasonryGrid 
+              photos={projects.flatMap(p => p.gallery).slice(0, 8)} 
+              onPhotoClick={handlePhotoClick}
+              maxRows={2}
+            />
             )}
             <div className="text-center mt-8 animate-fade-in-up">
               <Link to="/gallery" className="btn btn-animated w-full sm:w-auto inline-block text-center group">

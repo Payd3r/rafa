@@ -6,7 +6,7 @@ import { useImageMetaContext } from './contexts/ImageMetaContext'
 type RowItem = { index: number; ratio: number }
 type Row = { height: number; items: RowItem[] }
 
-export function MasonryGrid({ photos, onPhotoClick }: { photos: Photo[]; onPhotoClick?: (index: number) => void }) {
+export function MasonryGrid({ photos, onPhotoClick, maxRows }: { photos: Photo[]; onPhotoClick?: (index: number) => void; maxRows?: number }) {
   const { imageMeta } = useImageMetaContext()
   const containerRef = useRef<HTMLDivElement | null>(null)
   const [containerWidth, setContainerWidth] = useState<number>(0)
@@ -67,6 +67,9 @@ export function MasonryGrid({ photos, onPhotoClick }: { photos: Photo[]; onPhoto
         if (scale > maxScaleUp) height = targetHeight * maxScaleUp
         if (scale < minScaleDown) height = targetHeight * minScaleDown
         r.push({ height, items: current })
+        if (maxRows && r.length >= maxRows) {
+          return r
+        }
         current = []
         sumRatio = 0
       }
@@ -80,13 +83,17 @@ export function MasonryGrid({ photos, onPhotoClick }: { photos: Photo[]; onPhoto
         const minScaleDown = 0.7
         if (scale > maxScaleUp) height = targetHeight * maxScaleUp
         if (scale < minScaleDown) height = targetHeight * minScaleDown
-        r.push({ height, items: current })
+        if (!maxRows || r.length < maxRows) {
+          r.push({ height, items: current })
+        }
       } else {
-        r.push({ height: targetHeight, items: current })
+        if (!maxRows || r.length < maxRows) {
+          r.push({ height: targetHeight, items: current })
+        }
       }
     }
     return r
-  }, [containerWidth, photos, ratios, targetHeight])
+  }, [containerWidth, photos, ratios, targetHeight, gap, maxRows])
 
   const handleImageLoad = useCallback((_i: number, _e: React.SyntheticEvent<HTMLImageElement>) => {
     // No need to update ratios - they're pre-calculated
