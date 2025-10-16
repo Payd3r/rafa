@@ -61,20 +61,25 @@ export class MasonryLayoutGenerator {
       }
     }
 
-    // Ultima riga: se ha almeno 2 elementi, giustifica per riempire tutta la larghezza
+    // Ultima riga: gestione diversa se maxRows è specificato
     if (current.length > 0) {
+      // Se maxRows è specificato, NON aggiungere righe incomplete
+      // Questo garantisce che tutte le righe siano complete e ben giustificate
+      if (maxRows) {
+        // Salta l'ultima riga incompleta quando maxRows è specificato
+        // Così avremo sempre esattamente maxRows righe complete o meno righe
+        return rows;
+      }
+      
+      // Se maxRows NON è specificato, aggiungi l'ultima riga anche se incompleta
       if (current.length >= 2) {
         let height = (containerWidth - gap * (current.length - 1)) / sumRatio;
         const scale = height / targetHeight;
         if (scale > maxScaleUp) height = targetHeight * maxScaleUp;
         if (scale < minScaleDown) height = targetHeight * minScaleDown;
-        if (!maxRows || rows.length < maxRows) {
-          rows.push({ height, items: current });
-        }
+        rows.push({ height, items: current });
       } else {
-        if (!maxRows || rows.length < maxRows) {
-          rows.push({ height: targetHeight, items: current });
-        }
+        rows.push({ height: targetHeight, items: current });
       }
     }
 
@@ -110,8 +115,8 @@ export class MasonryLayoutGenerator {
     });
     layouts['gallery-full'] = this.generateLayoutsForBreakpoints(allRatios);
 
-    // 2. Gallery preview (prime 8 foto per la home, max 2 righe)
-    const previewPhotos = allPhotos.slice(0, 8);
+    // 2. Gallery preview (prime 12 foto per la home, max 2 righe complete)
+    const previewPhotos = allPhotos.slice(0, 12);
     const previewRatios = previewPhotos.map(photo => {
       const meta = imageMeta[photo.src];
       return meta?.ratio || 1.5;

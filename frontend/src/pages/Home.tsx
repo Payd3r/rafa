@@ -86,7 +86,7 @@ export default function Home() {
               </div>
             ) : (
             <MasonryGrid 
-              photos={projects.flatMap(p => p.gallery).slice(0, 8)} 
+              photos={projects.flatMap(p => p.gallery).slice(0, 12)} 
               onPhotoClick={handlePhotoClick}
               maxRows={2}
               layoutKey="gallery-preview"
