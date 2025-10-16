@@ -15,6 +15,11 @@ export type Project = {
   description: string
   cover: Photo
   gallery: Photo[]
+  video?: {
+    src: string
+    thumbnail: string
+    alt: string
+  }
 }
 
 

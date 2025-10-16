@@ -3,6 +3,7 @@ import multer from 'multer';
 import path from 'path';
 import { basicAuth } from '../middleware/auth.js';
 import { ImageProcessor } from '../services/imageProcessor.js';
+import { VideoProcessor } from '../services/videoProcessor.js';
 import { FileGenerator } from '../services/fileGenerator.js';
 import { generateUniqueSlug } from '../utils/slugify.js';
 
@@ -12,15 +13,18 @@ const router = express.Router();
 const upload = multer({
   storage: multer.memoryStorage(),
   limits: {
-    fileSize: 50 * 1024 * 1024, // 50MB max per file
-    files: 30 // Max 30 file
+    fileSize: 1024 * 1024 * 1024, // 1GB max per file (per i video)
+    files: 32 // Max 30 immagini + 1 cover + 1 video
   },
   fileFilter: (req, file, cb) => {
-    const allowedMimes = ['image/jpeg', 'image/jpg', 'image/png'];
-    if (allowedMimes.includes(file.mimetype)) {
+    const allowedImageMimes = ['image/jpeg', 'image/jpg', 'image/png'];
+    const allowedVideoMimes = ['video/mp4', 'video/webm', 'video/quicktime'];
+    const allAllowedMimes = [...allowedImageMimes, ...allowedVideoMimes];
+    
+    if (allAllowedMimes.includes(file.mimetype)) {
       cb(null, true);
     } else {
-      cb(new Error('Formato file non supportato. Usa JPG o PNG.'));
+      cb(new Error('Formato file non supportato. Usa JPG/PNG per immagini o MP4/WebM/MOV per video.'));
     }
   }
 });
@@ -39,6 +43,7 @@ const dataPath = process.env.DATA_PATH || (isDev
   : process.env.PROD_DATA_PATH || '/app/data/projects.json');
 
 const imageProcessor = new ImageProcessor(publicPath);
+const videoProcessor = new VideoProcessor(publicPath);
 const fileGenerator = new FileGenerator(publicPath, srcPath);
 
 /**
@@ -64,7 +69,7 @@ router.get('/projects', basicAuth, async (req, res) => {
 /**
  * Funzione async separata per processing in background
  */
-async function processProjectInBackground(slug, title, description, dateISO, coverFiles, galleryFiles) {
+async function processProjectInBackground(slug, title, description, dateISO, coverFiles, galleryFiles, videoFile = null) {
   console.log(`[Background] Inizio processing progetto: ${slug}`);
   
   try {
@@ -78,6 +83,19 @@ async function processProjectInBackground(slug, title, description, dateISO, cov
       console.log(`[Background] Galleria processata: ${slug} (${galleryFiles.length} immagini)`);
     }
     
+    // Processa video (se presente)
+    let hasVideo = false;
+    if (videoFile) {
+      try {
+        await videoProcessor.processVideo(videoFile.buffer, slug);
+        hasVideo = true;
+        console.log(`[Background] Video processato: ${slug}`);
+      } catch (error) {
+        console.error(`[Background] Errore processing video per ${slug}:`, error);
+        // Continua anche se il video fallisce
+      }
+    }
+    
     // Crea progetto
     const newProject = {
       slug,
@@ -86,6 +104,7 @@ async function processProjectInBackground(slug, title, description, dateISO, cov
       dateISO,
       hasCover: true,
       imageCount: galleryFiles.length,
+      hasVideo,
       createdAt: new Date().toISOString()
     };
     
@@ -111,12 +130,14 @@ async function processProjectInBackground(slug, title, description, dateISO, cov
  */
 router.post('/projects', basicAuth, upload.fields([
   { name: 'cover', maxCount: 1 },
-  { name: 'images', maxCount: 30 }
+  { name: 'images', maxCount: 30 },
+  { name: 'video', maxCount: 1 }
 ]), async (req, res) => {
   try {
     const { title, description, dateISO } = req.body;
     const coverFiles = req.files?.cover;
     const galleryFiles = req.files?.images || [];
+    const videoFile = req.files?.video?.[0] || null;
 
     // Validazione
     if (!title || !description || !dateISO) {
@@ -140,7 +161,7 @@ router.post('/projects', basicAuth, upload.fields([
     // Genera slug unico
     const slug = generateUniqueSlug(title, existingSlugs);
 
-    console.log(`Upload ricevuto: ${slug} con cover e ${galleryFiles.length} immagini galleria`);
+    console.log(`Upload ricevuto: ${slug} con cover, ${galleryFiles.length} immagini galleria${videoFile ? ' e video' : ''}`);
 
     // 🔥 RISPOSTA IMMEDIATA (prima del processing!)
     res.json({
@@ -156,7 +177,7 @@ router.post('/projects', basicAuth, upload.fields([
 
     // 🔥 PROCESSING IN BACKGROUND (fire-and-forget)
     // Non usa await = non blocca la risposta
-    processProjectInBackground(slug, title, description, dateISO, coverFiles, galleryFiles)
+    processProjectInBackground(slug, title, description, dateISO, coverFiles, galleryFiles, videoFile)
       .catch(err => console.error('Errore processing background:', err));
 
   } catch (error) {

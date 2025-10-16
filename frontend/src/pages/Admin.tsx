@@ -14,6 +14,8 @@ export default function Admin() {
   const [date, setDate] = useState('')
   const [coverImage, setCoverImage] = useState<ImagePreview | null>(null)
   const [images, setImages] = useState<ImagePreview[]>([])
+  const [videoFile, setVideoFile] = useState<File | null>(null)
+  const [videoThumbnail, setVideoThumbnail] = useState<string | null>(null)
   const [uploading, setUploading] = useState(false)
   const [progress, setProgress] = useState(0)
   const [message, setMessage] = useState<{ type: 'success' | 'error', text: string } | null>(null)
@@ -96,6 +98,61 @@ export default function Admin() {
     })
   }
 
+  const handleVideoChange = async (e: ChangeEvent<HTMLInputElement>) => {
+    const files = e.target.files
+    if (!files || files.length === 0) return
+
+    const file = files[0]
+    const isValid = file.type === 'video/mp4' || file.type === 'video/webm' || file.type === 'video/quicktime'
+    
+    if (!isValid) {
+      alert(`File ${file.name} non è un formato valido (usa MP4, WebM o MOV)`)
+      return
+    }
+
+    // Controlla dimensione (1GB = 1024MB)
+    const maxSize = 1024 * 1024 * 1024
+    if (file.size > maxSize) {
+      alert(`Il video ${file.name} supera il limite di 1GB`)
+      return
+    }
+
+    setVideoFile(file)
+
+    // Estrai thumbnail del video usando canvas
+    const video = document.createElement('video')
+    video.src = URL.createObjectURL(file)
+    video.muted = true
+    video.preload = 'metadata'
+    
+    video.onloadeddata = () => {
+      // Vai a 1 secondo per evitare frame neri
+      video.currentTime = 1
+    }
+
+    video.onseeked = () => {
+      const canvas = document.createElement('canvas')
+      canvas.width = video.videoWidth
+      canvas.height = video.videoHeight
+      const ctx = canvas.getContext('2d')
+      ctx?.drawImage(video, 0, 0)
+      
+      const thumbnailUrl = canvas.toDataURL('image/jpeg', 0.8)
+      setVideoThumbnail(thumbnailUrl)
+      
+      // Cleanup
+      URL.revokeObjectURL(video.src)
+    }
+  }
+
+  const removeVideo = () => {
+    if (videoThumbnail) {
+      // Non serve revoke perché è già un data URL
+    }
+    setVideoFile(null)
+    setVideoThumbnail(null)
+  }
+
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault()
     
@@ -126,6 +183,11 @@ export default function Admin() {
       images.forEach(img => {
         formData.append('images', img.file)
       })
+
+      // Video (opzionale)
+      if (videoFile) {
+        formData.append('video', videoFile)
+      }
 
       // 🔥 Usa path relativo in produzione, URL completo in dev
       const backendUrl = import.meta.env.VITE_BACKEND_URL || ''
@@ -181,6 +243,8 @@ export default function Admin() {
       setDate('')
       setCoverImage(null)
       setImages([])
+      setVideoFile(null)
+      setVideoThumbnail(null)
       setProgress(0)
 
       // Scroll in alto
@@ -320,6 +384,64 @@ export default function Admin() {
                   <p className="text-sm text-gray700 dark:text-gray-300 mt-2">
                     📸 {coverImage.file.name}
                   </p>
+                </div>
+              )}
+            </div>
+
+            {/* Upload Video */}
+            <div>
+              <label className="block text-sm font-medium mb-2">
+                Video Progetto (opzionale, MP4/WebM/MOV, max 1GB)
+              </label>
+              
+              {!videoFile ? (
+                <div className="border-2 border-dashed border-gray-300 dark:border-white rounded-none p-8 text-center hover:border-charcoal dark:hover:border-white transition-colors">
+                  <input
+                    type="file"
+                    id="video"
+                    accept="video/mp4,video/webm,video/quicktime"
+                    onChange={handleVideoChange}
+                    className="hidden"
+                    disabled={uploading}
+                  />
+                  <label 
+                    htmlFor="video" 
+                    className="cursor-pointer block"
+                  >
+                    <div className="text-4xl mb-2">🎬</div>
+                    <p className="text-gray700 dark:text-gray-300 mb-2">
+                      Clicca per selezionare un video
+                    </p>
+                    <p className="text-sm text-gray600 dark:text-gray-400">
+                      Il video sarà mostrato nella pagina del progetto
+                    </p>
+                  </label>
+                </div>
+              ) : (
+                <div className="relative">
+                  {videoThumbnail && (
+                    <img 
+                      src={videoThumbnail} 
+                      alt="Video thumbnail"
+                      className="w-full max-h-64 object-cover"
+                    />
+                  )}
+                  <button
+                    type="button"
+                    onClick={removeVideo}
+                    className="absolute top-2 right-2 bg-red-500 text-white rounded-full px-4 py-2 hover:bg-red-600 transition-colors"
+                    disabled={uploading}
+                  >
+                    Rimuovi
+                  </button>
+                  <div className="bg-gray-100 dark:bg-gray-800 p-3 mt-2">
+                    <p className="text-sm text-gray700 dark:text-gray-300">
+                      🎬 {videoFile.name}
+                    </p>
+                    <p className="text-xs text-gray600 dark:text-gray-400 mt-1">
+                      {(videoFile.size / (1024 * 1024)).toFixed(2)} MB
+                    </p>
+                  </div>
                 </div>
               )}
             </div>

@@ -27,7 +27,7 @@ export class FileGenerator {
         alt: `Foto ${i + 1} del progetto ${project.slug}`
       }));
       
-      return {
+      const projectData = {
         slug: project.slug,
         title: project.title,
         dateISO: project.dateISO,
@@ -40,6 +40,17 @@ export class FileGenerator {
         },
         gallery
       };
+
+      // Aggiungi video se presente
+      if (project.hasVideo) {
+        projectData.video = {
+          src: `/optimized/${project.slug}/video/optimized.mp4`,
+          thumbnail: `/optimized/${project.slug}/video/thumb.jpg`,
+          alt: `Video del progetto ${project.title}`
+        };
+      }
+
+      return projectData;
     });
 
     // Scrivi JSON in public/ (servito da Nginx)

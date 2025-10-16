@@ -2,6 +2,7 @@ import { Header } from '../shared/Header'
 import { Footer } from '../shared/Footer'
 import { MasonryGrid } from '../shared/MasonryGrid'
 import { Lightbox } from '../shared/Lightbox'
+import { VideoCard } from '../shared/VideoCard'
 import { useParams, Link } from 'react-router-dom'
 import { useProjects } from '../shared/hooks/useProjects'
 import { useMemo, useState } from 'react'
@@ -72,6 +73,17 @@ export default function ProjectDetail() {
             {project.description}
           </p>
         </header>
+
+        {/* Video (se presente) */}
+        {project.video && (
+          <section className="mb-12">
+            <VideoCard 
+              src={project.video.src}
+              thumbnail={project.video.thumbnail}
+              alt={project.video.alt}
+            />
+          </section>
+        )}
 
         {/* Galleria masonry */}
         <section>
