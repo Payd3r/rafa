@@ -25,6 +25,7 @@ export default function Gallery() {
           <MasonryGrid
             photos={photos}
             onPhotoClick={(idx) => setLightboxIndex(idx)}
+            layoutKey="gallery-full"
           />
         )}
         <Lightbox

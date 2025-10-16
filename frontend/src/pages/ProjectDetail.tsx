@@ -90,7 +90,8 @@ export default function ProjectDetail() {
           <h2 className="sr-only">{t('gallery.title')}</h2>
           <MasonryGrid 
             photos={project.gallery} 
-            onPhotoClick={(idx) => setLightboxIndex(idx)} 
+            onPhotoClick={(idx) => setLightboxIndex(idx)}
+            layoutKey={`project-${project.slug}`}
           />
         </section>
 

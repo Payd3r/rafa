@@ -89,6 +89,7 @@ export default function Home() {
               photos={projects.flatMap(p => p.gallery).slice(0, 8)} 
               onPhotoClick={handlePhotoClick}
               maxRows={2}
+              layoutKey="gallery-preview"
             />
             )}
             <div className="text-center mt-8 animate-fade-in-up">

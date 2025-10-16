@@ -113,9 +113,10 @@ async function processProjectInBackground(slug, title, description, dateISO, cov
     const updatedProjects = [newProject, ...existingProjects];
     await fileGenerator.saveProjectsData(dataPath, updatedProjects);
     
-    // Rigenera file TS
+    // Rigenera file TS e layout
     await fileGenerator.regenerateProjectsFile(updatedProjects);
     await fileGenerator.regenerateImageMetaFile();
+    await fileGenerator.regenerateMasonryLayoutsFile();
     
     console.log(`[Background] ✓ Progetto completato: ${slug}`);
     

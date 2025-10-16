@@ -2,12 +2,70 @@ import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import type { Photo } from './types'
 import { PhotoCard } from './PhotoCard'
 import { useImageMetaContext } from './contexts/ImageMetaContext'
+import { useMasonryLayouts, type MasonryLayout } from './hooks/useMasonryLayouts'
 
 type RowItem = { index: number; ratio: number }
 type Row = { height: number; items: RowItem[] }
 
-export function MasonryGrid({ photos, onPhotoClick, maxRows }: { photos: Photo[]; onPhotoClick?: (index: number) => void; maxRows?: number }) {
+// Breakpoint disponibili (devono corrispondere a quelli del backend)
+const BREAKPOINTS = [320, 375, 768, 1024, 1440]
+
+/**
+ * Trova il breakpoint più vicino alla larghezza corrente
+ */
+function findClosestBreakpoint(width: number): number {
+  // Trova il breakpoint più vicino (arrotonda al più vicino, non sempre in basso)
+  let closest = BREAKPOINTS[0]
+  let minDiff = Math.abs(width - closest)
+  
+  for (const bp of BREAKPOINTS) {
+    const diff = Math.abs(width - bp)
+    if (diff < minDiff) {
+      minDiff = diff
+      closest = bp
+    }
+  }
+  
+  return closest
+}
+
+/**
+ * Scala un layout pre-calcolato alla larghezza corrente
+ */
+function scaleLayoutToWidth(layout: MasonryLayout, targetWidth: number, breakpointWidth: number, gap: number): Row[] {
+  const scale = targetWidth / breakpointWidth
+  
+  return layout.map(row => {
+    // Scala l'altezza proporzionalmente
+    const scaledHeight = row.height * scale
+    
+    // Verifica che le immagini scalate riempiano effettivamente la larghezza
+    // (potrebbe essere necessario un aggiustamento fine)
+    const sumRatio = row.items.reduce((sum, item) => sum + item.ratio, 0)
+    const calculatedWidth = sumRatio * scaledHeight + gap * (row.items.length - 1)
+    
+    // Se la differenza è minima, usa l'altezza scalata
+    // Altrimenti ricalcola l'altezza esatta per riempire la larghezza
+    const heightAdjustment = Math.abs(calculatedWidth - targetWidth) / targetWidth
+    const finalHeight = heightAdjustment < 0.01 
+      ? scaledHeight 
+      : (targetWidth - gap * (row.items.length - 1)) / sumRatio
+    
+    return {
+      height: finalHeight,
+      items: row.items
+    }
+  })
+}
+
+export function MasonryGrid({ photos, onPhotoClick, maxRows, layoutKey }: { 
+  photos: Photo[]; 
+  onPhotoClick?: (index: number) => void; 
+  maxRows?: number;
+  layoutKey?: string;
+}) {
   const { imageMeta } = useImageMetaContext()
+  const { layouts } = useMasonryLayouts()
   const containerRef = useRef<HTMLDivElement | null>(null)
   const [containerWidth, setContainerWidth] = useState<number>(0)
   
@@ -49,6 +107,23 @@ export function MasonryGrid({ photos, onPhotoClick, maxRows }: { photos: Photo[]
 
   const rows: Row[] = useMemo(() => {
     if (!containerWidth || photos.length === 0) return []
+
+    // APPROCCIO IBRIDO: Prova a usare layout pre-calcolato, altrimenti calcola dinamicamente
+    if (layouts && layoutKey) {
+      const layoutConfig = layouts[layoutKey]
+      if (layoutConfig) {
+        // Trova il breakpoint più vicino
+        const closestBreakpoint = findClosestBreakpoint(containerWidth)
+        const precomputedLayout = layoutConfig[closestBreakpoint.toString()]
+        
+        if (precomputedLayout && precomputedLayout.length > 0) {
+          // Usa e scala il layout pre-calcolato
+          return scaleLayoutToWidth(precomputedLayout, containerWidth, closestBreakpoint, gap)
+        }
+      }
+    }
+
+    // FALLBACK: Calcolo dinamico (algoritmo originale)
     const r: Row[] = []
     let current: RowItem[] = []
     let sumRatio = 0
@@ -93,7 +168,7 @@ export function MasonryGrid({ photos, onPhotoClick, maxRows }: { photos: Photo[]
       }
     }
     return r
-  }, [containerWidth, photos, ratios, targetHeight, gap, maxRows])
+  }, [containerWidth, photos, ratios, targetHeight, gap, maxRows, layouts, layoutKey])
 
   const handleImageLoad = useCallback((_i: number, _e: React.SyntheticEvent<HTMLImageElement>) => {
     // No need to update ratios - they're pre-calculated

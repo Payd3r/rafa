@@ -1,5 +1,6 @@
 import fs from 'fs/promises';
 import path from 'path';
+import { MasonryLayoutGenerator } from './masonryLayoutGenerator.js';
 
 /**
  * Servizio per rigenerare i file TypeScript projects.ts e imageMeta.ts
@@ -138,6 +139,37 @@ export class FileGenerator {
   async saveProjectsData(dataPath, projectsData) {
     await fs.mkdir(path.dirname(dataPath), { recursive: true });
     await fs.writeFile(dataPath, JSON.stringify(projectsData, null, 2));
+  }
+
+  /**
+   * Rigenera public/masonryLayouts.json con layout pre-calcolati per tutti i breakpoint
+   */
+  async regenerateMasonryLayoutsFile() {
+    try {
+      // Leggi projects.json (già generato)
+      const projectsPath = path.join(this.publicPath, 'projects.json');
+      const projectsContent = await fs.readFile(projectsPath, 'utf-8');
+      const projects = JSON.parse(projectsContent);
+
+      // Leggi imageMeta.json (già generato)
+      const imageMetaPath = path.join(this.publicPath, 'imageMeta.json');
+      const imageMetaContent = await fs.readFile(imageMetaPath, 'utf-8');
+      const imageMeta = JSON.parse(imageMetaContent);
+
+      // Genera tutti i layout
+      const layouts = MasonryLayoutGenerator.generateAllLayouts(projects, imageMeta);
+
+      // Scrivi JSON in public/
+      const outputPath = path.join(this.publicPath, 'masonryLayouts.json');
+      await fs.writeFile(outputPath, JSON.stringify(layouts, null, 2));
+
+      console.log(`Generato ${outputPath} con ${Object.keys(layouts).length} configurazioni di layout`);
+      
+      return outputPath;
+    } catch (error) {
+      console.error('Errore durante la rigenerazione di masonryLayouts.json:', error);
+      throw error;
+    }
   }
 }
 
