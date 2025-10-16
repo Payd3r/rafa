@@ -7,12 +7,13 @@ import { NewsletterBanner } from '../shared/NewsletterBanner'
 import { MasonryGrid } from '../shared/MasonryGrid'
 import { ProjectCard } from '../shared/ProjectCard'
 import { Lightbox } from '../shared/Lightbox'
-import { projects } from '../shared/data/projects'
+import { useProjects } from '../shared/hooks/useProjects'
 import { useTranslation } from '../shared/hooks/useTranslation'
 import { useAnimation } from '../shared/hooks/useAnimation'
 
 export default function Home() {
   const { t } = useTranslation()
+  const { projects, loading } = useProjects()
   const [lightboxOpen, setLightboxOpen] = useState(false)
   const [lightboxIndex, setLightboxIndex] = useState(0)
 
@@ -79,10 +80,16 @@ export default function Home() {
         >
           <SectionTitle title={t('home.myLatestWorks')} />
           <div className="max-w-6xl mx-auto px-4">
-            <MasonryGrid 
-              photos={projects.flatMap(p => p.gallery).slice(0, 8)} 
-              onPhotoClick={handlePhotoClick}
-            />
+            {loading ? (
+              <div className="text-center py-12">
+                <div className="inline-block w-8 h-8 border-2 border-charcoal dark:border-white border-t-transparent rounded-full animate-spin" />
+              </div>
+            ) : (
+              <MasonryGrid 
+                photos={projects.flatMap(p => p.gallery).slice(0, 8)} 
+                onPhotoClick={handlePhotoClick}
+              />
+            )}
             <div className="text-center mt-8 animate-fade-in-up">
               <Link to="/gallery" className="btn btn-animated w-full sm:w-auto inline-block text-center group">
                 <span className="relative z-10">{t('home.seeAllPhotos')}</span>
@@ -103,15 +110,21 @@ export default function Home() {
         >
           <SectionTitle title={t('home.bestProjects')} />
           <div className="max-w-6xl mx-auto px-4">
-            <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-2 gap-4 sm:gap-6 mb-8">
-              {featuredProjects.map((project, index) => (
-                <ProjectCard 
-                  key={project.slug} 
-                  project={project} 
-                  index={index}
-                />
-              ))}
-            </div>
+            {loading ? (
+              <div className="text-center py-12">
+                <div className="inline-block w-8 h-8 border-2 border-charcoal dark:border-white border-t-transparent rounded-full animate-spin" />
+              </div>
+            ) : (
+              <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-2 gap-4 sm:gap-6 mb-8">
+                {featuredProjects.map((project, index) => (
+                  <ProjectCard 
+                    key={project.slug} 
+                    project={project} 
+                    index={index}
+                  />
+                ))}
+              </div>
+            )}
             
             <div className="text-center mt-8 animate-fade-in-up">
               <Link to="/projects" className="btn btn-animated w-full sm:w-auto inline-block text-center group">

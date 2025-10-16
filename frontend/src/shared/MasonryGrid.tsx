@@ -1,12 +1,13 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import type { Photo } from './types'
 import { PhotoCard } from './PhotoCard'
-import { imageMeta } from './data/imageMeta'
+import { useImageMetaContext } from './contexts/ImageMetaContext'
 
 type RowItem = { index: number; ratio: number }
 type Row = { height: number; items: RowItem[] }
 
 export function MasonryGrid({ photos, onPhotoClick }: { photos: Photo[]; onPhotoClick?: (index: number) => void }) {
+  const { imageMeta } = useImageMetaContext()
   const containerRef = useRef<HTMLDivElement | null>(null)
   const [containerWidth, setContainerWidth] = useState<number>(0)
   
@@ -16,7 +17,7 @@ export function MasonryGrid({ photos, onPhotoClick }: { photos: Photo[]; onPhoto
       const meta = imageMeta[photo.src]
       return meta?.ratio || 1.5
     })
-  }, [photos])
+  }, [photos, imageMeta])
 
   // Aggiorna larghezza container con ResizeObserver
   useEffect(() => {

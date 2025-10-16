@@ -1,6 +1,6 @@
 import type React from 'react'
 import type { Photo } from './types'
-import { imageMeta } from './data/imageMeta.ts'
+import { useImageMetaContext } from './contexts/ImageMetaContext'
 import { useAnimation, useHoverAnimation } from './hooks/useAnimation'
 
 export function PhotoCard({ 
@@ -14,6 +14,7 @@ export function PhotoCard({
   onLoad?: (e: React.SyntheticEvent<HTMLImageElement>) => void;
   index?: number;
 }) {
+  const { imageMeta } = useImageMetaContext()
   const meta = imageMeta[photo.src] as { ratio: number; placeholder: string } | undefined
   const { ref, isVisible } = useAnimation({ 
     threshold: 0, 

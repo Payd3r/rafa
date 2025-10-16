@@ -1,12 +1,13 @@
 import { Header } from '../shared/Header'
 import { Footer } from '../shared/Footer'
 import { ProjectCard } from '../shared/ProjectCard'
-import { projects } from '../shared/data/projects'
+import { useProjects } from '../shared/hooks/useProjects'
 import { Link } from 'react-router-dom'
 import { useTranslation } from '../shared/hooks/useTranslation'
 
 export default function Projects() {
   const { t } = useTranslation()
+  const { projects, loading } = useProjects()
   
   return (
     <div className="min-h-screen bg-white dark:bg-black text-black dark:text-white">
@@ -19,17 +20,23 @@ export default function Projects() {
           </p>
         </div>
         
-        <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-8">
-          {projects.map((project) => (
-            <Link 
-              key={project.slug} 
-              to={`/projects/${project.slug}`} 
-              className="group block transition-transform hover:scale-105"
-            >
-              <ProjectCard project={project} />
-            </Link>
-          ))}
-        </div>
+        {loading ? (
+          <div className="text-center py-12">
+            <div className="inline-block w-8 h-8 border-2 border-charcoal dark:border-white border-t-transparent rounded-full animate-spin" />
+          </div>
+        ) : (
+          <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-8">
+            {projects.map((project) => (
+              <Link 
+                key={project.slug} 
+                to={`/projects/${project.slug}`} 
+                className="group block transition-transform hover:scale-105"
+              >
+                <ProjectCard project={project} />
+              </Link>
+            ))}
+          </div>
+        )}
         
       </main>
       <Footer />

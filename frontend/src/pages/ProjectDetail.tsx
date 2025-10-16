@@ -3,16 +3,29 @@ import { Footer } from '../shared/Footer'
 import { MasonryGrid } from '../shared/MasonryGrid'
 import { Lightbox } from '../shared/Lightbox'
 import { useParams, Link } from 'react-router-dom'
-import { projects } from '../shared/data/projects'
+import { useProjects } from '../shared/hooks/useProjects'
 import { useMemo, useState } from 'react'
 import { useTranslation } from '../shared/hooks/useTranslation'
 
 export default function ProjectDetail() {
   const { t, language } = useTranslation()
   const { slug } = useParams<{ slug: string }>()
-  const project = useMemo(() => projects.find((p) => p.slug === slug), [slug])
+  const { projects, loading } = useProjects()
+  const project = useMemo(() => projects.find((p) => p.slug === slug), [slug, projects])
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null)
   
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-white dark:bg-black text-black dark:text-white">
+        <Header />
+        <main className="section-y max-w-6xl mx-auto px-4 text-center">
+          <div className="inline-block w-8 h-8 border-2 border-charcoal dark:border-white border-t-transparent rounded-full animate-spin" />
+        </main>
+        <Footer />
+      </div>
+    )
+  }
+
   if (!project) {
     return (
       <div className="min-h-screen bg-white dark:bg-black text-black dark:text-white">

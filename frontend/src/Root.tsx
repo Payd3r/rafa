@@ -2,6 +2,7 @@ import { Outlet, useLocation } from 'react-router-dom'
 import { useEffect } from 'react'
 import { LanguageProvider } from './shared/contexts/LanguageContext'
 import { ThemeProvider } from './shared/contexts/ThemeContext'
+import { ImageMetaProvider } from './shared/contexts/ImageMetaContext'
 
 export default function Root() {
   const location = useLocation()
@@ -14,7 +15,9 @@ export default function Root() {
   return (
     <ThemeProvider>
       <LanguageProvider>
-        <Outlet />
+        <ImageMetaProvider>
+          <Outlet />
+        </ImageMetaProvider>
       </LanguageProvider>
     </ThemeProvider>
   )
