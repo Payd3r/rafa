@@ -88,9 +88,8 @@ export function ProjectCard({ project, index = 0 }: { project: Project; index?: 
           <span className="text-xs text-gray400 dark:text-gray-600 hidden sm:block transition-colors duration-300 group-hover:text-gray700 dark:group-hover:text-gray-300">
             {project.gallery.length} {t('projectDetail.photo')}
           </span>
-          <span className="text-xs text-charcoal dark:text-white font-medium group-hover:text-gray700 dark:group-hover:text-gray-300 transition-all duration-300 group-hover:translate-x-1 flex items-center gap-1">
+          <span className="text-xs text-charcoal dark:text-white font-medium group-hover:text-gray700 dark:group-hover:text-gray-300 transition-all duration-300 group-hover:translate-x-1">
             {t('projectDetail.viewProject')}
-            <span className="transition-transform duration-300 group-hover:translate-x-1">→</span>
           </span>
         </div>
       </div>
