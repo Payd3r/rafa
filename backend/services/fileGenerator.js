@@ -96,7 +96,8 @@ export class FileGenerator {
             const thumbPath = `/optimized/${projectSlug}/${imageIndex}/thumb.webp`;
             metaObject[thumbPath] = {
               ratio: meta.ratio,
-              placeholder: meta.placeholder
+              placeholder: meta.placeholder,
+              isBest: meta.isBest || false
             };
           } catch (err) {
             console.warn(`Impossibile leggere meta.json per ${projectSlug}/${imageIndex}`);
@@ -139,6 +140,60 @@ export class FileGenerator {
   async saveProjectsData(dataPath, projectsData) {
     await fs.mkdir(path.dirname(dataPath), { recursive: true });
     await fs.writeFile(dataPath, JSON.stringify(projectsData, null, 2));
+  }
+
+  /**
+   * Aggiorna un singolo campo di una foto in imageMeta.json
+   */
+  async updatePhotoMeta(photoPath, updates) {
+    try {
+      const imageMetaPath = path.join(this.publicPath, 'imageMeta.json');
+      const imageMetaContent = await fs.readFile(imageMetaPath, 'utf-8');
+      const imageMeta = JSON.parse(imageMetaContent);
+
+      if (!imageMeta[photoPath]) {
+        throw new Error(`Photo not found: ${photoPath}`);
+      }
+
+      // Aggiorna i campi
+      imageMeta[photoPath] = {
+        ...imageMeta[photoPath],
+        ...updates
+      };
+
+      // Salva
+      await fs.writeFile(imageMetaPath, JSON.stringify(imageMeta, null, 2));
+      
+      console.log(`Aggiornato ${photoPath} in imageMeta.json`);
+      
+      return imageMeta;
+    } catch (error) {
+      console.error('Errore durante l\'aggiornamento di imageMeta.json:', error);
+      throw error;
+    }
+  }
+
+  /**
+   * Elimina un progetto completo (cartella + JSON)
+   */
+  async deleteProject(slug, dataPath) {
+    try {
+      // 1. Elimina cartella fisica
+      const projectPath = path.join(this.publicPath, 'optimized', slug);
+      await fs.rm(projectPath, { recursive: true, force: true });
+      console.log(`Eliminata cartella: ${projectPath}`);
+
+      // 2. Rimuovi da projects.json
+      const projects = await this.readProjectsData(dataPath);
+      const updatedProjects = projects.filter(p => p.slug !== slug);
+      await this.saveProjectsData(dataPath, updatedProjects);
+      console.log(`Rimosso progetto ${slug} da projects.json`);
+
+      return updatedProjects;
+    } catch (error) {
+      console.error(`Errore durante l'eliminazione del progetto ${slug}:`, error);
+      throw error;
+    }
   }
 
   /**

@@ -6,6 +6,7 @@ export type Photo = {
   srcset?: string
   ratio?: number
   placeholder?: string
+  isBest?: boolean
 }
 
 export type Project = {

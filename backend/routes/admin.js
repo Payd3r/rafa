@@ -67,6 +67,99 @@ router.get('/projects', basicAuth, async (req, res) => {
 });
 
 /**
+ * GET /api/admin/imagemeta
+ * Ritorna imageMeta.json completo
+ */
+router.get('/imagemeta', basicAuth, async (req, res) => {
+  try {
+    const imageMetaPath = path.join(publicPath, 'imageMeta.json');
+    const imageMetaContent = await import('fs/promises').then(fs => fs.readFile(imageMetaPath, 'utf-8'));
+    const imageMeta = JSON.parse(imageMetaContent);
+    
+    res.json({
+      success: true,
+      imageMeta
+    });
+  } catch (error) {
+    console.error('Errore nel recupero imageMeta:', error);
+    res.status(500).json({
+      success: false,
+      error: 'Errore nel recupero dei metadati immagini'
+    });
+  }
+});
+
+/**
+ * PATCH /api/admin/photos
+ * Aggiorna metadati di una singola foto (es: isBest)
+ */
+router.patch('/photos', basicAuth, async (req, res) => {
+  try {
+    const { photoPath, isBest } = req.body;
+
+    if (!photoPath || isBest === undefined) {
+      return res.status(400).json({
+        success: false,
+        error: 'Campi obbligatori mancanti: photoPath, isBest'
+      });
+    }
+
+    // Aggiorna imageMeta.json
+    await fileGenerator.updatePhotoMeta(photoPath, { isBest });
+
+    res.json({
+      success: true,
+      message: `Foto ${photoPath} aggiornata con isBest=${isBest}`
+    });
+  } catch (error) {
+    console.error('Errore nell\'aggiornamento foto:', error);
+    res.status(500).json({
+      success: false,
+      error: error.message || 'Errore nell\'aggiornamento della foto'
+    });
+  }
+});
+
+/**
+ * DELETE /api/admin/projects/:slug
+ * Elimina un progetto completo (cartella + JSON)
+ */
+router.delete('/projects/:slug', basicAuth, async (req, res) => {
+  try {
+    const { slug } = req.params;
+
+    if (!slug) {
+      return res.status(400).json({
+        success: false,
+        error: 'Slug mancante'
+      });
+    }
+
+    console.log(`Eliminazione progetto: ${slug}`);
+
+    // Elimina progetto
+    const updatedProjects = await fileGenerator.deleteProject(slug, dataPath);
+
+    // Rigenera file
+    await fileGenerator.regenerateProjectsFile(updatedProjects);
+    await fileGenerator.regenerateImageMetaFile();
+    await fileGenerator.regenerateMasonryLayoutsFile();
+
+    res.json({
+      success: true,
+      message: `Progetto ${slug} eliminato con successo`,
+      remainingProjects: updatedProjects.length
+    });
+  } catch (error) {
+    console.error('Errore nell\'eliminazione progetto:', error);
+    res.status(500).json({
+      success: false,
+      error: error.message || 'Errore nell\'eliminazione del progetto'
+    });
+  }
+});
+
+/**
  * Funzione async separata per processing in background
  */
 async function processProjectInBackground(slug, title, description, dateISO, coverFiles, galleryFiles, videoFile = null) {

@@ -58,7 +58,7 @@ const translations = {
       heroTitle: 'INSIDE.FARAOSTUDIO',
       heroDescription: 'Fotografia in bianco e nero con carattere deciso e composizione pulita. Ogni scatto racconta una storia attraverso contrasti netti e geometrie essenziali.',
       readMore: 'Read more',
-      myLatestWorks: 'I Miei Ultimi Lavori',
+      myBestShots: 'I Miei Migliori Scatti',
       bestProjects: 'Migliori Progetti',
       seeAllProjects: 'Vedi tutti i progetti',
       seeAllPhotos: 'Vedi tutte le foto'
@@ -128,7 +128,7 @@ const translations = {
       heroTitle: 'INSIDE.FARAOSTUDIO',
       heroDescription: 'Black and white photography with bold character and clean composition. Every shot tells a story through sharp contrasts and essential geometries.',
       readMore: 'Read more',
-      myLatestWorks: 'My Latest Works',
+      myBestShots: 'My Best Shots',
       bestProjects: 'Best Projects',
       seeAllProjects: 'See all projects',
       seeAllPhotos: 'See all photos'

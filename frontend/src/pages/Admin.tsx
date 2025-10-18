@@ -1,4 +1,4 @@
-import { useState, type FormEvent, type ChangeEvent } from 'react'
+import { useState, useEffect, type FormEvent, type ChangeEvent } from 'react'
 import { Header } from '../shared/Header'
 import { Footer } from '../shared/Footer'
 import { resizeImageForPreview, resizeImagesForPreview } from '../shared/utils/imageResize'
@@ -8,7 +8,85 @@ interface ImagePreview {
   preview: string
 }
 
+interface Project {
+  slug: string
+  title: string
+  dateISO: string
+  description: string
+  imageCount: number
+  createdAt: string
+}
+
+type TabType = 'upload' | 'best-photos' | 'projects'
+
 export default function Admin() {
+  const [activeTab, setActiveTab] = useState<TabType>('upload')
+
+  return (
+    <div className="min-h-screen bg-white dark:bg-black text-black dark:text-white">
+      <Header />
+      
+      <main className="section-y">
+        <div className="max-w-6xl mx-auto px-4">
+          <div className="mb-8">
+            <h1 className="h1-hero text-4xl sm:text-5xl font-bold mb-4">
+              Admin Panel
+            </h1>
+            <p className="text-gray700 dark:text-gray-300">
+              Gestisci i tuoi progetti e le foto migliori
+            </p>
+          </div>
+
+          {/* Tabs Navigation */}
+          <div className="flex border-b border-charcoal dark:border-white mb-8">
+            <button
+              onClick={() => setActiveTab('upload')}
+              className={`px-6 py-3 font-medium transition-colors ${
+                activeTab === 'upload'
+                  ? 'border-b-2 border-charcoal dark:border-white text-charcoal dark:text-white'
+                  : 'text-gray700 dark:text-gray-300 hover:text-charcoal dark:hover:text-white'
+              }`}
+            >
+              Carica Progetto
+            </button>
+            <button
+              onClick={() => setActiveTab('best-photos')}
+              className={`px-6 py-3 font-medium transition-colors ${
+                activeTab === 'best-photos'
+                  ? 'border-b-2 border-charcoal dark:border-white text-charcoal dark:text-white'
+                  : 'text-gray700 dark:text-gray-300 hover:text-charcoal dark:hover:text-white'
+              }`}
+            >
+              Migliori Foto
+            </button>
+            <button
+              onClick={() => setActiveTab('projects')}
+              className={`px-6 py-3 font-medium transition-colors ${
+                activeTab === 'projects'
+                  ? 'border-b-2 border-charcoal dark:border-white text-charcoal dark:text-white'
+                  : 'text-gray700 dark:text-gray-300 hover:text-charcoal dark:hover:text-white'
+              }`}
+            >
+              Gestione Progetti
+            </button>
+          </div>
+
+          {/* Tab Content */}
+          {activeTab === 'upload' && <UploadTab />}
+          {activeTab === 'best-photos' && <BestPhotosTab />}
+          {activeTab === 'projects' && <ProjectsTab />}
+        </div>
+      </main>
+
+      <Footer />
+    </div>
+  )
+}
+
+// ============================================
+// TAB 1: UPLOAD PROGETTO
+// ============================================
+function UploadTab() {
   const [title, setTitle] = useState('')
   const [description, setDescription] = useState('')
   const [date, setDate] = useState('')
@@ -35,13 +113,8 @@ export default function Admin() {
 
     setIsProcessingImages(true)
     try {
-      // 🔥 Ridimensiona per preview leggera (600px, qualità 0.85)
       const previewUrl = await resizeImageForPreview(file, 600, 0.85)
-      
-      setCoverImage({
-        file, // File originale per upload
-        preview: previewUrl // Data URL ridimensionato per preview
-      })
+      setCoverImage({ file, preview: previewUrl })
     } catch (error) {
       console.error('Errore ridimensionamento:', error)
       alert('Errore nel processare l\'immagine')
@@ -73,14 +146,11 @@ export default function Admin() {
 
     setIsProcessingImages(true)
     try {
-      // 🔥 Ridimensiona tutte le immagini in batch (400px, qualità 0.8)
       const previewUrls = await resizeImagesForPreview(validFiles)
-      
       const newPreviews: ImagePreview[] = validFiles.map((file, index) => ({
-        file, // File originale per upload
-        preview: previewUrls[index] // Data URL ridimensionato
+        file,
+        preview: previewUrls[index]
       }))
-
       setImages(prev => [...prev, ...newPreviews])
     } catch (error) {
       console.error('Errore ridimensionamento batch:', error)
@@ -110,7 +180,6 @@ export default function Admin() {
       return
     }
 
-    // Controlla dimensione (1GB = 1024MB)
     const maxSize = 1024 * 1024 * 1024
     if (file.size > maxSize) {
       alert(`Il video ${file.name} supera il limite di 1GB`)
@@ -119,14 +188,12 @@ export default function Admin() {
 
     setVideoFile(file)
 
-    // Estrai thumbnail del video usando canvas
     const video = document.createElement('video')
     video.src = URL.createObjectURL(file)
     video.muted = true
     video.preload = 'metadata'
     
     video.onloadeddata = () => {
-      // Vai a 1 secondo per evitare frame neri
       video.currentTime = 1
     }
 
@@ -139,16 +206,11 @@ export default function Admin() {
       
       const thumbnailUrl = canvas.toDataURL('image/jpeg', 0.8)
       setVideoThumbnail(thumbnailUrl)
-      
-      // Cleanup
       URL.revokeObjectURL(video.src)
     }
   }
 
   const removeVideo = () => {
-    if (videoThumbnail) {
-      // Non serve revoke perché è già un data URL
-    }
     setVideoFile(null)
     setVideoThumbnail(null)
   }
@@ -175,29 +237,22 @@ export default function Admin() {
       formData.append('title', title)
       formData.append('description', description)
       formData.append('dateISO', date)
-      
-      // Cover image (obbligatoria)
       formData.append('cover', coverImage.file)
 
-      // Gallery images (opzionale)
       images.forEach(img => {
         formData.append('images', img.file)
       })
 
-      // Video (opzionale)
       if (videoFile) {
         formData.append('video', videoFile)
       }
 
-      // 🔥 Usa path relativo in produzione, URL completo in dev
       const backendUrl = import.meta.env.VITE_BACKEND_URL || ''
       const apiUrl = backendUrl ? `${backendUrl}/api/admin/projects` : '/api/admin/projects'
 
-      // 🔥 XMLHttpRequest per progress reale
       const response = await new Promise<string>((resolve, reject) => {
         const xhr = new XMLHttpRequest()
         
-        // Progress dell'upload (reale!)
         xhr.upload.addEventListener('progress', (e) => {
           if (e.lengthComputable) {
             const percentComplete = (e.loaded / e.total) * 100
@@ -205,7 +260,6 @@ export default function Admin() {
           }
         })
         
-        // Completamento
         xhr.addEventListener('load', () => {
           if (xhr.status >= 200 && xhr.status < 300) {
             resolve(xhr.responseText)
@@ -214,12 +268,10 @@ export default function Admin() {
           }
         })
         
-        // Errore
         xhr.addEventListener('error', () => {
           reject(new Error('Errore di rete durante l\'upload'))
         })
         
-        // Invio
         xhr.open('POST', apiUrl)
         xhr.setRequestHeader('Authorization', 'Basic ' + btoa('andrea:andrea2004'))
         xhr.send(formData)
@@ -231,13 +283,12 @@ export default function Admin() {
         throw new Error(result.error || 'Errore durante l\'upload')
       }
 
-      // 🔥 SUCCESSO IMMEDIATO
       setMessage({ 
         type: 'success', 
         text: `Upload completato! Il progetto "${result.project.title}" sarà disponibile a breve.` 
       })
 
-      // Reset form (utente può continuare a lavorare)
+      // Reset form
       setTitle('')
       setDescription('')
       setDate('')
@@ -247,7 +298,6 @@ export default function Admin() {
       setVideoThumbnail(null)
       setProgress(0)
 
-      // Scroll in alto
       window.scrollTo({ top: 0, behavior: 'smooth' })
 
     } catch (error) {
@@ -262,313 +312,589 @@ export default function Admin() {
   }
 
   return (
-    <div className="min-h-screen bg-white dark:bg-black text-black dark:text-white">
-      <Header />
-      
-      <main className="section-y">
-        <div className="max-w-4xl mx-auto px-4">
-          <div className="mb-8">
-            <h1 className="h1-hero text-4xl sm:text-5xl font-bold mb-4">
-              Admin Panel
-            </h1>
-            <p className="text-gray700 dark:text-gray-300">
-              Aggiungi nuovi progetti fotografici al portfolio
-            </p>
+    <div className="max-w-4xl">
+      {message && (
+        <div className={`mb-6 p-4 rounded-none ${
+          message.type === 'success' 
+            ? 'bg-green-50 dark:bg-green-900/30 border border-green-200 dark:border-green-500 text-green-800 dark:text-green-200' 
+            : 'bg-red-50 dark:bg-red-900/30 border border-red-200 dark:border-red-500 text-red-800 dark:text-red-200'
+        }`}>
+          {message.text}
+        </div>
+      )}
+
+      <form onSubmit={handleSubmit} className="space-y-6">
+        {/* Titolo */}
+        <div>
+          <label htmlFor="title" className="block text-sm font-medium mb-2">
+            Titolo Progetto *
+          </label>
+          <input
+            type="text"
+            id="title"
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+            className="w-full px-4 py-2 border border-charcoal dark:border-white bg-white dark:bg-black text-black dark:text-white rounded-none focus:outline focus:outline-1 focus:outline-charcoal dark:focus:outline-white"
+            placeholder="Es: Ritratti Urbani"
+            required
+            disabled={uploading}
+          />
+        </div>
+
+        {/* Descrizione */}
+        <div>
+          <label htmlFor="description" className="block text-sm font-medium mb-2">
+            Descrizione *
+          </label>
+          <textarea
+            id="description"
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
+            rows={4}
+            className="w-full px-4 py-2 border border-charcoal dark:border-white bg-white dark:bg-black text-black dark:text-white rounded-none focus:outline focus:outline-1 focus:outline-charcoal dark:focus:outline-white"
+            placeholder="Descrivi il progetto fotografico..."
+            required
+            disabled={uploading}
+          />
+        </div>
+
+        {/* Data */}
+        <div>
+          <label htmlFor="date" className="block text-sm font-medium mb-2">
+            Data Progetto *
+          </label>
+          <input
+            type="date"
+            id="date"
+            value={date}
+            onChange={(e) => setDate(e.target.value)}
+            className="w-full px-4 py-2 border border-charcoal dark:border-white bg-white dark:bg-black text-black dark:text-white rounded-none focus:outline focus:outline-1 focus:outline-charcoal dark:focus:outline-white"
+            required
+            disabled={uploading}
+          />
+        </div>
+
+        {/* Upload Copertina */}
+        <div>
+          <label className="block text-sm font-medium mb-2">
+            Immagine Copertina * (1 immagine, JPG/PNG, max 50MB)
+          </label>
+          
+          {!coverImage ? (
+            <div className="border-2 border-dashed border-gray-300 dark:border-white rounded-none p-8 text-center hover:border-charcoal dark:hover:border-white transition-colors">
+              <input
+                type="file"
+                id="cover"
+                accept="image/jpeg,image/jpg,image/png"
+                onChange={handleCoverChange}
+                className="hidden"
+                disabled={uploading || isProcessingImages}
+              />
+              <label 
+                htmlFor="cover" 
+                className="cursor-pointer block"
+              >
+                <div className="text-4xl mb-2">🖼️</div>
+                <p className="text-gray700 dark:text-gray-300 mb-2">
+                  Clicca per selezionare l'immagine di copertina
+                </p>
+                <p className="text-sm text-gray600 dark:text-gray-400">
+                  Questa sarà l'immagine principale del progetto
+                </p>
+              </label>
+            </div>
+          ) : (
+            <div className="relative">
+              <img 
+                src={coverImage.preview} 
+                alt="Cover preview"
+                className="w-full max-h-64 object-cover"
+              />
+              <button
+                type="button"
+                onClick={removeCover}
+                className="absolute top-2 right-2 bg-red-500 text-white rounded-full px-4 py-2 hover:bg-red-600 transition-colors"
+                disabled={uploading}
+              >
+                Rimuovi
+              </button>
+              <p className="text-sm text-gray700 dark:text-gray-300 mt-2">
+                📸 {coverImage.file.name}
+              </p>
+            </div>
+          )}
+        </div>
+
+        {/* Upload Video */}
+        <div>
+          <label className="block text-sm font-medium mb-2">
+            Video Progetto (opzionale, MP4/WebM/MOV, max 1GB)
+          </label>
+          
+          {!videoFile ? (
+            <div className="border-2 border-dashed border-gray-300 dark:border-white rounded-none p-8 text-center hover:border-charcoal dark:hover:border-white transition-colors">
+              <input
+                type="file"
+                id="video"
+                accept="video/mp4,video/webm,video/quicktime"
+                onChange={handleVideoChange}
+                className="hidden"
+                disabled={uploading}
+              />
+              <label 
+                htmlFor="video" 
+                className="cursor-pointer block"
+              >
+                <div className="text-4xl mb-2">🎬</div>
+                <p className="text-gray700 dark:text-gray-300 mb-2">
+                  Clicca per selezionare un video
+                </p>
+                <p className="text-sm text-gray600 dark:text-gray-400">
+                  Il video sarà mostrato nella pagina del progetto
+                </p>
+              </label>
+            </div>
+          ) : (
+            <div className="relative">
+              {videoThumbnail && (
+                <img 
+                  src={videoThumbnail} 
+                  alt="Video thumbnail"
+                  className="w-full max-h-64 object-cover"
+                />
+              )}
+              <button
+                type="button"
+                onClick={removeVideo}
+                className="absolute top-2 right-2 bg-red-500 text-white rounded-full px-4 py-2 hover:bg-red-600 transition-colors"
+                disabled={uploading}
+              >
+                Rimuovi
+              </button>
+              <div className="bg-gray-100 dark:bg-gray-800 p-3 mt-2">
+                <p className="text-sm text-gray700 dark:text-gray-300">
+                  🎬 {videoFile.name}
+                </p>
+                <p className="text-xs text-gray600 dark:text-gray-400 mt-1">
+                  {(videoFile.size / (1024 * 1024)).toFixed(2)} MB
+                </p>
+              </div>
+            </div>
+          )}
+        </div>
+
+        {/* Upload Galleria */}
+        <div>
+          <label className="block text-sm font-medium mb-2">
+            Galleria Immagini (opzionale, max 30, JPG/PNG, max 50MB ciascuna)
+          </label>
+          
+          <div className="border-2 border-dashed border-gray-300 dark:border-white rounded-none p-8 text-center hover:border-charcoal dark:hover:border-white transition-colors">
+            <input
+              type="file"
+              id="images"
+              multiple
+              accept="image/jpeg,image/jpg,image/png"
+              onChange={handleImageChange}
+              className="hidden"
+              disabled={uploading || isProcessingImages}
+            />
+            <label 
+              htmlFor="images" 
+              className="cursor-pointer block"
+            >
+              <div className="text-4xl mb-2">📸</div>
+              <p className="text-gray700 dark:text-gray-300 mb-2">
+                Clicca per aggiungere immagini alla galleria
+              </p>
+              <p className="text-sm text-gray600 dark:text-gray-400">
+                oppure trascina qui i file
+              </p>
+            </label>
           </div>
 
-          {message && (
-            <div className={`mb-6 p-4 rounded-none ${
-              message.type === 'success' 
-                ? 'bg-green-50 dark:bg-green-900/30 border border-green-200 dark:border-green-500 text-green-800 dark:text-green-200' 
-                : 'bg-red-50 dark:bg-red-900/30 border border-red-200 dark:border-red-500 text-red-800 dark:text-red-200'
-            }`}>
-              {message.text}
+          {isProcessingImages && (
+            <div className="text-center py-4">
+              <div className="inline-block w-6 h-6 border-2 border-charcoal border-t-transparent rounded-full animate-spin" />
+              <p className="text-sm text-gray700 mt-2">Preparazione preview...</p>
             </div>
           )}
 
-          <form onSubmit={handleSubmit} className="space-y-6">
-            {/* Titolo */}
-            <div>
-              <label htmlFor="title" className="block text-sm font-medium mb-2">
-                Titolo Progetto *
-              </label>
-              <input
-                type="text"
-                id="title"
-                value={title}
-                onChange={(e) => setTitle(e.target.value)}
-                className="w-full px-4 py-2 border border-charcoal dark:border-white bg-white dark:bg-black text-black dark:text-white rounded-none focus:outline focus:outline-1 focus:outline-charcoal dark:focus:outline-white"
-                placeholder="Es: Ritratti Urbani"
-                required
-                disabled={uploading}
-              />
-            </div>
-
-            {/* Descrizione */}
-            <div>
-              <label htmlFor="description" className="block text-sm font-medium mb-2">
-                Descrizione *
-              </label>
-              <textarea
-                id="description"
-                value={description}
-                onChange={(e) => setDescription(e.target.value)}
-                rows={4}
-                className="w-full px-4 py-2 border border-charcoal dark:border-white bg-white dark:bg-black text-black dark:text-white rounded-none focus:outline focus:outline-1 focus:outline-charcoal dark:focus:outline-white"
-                placeholder="Descrivi il progetto fotografico..."
-                required
-                disabled={uploading}
-              />
-            </div>
-
-            {/* Data */}
-            <div>
-              <label htmlFor="date" className="block text-sm font-medium mb-2">
-                Data Progetto *
-              </label>
-              <input
-                type="date"
-                id="date"
-                value={date}
-                onChange={(e) => setDate(e.target.value)}
-                className="w-full px-4 py-2 border border-charcoal dark:border-white bg-white dark:bg-black text-black dark:text-white rounded-none focus:outline focus:outline-1 focus:outline-charcoal dark:focus:outline-white"
-                required
-                disabled={uploading}
-              />
-            </div>
-
-            {/* Upload Copertina */}
-            <div>
-              <label className="block text-sm font-medium mb-2">
-                Immagine Copertina * (1 immagine, JPG/PNG, max 50MB)
-              </label>
-              
-              {!coverImage ? (
-                <div className="border-2 border-dashed border-gray-300 dark:border-white rounded-none p-8 text-center hover:border-charcoal dark:hover:border-white transition-colors">
-                  <input
-                    type="file"
-                    id="cover"
-                    accept="image/jpeg,image/jpg,image/png"
-                    onChange={handleCoverChange}
-                    className="hidden"
-                    disabled={uploading || isProcessingImages}
-                  />
-                  <label 
-                    htmlFor="cover" 
-                    className="cursor-pointer block"
-                  >
-                    <div className="text-4xl mb-2">🖼️</div>
-                    <p className="text-gray700 dark:text-gray-300 mb-2">
-                      Clicca per selezionare l'immagine di copertina
-                    </p>
-                    <p className="text-sm text-gray600 dark:text-gray-400">
-                      Questa sarà l'immagine principale del progetto
-                    </p>
-                  </label>
-                </div>
-              ) : (
-                <div className="relative">
-                  <img 
-                    src={coverImage.preview} 
-                    alt="Cover preview"
-                    className="w-full max-h-64 object-cover"
-                  />
-                  <button
-                    type="button"
-                    onClick={removeCover}
-                    className="absolute top-2 right-2 bg-red-500 text-white rounded-full px-4 py-2 hover:bg-red-600 transition-colors"
-                    disabled={uploading}
-                  >
-                    Rimuovi
-                  </button>
-                  <p className="text-sm text-gray700 dark:text-gray-300 mt-2">
-                    📸 {coverImage.file.name}
-                  </p>
-                </div>
-              )}
-            </div>
-
-            {/* Upload Video */}
-            <div>
-              <label className="block text-sm font-medium mb-2">
-                Video Progetto (opzionale, MP4/WebM/MOV, max 1GB)
-              </label>
-              
-              {!videoFile ? (
-                <div className="border-2 border-dashed border-gray-300 dark:border-white rounded-none p-8 text-center hover:border-charcoal dark:hover:border-white transition-colors">
-                  <input
-                    type="file"
-                    id="video"
-                    accept="video/mp4,video/webm,video/quicktime"
-                    onChange={handleVideoChange}
-                    className="hidden"
-                    disabled={uploading}
-                  />
-                  <label 
-                    htmlFor="video" 
-                    className="cursor-pointer block"
-                  >
-                    <div className="text-4xl mb-2">🎬</div>
-                    <p className="text-gray700 dark:text-gray-300 mb-2">
-                      Clicca per selezionare un video
-                    </p>
-                    <p className="text-sm text-gray600 dark:text-gray-400">
-                      Il video sarà mostrato nella pagina del progetto
-                    </p>
-                  </label>
-                </div>
-              ) : (
-                <div className="relative">
-                  {videoThumbnail && (
+          {images.length > 0 && (
+            <div className="mt-4">
+              <p className="text-sm text-gray700 dark:text-gray-300 mb-3">
+                {images.length} {images.length === 1 ? 'immagine' : 'immagini'} nella galleria
+              </p>
+              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
+                {images.map((img, index) => (
+                  <div key={index} className="relative group">
                     <img 
-                      src={videoThumbnail} 
-                      alt="Video thumbnail"
-                      className="w-full max-h-64 object-cover"
+                      src={img.preview} 
+                      alt={`Gallery ${index + 1}`}
+                      className="w-full h-32 object-cover rounded-lg"
                     />
-                  )}
-                  <button
-                    type="button"
-                    onClick={removeVideo}
-                    className="absolute top-2 right-2 bg-red-500 text-white rounded-full px-4 py-2 hover:bg-red-600 transition-colors"
-                    disabled={uploading}
-                  >
-                    Rimuovi
-                  </button>
-                  <div className="bg-gray-100 dark:bg-gray-800 p-3 mt-2">
-                    <p className="text-sm text-gray700 dark:text-gray-300">
-                      🎬 {videoFile.name}
-                    </p>
-                    <p className="text-xs text-gray600 dark:text-gray-400 mt-1">
-                      {(videoFile.size / (1024 * 1024)).toFixed(2)} MB
+                    <button
+                      type="button"
+                      onClick={() => removeImage(index)}
+                      className="absolute top-2 right-2 bg-red-500 text-white rounded-full w-6 h-6 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity"
+                      disabled={uploading}
+                    >
+                      ×
+                    </button>
+                    <p className="text-xs text-gray600 dark:text-gray-400 mt-1 truncate">
+                      {img.file.name}
                     </p>
                   </div>
-                </div>
-              )}
-            </div>
-
-            {/* Upload Galleria */}
-            <div>
-              <label className="block text-sm font-medium mb-2">
-                Galleria Immagini (opzionale, max 30, JPG/PNG, max 50MB ciascuna)
-              </label>
-              
-              <div className="border-2 border-dashed border-gray-300 dark:border-white rounded-none p-8 text-center hover:border-charcoal dark:hover:border-white transition-colors">
-                <input
-                  type="file"
-                  id="images"
-                  multiple
-                  accept="image/jpeg,image/jpg,image/png"
-                  onChange={handleImageChange}
-                  className="hidden"
-                  disabled={uploading || isProcessingImages}
-                />
-                <label 
-                  htmlFor="images" 
-                  className="cursor-pointer block"
-                >
-                  <div className="text-4xl mb-2">📸</div>
-                  <p className="text-gray700 dark:text-gray-300 mb-2">
-                    Clicca per aggiungere immagini alla galleria
-                  </p>
-                  <p className="text-sm text-gray600 dark:text-gray-400">
-                    oppure trascina qui i file
-                  </p>
-                </label>
+                ))}
               </div>
-
-              {/* Loading state durante processamento */}
-              {isProcessingImages && (
-                <div className="text-center py-4">
-                  <div className="inline-block w-6 h-6 border-2 border-charcoal border-t-transparent rounded-full animate-spin" />
-                  <p className="text-sm text-gray700 mt-2">Preparazione preview...</p>
-                </div>
-              )}
-
-              {/* Preview Immagini Galleria */}
-              {images.length > 0 && (
-                <div className="mt-4">
-                  <p className="text-sm text-gray700 dark:text-gray-300 mb-3">
-                    {images.length} {images.length === 1 ? 'immagine' : 'immagini'} nella galleria
-                  </p>
-                  <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
-                    {images.map((img, index) => (
-                      <div key={index} className="relative group">
-                        <img 
-                          src={img.preview} 
-                          alt={`Gallery ${index + 1}`}
-                          className="w-full h-32 object-cover rounded-lg"
-                        />
-                        <button
-                          type="button"
-                          onClick={() => removeImage(index)}
-                          className="absolute top-2 right-2 bg-red-500 text-white rounded-full w-6 h-6 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity"
-                          disabled={uploading}
-                        >
-                          ×
-                        </button>
-                        <p className="text-xs text-gray600 dark:text-gray-400 mt-1 truncate">
-                          {img.file.name}
-                        </p>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              )}
             </div>
-
-            {/* Progress Bar */}
-            {uploading && (
-              <div className="space-y-2">
-                <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-3">
-                  <div 
-                    className="bg-charcoal dark:bg-white h-3 rounded-full transition-all duration-300"
-                    style={{ width: `${progress}%` }}
-                  />
-                </div>
-                <div className="flex justify-between text-sm">
-                  <p className="text-gray700 dark:text-gray-300">
-                    {progress < 100 ? 'Caricamento...' : 'Completato!'}
-                  </p>
-                  <p className="text-gray600 dark:text-gray-400 font-mono">
-                    {progress}%
-                  </p>
-                </div>
-              </div>
-            )}
-
-            {/* Submit Button */}
-            <div className="flex gap-4">
-              <button
-                type="submit"
-                disabled={uploading}
-                className="btn btn-animated flex-1 disabled:opacity-50 disabled:cursor-not-allowed hover:text-white"
-              >
-                <span className="relative z-10">{uploading ? 'Caricamento...' : 'Crea Progetto'}</span>
-              </button>
-              
-              {!uploading && (
-                <button
-                  type="button"
-                  onClick={() => {
-                    setTitle('')
-                    setDescription('')
-                    setDate('')
-                    setCoverImage(null)
-                    setImages([])
-                    setMessage(null)
-                  }}
-                  className="btn btn-animated px-6 hover:text-white"
-                >
-                  <span className="relative z-10">Reset</span>
-                </button>
-              )}
-            </div>
-          </form>
+          )}
         </div>
-      </main>
 
-      <Footer />
+        {/* Progress Bar */}
+        {uploading && (
+          <div className="space-y-2">
+            <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-3">
+              <div 
+                className="bg-charcoal dark:bg-white h-3 rounded-full transition-all duration-300"
+                style={{ width: `${progress}%` }}
+              />
+            </div>
+            <div className="flex justify-between text-sm">
+              <p className="text-gray700 dark:text-gray-300">
+                {progress < 100 ? 'Caricamento...' : 'Completato!'}
+              </p>
+              <p className="text-gray600 dark:text-gray-400 font-mono">
+                {progress}%
+              </p>
+            </div>
+          </div>
+        )}
+
+        {/* Submit Button */}
+        <div className="flex gap-4">
+          <button
+            type="submit"
+            disabled={uploading}
+            className="btn btn-animated flex-1 disabled:opacity-50 disabled:cursor-not-allowed hover:text-white"
+          >
+            <span className="relative z-10">{uploading ? 'Caricamento...' : 'Crea Progetto'}</span>
+          </button>
+          
+          {!uploading && (
+            <button
+              type="button"
+              onClick={() => {
+                setTitle('')
+                setDescription('')
+                setDate('')
+                setCoverImage(null)
+                setImages([])
+                setVideoFile(null)
+                setVideoThumbnail(null)
+                setMessage(null)
+              }}
+              className="btn btn-animated px-6 hover:text-white"
+            >
+              <span className="relative z-10">Reset</span>
+            </button>
+          )}
+        </div>
+      </form>
     </div>
   )
 }
 
+// ============================================
+// TAB 2: MIGLIORI FOTO
+// ============================================
+function BestPhotosTab() {
+  const [imageMeta, setImageMeta] = useState<Record<string, { ratio: number; placeholder: string; isBest?: boolean }>>({})
+  const [loading, setLoading] = useState(true)
+  const [updating, setUpdating] = useState<string | null>(null)
+
+  useEffect(() => {
+    fetchImageMeta()
+  }, [])
+
+  const fetchImageMeta = async () => {
+    try {
+      setLoading(true)
+      const backendUrl = import.meta.env.VITE_BACKEND_URL || ''
+      const apiUrl = backendUrl ? `${backendUrl}/api/admin/imagemeta` : '/api/admin/imagemeta'
+      
+      const response = await fetch(apiUrl, {
+        headers: {
+          'Authorization': 'Basic ' + btoa('andrea:andrea2004')
+        }
+      })
+
+      if (!response.ok) {
+        throw new Error(`HTTP ${response.status}`)
+      }
+
+      const data = await response.json()
+      setImageMeta(data.imageMeta)
+    } catch (error) {
+      console.error('Errore caricamento imageMeta:', error)
+      alert('Errore nel caricamento delle foto')
+    } finally {
+      setLoading(false)
+    }
+  }
+
+  const toggleBest = async (photoPath: string) => {
+    const currentValue = imageMeta[photoPath]?.isBest || false
+    const newValue = !currentValue
+
+    // Optimistic update
+    setImageMeta(prev => ({
+      ...prev,
+      [photoPath]: {
+        ...prev[photoPath],
+        isBest: newValue
+      }
+    }))
+
+    setUpdating(photoPath)
+
+    try {
+      const backendUrl = import.meta.env.VITE_BACKEND_URL || ''
+      const apiUrl = backendUrl ? `${backendUrl}/api/admin/photos` : '/api/admin/photos'
+      
+      const response = await fetch(apiUrl, {
+        method: 'PATCH',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': 'Basic ' + btoa('andrea:andrea2004')
+        },
+        body: JSON.stringify({
+          photoPath,
+          isBest: newValue
+        })
+      })
+
+      if (!response.ok) {
+        throw new Error('Errore aggiornamento')
+      }
+
+      console.log(`Foto ${photoPath} aggiornata: isBest=${newValue}`)
+    } catch (error) {
+      console.error('Errore toggle best:', error)
+      // Rollback su errore
+      setImageMeta(prev => ({
+        ...prev,
+        [photoPath]: {
+          ...prev[photoPath],
+          isBest: currentValue
+        }
+      }))
+      alert('Errore nell\'aggiornamento della foto')
+    } finally {
+      setUpdating(null)
+    }
+  }
+
+  const photoEntries = Object.entries(imageMeta)
+  const bestCount = photoEntries.filter(([, meta]) => meta.isBest).length
+
+  if (loading) {
+    return (
+      <div className="text-center py-12">
+        <div className="inline-block w-8 h-8 border-2 border-charcoal dark:border-white border-t-transparent rounded-full animate-spin" />
+        <p className="mt-4 text-gray700 dark:text-gray-300">Caricamento foto...</p>
+      </div>
+    )
+  }
+
+  if (photoEntries.length === 0) {
+    return (
+      <div className="text-center py-12 text-gray700 dark:text-gray-300">
+        Nessuna foto disponibile. Carica prima alcuni progetti.
+      </div>
+    )
+  }
+
+  return (
+    <div>
+      <div className="mb-6 p-4 bg-gray-100 dark:bg-gray-800 rounded-none">
+        <p className="text-sm text-gray700 dark:text-gray-300">
+          <strong>{bestCount}</strong> foto selezionate come "migliori scatti" su <strong>{photoEntries.length}</strong> totali
+        </p>
+        <p className="text-xs text-gray600 dark:text-gray-400 mt-1">
+          Clicca su una foto per aggiungerla o rimuoverla dai migliori scatti
+        </p>
+      </div>
+
+      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+        {photoEntries.map(([photoPath, meta]) => (
+          <button
+            key={photoPath}
+            onClick={() => toggleBest(photoPath)}
+            disabled={updating === photoPath}
+            className="relative group cursor-pointer disabled:opacity-50"
+          >
+            <img
+              src={photoPath}
+              alt={photoPath}
+              className={`w-full h-32 object-cover transition-all ${
+                meta.isBest
+                  ? 'ring-4 ring-green-500 dark:ring-green-400'
+                  : 'ring-1 ring-gray-300 dark:ring-gray-600 hover:ring-2 hover:ring-charcoal dark:hover:ring-white'
+              }`}
+            />
+            {meta.isBest && (
+              <div className="absolute top-2 right-2 bg-green-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold">
+                ✓
+              </div>
+            )}
+            {updating === photoPath && (
+              <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+                <div className="w-6 h-6 border-2 border-white border-t-transparent rounded-full animate-spin" />
+              </div>
+            )}
+            <p className="text-xs text-gray600 dark:text-gray-400 mt-1 truncate">
+              {photoPath.split('/').pop()}
+            </p>
+          </button>
+        ))}
+      </div>
+    </div>
+  )
+}
+
+// ============================================
+// TAB 3: GESTIONE PROGETTI
+// ============================================
+function ProjectsTab() {
+  const [projects, setProjects] = useState<Project[]>([])
+  const [loading, setLoading] = useState(true)
+  const [deleting, setDeleting] = useState<string | null>(null)
+
+  useEffect(() => {
+    fetchProjects()
+  }, [])
+
+  const fetchProjects = async () => {
+    try {
+      setLoading(true)
+      const backendUrl = import.meta.env.VITE_BACKEND_URL || ''
+      const apiUrl = backendUrl ? `${backendUrl}/api/admin/projects` : '/api/admin/projects'
+      
+      const response = await fetch(apiUrl, {
+        headers: {
+          'Authorization': 'Basic ' + btoa('andrea:andrea2004')
+        }
+      })
+
+      if (!response.ok) {
+        throw new Error(`HTTP ${response.status}`)
+      }
+
+      const data = await response.json()
+      setProjects(data.projects)
+    } catch (error) {
+      console.error('Errore caricamento progetti:', error)
+      alert('Errore nel caricamento dei progetti')
+    } finally {
+      setLoading(false)
+    }
+  }
+
+  const deleteProject = async (slug: string, title: string) => {
+    const confirmed = window.confirm(
+      `Sei sicuro di voler eliminare il progetto "${title}"?\n\nQuesta azione è IRREVERSIBILE e cancellerà:\n- Tutte le foto del progetto\n- Il video (se presente)\n- Tutti i metadati\n\nContinuare?`
+    )
+
+    if (!confirmed) return
+
+    setDeleting(slug)
+
+    try {
+      const backendUrl = import.meta.env.VITE_BACKEND_URL || ''
+      const apiUrl = backendUrl ? `${backendUrl}/api/admin/projects/${slug}` : `/api/admin/projects/${slug}`
+      
+      const response = await fetch(apiUrl, {
+        method: 'DELETE',
+        headers: {
+          'Authorization': 'Basic ' + btoa('andrea:andrea2004')
+        }
+      })
+
+      if (!response.ok) {
+        throw new Error('Errore eliminazione')
+      }
+
+      const data = await response.json()
+      alert(`Progetto "${title}" eliminato con successo!\n\nProgetti rimanenti: ${data.remainingProjects}`)
+      
+      // Ricarica lista
+      await fetchProjects()
+    } catch (error) {
+      console.error('Errore eliminazione progetto:', error)
+      alert('Errore nell\'eliminazione del progetto')
+    } finally {
+      setDeleting(null)
+    }
+  }
+
+  if (loading) {
+    return (
+      <div className="text-center py-12">
+        <div className="inline-block w-8 h-8 border-2 border-charcoal dark:border-white border-t-transparent rounded-full animate-spin" />
+        <p className="mt-4 text-gray700 dark:text-gray-300">Caricamento progetti...</p>
+      </div>
+    )
+  }
+
+  if (projects.length === 0) {
+    return (
+      <div className="text-center py-12 text-gray700 dark:text-gray-300">
+        Nessun progetto disponibile.
+      </div>
+    )
+  }
+
+  return (
+    <div>
+      <div className="mb-6 p-4 bg-gray-100 dark:bg-gray-800 rounded-none">
+        <p className="text-sm text-gray700 dark:text-gray-300">
+          <strong>{projects.length}</strong> {projects.length === 1 ? 'progetto' : 'progetti'} disponibili
+        </p>
+      </div>
+
+      <div className="space-y-4">
+        {projects.map((project) => (
+          <div
+            key={project.slug}
+            className="flex items-center justify-between p-4 border border-charcoal dark:border-white rounded-none"
+          >
+            <div className="flex-1">
+              <h3 className="font-bold text-lg">{project.title}</h3>
+              <p className="text-sm text-gray700 dark:text-gray-300 mt-1">
+                {new Date(project.dateISO).toLocaleDateString('it-IT')} • {project.imageCount} foto
+              </p>
+              <p className="text-xs text-gray600 dark:text-gray-400 mt-1">
+                Slug: {project.slug}
+              </p>
+            </div>
+            <button
+              onClick={() => deleteProject(project.slug, project.title)}
+              disabled={deleting === project.slug}
+              className="ml-4 px-4 py-2 bg-red-500 text-white hover:bg-red-600 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+            >
+              {deleting === project.slug ? (
+                <span className="flex items-center gap-2">
+                  <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
+                  Eliminazione...
+                </span>
+              ) : (
+                'Elimina'
+              )}
+            </button>
+          </div>
+        ))}
+      </div>
+    </div>
+  )
+}

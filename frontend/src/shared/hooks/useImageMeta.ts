@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 
-export type ImageMetaData = Record<string, { ratio: number; placeholder: string }>
+export type ImageMetaData = Record<string, { ratio: number; placeholder: string; isBest?: boolean }>
 
 /**
  * Hook per caricare metadati immagini da /imageMeta.json

@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useMemo } from 'react'
 import { Link } from 'react-router-dom'
 import { Header } from '../shared/Header'
 import { Footer } from '../shared/Footer'
@@ -8,17 +8,27 @@ import { MasonryGrid } from '../shared/MasonryGrid'
 import { ProjectCard } from '../shared/ProjectCard'
 import { Lightbox } from '../shared/Lightbox'
 import { useProjects } from '../shared/hooks/useProjects'
+import { useImageMeta } from '../shared/hooks/useImageMeta'
 import { useTranslation } from '../shared/hooks/useTranslation'
 import { useAnimation } from '../shared/hooks/useAnimation'
 
 export default function Home() {
   const { t } = useTranslation()
   const { projects, loading } = useProjects()
+  const { imageMeta, loading: metaLoading } = useImageMeta()
   const [lightboxOpen, setLightboxOpen] = useState(false)
   const [lightboxIndex, setLightboxIndex] = useState(0)
 
-  // Prendi i primi 4 progetti per la sezione "Migliori progetti"
-  const featuredProjects = projects.slice(0, 4)
+  // Prendi i primi 4 progetti in ordine di data decrescente
+  const featuredProjects = [...projects]
+    .sort((a, b) => new Date(b.dateISO).getTime() - new Date(a.dateISO).getTime())
+    .slice(0, 4)
+
+  // Filtra solo le foto con isBest = true
+  const bestPhotos = useMemo(() => {
+    const allPhotos = projects.flatMap(p => p.gallery)
+    return allPhotos.filter(photo => imageMeta[photo.src]?.isBest === true)
+  }, [projects, imageMeta])
 
   // Animazioni per le sezioni
   const { ref: heroRef, isVisible: heroVisible } = useAnimation({ 
@@ -71,26 +81,30 @@ export default function Home() {
           </div>
         </section>
 
-        {/* My Latest Works Section */}
+        {/* My Best Shots Section */}
         <section 
           ref={worksRef}
           className={`section-y transition-all duration-1000 ${
             worksVisible ? 'fade-in' : 'opacity-0 translate-y-8'
           }`}
         >
-          <SectionTitle title={t('home.myLatestWorks')} />
+          <SectionTitle title={t('home.myBestShots')} />
           <div className="max-w-6xl mx-auto px-4">
-            {loading ? (
+            {loading || metaLoading ? (
               <div className="text-center py-12">
                 <div className="inline-block w-8 h-8 border-2 border-charcoal dark:border-white border-t-transparent rounded-full animate-spin" />
               </div>
+            ) : bestPhotos.length > 0 ? (
+              <MasonryGrid 
+                photos={bestPhotos.slice(0, 12)} 
+                onPhotoClick={handlePhotoClick}
+                maxRows={2}
+                layoutKey="gallery-preview"
+              />
             ) : (
-            <MasonryGrid 
-              photos={projects.flatMap(p => p.gallery).slice(0, 12)} 
-              onPhotoClick={handlePhotoClick}
-              maxRows={2}
-              layoutKey="gallery-preview"
-            />
+              <div className="text-center py-12 text-gray700 dark:text-gray-300">
+                Nessuna foto selezionata come "migliore scatto". Vai alla pagina admin per selezionarle.
+              </div>
             )}
             <div className="text-center mt-8 animate-fade-in-up">
               <Link to="/gallery" className="btn btn-animated w-full sm:w-auto inline-block text-center group">
@@ -139,16 +153,16 @@ export default function Home() {
       <Footer />
 
       {/* Lightbox */}
-      {lightboxOpen && (
+      {lightboxOpen && bestPhotos.length > 0 && (
         <Lightbox
-          photos={projects.flatMap(p => p.gallery)}
+          photos={bestPhotos}
           index={lightboxIndex}
           onClose={() => setLightboxOpen(false)}
           onPrev={() =>
-            setLightboxIndex((i) => (i > 0 ? i - 1 : projects.flatMap(p => p.gallery).length - 1))
+            setLightboxIndex((i) => (i > 0 ? i - 1 : bestPhotos.length - 1))
           }
           onNext={() =>
-            setLightboxIndex((i) => (i < projects.flatMap(p => p.gallery).length - 1 ? i + 1 : 0))
+            setLightboxIndex((i) => (i < bestPhotos.length - 1 ? i + 1 : 0))
           }
         />
       )}

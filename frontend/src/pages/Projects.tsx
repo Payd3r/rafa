@@ -9,6 +9,11 @@ export default function Projects() {
   const { t } = useTranslation()
   const { projects, loading } = useProjects()
   
+  // Ordina progetti per data decrescente
+  const sortedProjects = [...projects].sort((a, b) => 
+    new Date(b.dateISO).getTime() - new Date(a.dateISO).getTime()
+  )
+  
   return (
     <div className="min-h-screen bg-white dark:bg-black text-black dark:text-white">
       <Header />
@@ -26,7 +31,7 @@ export default function Projects() {
           </div>
         ) : (
           <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-8">
-            {projects.map((project) => (
+            {sortedProjects.map((project) => (
               <Link 
                 key={project.slug} 
                 to={`/projects/${project.slug}`} 
