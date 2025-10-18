@@ -64,7 +64,7 @@ export default function Home() {
             <div className="text-sm uppercase tracking-wider text-gray700 dark:text-gray-300 mb-2 animate-fade-in">
               {t('home.photographer')}
             </div>
-            <h1 className="h1-hero text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-bold mb-6 animate-fade-in-up">
+            <h1 className="h1-hero text-2xl sm:text-4xl md:text-5xl lg:text-7xl xl:text-8xl font-bold mb-6 animate-fade-in-up break-words">
               {t('home.heroTitle')}
             </h1>
             <p className="mt-4 max-w-2xl text-gray700 dark:text-gray-300 animate-fade-in">
@@ -89,23 +89,25 @@ export default function Home() {
           }`}
         >
           <SectionTitle title={t('home.myBestShots')} />
-          <div className="max-w-6xl mx-auto px-4">
-            {loading || metaLoading ? (
-              <div className="text-center py-12">
-                <div className="inline-block w-8 h-8 border-2 border-charcoal dark:border-white border-t-transparent rounded-full animate-spin" />
-              </div>
-            ) : bestPhotos.length > 0 ? (
-              <MasonryGrid 
-                photos={bestPhotos.slice(0, 12)} 
-                onPhotoClick={handlePhotoClick}
-                maxRows={2}
-                layoutKey="gallery-preview"
-              />
-            ) : (
-              <div className="text-center py-12 text-gray700 dark:text-gray-300">
-                Nessuna foto selezionata come "migliore scatto". Vai alla pagina admin per selezionarle.
-              </div>
-            )}
+          <div className="max-w-6xl mx-auto px-4 overflow-hidden">
+            <div className="w-full">
+              {loading || metaLoading ? (
+                <div className="text-center py-12">
+                  <div className="inline-block w-8 h-8 border-2 border-charcoal dark:border-white border-t-transparent rounded-full animate-spin" />
+                </div>
+              ) : bestPhotos.length > 0 ? (
+                <MasonryGrid 
+                  photos={bestPhotos.slice(0, 12)} 
+                  onPhotoClick={handlePhotoClick}
+                  maxRows={2}
+                  layoutKey="gallery-preview"
+                />
+              ) : (
+                <div className="text-center py-12 text-gray700 dark:text-gray-300">
+                  Nessuna foto selezionata come "migliore scatto". Vai alla pagina admin per selezionarle.
+                </div>
+              )}
+            </div>
             <div className="text-center mt-8 animate-fade-in-up">
               <Link to="/gallery" className="btn btn-animated w-full sm:w-auto inline-block text-center group">
                 <span className="relative z-10">{t('home.seeAllPhotos')}</span>

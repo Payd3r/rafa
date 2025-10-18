@@ -181,14 +181,14 @@ export function MasonryGrid({ photos, onPhotoClick, maxRows, layoutKey }: {
   }, [])
 
   return (
-    <div ref={containerRef} className="w-full">
-      <div style={{ display: 'grid', rowGap: gap }}>
+    <div ref={containerRef} className="w-full overflow-hidden">
+      <div style={{ display: 'grid', rowGap: gap }} className="w-full overflow-hidden">
         {rows.map((row, rIdx) => (
-          <div key={rIdx} className="flex" style={{ height: row.height, gap }}>
+          <div key={rIdx} className="flex overflow-hidden" style={{ height: row.height, gap, maxWidth: '100%' }}>
             {row.items.map((it) => {
               const width = it.ratio * row.height
               return (
-                <div key={it.index} style={{ width }}>
+                <div key={it.index} style={{ width, flexShrink: 0, maxWidth: '100%' }}>
                   <PhotoCard
                     photo={photos[it.index]}
                     onClick={() => onPhotoClick?.(it.index)}
