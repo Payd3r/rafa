@@ -121,6 +121,67 @@ router.patch('/photos', basicAuth, async (req, res) => {
 });
 
 /**
+ * PATCH /api/admin/projects/:slug
+ * Aggiorna la data di un progetto
+ */
+router.patch('/projects/:slug', basicAuth, async (req, res) => {
+  try {
+    const { slug } = req.params;
+    const { dateISO } = req.body;
+
+    if (!slug || !dateISO) {
+      return res.status(400).json({
+        success: false,
+        error: 'Slug e dateISO sono obbligatori'
+      });
+    }
+
+    // Valida formato data
+    const dateObj = new Date(dateISO);
+    if (isNaN(dateObj.getTime())) {
+      return res.status(400).json({
+        success: false,
+        error: 'Formato data non valido'
+      });
+    }
+
+    console.log(`Aggiornamento data progetto: ${slug} -> ${dateISO}`);
+
+    // Leggi progetti
+    const projects = await fileGenerator.readProjectsData(dataPath);
+    
+    // Trova e aggiorna progetto
+    const projectIndex = projects.findIndex(p => p.slug === slug);
+    if (projectIndex === -1) {
+      return res.status(404).json({
+        success: false,
+        error: 'Progetto non trovato'
+      });
+    }
+
+    projects[projectIndex].dateISO = dateISO;
+    
+    // Salva progetti
+    await fileGenerator.saveProjectsData(dataPath, projects);
+    
+    // Rigenera projects.json pubblico
+    await fileGenerator.regenerateProjectsFile(projects);
+
+    res.json({
+      success: true,
+      message: `Data del progetto ${slug} aggiornata a ${dateISO}`,
+      project: projects[projectIndex]
+    });
+  } catch (error) {
+    console.error('Errore nell\'aggiornamento data progetto:', error);
+    res.status(500).json({
+      success: false,
+      error: error.message || 'Errore nell\'aggiornamento della data'
+    });
+  }
+});
+
+/**
  * DELETE /api/admin/projects/:slug
  * Elimina un progetto completo (cartella + JSON)
  */

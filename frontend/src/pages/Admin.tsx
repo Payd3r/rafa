@@ -1,4 +1,4 @@
-import { useState, useEffect, type FormEvent, type ChangeEvent } from 'react'
+import { useState, useEffect, useRef, type FormEvent, type ChangeEvent } from 'react'
 import { Header } from '../shared/Header'
 import { Footer } from '../shared/Footer'
 import { resizeImageForPreview, resizeImagesForPreview } from '../shared/utils/imageResize'
@@ -98,6 +98,7 @@ function UploadTab() {
   const [progress, setProgress] = useState(0)
   const [message, setMessage] = useState<{ type: 'success' | 'error', text: string } | null>(null)
   const [isProcessingImages, setIsProcessingImages] = useState(false)
+  const dateInputRef = useRef<HTMLInputElement>(null)
 
   const handleCoverChange = async (e: ChangeEvent<HTMLInputElement>) => {
     const files = e.target.files
@@ -312,7 +313,7 @@ function UploadTab() {
   }
 
   return (
-    <div className="max-w-4xl">
+    <div>
       {message && (
         <div className={`mb-6 p-4 rounded-none ${
           message.type === 'success' 
@@ -359,19 +360,26 @@ function UploadTab() {
         </div>
 
         {/* Data */}
-        <div>
-          <label htmlFor="date" className="block text-sm font-medium mb-2">
+        <div 
+          onClick={() => !uploading && dateInputRef.current?.showPicker()}
+          className="cursor-pointer border-2 border-dashed border-gray-300 dark:border-white p-4 rounded-none hover:border-charcoal dark:hover:border-white transition-colors"
+        >
+          <label htmlFor="date" className="block text-sm font-medium mb-2 cursor-pointer">
             Data Progetto *
           </label>
           <input
+            ref={dateInputRef}
             type="date"
             id="date"
             value={date}
             onChange={(e) => setDate(e.target.value)}
-            className="w-full px-4 py-2 border border-charcoal dark:border-white bg-white dark:bg-black text-black dark:text-white rounded-none focus:outline focus:outline-1 focus:outline-charcoal dark:focus:outline-white"
+            className="w-full text-lg font-medium bg-transparent border-none outline-none cursor-pointer"
             required
             disabled={uploading}
           />
+          <p className="text-xs text-gray600 dark:text-gray-400 mt-2">
+            Clicca ovunque per aprire il calendario
+          </p>
         </div>
 
         {/* Upload Copertina */}
@@ -770,6 +778,9 @@ function ProjectsTab() {
   const [projects, setProjects] = useState<Project[]>([])
   const [loading, setLoading] = useState(true)
   const [deleting, setDeleting] = useState<string | null>(null)
+  const [editing, setEditing] = useState<string | null>(null)
+  const [editDate, setEditDate] = useState('')
+  const [updating, setUpdating] = useState<string | null>(null)
 
   useEffect(() => {
     fetchProjects()
@@ -798,6 +809,45 @@ function ProjectsTab() {
       alert('Errore nel caricamento dei progetti')
     } finally {
       setLoading(false)
+    }
+  }
+
+  const updateDate = async (slug: string) => {
+    if (!editDate) {
+      alert('Seleziona una data valida')
+      return
+    }
+
+    setUpdating(slug)
+
+    try {
+      const backendUrl = import.meta.env.VITE_BACKEND_URL || ''
+      const apiUrl = backendUrl ? `${backendUrl}/api/admin/projects/${slug}` : `/api/admin/projects/${slug}`
+      
+      const response = await fetch(apiUrl, {
+        method: 'PATCH',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': 'Basic ' + btoa('andrea:andrea2004')
+        },
+        body: JSON.stringify({ dateISO: editDate })
+      })
+
+      if (!response.ok) {
+        throw new Error('Errore aggiornamento')
+      }
+
+      alert('Data aggiornata con successo!')
+      setEditing(null)
+      setEditDate('')
+      
+      // Ricarica lista
+      await fetchProjects()
+    } catch (error) {
+      console.error('Errore aggiornamento data:', error)
+      alert('Errore nell\'aggiornamento della data')
+    } finally {
+      setUpdating(null)
     }
   }
 
@@ -871,27 +921,83 @@ function ProjectsTab() {
           >
             <div className="flex-1">
               <h3 className="font-bold text-lg">{project.title}</h3>
-              <p className="text-sm text-gray700 dark:text-gray-300 mt-1">
-                {new Date(project.dateISO).toLocaleDateString('it-IT')} • {project.imageCount} foto
-              </p>
+              
+              {editing === project.slug ? (
+                <div className="mt-2 flex items-center gap-2">
+                  <input
+                    type="date"
+                    value={editDate}
+                    onChange={(e) => setEditDate(e.target.value)}
+                    className="px-3 py-1 border border-charcoal dark:border-white bg-white dark:bg-black text-black dark:text-white rounded-none"
+                    disabled={updating === project.slug}
+                  />
+                  <button
+                    onClick={() => updateDate(project.slug)}
+                    disabled={updating === project.slug}
+                    className="px-3 py-1 bg-green-500 text-white hover:bg-green-600 transition-colors disabled:opacity-50 disabled:cursor-not-allowed text-sm"
+                  >
+                    {updating === project.slug ? (
+                      <span className="flex items-center gap-1">
+                        <div className="w-3 h-3 border-2 border-white border-t-transparent rounded-full animate-spin" />
+                        Salvataggio...
+                      </span>
+                    ) : (
+                      'Salva'
+                    )}
+                  </button>
+                  <button
+                    onClick={() => {
+                      setEditing(null)
+                      setEditDate('')
+                    }}
+                    disabled={updating === project.slug}
+                    className="px-3 py-1 bg-gray-500 text-white hover:bg-gray-600 transition-colors disabled:opacity-50 text-sm"
+                  >
+                    Annulla
+                  </button>
+                </div>
+              ) : (
+                <p className="text-sm text-gray700 dark:text-gray-300 mt-1">
+                  {new Date(project.dateISO).toLocaleDateString('it-IT')} • {project.imageCount} foto
+                </p>
+              )}
+              
               <p className="text-xs text-gray600 dark:text-gray-400 mt-1">
                 Slug: {project.slug}
               </p>
             </div>
-            <button
-              onClick={() => deleteProject(project.slug, project.title)}
-              disabled={deleting === project.slug}
-              className="ml-4 px-4 py-2 bg-red-500 text-white hover:bg-red-600 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
-            >
-              {deleting === project.slug ? (
-                <span className="flex items-center gap-2">
-                  <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
-                  Eliminazione...
-                </span>
-              ) : (
-                'Elimina'
+            
+            <div className="flex gap-2 ml-4">
+              {editing !== project.slug && (
+                <button
+                  onClick={() => {
+                    setEditing(project.slug)
+                    setEditDate(project.dateISO)
+                  }}
+                  disabled={deleting === project.slug}
+                  className="px-4 py-2 bg-blue-500 text-white hover:bg-blue-600 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                >
+                  Modifica Data
+                </button>
               )}
-            </button>
+              
+              {editing !== project.slug && (
+                <button
+                  onClick={() => deleteProject(project.slug, project.title)}
+                  disabled={deleting === project.slug}
+                  className="px-4 py-2 bg-red-500 text-white hover:bg-red-600 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                >
+                  {deleting === project.slug ? (
+                    <span className="flex items-center gap-2">
+                      <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
+                      Eliminazione...
+                    </span>
+                  ) : (
+                    'Elimina'
+                  )}
+                </button>
+              )}
+            </div>
           </div>
         ))}
       </div>
