@@ -20,18 +20,30 @@ export function useImageMeta() {
         setLoading(true)
         setError(null)
         
-        // Aggiungi timestamp per evitare cache
-        const cacheBuster = `?t=${Date.now()}`
+        // Cache busting più aggressivo: timestamp + random
+        const cacheBuster = `?t=${Date.now()}&r=${Math.random()}`
         const response = await fetch(`/imageMeta.json${cacheBuster}`, {
           cache: 'no-store',
+          method: 'GET',
           headers: {
-            'Cache-Control': 'no-cache'
+            'Cache-Control': 'no-cache, no-store, must-revalidate',
+            'Pragma': 'no-cache',
+            'Expires': '0'
           }
         })
         
         if (!response.ok) {
           throw new Error(`HTTP ${response.status}: ${response.statusText}`)
         }
+        
+        // Debug: mostra anche l'URL della richiesta e lo status
+        console.log('📥 Fetch imageMeta.json:', {
+          url: response.url,
+          status: response.status,
+          contentType: response.headers.get('content-type'),
+          cacheControl: response.headers.get('cache-control'),
+          date: response.headers.get('date')
+        })
         
         const data = await response.json()
         
@@ -54,6 +66,8 @@ export function useImageMeta() {
               .map(([path, _]) => path)
               .slice(0, 5)
             console.log('📸 Prime immagini preferite:', bestPaths)
+          } else {
+            console.warn('⚠️ imageMeta.json contiene immagini ma nessuna è marcata come preferita (isBest=true)')
           }
         }
         

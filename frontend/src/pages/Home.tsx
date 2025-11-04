@@ -30,21 +30,38 @@ export default function Home() {
     
     // Debug: log per capire cosa succede
     if (!metaLoading && !loading) {
+      const photosWithIsBest = allPhotos.filter(photo => {
+        const meta = imageMeta[photo.src]
+        return meta?.isBest === true
+      })
+      
+      const allIsBestPaths = Object.entries(imageMeta)
+        .filter(([_, meta]) => meta?.isBest === true)
+        .map(([path, _]) => path)
+      
       console.log('🔍 Debug Home - bestPhotos:', {
         totalPhotos: allPhotos.length,
         imageMetaKeys: Object.keys(imageMeta).length,
         imageMetaSample: Object.keys(imageMeta).slice(0, 5),
-        photosWithIsBest: allPhotos.filter(photo => {
-          const meta = imageMeta[photo.src]
-          return meta?.isBest === true
-        }).length,
+        photosWithIsBest: photosWithIsBest.length,
         samplePhotoSrc: allPhotos[0]?.src,
         sampleMetaForPhoto: allPhotos[0] ? imageMeta[allPhotos[0].src] : null,
-        allIsBest: Object.entries(imageMeta)
-          .filter(([_, meta]) => meta?.isBest === true)
-          .map(([path, _]) => path)
-          .slice(0, 10)
+        allIsBest: allIsBestPaths.slice(0, 10),
+        allIsBestCount: allIsBestPaths.length,
+        // Verifica matching: controlla se i path delle foto preferite matchano con quelle in projects.json
+        matchingCheck: photosWithIsBest.slice(0, 3).map(photo => ({
+          photoSrc: photo.src,
+          hasMeta: !!imageMeta[photo.src],
+          isBest: imageMeta[photo.src]?.isBest
+        }))
       })
+      
+      // Warning se ci sono immagini preferite in imageMeta ma non matchano con le foto
+      if (allIsBestPaths.length > 0 && photosWithIsBest.length === 0) {
+        console.warn('⚠️ PROBLEMA: Ci sono immagini preferite in imageMeta ma non matchano con le foto in projects.json!')
+        console.warn('Immagini preferite in imageMeta:', allIsBestPaths.slice(0, 5))
+        console.warn('Prime foto in projects.json:', allPhotos.slice(0, 3).map(p => p.src))
+      }
     }
     
     return allPhotos.filter(photo => imageMeta[photo.src]?.isBest === true)
