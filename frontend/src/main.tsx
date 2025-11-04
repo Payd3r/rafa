@@ -11,6 +11,16 @@ if (typeof window !== 'undefined') {
 }
 
 // Service worker completamente rimosso per evitare problemi di caching
+// Disabilita service worker esistente in sviluppo
+if (typeof window !== 'undefined' && 'serviceWorker' in navigator && import.meta.env.DEV) {
+  navigator.serviceWorker.getRegistrations().then(registrations => {
+    registrations.forEach(registration => {
+      registration.unregister().then(() => {
+        console.log('Service Worker disabilitato per lo sviluppo')
+      })
+    })
+  })
+}
 
 // Lazy con retry per gestire errori di rete/cache temporanei
 function lazyWithRetry<T extends React.ComponentType<any>>(importer: () => Promise<{ default: T }>) {

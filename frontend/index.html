@@ -36,5 +36,23 @@
   <body class="bg-white dark:bg-black text-black dark:text-white">
     <div id="app"></div>
     <script type="module" src="/src/main.tsx"></script>
+    
+    <!-- Disabilita Service Worker in sviluppo -->
+    <script>
+      if ('serviceWorker' in navigator) {
+        // Disabilita tutti i service worker esistenti
+        navigator.serviceWorker.getRegistrations().then(function(registrations) {
+          for(let registration of registrations) {
+            registration.unregister().then(function() {
+              console.log('Service Worker disabilitato');
+            });
+          }
+        });
+        // Blocca nuovi service worker
+        navigator.serviceWorker.register = function() {
+          return Promise.reject(new Error('Service Worker disabilitato in sviluppo'));
+        };
+      }
+    </script>
   </body>
 </html>

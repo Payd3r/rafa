@@ -54,9 +54,30 @@ export default defineConfig({
     // Compressione gzip
     compress: true,
     
+    // Accetta connessioni da rete locale
+    host: '0.0.0.0',
+    port: 5173,
+    strictPort: false,
+    
     // 🔥 Fix: Gestisce routing SPA anche in development
     // Serve index.html per tutte le route non trovate
-    historyApiFallback: true
+    historyApiFallback: true,
+    
+    // Configurazione HMR per WebSocket (funziona sia da localhost che da rete locale)
+    hmr: {
+      protocol: 'ws',
+      host: 'localhost',
+      port: 5173
+    },
+    
+    // Proxy per le chiamate API al backend
+    proxy: {
+      '/api': {
+        target: 'http://localhost:3001',
+        changeOrigin: true,
+        secure: false
+      }
+    }
   },
   
   // Ottimizzazioni per le dipendenze

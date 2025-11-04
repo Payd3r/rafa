@@ -70,10 +70,23 @@ export class FileGenerator {
 
   /**
    * Rigenera public/imageMeta.json scansionando le cartelle optimized
+   * Preserva i valori isBest esistenti se il file imageMeta.json già esiste
    */
   async regenerateImageMetaFile() {
     const optimizedPath = path.join(this.publicPath, 'optimized');
     const metaObject = {};
+    
+    // Leggi il file imageMeta.json esistente per preservare i valori isBest
+    // (nel caso ci siano stati aggiornamenti diretti che non sono ancora nei meta.json locali)
+    let existingImageMeta = {};
+    const imageMetaPath = path.join(this.publicPath, 'imageMeta.json');
+    try {
+      const existingContent = await fs.readFile(imageMetaPath, 'utf-8');
+      existingImageMeta = JSON.parse(existingContent);
+    } catch (err) {
+      // File non esiste o non è valido, va bene, partiremo da zero
+      console.log('imageMeta.json non trovato o vuoto, verrà generato da zero');
+    }
 
     try {
       const projects = await fs.readdir(optimizedPath);
@@ -99,10 +112,16 @@ export class FileGenerator {
             const meta = JSON.parse(metaContent);
             
             const thumbPath = `/optimized/${projectSlug}/${imageIndex}/thumb.webp`;
+            
+            // Preferisci isBest da meta.json locale, altrimenti usa quello esistente in imageMeta.json
+            const existingIsBest = existingImageMeta[thumbPath]?.isBest;
+            const localIsBest = meta.isBest !== undefined ? meta.isBest : false;
+            const isBest = localIsBest || existingIsBest || false;
+            
             metaObject[thumbPath] = {
               ratio: meta.ratio,
               placeholder: meta.placeholder,
-              isBest: meta.isBest || false
+              isBest: isBest
             };
           } catch (err) {
             console.warn(`Impossibile leggere meta.json per ${projectSlug}/${imageIndex}`);
@@ -149,6 +168,7 @@ export class FileGenerator {
 
   /**
    * Aggiorna un singolo campo di una foto in imageMeta.json
+   * Aggiorna anche il file meta.json locale dell'immagine per preservare i dati
    */
   async updatePhotoMeta(photoPath, updates) {
     try {
@@ -160,13 +180,43 @@ export class FileGenerator {
         throw new Error(`Photo not found: ${photoPath}`);
       }
 
-      // Aggiorna i campi
+      // Estrai slug progetto e indice immagine dal path
+      // photoPath è del formato: /optimized/project-slug/image-index/thumb.webp
+      const pathMatch = photoPath.match(/^\/optimized\/([^\/]+)\/([^\/]+)\//);
+      if (!pathMatch) {
+        throw new Error(`Formato photoPath non valido: ${photoPath}`);
+      }
+
+      const projectSlug = pathMatch[1];
+      const imageIndex = pathMatch[2];
+
+      // Aggiorna il file meta.json locale dell'immagine
+      const imageMetaFilePath = path.join(this.publicPath, 'optimized', projectSlug, imageIndex, 'meta.json');
+      try {
+        const existingMetaContent = await fs.readFile(imageMetaFilePath, 'utf-8');
+        const existingMeta = JSON.parse(existingMetaContent);
+        
+        // Aggiorna i campi nel meta.json locale
+        const updatedMeta = {
+          ...existingMeta,
+          ...updates
+        };
+        
+        // Salva il meta.json locale aggiornato
+        await fs.writeFile(imageMetaFilePath, JSON.stringify(updatedMeta, null, 2));
+        console.log(`Aggiornato meta.json locale per ${projectSlug}/${imageIndex}`);
+      } catch (err) {
+        console.warn(`Impossibile aggiornare meta.json locale per ${photoPath}:`, err);
+        // Continua comunque ad aggiornare imageMeta.json
+      }
+
+      // Aggiorna i campi in imageMeta.json
       imageMeta[photoPath] = {
         ...imageMeta[photoPath],
         ...updates
       };
 
-      // Salva
+      // Salva imageMeta.json
       await fs.writeFile(imageMetaPath, JSON.stringify(imageMeta, null, 2));
       
       console.log(`Aggiornato ${photoPath} in imageMeta.json`);

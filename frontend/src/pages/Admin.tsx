@@ -278,9 +278,8 @@ function UploadTab() {
           reject(new Error('Errore di rete durante l\'upload'))
         })
         
-        xhr.open('POST', apiUrl)
-        xhr.setRequestHeader('Authorization', 'Basic ' + btoa('andrea:andrea2004'))
-        xhr.send(formData)
+                  xhr.open('POST', apiUrl)
+          xhr.send(formData)
       })
 
       const result = JSON.parse(response)
@@ -651,18 +650,14 @@ function BestPhotosTab() {
   const fetchImageMeta = async () => {
     try {
       setLoading(true)
-      const backendUrl = import.meta.env.VITE_BACKEND_URL || ''
-      const apiUrl = backendUrl ? `${backendUrl}/api/admin/imagemeta` : '/api/admin/imagemeta'
-      
-      const response = await fetch(apiUrl, {
-        headers: {
-          'Authorization': 'Basic ' + btoa('andrea:andrea2004')
-        }
-      })
+              const backendUrl = import.meta.env.VITE_BACKEND_URL || ''
+        const apiUrl = backendUrl ? `${backendUrl}/api/admin/imagemeta` : '/api/admin/imagemeta'
+        
+        const response = await fetch(apiUrl)
 
-      if (!response.ok) {
-        throw new Error(`HTTP ${response.status}`)
-      }
+        if (!response.ok) {
+          throw new Error(`HTTP ${response.status}`)
+        }
 
       const data = await response.json()
       setImageMeta(data.imageMeta)
@@ -693,17 +688,16 @@ function BestPhotosTab() {
       const backendUrl = import.meta.env.VITE_BACKEND_URL || ''
       const apiUrl = backendUrl ? `${backendUrl}/api/admin/photos` : '/api/admin/photos'
       
-      const response = await fetch(apiUrl, {
-        method: 'PATCH',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': 'Basic ' + btoa('andrea:andrea2004')
-        },
-        body: JSON.stringify({
-          photoPath,
-          isBest: newValue
+              const response = await fetch(apiUrl, {
+          method: 'PATCH',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            photoPath,
+            isBest: newValue
+          })
         })
-      })
 
       if (!response.ok) {
         throw new Error('Errore aggiornamento')
@@ -816,18 +810,14 @@ function ProjectsTab() {
   const fetchProjects = async () => {
     try {
       setLoading(true)
-      const backendUrl = import.meta.env.VITE_BACKEND_URL || ''
-      const apiUrl = backendUrl ? `${backendUrl}/api/admin/projects` : '/api/admin/projects'
-      
-      const response = await fetch(apiUrl, {
-        headers: {
-          'Authorization': 'Basic ' + btoa('andrea:andrea2004')
-        }
-      })
+              const backendUrl = import.meta.env.VITE_BACKEND_URL || ''
+        const apiUrl = backendUrl ? `${backendUrl}/api/admin/projects` : '/api/admin/projects'
+        
+        const response = await fetch(apiUrl)
 
-      if (!response.ok) {
-        throw new Error(`HTTP ${response.status}`)
-      }
+        if (!response.ok) {
+          throw new Error(`HTTP ${response.status}`)
+        }
 
       const data = await response.json()
       setProjects(data.projects)
@@ -851,20 +841,19 @@ function ProjectsTab() {
       const backendUrl = import.meta.env.VITE_BACKEND_URL || ''
       const apiUrl = backendUrl ? `${backendUrl}/api/admin/projects/${slug}` : `/api/admin/projects/${slug}`
       
-      const response = await fetch(apiUrl, {
-        method: 'PATCH',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': 'Basic ' + btoa('andrea:andrea2004')
-        },
-        body: JSON.stringify({ dateISO: editDate })
-      })
+              const response = await fetch(apiUrl, {
+          method: 'PATCH',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ dateISO: editDate })
+        })
 
-      if (!response.ok) {
-        throw new Error('Errore aggiornamento')
-      }
+        if (!response.ok) {
+          throw new Error('Errore aggiornamento')
+        }
 
-      alert('Data aggiornata con successo!')
+        alert('Data aggiornata con successo!')
       setEditing(null)
       setEditDate('')
       
@@ -890,20 +879,19 @@ function ProjectsTab() {
       const backendUrl = import.meta.env.VITE_BACKEND_URL || ''
       const apiUrl = backendUrl ? `${backendUrl}/api/admin/projects/${slug}` : `/api/admin/projects/${slug}`
       
-      const response = await fetch(apiUrl, {
-        method: 'PATCH',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': 'Basic ' + btoa('andrea:andrea2004')
-        },
-        body: JSON.stringify({ description: editDescription })
-      })
+              const response = await fetch(apiUrl, {
+          method: 'PATCH',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ description: editDescription })
+        })
 
-      if (!response.ok) {
-        throw new Error('Errore aggiornamento')
-      }
+        if (!response.ok) {
+          throw new Error('Errore aggiornamento')
+        }
 
-      alert('Descrizione aggiornata con successo!')
+        alert('Descrizione aggiornata con successo!')
       setEditingDescription(null)
       setEditDescription('')
       
@@ -924,20 +912,19 @@ function ProjectsTab() {
       const backendUrl = import.meta.env.VITE_BACKEND_URL || ''
       const apiUrl = backendUrl ? `${backendUrl}/api/admin/projects/${slug}` : `/api/admin/projects/${slug}`
       
-      const response = await fetch(apiUrl, {
-        method: 'PATCH',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': 'Basic ' + btoa('andrea:andrea2004')
-        },
-        body: JSON.stringify({ instagramUrl: editInstagramUrl || null })
-      })
+              const response = await fetch(apiUrl, {
+          method: 'PATCH',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ instagramUrl: editInstagramUrl || null })
+        })
 
-      if (!response.ok) {
-        throw new Error('Errore aggiornamento')
-      }
+        if (!response.ok) {
+          throw new Error('Errore aggiornamento')
+        }
 
-      alert('Link Instagram aggiornato con successo!')
+        alert('Link Instagram aggiornato con successo!')
       setEditingInstagram(null)
       setEditInstagramUrl('')
       
@@ -965,11 +952,8 @@ function ProjectsTab() {
       const apiUrl = backendUrl ? `${backendUrl}/api/admin/projects/${slug}` : `/api/admin/projects/${slug}`
       
       const response = await fetch(apiUrl, {
-        method: 'DELETE',
-        headers: {
-          'Authorization': 'Basic ' + btoa('andrea:andrea2004')
-        }
-      })
+                  method: 'DELETE'
+        })
 
       if (!response.ok) {
         throw new Error('Errore eliminazione')

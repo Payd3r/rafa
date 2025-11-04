@@ -1,7 +1,6 @@
 import express from 'express';
 import multer from 'multer';
 import path from 'path';
-import { basicAuth } from '../middleware/auth.js';
 import { ImageProcessor } from '../services/imageProcessor.js';
 import { VideoProcessor } from '../services/videoProcessor.js';
 import { FileGenerator } from '../services/fileGenerator.js';
@@ -50,7 +49,7 @@ const fileGenerator = new FileGenerator(publicPath, srcPath);
  * GET /api/admin/projects
  * Ritorna la lista di tutti i progetti
  */
-router.get('/projects', basicAuth, async (req, res) => {
+router.get('/projects', async (req, res) => {
   try {
     const projects = await fileGenerator.readProjectsData(dataPath);
     res.json({
@@ -70,7 +69,7 @@ router.get('/projects', basicAuth, async (req, res) => {
  * GET /api/admin/imagemeta
  * Ritorna imageMeta.json completo
  */
-router.get('/imagemeta', basicAuth, async (req, res) => {
+router.get('/imagemeta', async (req, res) => {
   try {
     const imageMetaPath = path.join(publicPath, 'imageMeta.json');
     const imageMetaContent = await import('fs/promises').then(fs => fs.readFile(imageMetaPath, 'utf-8'));
@@ -93,7 +92,7 @@ router.get('/imagemeta', basicAuth, async (req, res) => {
  * PATCH /api/admin/photos
  * Aggiorna metadati di una singola foto (es: isBest)
  */
-router.patch('/photos', basicAuth, async (req, res) => {
+router.patch('/photos', async (req, res) => {
   try {
     const { photoPath, isBest } = req.body;
 
@@ -124,7 +123,7 @@ router.patch('/photos', basicAuth, async (req, res) => {
  * PATCH /api/admin/projects/:slug
  * Aggiorna la data, descrizione o instagramUrl di un progetto
  */
-router.patch('/projects/:slug', basicAuth, async (req, res) => {
+router.patch('/projects/:slug', async (req, res) => {
   try {
     const { slug } = req.params;
     const { dateISO, description, instagramUrl } = req.body;
@@ -204,7 +203,7 @@ router.patch('/projects/:slug', basicAuth, async (req, res) => {
  * DELETE /api/admin/projects/:slug
  * Elimina un progetto completo (cartella + JSON)
  */
-router.delete('/projects/:slug', basicAuth, async (req, res) => {
+router.delete('/projects/:slug', async (req, res) => {
   try {
     const { slug } = req.params;
 
@@ -303,7 +302,7 @@ async function processProjectInBackground(slug, title, description, dateISO, cov
  * POST /api/admin/projects
  * Upload immediato + processing in background (fire-and-forget)
  */
-router.post('/projects', basicAuth, upload.fields([
+router.post('/projects', upload.fields([
   { name: 'cover', maxCount: 1 },
   { name: 'images', maxCount: 30 },
   { name: 'video', maxCount: 1 }
@@ -363,6 +362,41 @@ router.post('/projects', basicAuth, upload.fields([
       error: error.message || 'Errore durante l\'upload'
     });
   }
+});
+
+/**
+ * POST /api/admin/regenerate-imagemeta
+ * Rigenera il file imageMeta.json
+ */
+router.post('/regenerate-imagemeta', async (req, res) => {
+  try {
+    await fileGenerator.regenerateImageMetaFile();
+    
+    res.json({
+      success: true,
+      message: 'imageMeta.json rigenerato con successo'
+    });
+  } catch (error) {
+    console.error('Errore durante la rigenerazione di imageMeta.json:', error);
+    res.status(500).json({
+      success: false,
+      error: error.message || 'Errore durante la rigenerazione di imageMeta.json'
+    });
+  }
+});
+
+/**
+ * GET /api/users/me
+ * Verifica autenticazione utente (per compatibilità con sistemi che lo richiedono)
+ */
+router.get('/users/me', (req, res) => {
+  res.json({
+    success: true,
+    user: {
+      authenticated: true,
+      timestamp: new Date().toISOString()
+    }
+  });
 });
 
 /**

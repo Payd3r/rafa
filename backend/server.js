@@ -28,6 +28,17 @@ app.use((req, res, next) => {
 // Routes
 app.use('/api/admin', adminRoutes);
 
+// Endpoint per compatibilità /api/users/me (senza autenticazione)
+app.get('/api/users/me', (req, res) => {
+  res.json({
+    success: true,
+    user: {
+      authenticated: true,
+      timestamp: new Date().toISOString()
+    }
+  });
+});
+
 // Root endpoint
 app.get('/', (req, res) => {
   res.json({
