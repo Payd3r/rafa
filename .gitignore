@@ -34,3 +34,5 @@ backend/data/*
 optimized/*
 *.jpg
 *.webp
+frontend/public/imageMeta.json
+frontend/public/masonryLayouts.json
