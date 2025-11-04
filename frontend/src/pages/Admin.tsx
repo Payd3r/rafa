@@ -15,6 +15,7 @@ interface Project {
   description: string
   imageCount: number
   createdAt: string
+  instagramUrl?: string
 }
 
 type TabType = 'upload' | 'best-photos' | 'projects'
@@ -90,6 +91,7 @@ function UploadTab() {
   const [title, setTitle] = useState('')
   const [description, setDescription] = useState('')
   const [date, setDate] = useState('')
+  const [instagramUrl, setInstagramUrl] = useState('')
   const [coverImage, setCoverImage] = useState<ImagePreview | null>(null)
   const [images, setImages] = useState<ImagePreview[]>([])
   const [videoFile, setVideoFile] = useState<File | null>(null)
@@ -238,6 +240,9 @@ function UploadTab() {
       formData.append('title', title)
       formData.append('description', description)
       formData.append('dateISO', date)
+      if (instagramUrl) {
+        formData.append('instagramUrl', instagramUrl)
+      }
       formData.append('cover', coverImage.file)
 
       images.forEach(img => {
@@ -293,6 +298,7 @@ function UploadTab() {
       setTitle('')
       setDescription('')
       setDate('')
+      setInstagramUrl('')
       setCoverImage(null)
       setImages([])
       setVideoFile(null)
@@ -380,6 +386,22 @@ function UploadTab() {
           <p className="text-xs text-gray600 dark:text-gray-400 mt-2">
             Clicca ovunque per aprire il calendario
           </p>
+        </div>
+
+        {/* Link Instagram */}
+        <div>
+          <label htmlFor="instagramUrl" className="block text-sm font-medium mb-2">
+            Link Instagram (opzionale)
+          </label>
+          <input
+            type="url"
+            id="instagramUrl"
+            value={instagramUrl}
+            onChange={(e) => setInstagramUrl(e.target.value)}
+            className="w-full px-4 py-2 border border-charcoal dark:border-white bg-white dark:bg-black text-black dark:text-white rounded-none focus:outline focus:outline-1 focus:outline-charcoal dark:focus:outline-white"
+            placeholder="https://www.instagram.com/p/..."
+            disabled={uploading}
+          />
         </div>
 
         {/* Upload Copertina */}
@@ -596,6 +618,7 @@ function UploadTab() {
                 setTitle('')
                 setDescription('')
                 setDate('')
+                setInstagramUrl('')
                 setCoverImage(null)
                 setImages([])
                 setVideoFile(null)
@@ -780,6 +803,10 @@ function ProjectsTab() {
   const [deleting, setDeleting] = useState<string | null>(null)
   const [editing, setEditing] = useState<string | null>(null)
   const [editDate, setEditDate] = useState('')
+  const [editingDescription, setEditingDescription] = useState<string | null>(null)
+  const [editDescription, setEditDescription] = useState('')
+  const [editingInstagram, setEditingInstagram] = useState<string | null>(null)
+  const [editInstagramUrl, setEditInstagramUrl] = useState('')
   const [updating, setUpdating] = useState<string | null>(null)
 
   useEffect(() => {
@@ -846,6 +873,79 @@ function ProjectsTab() {
     } catch (error) {
       console.error('Errore aggiornamento data:', error)
       alert('Errore nell\'aggiornamento della data')
+    } finally {
+      setUpdating(null)
+    }
+  }
+
+  const updateDescription = async (slug: string) => {
+    if (!editDescription.trim()) {
+      alert('La descrizione non può essere vuota')
+      return
+    }
+
+    setUpdating(slug)
+
+    try {
+      const backendUrl = import.meta.env.VITE_BACKEND_URL || ''
+      const apiUrl = backendUrl ? `${backendUrl}/api/admin/projects/${slug}` : `/api/admin/projects/${slug}`
+      
+      const response = await fetch(apiUrl, {
+        method: 'PATCH',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': 'Basic ' + btoa('andrea:andrea2004')
+        },
+        body: JSON.stringify({ description: editDescription })
+      })
+
+      if (!response.ok) {
+        throw new Error('Errore aggiornamento')
+      }
+
+      alert('Descrizione aggiornata con successo!')
+      setEditingDescription(null)
+      setEditDescription('')
+      
+      // Ricarica lista
+      await fetchProjects()
+    } catch (error) {
+      console.error('Errore aggiornamento descrizione:', error)
+      alert('Errore nell\'aggiornamento della descrizione')
+    } finally {
+      setUpdating(null)
+    }
+  }
+
+  const updateInstagramUrl = async (slug: string) => {
+    setUpdating(slug)
+
+    try {
+      const backendUrl = import.meta.env.VITE_BACKEND_URL || ''
+      const apiUrl = backendUrl ? `${backendUrl}/api/admin/projects/${slug}` : `/api/admin/projects/${slug}`
+      
+      const response = await fetch(apiUrl, {
+        method: 'PATCH',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': 'Basic ' + btoa('andrea:andrea2004')
+        },
+        body: JSON.stringify({ instagramUrl: editInstagramUrl || null })
+      })
+
+      if (!response.ok) {
+        throw new Error('Errore aggiornamento')
+      }
+
+      alert('Link Instagram aggiornato con successo!')
+      setEditingInstagram(null)
+      setEditInstagramUrl('')
+      
+      // Ricarica lista
+      await fetchProjects()
+    } catch (error) {
+      console.error('Errore aggiornamento link Instagram:', error)
+      alert('Errore nell\'aggiornamento del link Instagram')
     } finally {
       setUpdating(null)
     }
@@ -962,40 +1062,138 @@ function ProjectsTab() {
                 </p>
               )}
               
+              {editingDescription === project.slug ? (
+                <div className="mt-2 space-y-2">
+                  <textarea
+                    value={editDescription}
+                    onChange={(e) => setEditDescription(e.target.value)}
+                    rows={4}
+                    className="w-full px-3 py-1 border border-charcoal dark:border-white bg-white dark:bg-black text-black dark:text-white rounded-none"
+                    disabled={updating === project.slug}
+                  />
+                  <div className="flex items-center gap-2">
+                    <button
+                      onClick={() => updateDescription(project.slug)}
+                      disabled={updating === project.slug}
+                      className="px-3 py-1 bg-green-500 text-white hover:bg-green-600 transition-colors disabled:opacity-50 disabled:cursor-not-allowed text-sm"
+                    >
+                      {updating === project.slug ? (
+                        <span className="flex items-center gap-1">
+                          <div className="w-3 h-3 border-2 border-white border-t-transparent rounded-full animate-spin" />
+                          Salvataggio...
+                        </span>
+                      ) : (
+                        'Salva'
+                      )}
+                    </button>
+                    <button
+                      onClick={() => {
+                        setEditingDescription(null)
+                        setEditDescription('')
+                      }}
+                      disabled={updating === project.slug}
+                      className="px-3 py-1 bg-gray-500 text-white hover:bg-gray-600 transition-colors disabled:opacity-50 text-sm"
+                    >
+                      Annulla
+                    </button>
+                  </div>
+                </div>
+              ) : (
+                <p className="text-sm text-gray700 dark:text-gray-300 mt-2 max-w-2xl">
+                  {project.description}
+                </p>
+              )}
+              
+              {editingInstagram === project.slug ? (
+                <div className="mt-2 flex items-center gap-2">
+                  <input
+                    type="url"
+                    value={editInstagramUrl}
+                    onChange={(e) => setEditInstagramUrl(e.target.value)}
+                    className="flex-1 px-3 py-1 border border-charcoal dark:border-white bg-white dark:bg-black text-black dark:text-white rounded-none"
+                    placeholder="https://www.instagram.com/p/..."
+                    disabled={updating === project.slug}
+                  />
+                  <button
+                    onClick={() => updateInstagramUrl(project.slug)}
+                    disabled={updating === project.slug}
+                    className="px-3 py-1 bg-green-500 text-white hover:bg-green-600 transition-colors disabled:opacity-50 disabled:cursor-not-allowed text-sm"
+                  >
+                    {updating === project.slug ? (
+                      <span className="flex items-center gap-1">
+                        <div className="w-3 h-3 border-2 border-white border-t-transparent rounded-full animate-spin" />
+                        Salvataggio...
+                      </span>
+                    ) : (
+                      'Salva'
+                    )}
+                  </button>
+                  <button
+                    onClick={() => {
+                      setEditingInstagram(null)
+                      setEditInstagramUrl('')
+                    }}
+                    disabled={updating === project.slug}
+                    className="px-3 py-1 bg-gray-500 text-white hover:bg-gray-600 transition-colors disabled:opacity-50 text-sm"
+                  >
+                    Annulla
+                  </button>
+                </div>
+              ) : null}
+              
               <p className="text-xs text-gray600 dark:text-gray-400 mt-1">
                 Slug: {project.slug}
               </p>
             </div>
             
-            <div className="flex gap-2 ml-4">
-              {editing !== project.slug && (
-                <button
-                  onClick={() => {
-                    setEditing(project.slug)
-                    setEditDate(project.dateISO)
-                  }}
-                  disabled={deleting === project.slug}
-                  className="px-4 py-2 bg-blue-500 text-white hover:bg-blue-600 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
-                >
-                  Modifica Data
-                </button>
-              )}
-              
-              {editing !== project.slug && (
-                <button
-                  onClick={() => deleteProject(project.slug, project.title)}
-                  disabled={deleting === project.slug}
-                  className="px-4 py-2 bg-red-500 text-white hover:bg-red-600 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
-                >
-                  {deleting === project.slug ? (
-                    <span className="flex items-center gap-2">
-                      <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
-                      Eliminazione...
-                    </span>
-                  ) : (
-                    'Elimina'
-                  )}
-                </button>
+            <div className="flex gap-2 ml-4 flex-wrap">
+              {editing !== project.slug && editingDescription !== project.slug && editingInstagram !== project.slug && (
+                <>
+                  <button
+                    onClick={() => {
+                      setEditing(project.slug)
+                      setEditDate(project.dateISO)
+                    }}
+                    disabled={deleting === project.slug}
+                    className="px-4 py-2 bg-blue-500 text-white hover:bg-blue-600 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                  >
+                    Modifica Data
+                  </button>
+                  <button
+                    onClick={() => {
+                      setEditingDescription(project.slug)
+                      setEditDescription(project.description)
+                    }}
+                    disabled={deleting === project.slug}
+                    className="px-4 py-2 bg-blue-500 text-white hover:bg-blue-600 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                  >
+                    Modifica Descrizione
+                  </button>
+                  <button
+                    onClick={() => {
+                      setEditingInstagram(project.slug)
+                      setEditInstagramUrl(project.instagramUrl || '')
+                    }}
+                    disabled={deleting === project.slug}
+                    className="px-4 py-2 bg-blue-500 text-white hover:bg-blue-600 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                  >
+                    Modifica Link IG
+                  </button>
+                  <button
+                    onClick={() => deleteProject(project.slug, project.title)}
+                    disabled={deleting === project.slug}
+                    className="px-4 py-2 bg-red-500 text-white hover:bg-red-600 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                  >
+                    {deleting === project.slug ? (
+                      <span className="flex items-center gap-2">
+                        <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
+                        Eliminazione...
+                      </span>
+                    ) : (
+                      'Elimina'
+                    )}
+                  </button>
+                </>
               )}
             </div>
           </div>

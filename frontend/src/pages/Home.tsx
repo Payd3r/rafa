@@ -61,23 +61,25 @@ export default function Home() {
           }`}
         >
           <div className="max-w-6xl mx-auto px-4">
-            <div className="text-sm uppercase tracking-wider text-gray700 dark:text-gray-300 mb-2 animate-fade-in">
+            <div className="text-sm uppercase tracking-wider text-gray700 dark:text-gray-300 mb-2 animate-fade-in text-left">
               {t('home.photographer')}
             </div>
-            <h1 className="h1-hero text-2xl sm:text-4xl md:text-5xl lg:text-7xl xl:text-8xl font-bold mb-6 animate-fade-in-up break-words">
+            <h1 className="h1-hero text-2xl sm:text-4xl md:text-5xl lg:text-7xl xl:text-8xl font-thin mb-6 animate-fade-in-up break-words text-left">
               {t('home.heroTitle')}
             </h1>
-            <p className="mt-4 max-w-2xl text-gray700 dark:text-gray-300 animate-fade-in">
+            <p className="mt-4 max-w-2xl text-gray700 dark:text-gray-300 animate-fade-in text-left">
               {t('home.heroDescription')}
             </p>
-            <button 
-              type="button"
-              onClick={() => window.open('https://www.instagram.com/inside.faraostudio/', '_blank', 'noopener,noreferrer')}
-              className="btn btn-animated mt-6 group"
-              aria-label="Instagram - About me"
-            >
-              <span className="relative z-10">{t('home.readMore')}</span>
-            </button>
+            <div className="flex justify-start mt-6">
+              <button 
+                type="button"
+                onClick={() => window.open('https://www.instagram.com/inside.faraostudio/', '_blank', 'noopener,noreferrer')}
+                className="btn btn-animated group"
+                aria-label="Instagram - About me"
+              >
+                <span className="relative z-10">{t('home.readMore')}</span>
+              </button>
+            </div>
           </div>
         </section>
 
@@ -99,7 +101,7 @@ export default function Home() {
                 <MasonryGrid 
                   photos={bestPhotos.slice(0, 12)} 
                   onPhotoClick={handlePhotoClick}
-                  maxRows={2}
+                  maxRows={1}
                   layoutKey="gallery-preview"
                 />
               ) : (

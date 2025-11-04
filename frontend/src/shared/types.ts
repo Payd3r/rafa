@@ -21,6 +21,7 @@ export type Project = {
     thumbnail: string
     alt: string
   }
+  instagramUrl?: string
 }
 
 

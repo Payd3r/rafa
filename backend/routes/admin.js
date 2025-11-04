@@ -122,30 +122,40 @@ router.patch('/photos', basicAuth, async (req, res) => {
 
 /**
  * PATCH /api/admin/projects/:slug
- * Aggiorna la data di un progetto
+ * Aggiorna la data, descrizione o instagramUrl di un progetto
  */
 router.patch('/projects/:slug', basicAuth, async (req, res) => {
   try {
     const { slug } = req.params;
-    const { dateISO } = req.body;
+    const { dateISO, description, instagramUrl } = req.body;
 
-    if (!slug || !dateISO) {
+    if (!slug) {
       return res.status(400).json({
         success: false,
-        error: 'Slug e dateISO sono obbligatori'
+        error: 'Slug è obbligatorio'
       });
     }
 
-    // Valida formato data
-    const dateObj = new Date(dateISO);
-    if (isNaN(dateObj.getTime())) {
+    // Valida che almeno un campo sia presente
+    if (dateISO === undefined && description === undefined && instagramUrl === undefined) {
       return res.status(400).json({
         success: false,
-        error: 'Formato data non valido'
+        error: 'Almeno un campo da aggiornare è richiesto: dateISO, description, instagramUrl'
       });
     }
 
-    console.log(`Aggiornamento data progetto: ${slug} -> ${dateISO}`);
+    // Valida formato data se presente
+    if (dateISO !== undefined) {
+      const dateObj = new Date(dateISO);
+      if (isNaN(dateObj.getTime())) {
+        return res.status(400).json({
+          success: false,
+          error: 'Formato data non valido'
+        });
+      }
+    }
+
+    console.log(`Aggiornamento progetto: ${slug}`, { dateISO, description: description ? 'presente' : undefined, instagramUrl });
 
     // Leggi progetti
     const projects = await fileGenerator.readProjectsData(dataPath);
@@ -159,7 +169,16 @@ router.patch('/projects/:slug', basicAuth, async (req, res) => {
       });
     }
 
-    projects[projectIndex].dateISO = dateISO;
+    // Aggiorna solo i campi presenti
+    if (dateISO !== undefined) {
+      projects[projectIndex].dateISO = dateISO;
+    }
+    if (description !== undefined) {
+      projects[projectIndex].description = description;
+    }
+    if (instagramUrl !== undefined) {
+      projects[projectIndex].instagramUrl = instagramUrl || null;
+    }
     
     // Salva progetti
     await fileGenerator.saveProjectsData(dataPath, projects);
@@ -169,14 +188,14 @@ router.patch('/projects/:slug', basicAuth, async (req, res) => {
 
     res.json({
       success: true,
-      message: `Data del progetto ${slug} aggiornata a ${dateISO}`,
+      message: `Progetto ${slug} aggiornato con successo`,
       project: projects[projectIndex]
     });
   } catch (error) {
-    console.error('Errore nell\'aggiornamento data progetto:', error);
+    console.error('Errore nell\'aggiornamento progetto:', error);
     res.status(500).json({
       success: false,
-      error: error.message || 'Errore nell\'aggiornamento della data'
+      error: error.message || 'Errore nell\'aggiornamento del progetto'
     });
   }
 });
@@ -223,7 +242,7 @@ router.delete('/projects/:slug', basicAuth, async (req, res) => {
 /**
  * Funzione async separata per processing in background
  */
-async function processProjectInBackground(slug, title, description, dateISO, coverFiles, galleryFiles, videoFile = null) {
+async function processProjectInBackground(slug, title, description, dateISO, coverFiles, galleryFiles, videoFile = null, instagramUrl = null) {
   console.log(`[Background] Inizio processing progetto: ${slug}`);
   
   try {
@@ -259,7 +278,8 @@ async function processProjectInBackground(slug, title, description, dateISO, cov
       hasCover: true,
       imageCount: galleryFiles.length,
       hasVideo,
-      createdAt: new Date().toISOString()
+      createdAt: new Date().toISOString(),
+      instagramUrl: instagramUrl || null
     };
     
     // Leggi e salva projects.json
@@ -289,7 +309,7 @@ router.post('/projects', basicAuth, upload.fields([
   { name: 'video', maxCount: 1 }
 ]), async (req, res) => {
   try {
-    const { title, description, dateISO } = req.body;
+    const { title, description, dateISO, instagramUrl } = req.body;
     const coverFiles = req.files?.cover;
     const galleryFiles = req.files?.images || [];
     const videoFile = req.files?.video?.[0] || null;
@@ -325,14 +345,15 @@ router.post('/projects', basicAuth, upload.fields([
         slug,
         title,
         description,
-        dateISO
+        dateISO,
+        instagramUrl: instagramUrl || null
       },
       message: `Upload completato! Il progetto "${title}" sarà disponibile a breve.`
     });
 
     // 🔥 PROCESSING IN BACKGROUND (fire-and-forget)
     // Non usa await = non blocca la risposta
-    processProjectInBackground(slug, title, description, dateISO, coverFiles, galleryFiles, videoFile)
+    processProjectInBackground(slug, title, description, dateISO, coverFiles, galleryFiles, videoFile, instagramUrl)
       .catch(err => console.error('Errore processing background:', err));
 
   } catch (error) {

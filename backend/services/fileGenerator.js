@@ -51,6 +51,11 @@ export class FileGenerator {
         };
       }
 
+      // Aggiungi Instagram URL se presente
+      if (project.instagramUrl) {
+        projectData.instagramUrl = project.instagramUrl;
+      }
+
       return projectData;
     });
 
