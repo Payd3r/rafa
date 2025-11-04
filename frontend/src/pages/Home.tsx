@@ -133,6 +133,7 @@ export default function Home() {
               {loading || metaLoading ? (
                 <div className="text-center py-12">
                   <div className="inline-block w-8 h-8 border-2 border-charcoal dark:border-white border-t-transparent rounded-full animate-spin" />
+                  <p className="mt-4 text-sm text-gray700 dark:text-gray-300">Caricamento immagini preferite...</p>
                 </div>
               ) : metaError ? (
                 <div className="text-center py-12 text-red-600 dark:text-red-400">
@@ -140,12 +141,18 @@ export default function Home() {
                   <p className="text-sm text-gray700 dark:text-gray-300">{metaError.message}</p>
                 </div>
               ) : bestPhotos.length > 0 ? (
-                <MasonryGrid 
-                  photos={bestPhotos.slice(0, 12)} 
-                  onPhotoClick={handlePhotoClick}
-                  maxRows={1}
-                  layoutKey="gallery-preview"
-                />
+                <>
+                  {/* Debug info visibile */}
+                  <div className="mb-4 p-2 bg-blue-100 dark:bg-blue-900 text-sm text-blue-800 dark:text-blue-200 rounded">
+                    <strong>Debug:</strong> Trovate {bestPhotos.length} immagini preferite. Mostrate: {Math.min(bestPhotos.length, 12)}
+                  </div>
+                  <MasonryGrid 
+                    photos={bestPhotos.slice(0, 12)} 
+                    onPhotoClick={handlePhotoClick}
+                    maxRows={3}
+                    layoutKey="gallery-preview"
+                  />
+                </>
               ) : (
                 <div className="text-center py-12 text-gray700 dark:text-gray-300">
                   Nessuna foto selezionata come "migliore scatto". Vai alla pagina admin per selezionarle.

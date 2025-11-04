@@ -151,16 +151,14 @@ export function MasonryGrid({ photos, onPhotoClick, maxRows, layoutKey }: {
     }
     // Ultima riga: gestione diversa se maxRows è specificato
     if (current.length > 0) {
-      // Se maxRows è specificato, NON aggiungere righe incomplete
-      // Questo garantisce che tutte le righe siano complete e ben giustificate
-      if (maxRows) {
-        // Salta l'ultima riga incompleta quando maxRows è specificato
-        // Così avremo sempre esattamente maxRows righe complete o meno righe
+      // Se maxRows è specificato E abbiamo già raggiunto maxRows, NON aggiungere righe incomplete
+      if (maxRows && r.length >= maxRows) {
+        // Salta l'ultima riga incompleta quando maxRows è già raggiunto
         return r
       }
       
-      // Se maxRows NON è specificato, aggiungi l'ultima riga anche se incompleta
-      if (current.length >= 2) {
+      // Altrimenti, aggiungi l'ultima riga anche se incompleta (se ha almeno 1 immagine)
+      if (current.length >= 1) {
         let height = (containerWidth - gap * (current.length - 1)) / sumRatio
         const scale = height / targetHeight
         const maxScaleUp = 1.35
@@ -168,8 +166,6 @@ export function MasonryGrid({ photos, onPhotoClick, maxRows, layoutKey }: {
         if (scale > maxScaleUp) height = targetHeight * maxScaleUp
         if (scale < minScaleDown) height = targetHeight * minScaleDown
         r.push({ height, items: current })
-      } else {
-        r.push({ height: targetHeight, items: current })
       }
     }
     return r
@@ -180,27 +176,53 @@ export function MasonryGrid({ photos, onPhotoClick, maxRows, layoutKey }: {
     // This callback is kept for compatibility but does nothing
   }, [])
 
+  // Debug: log sempre visibile anche in produzione
+  useEffect(() => {
+    console.log('🖼️ MasonryGrid render:', {
+      totalPhotos: photos.length,
+      rowsCount: rows.length,
+      totalItems: rows.reduce((sum, row) => sum + row.items.length, 0),
+      maxRows: maxRows,
+      containerWidth: containerWidth
+    })
+  }, [photos.length, rows.length, maxRows, containerWidth])
+
+  if (rows.length === 0 && photos.length > 0) {
+    console.warn('⚠️ MasonryGrid: Ci sono foto ma nessuna riga generata!', {
+      photosCount: photos.length,
+      containerWidth,
+      maxRows
+    })
+  }
+
   return (
     <div ref={containerRef} className="w-full overflow-hidden">
-      <div style={{ display: 'grid', rowGap: gap }} className="w-full overflow-hidden">
-        {rows.map((row, rIdx) => (
-          <div key={rIdx} className="flex overflow-hidden" style={{ height: row.height, gap, maxWidth: '100%' }}>
-            {row.items.map((it) => {
-              const width = it.ratio * row.height
-              return (
-                <div key={it.index} style={{ width, flexShrink: 0, maxWidth: '100%' }}>
-                  <PhotoCard
-                    photo={photos[it.index]}
-                    onClick={() => onPhotoClick?.(it.index)}
-                    onLoad={(e) => handleImageLoad(it.index, e as any)}
-                    index={it.index}
-                  />
-                </div>
-              )
-            })}
-          </div>
-        ))}
-      </div>
+      {rows.length === 0 && photos.length > 0 ? (
+        <div className="text-center py-8 text-yellow-600 dark:text-yellow-400">
+          <p>Immagini disponibili ma layout non ancora calcolato.</p>
+          <p className="text-sm mt-2">Aspettando il calcolo del layout...</p>
+        </div>
+      ) : (
+        <div style={{ display: 'grid', rowGap: gap }} className="w-full overflow-hidden">
+          {rows.map((row, rIdx) => (
+            <div key={rIdx} className="flex overflow-hidden" style={{ height: row.height, gap, maxWidth: '100%' }}>
+              {row.items.map((it) => {
+                const width = it.ratio * row.height
+                return (
+                  <div key={it.index} style={{ width, flexShrink: 0, maxWidth: '100%' }}>
+                    <PhotoCard
+                      photo={photos[it.index]}
+                      onClick={() => onPhotoClick?.(it.index)}
+                      onLoad={(e) => handleImageLoad(it.index, e as any)}
+                      index={it.index}
+                    />
+                  </div>
+                )
+              })}
+            </div>
+          ))}
+        </div>
+      )}
     </div>
   )
 }
