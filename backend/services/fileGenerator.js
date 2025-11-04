@@ -192,15 +192,39 @@ export class FileGenerator {
       
       // Leggi o crea imageMeta.json
       let imageMeta = {};
+      let needsRegeneration = false;
       try {
         const imageMetaContent = await fs.readFile(imageMetaPath, 'utf-8');
         const parsed = JSON.parse(imageMetaContent);
-        if (parsed && typeof parsed === 'object') {
+        if (parsed && typeof parsed === 'object' && Object.keys(parsed).length > 0) {
           imageMeta = parsed;
+        } else {
+          // File è vuoto, rigenera da zero
+          console.log('imageMeta.json è vuoto, rigenerazione necessaria');
+          needsRegeneration = true;
         }
       } catch (err) {
-        // File non esiste o è vuoto, creeremo una nuova entry
-        console.log('imageMeta.json non trovato o vuoto, verrà creato');
+        // File non esiste o non è valido, rigenera da zero
+        console.log('imageMeta.json non trovato o non valido, rigenerazione necessaria');
+        needsRegeneration = true;
+      }
+
+      // Se imageMeta.json è vuoto o non contiene l'immagine, rigenera prima
+      if (needsRegeneration || !imageMeta[photoPath]) {
+        console.log(`Rigenerazione imageMeta.json necessaria (file vuoto o immagine ${photoPath} non trovata)`);
+        await this.regenerateImageMetaFile();
+        
+        // Ricarica imageMeta.json dopo la rigenerazione
+        try {
+          const regeneratedContent = await fs.readFile(imageMetaPath, 'utf-8');
+          const regenerated = JSON.parse(regeneratedContent);
+          if (regenerated && typeof regenerated === 'object') {
+            imageMeta = regenerated;
+          }
+        } catch (err) {
+          console.error('Errore durante la ricarica di imageMeta.json dopo rigenerazione:', err);
+          // Continua comunque
+        }
       }
 
       // Estrai slug progetto e indice immagine dal path
@@ -255,15 +279,24 @@ export class FileGenerator {
       }
 
       // Aggiorna i campi in imageMeta.json
+      const beforeUpdate = imageMeta[photoPath]?.isBest;
       imageMeta[photoPath] = {
         ...imageMeta[photoPath],
         ...updates
       };
+      const afterUpdate = imageMeta[photoPath].isBest;
 
       // Salva imageMeta.json
       await fs.writeFile(imageMetaPath, JSON.stringify(imageMeta, null, 2));
       
-      console.log(`Aggiornato ${photoPath} in imageMeta.json con isBest=${updates.isBest}`);
+      // Conta quante immagini preferite ci sono ora
+      const bestCount = Object.values(imageMeta).filter(m => m?.isBest === true).length;
+      console.log(`✅ Aggiornato ${photoPath} in imageMeta.json:`, {
+        before: beforeUpdate,
+        after: afterUpdate,
+        totalImages: Object.keys(imageMeta).length,
+        totalBest: bestCount
+      });
       
       return imageMeta;
     } catch (error) {

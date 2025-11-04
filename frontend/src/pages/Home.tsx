@@ -27,8 +27,28 @@ export default function Home() {
   // Filtra solo le foto con isBest = true
   const bestPhotos = useMemo(() => {
     const allPhotos = projects.flatMap(p => p.gallery)
+    
+    // Debug: log per capire cosa succede
+    if (!metaLoading && !loading) {
+      console.log('🔍 Debug Home - bestPhotos:', {
+        totalPhotos: allPhotos.length,
+        imageMetaKeys: Object.keys(imageMeta).length,
+        imageMetaSample: Object.keys(imageMeta).slice(0, 5),
+        photosWithIsBest: allPhotos.filter(photo => {
+          const meta = imageMeta[photo.src]
+          return meta?.isBest === true
+        }).length,
+        samplePhotoSrc: allPhotos[0]?.src,
+        sampleMetaForPhoto: allPhotos[0] ? imageMeta[allPhotos[0].src] : null,
+        allIsBest: Object.entries(imageMeta)
+          .filter(([_, meta]) => meta?.isBest === true)
+          .map(([path, _]) => path)
+          .slice(0, 10)
+      })
+    }
+    
     return allPhotos.filter(photo => imageMeta[photo.src]?.isBest === true)
-  }, [projects, imageMeta])
+  }, [projects, imageMeta, metaLoading, loading])
 
   // Animazioni per le sezioni
   const { ref: heroRef, isVisible: heroVisible } = useAnimation({ 

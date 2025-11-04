@@ -43,7 +43,18 @@ export function useImageMeta() {
         // Verifica se il file è vuoto (solo {})
         const keys = Object.keys(data)
         if (keys.length === 0) {
-          console.warn('imageMeta.json è vuoto. Nessuna immagine preferita disponibile.')
+          console.warn('⚠️ imageMeta.json è vuoto. Nessuna immagine preferita disponibile.')
+        } else {
+          // Debug: mostra quanti isBest ci sono
+          const bestCount = Object.values(data).filter((m: any) => m?.isBest === true).length
+          console.log(`✅ imageMeta.json caricato: ${keys.length} immagini totali, ${bestCount} preferite`)
+          if (bestCount > 0) {
+            const bestPaths = Object.entries(data)
+              .filter(([_, meta]: [string, any]) => meta?.isBest === true)
+              .map(([path, _]) => path)
+              .slice(0, 5)
+            console.log('📸 Prime immagini preferite:', bestPaths)
+          }
         }
         
         setImageMeta(data)

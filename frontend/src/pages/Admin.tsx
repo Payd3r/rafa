@@ -660,7 +660,17 @@ function BestPhotosTab() {
         }
 
       const data = await response.json()
-      setImageMeta(data.imageMeta)
+      const imageMetaData = data.imageMeta || {}
+      
+      // Debug: log per vedere cosa viene caricato
+      const bestCount = Object.values(imageMetaData).filter((m: any) => m?.isBest === true).length
+      console.log('📥 Admin - imageMeta caricato:', {
+        total: Object.keys(imageMetaData).length,
+        bestCount,
+        sample: Object.keys(imageMetaData).slice(0, 5)
+      })
+      
+      setImageMeta(imageMetaData)
     } catch (error) {
       console.error('Errore caricamento imageMeta:', error)
       alert('Errore nel caricamento delle foto')
@@ -672,6 +682,13 @@ function BestPhotosTab() {
   const toggleBest = async (photoPath: string) => {
     const currentValue = imageMeta[photoPath]?.isBest || false
     const newValue = !currentValue
+
+    console.log('🔄 Toggle isBest:', {
+      photoPath,
+      currentValue,
+      newValue,
+      existingMeta: imageMeta[photoPath]
+    })
 
     // Optimistic update
     setImageMeta(prev => ({
@@ -688,22 +705,27 @@ function BestPhotosTab() {
       const backendUrl = import.meta.env.VITE_BACKEND_URL || ''
       const apiUrl = backendUrl ? `${backendUrl}/api/admin/photos` : '/api/admin/photos'
       
-              const response = await fetch(apiUrl, {
-          method: 'PATCH',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({
-            photoPath,
-            isBest: newValue
-          })
+      const response = await fetch(apiUrl, {
+        method: 'PATCH',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          photoPath,
+          isBest: newValue
         })
+      })
 
       if (!response.ok) {
-        throw new Error('Errore aggiornamento')
+        const errorData = await response.json().catch(() => ({ error: 'Unknown error' }))
+        throw new Error(errorData.error || 'Errore aggiornamento')
       }
 
-      console.log(`Foto ${photoPath} aggiornata: isBest=${newValue}`)
+      const result = await response.json()
+      console.log(`✅ Foto ${photoPath} aggiornata: isBest=${newValue}`, result)
+      
+      // Ricarica imageMeta per assicurarsi di avere i dati aggiornati
+      await fetchImageMeta()
     } catch (error) {
       console.error('Errore toggle best:', error)
       // Rollback su errore
