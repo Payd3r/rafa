@@ -37,7 +37,7 @@
     <div id="app"></div>
     <script type="module" src="/src/main.tsx"></script>
     
-    <!-- Disabilita Service Worker in sviluppo -->
+    <!-- Disabilita Service Worker (sviluppo e produzione) -->
     <script>
       if ('serviceWorker' in navigator) {
         // Disabilita tutti i service worker esistenti
@@ -50,7 +50,7 @@
         });
         // Blocca nuovi service worker
         navigator.serviceWorker.register = function() {
-          return Promise.reject(new Error('Service Worker disabilitato in sviluppo'));
+          return Promise.reject(new Error('Service Worker disabilitato'));
         };
       }
     </script>
