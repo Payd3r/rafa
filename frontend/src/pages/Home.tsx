@@ -15,7 +15,7 @@ import { useAnimation } from '../shared/hooks/useAnimation'
 export default function Home() {
   const { t } = useTranslation()
   const { projects, loading } = useProjects()
-  const { imageMeta, loading: metaLoading } = useImageMeta()
+  const { imageMeta, loading: metaLoading, error: metaError } = useImageMeta()
   const [lightboxOpen, setLightboxOpen] = useState(false)
   const [lightboxIndex, setLightboxIndex] = useState(0)
 
@@ -96,6 +96,11 @@ export default function Home() {
               {loading || metaLoading ? (
                 <div className="text-center py-12">
                   <div className="inline-block w-8 h-8 border-2 border-charcoal dark:border-white border-t-transparent rounded-full animate-spin" />
+                </div>
+              ) : metaError ? (
+                <div className="text-center py-12 text-red-600 dark:text-red-400">
+                  <p className="mb-2">Errore nel caricamento dei metadati delle immagini.</p>
+                  <p className="text-sm text-gray700 dark:text-gray-300">{metaError.message}</p>
                 </div>
               ) : bestPhotos.length > 0 ? (
                 <MasonryGrid 

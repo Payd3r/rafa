@@ -82,10 +82,17 @@ export class FileGenerator {
     const imageMetaPath = path.join(this.publicPath, 'imageMeta.json');
     try {
       const existingContent = await fs.readFile(imageMetaPath, 'utf-8');
-      existingImageMeta = JSON.parse(existingContent);
+      const parsed = JSON.parse(existingContent);
+      // Verifica che non sia un oggetto vuoto
+      if (parsed && typeof parsed === 'object' && Object.keys(parsed).length > 0) {
+        existingImageMeta = parsed;
+        console.log(`Caricato imageMeta.json esistente con ${Object.keys(existingImageMeta).length} immagini`);
+      } else {
+        console.log('imageMeta.json esiste ma è vuoto, verrà rigenerato');
+      }
     } catch (err) {
       // File non esiste o non è valido, va bene, partiremo da zero
-      console.log('imageMeta.json non trovato o vuoto, verrà generato da zero');
+      console.log('imageMeta.json non trovato o non valido, verrà generato da zero');
     }
 
     try {
@@ -113,10 +120,18 @@ export class FileGenerator {
             
             const thumbPath = `/optimized/${projectSlug}/${imageIndex}/thumb.webp`;
             
-            // Preferisci isBest da meta.json locale, altrimenti usa quello esistente in imageMeta.json
-            const existingIsBest = existingImageMeta[thumbPath]?.isBest;
-            const localIsBest = meta.isBest !== undefined ? meta.isBest : false;
-            const isBest = localIsBest || existingIsBest || false;
+            // Logica migliorata per preservare isBest:
+            // 1. Se meta.json locale ha isBest definito (true o false), usalo
+            // 2. Altrimenti, usa il valore da imageMeta.json esistente (se presente)
+            // 3. Altrimenti, default a false
+            let isBest = false;
+            if (meta.isBest !== undefined) {
+              // Il meta.json locale ha isBest definito, usalo
+              isBest = meta.isBest === true;
+            } else if (existingImageMeta[thumbPath]?.isBest !== undefined) {
+              // Usa il valore da imageMeta.json esistente
+              isBest = existingImageMeta[thumbPath].isBest === true;
+            }
             
             metaObject[thumbPath] = {
               ratio: meta.ratio,
@@ -124,7 +139,7 @@ export class FileGenerator {
               isBest: isBest
             };
           } catch (err) {
-            console.warn(`Impossibile leggere meta.json per ${projectSlug}/${imageIndex}`);
+            console.warn(`Impossibile leggere meta.json per ${projectSlug}/${imageIndex}:`, err.message);
           }
         }
       }
@@ -133,7 +148,8 @@ export class FileGenerator {
       const outputPath = path.join(this.publicPath, 'imageMeta.json');
       await fs.writeFile(outputPath, JSON.stringify(metaObject, null, 2));
       
-      console.log(`Generato ${outputPath} con ${Object.keys(metaObject).length} immagini`);
+      const bestCount = Object.values(metaObject).filter(m => m.isBest === true).length;
+      console.log(`Generato ${outputPath} con ${Object.keys(metaObject).length} immagini (${bestCount} preferite)`);
       
       return outputPath;
     } catch (error) {
@@ -173,11 +189,18 @@ export class FileGenerator {
   async updatePhotoMeta(photoPath, updates) {
     try {
       const imageMetaPath = path.join(this.publicPath, 'imageMeta.json');
-      const imageMetaContent = await fs.readFile(imageMetaPath, 'utf-8');
-      const imageMeta = JSON.parse(imageMetaContent);
-
-      if (!imageMeta[photoPath]) {
-        throw new Error(`Photo not found: ${photoPath}`);
+      
+      // Leggi o crea imageMeta.json
+      let imageMeta = {};
+      try {
+        const imageMetaContent = await fs.readFile(imageMetaPath, 'utf-8');
+        const parsed = JSON.parse(imageMetaContent);
+        if (parsed && typeof parsed === 'object') {
+          imageMeta = parsed;
+        }
+      } catch (err) {
+        // File non esiste o è vuoto, creeremo una nuova entry
+        console.log('imageMeta.json non trovato o vuoto, verrà creato');
       }
 
       // Estrai slug progetto e indice immagine dal path
@@ -204,10 +227,31 @@ export class FileGenerator {
         
         // Salva il meta.json locale aggiornato
         await fs.writeFile(imageMetaFilePath, JSON.stringify(updatedMeta, null, 2));
-        console.log(`Aggiornato meta.json locale per ${projectSlug}/${imageIndex}`);
+        console.log(`Aggiornato meta.json locale per ${projectSlug}/${imageIndex} con isBest=${updates.isBest}`);
       } catch (err) {
-        console.warn(`Impossibile aggiornare meta.json locale per ${photoPath}:`, err);
+        console.warn(`Impossibile aggiornare meta.json locale per ${photoPath}:`, err.message);
         // Continua comunque ad aggiornare imageMeta.json
+      }
+
+      // Se l'immagine non esiste in imageMeta.json, crea una entry base
+      if (!imageMeta[photoPath]) {
+        // Leggi il meta.json locale per ottenere ratio e placeholder
+        try {
+          const metaContent = await fs.readFile(imageMetaFilePath, 'utf-8');
+          const meta = JSON.parse(metaContent);
+          imageMeta[photoPath] = {
+            ratio: meta.ratio || 1,
+            placeholder: meta.placeholder || '',
+            isBest: false
+          };
+        } catch (err) {
+          // Se non riusciamo a leggere il meta.json, crea una entry minimale
+          imageMeta[photoPath] = {
+            ratio: 1,
+            placeholder: '',
+            isBest: false
+          };
+        }
       }
 
       // Aggiorna i campi in imageMeta.json
@@ -219,7 +263,7 @@ export class FileGenerator {
       // Salva imageMeta.json
       await fs.writeFile(imageMetaPath, JSON.stringify(imageMeta, null, 2));
       
-      console.log(`Aggiornato ${photoPath} in imageMeta.json`);
+      console.log(`Aggiornato ${photoPath} in imageMeta.json con isBest=${updates.isBest}`);
       
       return imageMeta;
     } catch (error) {

@@ -1,6 +1,7 @@
 import express from 'express';
 import multer from 'multer';
 import path from 'path';
+import fs from 'fs/promises';
 import { ImageProcessor } from '../services/imageProcessor.js';
 import { VideoProcessor } from '../services/videoProcessor.js';
 import { FileGenerator } from '../services/fileGenerator.js';
@@ -381,6 +382,110 @@ router.post('/regenerate-imagemeta', async (req, res) => {
     res.status(500).json({
       success: false,
       error: error.message || 'Errore durante la rigenerazione di imageMeta.json'
+    });
+  }
+});
+
+/**
+ * GET /api/admin/debug/imagemeta
+ * Endpoint di debug per verificare lo stato di imageMeta.json e i meta.json locali
+ */
+router.get('/debug/imagemeta', async (req, res) => {
+  try {
+    const imageMetaPath = path.join(publicPath, 'imageMeta.json');
+    const optimizedPath = path.join(publicPath, 'optimized');
+    
+    // Leggi imageMeta.json
+    let imageMeta = {};
+    let imageMetaExists = false;
+    let imageMetaSize = 0;
+    try {
+      const imageMetaContent = await fs.readFile(imageMetaPath, 'utf-8');
+      const parsed = JSON.parse(imageMetaContent);
+      if (parsed && typeof parsed === 'object') {
+        imageMeta = parsed;
+        imageMetaExists = true;
+        imageMetaSize = imageMetaContent.length;
+      }
+    } catch (err) {
+      // File non esiste o non è valido
+    }
+
+    // Conta immagini preferite
+    const bestCount = Object.values(imageMeta).filter(m => m?.isBest === true).length;
+    const totalCount = Object.keys(imageMeta).length;
+
+    // Conta meta.json locali con isBest
+    let localMetaStats = {
+      total: 0,
+      withIsBest: 0,
+      withIsBestTrue: 0
+    };
+
+    try {
+      const projects = await fs.readdir(optimizedPath);
+      
+      for (const projectSlug of projects) {
+        const projectPath = path.join(optimizedPath, projectSlug);
+        const stat = await fs.stat(projectPath);
+        
+        if (!stat.isDirectory()) continue;
+
+        const images = await fs.readdir(projectPath);
+        
+        for (const imageIndex of images) {
+          const imagePath = path.join(projectPath, imageIndex);
+          const imageStat = await fs.stat(imagePath);
+          
+          if (!imageStat.isDirectory()) continue;
+
+          const metaPath = path.join(imagePath, 'meta.json');
+          try {
+            const metaContent = await fs.readFile(metaPath, 'utf-8');
+            const meta = JSON.parse(metaContent);
+            localMetaStats.total++;
+            
+            if (meta.isBest !== undefined) {
+              localMetaStats.withIsBest++;
+              if (meta.isBest === true) {
+                localMetaStats.withIsBestTrue++;
+              }
+            }
+          } catch (err) {
+            // Ignora errori di lettura
+          }
+        }
+      }
+    } catch (err) {
+      // Errore nella scansione
+    }
+
+    res.json({
+      success: true,
+      debug: {
+        imageMeta: {
+          exists: imageMetaExists,
+          size: imageMetaSize,
+          totalImages: totalCount,
+          bestImages: bestCount,
+          isEmpty: totalCount === 0
+        },
+        localMeta: {
+          totalFiles: localMetaStats.total,
+          withIsBest: localMetaStats.withIsBest,
+          withIsBestTrue: localMetaStats.withIsBestTrue
+        },
+        path: {
+          imageMetaPath,
+          optimizedPath
+        }
+      }
+    });
+  } catch (error) {
+    console.error('Errore durante il debug di imageMeta:', error);
+    res.status(500).json({
+      success: false,
+      error: error.message || 'Errore durante il debug di imageMeta'
     });
   }
 });
