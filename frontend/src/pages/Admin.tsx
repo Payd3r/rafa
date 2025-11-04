@@ -660,17 +660,7 @@ function BestPhotosTab() {
         }
 
       const data = await response.json()
-      const imageMetaData = data.imageMeta || {}
-      
-      // Debug: log per vedere cosa viene caricato
-      const bestCount = Object.values(imageMetaData).filter((m: any) => m?.isBest === true).length
-      console.log('📥 Admin - imageMeta caricato:', {
-        total: Object.keys(imageMetaData).length,
-        bestCount,
-        sample: Object.keys(imageMetaData).slice(0, 5)
-      })
-      
-      setImageMeta(imageMetaData)
+      setImageMeta(data.imageMeta)
     } catch (error) {
       console.error('Errore caricamento imageMeta:', error)
       alert('Errore nel caricamento delle foto')
@@ -682,13 +672,6 @@ function BestPhotosTab() {
   const toggleBest = async (photoPath: string) => {
     const currentValue = imageMeta[photoPath]?.isBest || false
     const newValue = !currentValue
-
-    console.log('🔄 Toggle isBest:', {
-      photoPath,
-      currentValue,
-      newValue,
-      existingMeta: imageMeta[photoPath]
-    })
 
     // Optimistic update
     setImageMeta(prev => ({
@@ -721,11 +704,7 @@ function BestPhotosTab() {
         throw new Error(errorData.error || 'Errore aggiornamento')
       }
 
-      const result = await response.json()
-      console.log(`✅ Foto ${photoPath} aggiornata: isBest=${newValue}`, result)
-      
-      // Ricarica imageMeta per assicurarsi di avere i dati aggiornati
-      await fetchImageMeta()
+      await response.json()
     } catch (error) {
       console.error('Errore toggle best:', error)
       // Rollback su errore

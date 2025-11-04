@@ -27,45 +27,8 @@ export default function Home() {
   // Filtra solo le foto con isBest = true
   const bestPhotos = useMemo(() => {
     const allPhotos = projects.flatMap(p => p.gallery)
-    
-    // Debug: log per capire cosa succede
-    if (!metaLoading && !loading) {
-      const photosWithIsBest = allPhotos.filter(photo => {
-        const meta = imageMeta[photo.src]
-        return meta?.isBest === true
-      })
-      
-      const allIsBestPaths = Object.entries(imageMeta)
-        .filter(([_, meta]) => meta?.isBest === true)
-        .map(([path, _]) => path)
-      
-      console.log('🔍 Debug Home - bestPhotos:', {
-        totalPhotos: allPhotos.length,
-        imageMetaKeys: Object.keys(imageMeta).length,
-        imageMetaSample: Object.keys(imageMeta).slice(0, 5),
-        photosWithIsBest: photosWithIsBest.length,
-        samplePhotoSrc: allPhotos[0]?.src,
-        sampleMetaForPhoto: allPhotos[0] ? imageMeta[allPhotos[0].src] : null,
-        allIsBest: allIsBestPaths.slice(0, 10),
-        allIsBestCount: allIsBestPaths.length,
-        // Verifica matching: controlla se i path delle foto preferite matchano con quelle in projects.json
-        matchingCheck: photosWithIsBest.slice(0, 3).map(photo => ({
-          photoSrc: photo.src,
-          hasMeta: !!imageMeta[photo.src],
-          isBest: imageMeta[photo.src]?.isBest
-        }))
-      })
-      
-      // Warning se ci sono immagini preferite in imageMeta ma non matchano con le foto
-      if (allIsBestPaths.length > 0 && photosWithIsBest.length === 0) {
-        console.warn('⚠️ PROBLEMA: Ci sono immagini preferite in imageMeta ma non matchano con le foto in projects.json!')
-        console.warn('Immagini preferite in imageMeta:', allIsBestPaths.slice(0, 5))
-        console.warn('Prime foto in projects.json:', allPhotos.slice(0, 3).map(p => p.src))
-      }
-    }
-    
     return allPhotos.filter(photo => imageMeta[photo.src]?.isBest === true)
-  }, [projects, imageMeta, metaLoading, loading])
+  }, [projects, imageMeta])
 
   // Animazioni per le sezioni
   const { ref: heroRef, isVisible: heroVisible } = useAnimation({ 
@@ -133,7 +96,6 @@ export default function Home() {
               {loading || metaLoading ? (
                 <div className="text-center py-12">
                   <div className="inline-block w-8 h-8 border-2 border-charcoal dark:border-white border-t-transparent rounded-full animate-spin" />
-                  <p className="mt-4 text-sm text-gray700 dark:text-gray-300">Caricamento immagini preferite...</p>
                 </div>
               ) : metaError ? (
                 <div className="text-center py-12 text-red-600 dark:text-red-400">
@@ -141,18 +103,12 @@ export default function Home() {
                   <p className="text-sm text-gray700 dark:text-gray-300">{metaError.message}</p>
                 </div>
               ) : bestPhotos.length > 0 ? (
-                <>
-                  {/* Debug info visibile */}
-                  <div className="mb-4 p-2 bg-blue-100 dark:bg-blue-900 text-sm text-blue-800 dark:text-blue-200 rounded">
-                    <strong>Debug:</strong> Trovate {bestPhotos.length} immagini preferite. Mostrate: {Math.min(bestPhotos.length, 12)}
-                  </div>
-                  <MasonryGrid 
-                    photos={bestPhotos.slice(0, 12)} 
-                    onPhotoClick={handlePhotoClick}
-                    maxRows={3}
-                    layoutKey="gallery-preview"
-                  />
-                </>
+                <MasonryGrid 
+                  photos={bestPhotos.slice(0, 12)} 
+                  onPhotoClick={handlePhotoClick}
+                  maxRows={1}
+                  layoutKey="gallery-preview"
+                />
               ) : (
                 <div className="text-center py-12 text-gray700 dark:text-gray-300">
                   Nessuna foto selezionata come "migliore scatto". Vai alla pagina admin per selezionarle.

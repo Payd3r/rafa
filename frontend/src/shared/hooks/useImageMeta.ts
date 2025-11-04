@@ -36,39 +36,11 @@ export function useImageMeta() {
           throw new Error(`HTTP ${response.status}: ${response.statusText}`)
         }
         
-        // Debug: mostra anche l'URL della richiesta e lo status
-        console.log('📥 Fetch imageMeta.json:', {
-          url: response.url,
-          status: response.status,
-          contentType: response.headers.get('content-type'),
-          cacheControl: response.headers.get('cache-control'),
-          date: response.headers.get('date')
-        })
-        
         const data = await response.json()
         
         // Verifica che i dati siano validi
         if (!data || typeof data !== 'object') {
           throw new Error('Formato dati non valido: imageMeta.json è vuoto o non valido')
-        }
-        
-        // Verifica se il file è vuoto (solo {})
-        const keys = Object.keys(data)
-        if (keys.length === 0) {
-          console.warn('⚠️ imageMeta.json è vuoto. Nessuna immagine preferita disponibile.')
-        } else {
-          // Debug: mostra quanti isBest ci sono
-          const bestCount = Object.values(data).filter((m: any) => m?.isBest === true).length
-          console.log(`✅ imageMeta.json caricato: ${keys.length} immagini totali, ${bestCount} preferite`)
-          if (bestCount > 0) {
-            const bestPaths = Object.entries(data)
-              .filter(([_, meta]: [string, any]) => meta?.isBest === true)
-              .map(([path, _]) => path)
-              .slice(0, 5)
-            console.log('📸 Prime immagini preferite:', bestPaths)
-          } else {
-            console.warn('⚠️ imageMeta.json contiene immagini ma nessuna è marcata come preferita (isBest=true)')
-          }
         }
         
         setImageMeta(data)
@@ -78,12 +50,9 @@ export function useImageMeta() {
         
         // Retry se non è l'ultimo tentativo
         if (retryCount < MAX_RETRIES) {
-          console.warn(`Errore caricamento imageMeta (tentativo ${retryCount + 1}/${MAX_RETRIES}):`, error.message)
           await new Promise(resolve => setTimeout(resolve, RETRY_DELAY * (retryCount + 1)))
           return fetchImageMeta(retryCount + 1)
         }
-        
-        console.error('Errore caricamento imageMeta dopo tutti i tentativi:', error)
         setError(error)
         setImageMeta({})
       } finally {

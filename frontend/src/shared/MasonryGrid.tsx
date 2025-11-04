@@ -176,53 +176,27 @@ export function MasonryGrid({ photos, onPhotoClick, maxRows, layoutKey }: {
     // This callback is kept for compatibility but does nothing
   }, [])
 
-  // Debug: log sempre visibile anche in produzione
-  useEffect(() => {
-    console.log('🖼️ MasonryGrid render:', {
-      totalPhotos: photos.length,
-      rowsCount: rows.length,
-      totalItems: rows.reduce((sum, row) => sum + row.items.length, 0),
-      maxRows: maxRows,
-      containerWidth: containerWidth
-    })
-  }, [photos.length, rows.length, maxRows, containerWidth])
-
-  if (rows.length === 0 && photos.length > 0) {
-    console.warn('⚠️ MasonryGrid: Ci sono foto ma nessuna riga generata!', {
-      photosCount: photos.length,
-      containerWidth,
-      maxRows
-    })
-  }
-
   return (
     <div ref={containerRef} className="w-full overflow-hidden">
-      {rows.length === 0 && photos.length > 0 ? (
-        <div className="text-center py-8 text-yellow-600 dark:text-yellow-400">
-          <p>Immagini disponibili ma layout non ancora calcolato.</p>
-          <p className="text-sm mt-2">Aspettando il calcolo del layout...</p>
-        </div>
-      ) : (
-        <div style={{ display: 'grid', rowGap: gap }} className="w-full overflow-hidden">
-          {rows.map((row, rIdx) => (
-            <div key={rIdx} className="flex overflow-hidden" style={{ height: row.height, gap, maxWidth: '100%' }}>
-              {row.items.map((it) => {
-                const width = it.ratio * row.height
-                return (
-                  <div key={it.index} style={{ width, flexShrink: 0, maxWidth: '100%' }}>
-                    <PhotoCard
-                      photo={photos[it.index]}
-                      onClick={() => onPhotoClick?.(it.index)}
-                      onLoad={(e) => handleImageLoad(it.index, e as any)}
-                      index={it.index}
-                    />
-                  </div>
-                )
-              })}
-            </div>
-          ))}
-        </div>
-      )}
+      <div style={{ display: 'grid', rowGap: gap }} className="w-full overflow-hidden">
+        {rows.map((row, rIdx) => (
+          <div key={rIdx} className="flex overflow-hidden" style={{ height: row.height, gap, maxWidth: '100%' }}>
+            {row.items.map((it) => {
+              const width = it.ratio * row.height
+              return (
+                <div key={it.index} style={{ width, flexShrink: 0, maxWidth: '100%' }}>
+                  <PhotoCard
+                    photo={photos[it.index]}
+                    onClick={() => onPhotoClick?.(it.index)}
+                    onLoad={(e) => handleImageLoad(it.index, e as any)}
+                    index={it.index}
+                  />
+                </div>
+              )
+            })}
+          </div>
+        ))}
+      </div>
     </div>
   )
 }
