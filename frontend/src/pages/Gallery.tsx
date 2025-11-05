@@ -1,16 +1,20 @@
 import { Header } from '../shared/Header'
 import { Footer } from '../shared/Footer'
-import { MasonryGrid } from '../shared/MasonryGrid'
+import { MasonryColumns } from '../shared/MasonryColumns'
 import { Lightbox } from '../shared/Lightbox'
 import { useState } from 'react'
 import { useProjects } from '../shared/hooks/useProjects'
 import { useTranslation } from '../shared/hooks/useTranslation'
+import { useImageMetaContext } from '../shared/contexts/ImageMetaContext'
 
 export default function Gallery() {
   const { t } = useTranslation()
   const { projects, loading } = useProjects()
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null)
-  const photos = projects.flatMap((p) => p.gallery)
+  const { imageMeta } = useImageMetaContext()
+  const photos = projects
+    .flatMap((p) => p.gallery)
+    .filter((photo) => imageMeta[photo.src]?.isBest === true)
   
   return (
     <div className="min-h-screen bg-white dark:bg-black text-black dark:text-white">
@@ -22,10 +26,9 @@ export default function Gallery() {
             <div className="inline-block w-8 h-8 border-2 border-charcoal dark:border-white border-t-transparent rounded-full animate-spin" />
           </div>
         ) : (
-          <MasonryGrid
+          <MasonryColumns
             photos={photos}
             onPhotoClick={(idx) => setLightboxIndex(idx)}
-            layoutKey="gallery-full"
           />
         )}
         <Lightbox

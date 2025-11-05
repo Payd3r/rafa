@@ -11,6 +11,7 @@ import { useProjects } from '../shared/hooks/useProjects'
 import { useImageMeta } from '../shared/hooks/useImageMeta'
 import { useTranslation } from '../shared/hooks/useTranslation'
 import { useAnimation } from '../shared/hooks/useAnimation'
+import { shuffle } from '../shared/utils/shuffle'
 
 export default function Home() {
   const { t } = useTranslation()
@@ -29,6 +30,9 @@ export default function Home() {
     const allPhotos = projects.flatMap(p => p.gallery)
     return allPhotos.filter(photo => imageMeta[photo.src]?.isBest === true)
   }, [projects, imageMeta])
+
+  // Randomizza l'ordine dei migliori scatti
+  const randomizedBestPhotos = useMemo(() => shuffle(bestPhotos), [bestPhotos])
 
   // Animazioni per le sezioni
   const { ref: heroRef, isVisible: heroVisible } = useAnimation({ 
@@ -102,12 +106,11 @@ export default function Home() {
                   <p className="mb-2">Errore nel caricamento dei metadati delle immagini.</p>
                   <p className="text-sm text-gray700 dark:text-gray-300">{metaError.message}</p>
                 </div>
-              ) : bestPhotos.length > 0 ? (
+              ) : randomizedBestPhotos.length > 0 ? (
                 <MasonryGrid 
-                  photos={bestPhotos.slice(0, 12)} 
+                  photos={randomizedBestPhotos.slice(0, 12)} 
                   onPhotoClick={handlePhotoClick}
                   maxRows={1}
-                  layoutKey="gallery-preview"
                 />
               ) : (
                 <div className="text-center py-12 text-gray700 dark:text-gray-300">
@@ -162,16 +165,16 @@ export default function Home() {
       <Footer />
 
       {/* Lightbox */}
-      {lightboxOpen && bestPhotos.length > 0 && (
+      {lightboxOpen && randomizedBestPhotos.length > 0 && (
         <Lightbox
-          photos={bestPhotos}
+          photos={randomizedBestPhotos}
           index={lightboxIndex}
           onClose={() => setLightboxOpen(false)}
           onPrev={() =>
-            setLightboxIndex((i) => (i > 0 ? i - 1 : bestPhotos.length - 1))
+            setLightboxIndex((i) => (i > 0 ? i - 1 : randomizedBestPhotos.length - 1))
           }
           onNext={() =>
-            setLightboxIndex((i) => (i < bestPhotos.length - 1 ? i + 1 : 0))
+            setLightboxIndex((i) => (i < randomizedBestPhotos.length - 1 ? i + 1 : 0))
           }
         />
       )}
