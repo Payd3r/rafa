@@ -1,10 +1,25 @@
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import type { Photo } from './types'
 import { useImagePreloader } from './hooks/useImagePreloader'
+import { useImageMetaContext } from './contexts/ImageMetaContext'
 
 export function Lightbox({ photos, index, onClose, onPrev, onNext }: { photos: Photo[]; index: number | null; onClose: () => void; onPrev: () => void; onNext: () => void }) {
   const overlayRef = useRef<HTMLDivElement | null>(null)
   const closeBtnRef = useRef<HTMLButtonElement | null>(null)
+  const { imageMeta } = useImageMetaContext()
+  
+  // Stati di caricamento per il caricamento progressivo
+  const [thumbLoaded, setThumbLoaded] = useState(false)
+  const [fullLoaded, setFullLoaded] = useState(false)
+
+  // Calcola i path delle immagini da precaricare (PRIMA del return condizionale)
+  const current = index !== null ? photos[index] : undefined
+  
+  // Reset stati quando cambia l'immagine
+  useEffect(() => {
+    setThumbLoaded(false)
+    setFullLoaded(false)
+  }, [index])
 
   useEffect(() => {
     if (index === null) return
@@ -64,33 +79,42 @@ export function Lightbox({ photos, index, onClose, onPrev, onNext }: { photos: P
       }
     }
     overlay.addEventListener('keydown', trap as any)
-    return () => overlay.removeEventListener('keydown', trap as any)
+    return () => overlay.addEventListener('keydown', trap as any)
   }, [index])
 
-  // Calcola i path delle immagini da precaricare (PRIMA del return condizionale)
-  const current = index !== null ? photos[index] : undefined
   const resolveFull = (p: Photo | undefined) => {
     if (!p) return undefined
+    // Usa l'originalUrl direttamente se disponibile (già punta a original.avif)
+    if (p.originalUrl) return p.originalUrl
+    // Fallback: sostituisce thumb con original nella struttura AVIF
+    if (p.src.includes('/thumb.avif')) {
+      return p.src.replace('/thumb.avif', '/original.avif')
+    }
+    if (p.src.includes('/thumb-sm.avif')) {
+      return p.src.replace('/thumb-sm.avif', '/original.avif')
+    }
+    // Legacy WebP fallback
     if (p.src.startsWith('/optimized/') && p.src.endsWith('/thumb.webp')) {
-      // Prefer original.webp if present, fallback to original.jpg
       const base = p.src.slice(0, -'thumb.webp'.length)
       return `${base}original.webp`
     }
-    // fallback: try from srcset picking the last candidate
     if (p.srcset) {
       const parts = p.srcset.split(',').map(s => s.trim().split(' ')[0])
       return parts[parts.length - 1] || p.src
     }
     return p.src
   }
+  
   const currentFull = current ? resolveFull(current) : undefined
   const prev = index !== null ? photos[index - 1] : undefined
   const next = index !== null ? photos[index + 1] : undefined
   const prevFull = resolveFull(prev)
   const nextFull = resolveFull(next)
+  
+  const meta = current ? imageMeta[current.src] : undefined
+  const placeholderSrc = meta?.placeholder || current?.placeholder || ''
 
   // Precarica immagini in modo imperativo per una navigazione fluida
-  // IMPORTANTE: Questo hook deve essere chiamato PRIMA del return condizionale!
   useImagePreloader(currentFull || '', prevFull, nextFull, index !== null && !!currentFull)
 
   if (index === null) return null
@@ -106,28 +130,77 @@ export function Lightbox({ photos, index, onClose, onPrev, onNext }: { photos: P
         paddingTop: 'calc(env(safe-area-inset-top, 0px) + 8px)',
         paddingBottom: 'calc(env(safe-area-inset-bottom, 0px) + 8px)'
       }}
+      onClick={(e) => {
+        // Chiudi solo se il clic è esattamente sullo sfondo (non sui figli)
+        if (e.target === e.currentTarget) {
+          onClose()
+        }
+      }}
     >
       {prevFull && <link rel="prefetch" as="image" href={prevFull} />}
       {nextFull && <link rel="prefetch" as="image" href={nextFull} />}
       <button
         ref={closeBtnRef}
-        className="absolute top-2 right-2 sm:top-4 sm:right-4 bg-white dark:bg-black text-black dark:text-white border-2 border-black dark:border-white px-3 py-2 sm:px-3 sm:py-1 shadow-md text-lg transition-all duration-300 hover:scale-110 hover:bg-gray-100 dark:hover:bg-gray-900 hover:shadow-lg"
+        className="absolute top-2 right-2 sm:top-4 sm:right-4 bg-white dark:bg-black text-black dark:text-white border-2 border-black dark:border-white px-3 py-2 sm:px-3 sm:py-1 shadow-md text-lg transition-all duration-300 hover:scale-110 hover:bg-gray-100 dark:hover:bg-gray-900 hover:shadow-lg z-20"
         onClick={onClose}
         aria-label="Chiudi"
       >
         ×
       </button>
-      <img
-        src={currentFull!}
-        alt={current!.alt}
-        className="lightbox-content object-contain transition-all duration-500 ease-out"
-        style={{
-          maxWidth: '95svw',
-          maxHeight: '78svh'
+
+      {/* Contenitore Immagini Progressive */}
+      <div 
+        className="relative flex items-center justify-center w-full h-full max-w-[95svw] max-h-[78svh]"
+        onClick={(e) => {
+          // Chiudi anche se si clicca "sopra/sotto" l'immagine ma dentro il container
+          if (e.target === e.currentTarget) {
+            onClose()
+          }
         }}
-      />
-      {/* Barra controlli in basso: Prev | Download | Next */}
-      <div className="absolute left-4 right-4 sm:inset-x-0 bottom-4 sm:bottom-6 flex items-center justify-center gap-2 sm:gap-3">
+      >
+        {/* 1. Placeholder Base64 blur */}
+        {placeholderSrc && (
+          <img
+            src={placeholderSrc}
+            alt=""
+            aria-hidden
+            className={`absolute inset-0 m-auto max-w-full max-h-full object-contain blur-xl transition-opacity duration-700 ${
+              fullLoaded ? 'opacity-0' : 'opacity-100'
+            }`}
+          />
+        )}
+
+        {/* 2. Thumb (800px) - veloce da caricare */}
+        {!fullLoaded && (
+          <img
+            src={current!.src}
+            alt=""
+            aria-hidden
+            className={`absolute inset-0 m-auto max-w-full max-h-full object-contain transition-opacity duration-500 ${
+              thumbLoaded ? 'opacity-100' : 'opacity-0'
+            }`}
+            onLoad={() => setThumbLoaded(true)}
+          />
+        )}
+
+        {/* 3. Original (full res) - alta qualità */}
+        <img
+          src={currentFull!}
+          alt={current!.alt}
+          className={`relative max-w-full max-h-full object-contain transition-opacity duration-700 ease-out preserve-3d will-change-opacity ${
+            fullLoaded ? 'opacity-100' : 'opacity-0'
+          }`}
+          onLoad={() => setFullLoaded(true)}
+        />
+      </div>
+
+      {/* Barra controlli in basso */}
+      <div 
+        className="absolute left-4 right-4 sm:inset-x-0 bottom-4 sm:bottom-6 flex items-center justify-center gap-2 sm:gap-3 z-20"
+        onClick={(e) => {
+          if (e.target === e.currentTarget) onClose()
+        }}
+      >
         <button
           className="bg-white dark:bg-black text-black dark:text-white border-2 border-black dark:border-white px-3 py-2 sm:px-4 sm:py-2 shadow-md text-xl h-10 leading-none flex items-center justify-center transition-colors duration-300"
           onClick={onPrev}
@@ -135,14 +208,7 @@ export function Lightbox({ photos, index, onClose, onPrev, onNext }: { photos: P
         >
           ‹
         </button>
-        <a
-          className="bg-white dark:bg-black text-black dark:text-white border-2 border-black dark:border-white px-4 py-2 sm:px-4 sm:py-2 text-center shadow-md w-full sm:w-auto min-w-[120px] h-10 leading-none flex items-center justify-center transition-colors duration-300"
-          href={current!.originalUrl}
-          download
-          aria-label="Scarica immagine originale"
-        >
-          Download
-        </a>
+
         <button
           className="bg-white dark:bg-black text-black dark:text-white border-2 border-black dark:border-white px-3 py-2 sm:px-4 sm:py-2 shadow-md text-xl h-10 leading-none flex items-center justify-center transition-colors duration-300"
           onClick={onNext}
@@ -154,5 +220,6 @@ export function Lightbox({ photos, index, onClose, onPrev, onNext }: { photos: P
     </div>
   )
 }
+
 
 

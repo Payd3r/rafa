@@ -53,9 +53,11 @@ services:
 
 volumes:
   public_assets:
-    driver: local
+    name: faraostudio_public_assets
+    external: true
   backend_data:
-    driver: local
+    name: faraostudio_backend_data
+    external: true
 
 networks:
   web-proxy:

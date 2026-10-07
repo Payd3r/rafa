@@ -25,9 +25,9 @@ export default function Home() {
     .sort((a, b) => new Date(b.dateISO).getTime() - new Date(a.dateISO).getTime())
     .slice(0, 4)
 
-  // Filtra solo le foto con isBest = true
+  // Filtra solo le foto con isBest = true (includendo le copertine)
   const bestPhotos = useMemo(() => {
-    const allPhotos = projects.flatMap(p => p.gallery)
+    const allPhotos = projects.flatMap(p => [p.cover, ...p.gallery].filter(Boolean))
     return allPhotos.filter(photo => imageMeta[photo.src]?.isBest === true)
   }, [projects, imageMeta])
 
@@ -74,16 +74,7 @@ export default function Home() {
             <p className="mt-4 max-w-2xl text-gray700 dark:text-gray-300 animate-fade-in text-left">
               {t('home.heroDescription')}
             </p>
-            <div className="flex justify-start mt-6">
-              <button 
-                type="button"
-                onClick={() => window.open('https://www.instagram.com/inside.faraostudio/', '_blank', 'noopener,noreferrer')}
-                className="btn btn-animated group"
-                aria-label="Instagram - About me"
-              >
-                <span className="relative z-10">{t('home.readMore')}</span>
-              </button>
-            </div>
+
           </div>
         </section>
 
@@ -107,11 +98,27 @@ export default function Home() {
                   <p className="text-sm text-gray700 dark:text-gray-300">{metaError.message}</p>
                 </div>
               ) : randomizedBestPhotos.length > 0 ? (
-                <MasonryGrid 
-                  photos={randomizedBestPhotos.slice(0, 12)} 
-                  onPhotoClick={handlePhotoClick}
-                  maxRows={1}
-                />
+                <>
+                  {/* Preloading critico: inietta <link rel="preload"> per le prime 3 foto mobile */}
+                  {randomizedBestPhotos.slice(0, 3).map(photo => (
+                    photo.srcSm ? (
+                      <link
+                        key={photo.id}
+                        rel="preload"
+                        as="image"
+                        href={photo.srcSm}
+                        type="image/avif"
+                        // @ts-ignore - imagesrcset non è nel tipo standard ma funziona
+                        imagesizes="(max-width: 768px) 50vw, 33vw"
+                      />
+                    ) : null
+                  ))}
+                  <MasonryGrid
+                    photos={randomizedBestPhotos.slice(0, 12)}
+                    onPhotoClick={handlePhotoClick}
+                    maxRows={1}
+                  />
+                </>
               ) : (
                 <div className="text-center py-12 text-gray700 dark:text-gray-300">
                   Nessuna foto selezionata come "migliore scatto". Vai alla pagina admin per selezionarle.

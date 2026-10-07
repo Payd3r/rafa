@@ -1,6 +1,7 @@
 export type Photo = {
   id: string
-  src: string
+  src: string        // thumb.avif (800px) — desktop/tablet
+  srcSm?: string     // thumb-sm.avif (400px) — mobile
   originalUrl: string
   alt: string
   srcset?: string

@@ -20,11 +20,12 @@ export class FileGenerator {
       // Nuovi progetti usano /cover/, progetti vecchi usano /1/
       const coverPath = project.hasCover ? 'cover' : '1';
       
-      // Genera gallery photos
+      // Genera gallery photos con path AVIF e thumb-sm per mobile
       const gallery = Array.from({ length: project.imageCount }, (_, i) => ({
         id: `${project.slug}-${i + 1}`,
-        src: `/optimized/${project.slug}/${i + 1}/thumb.webp`,
-        originalUrl: `/optimized/${project.slug}/${i + 1}/original.jpg`,
+        src: `/optimized/${project.slug}/${i + 1}/thumb.avif`,
+        srcSm: `/optimized/${project.slug}/${i + 1}/thumb-sm.avif`,
+        originalUrl: `/optimized/${project.slug}/${i + 1}/original.avif`,
         alt: `Foto ${i + 1} del progetto ${project.slug}`
       }));
       
@@ -35,8 +36,9 @@ export class FileGenerator {
         description: project.description,
         cover: {
           id: `${project.slug}-cover`,
-          src: `/optimized/${project.slug}/${coverPath}/thumb.webp`,
-          originalUrl: `/optimized/${project.slug}/${coverPath}/original.jpg`,
+          src: `/optimized/${project.slug}/${coverPath}/thumb.avif`,
+          srcSm: `/optimized/${project.slug}/${coverPath}/thumb-sm.avif`,
+          originalUrl: `/optimized/${project.slug}/${coverPath}/original.avif`,
           alt: project.title
         },
         gallery
@@ -118,24 +120,28 @@ export class FileGenerator {
             const metaContent = await fs.readFile(metaPath, 'utf-8');
             const meta = JSON.parse(metaContent);
             
-            const thumbPath = `/optimized/${projectSlug}/${imageIndex}/thumb.webp`;
+            const thumbPath = `/optimized/${projectSlug}/${imageIndex}/thumb.avif`;
+            // Fallback per immagini vecchie in WebP ancora su disco
+            const thumbPathLegacy = `/optimized/${projectSlug}/${imageIndex}/thumb.webp`;
             
             // Logica migliorata per preservare isBest:
             // 1. Se meta.json locale ha isBest definito (true o false), usalo
-            // 2. Altrimenti, usa il valore da imageMeta.json esistente (se presente)
+            // 2. Altrimenti, usa il valore da imageMeta.json esistente (anche chiave legacy)
             // 3. Altrimenti, default a false
             let isBest = false;
             if (meta.isBest !== undefined) {
-              // Il meta.json locale ha isBest definito, usalo
               isBest = meta.isBest === true;
             } else if (existingImageMeta[thumbPath]?.isBest !== undefined) {
-              // Usa il valore da imageMeta.json esistente
               isBest = existingImageMeta[thumbPath].isBest === true;
+            } else if (existingImageMeta[thumbPathLegacy]?.isBest !== undefined) {
+              // Fallback per immagini migrate da WebP
+              isBest = existingImageMeta[thumbPathLegacy].isBest === true;
             }
             
+            // Il placeholder è ora una stringa Base64 inline (nessun URL a file separato)
             metaObject[thumbPath] = {
               ratio: meta.ratio,
-              placeholder: meta.placeholder,
+              placeholder: meta.placeholder || '',
               isBest: isBest
             };
           } catch (err) {
@@ -229,6 +235,7 @@ export class FileGenerator {
 
       // Estrai slug progetto e indice immagine dal path
       // photoPath è del formato: /optimized/project-slug/image-index/thumb.webp
+      // Supporta sia path AVIF nuovi che WebP legacy
       const pathMatch = photoPath.match(/^\/optimized\/([^\/]+)\/([^\/]+)\//);
       if (!pathMatch) {
         throw new Error(`Formato photoPath non valido: ${photoPath}`);

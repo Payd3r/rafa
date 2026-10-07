@@ -13,7 +13,7 @@ export default function Gallery() {
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null)
   const { imageMeta } = useImageMetaContext()
   const photos = projects
-    .flatMap((p) => p.gallery)
+    .flatMap((p) => [p.cover, ...p.gallery].filter(Boolean))
     .filter((photo) => imageMeta[photo.src]?.isBest === true)
   
   return (

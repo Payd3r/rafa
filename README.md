@@ -1,85 +1,138 @@
-# Portfolio Rafa - CMS Admin
+# 📷 Farao Studio (Rafa) — Portfolio Fotografico & CMS Admin
 
-Portfolio fotografico con pannello admin per upload progetti.
+<p align="center">
+  <img src="https://img.shields.io/badge/Status-Completed-success?style=for-the-badge&logo=git" alt="Status" />
+  <img src="https://img.shields.io/badge/Frontend-React_+_Vite-61DAFB?style=for-the-badge&logo=react" alt="React" />
+  <img src="https://img.shields.io/badge/Language-TypeScript-3178C6?style=for-the-badge&logo=typescript" alt="TypeScript" />
+  <img src="https://img.shields.io/badge/Backend-Node.js_+_Express-339933?style=for-the-badge&logo=nodedotjs" alt="Node.js" />
+  <img src="https://img.shields.io/badge/Image_Engine-Sharp_+_FFmpeg-99CC00?style=for-the-badge&logo=sharp" alt="Sharp" />
+  <img src="https://img.shields.io/badge/Layout-Masonry_Grid-FF6B6B?style=for-the-badge" alt="Masonry" />
+  <img src="https://img.shields.io/badge/DevOps-Docker_+_Nginx-2496ED?style=for-the-badge&logo=docker" alt="Docker" />
+</p>
 
-## Avvio Locale
+---
+
+## 📖 Panoramica
+
+**Farao Studio** (noto anche come *Portfolio Rafa*) è una piattaforma web fotografica e multimediale ad altissima resa visiva, dotata di un CMS headless integrato per la gestione autonoma di progetti, scatti fotografici e video.
+
+Il frontend offre un layout fluido a griglia **Masonry** dinamica, visualizzatore **Lightbox** immersivo per fotografie ad altissima risoluzione, player video ottimizzato e commutazione tema Dark/Light. Il backend include una pipeline automatizzata di elaborazione delle immagini con **Sharp** che genera in tempo reale formati moderni (WebP, AVIF, thumbnail e placeholder LQIP sfocati per caricamento istantaneo).
+
+---
+
+## ✨ Funzionalità della Piattaforma
+
+### 🎨 Visual Portfolio & UI/UX
+- **Griglia Masonry Reattiva:** Layout a colonne asimmetriche dinamiche (`MasonryGrid.tsx`, `MasonryColumns.tsx`) che rispetta l'aspect ratio naturale di ogni fotografia.
+- **Lightbox Interattivo:** Esperienza di visualizzazione a tutto schermo con zoom, navigazione da tastiera/touch e prefetching.
+- **Supporto Video & Reel:** Riproduzione di video promozionali e reel con lazy loading e anteprime generate (`VideoCard.tsx`).
+- **Tema Scuro / Chiaro:** Theme Context con persistenza della preferenza utente e palette colore adattiva.
+
+### ⚙️ Headless CMS & Pannello Amministratore (`/admin`)
+- **Pannello di Controllo Progetti:** Interfaccia riservata protetta da credenziali JWT per caricare e organizzare servizi fotografici.
+- **Pipeline Automatica di Elaborazione:**
+  - Caricamento di una copertina e fino a 30 scatti per progetto.
+  - Conversione automatica in formati compressi a bassissimo peso (**AVIF / WebP / JPEG progressive**).
+  - Generazione di miniature (thumbnail) e segnaposto a bassissima risoluzione (LQIP) per un caricamento perceived-instant.
+  - Generazione e aggiornamento automatico dei dataset JSON (`projects.json`, `imageMeta.ts`).
+
+---
+
+## 🛠️ Stack Tecnologico
+
+| Layer | Tecnologie | Ruolo |
+| :--- | :--- | :--- |
+| **Frontend** | [React](https://react.dev/), [TypeScript](https://www.typescriptlang.org/), [Vite](https://vitejs.dev/) | Client SPA moderno e reattivo |
+| **Styling** | [Tailwind CSS](https://tailwindcss.com/) | Design minimalista, tipografia curata e transizioni fluide |
+| **Backend API** | [Node.js](https://nodejs.org/), [Express](https://expressjs.com/) | API REST per upload, autenticazione e generazione file |
+| **Elaborazione Media** | [Sharp](https://sharp.pixelplumbing.com/), [FFmpeg](https://ffmpeg.org/) | Pipeline di transcodifica, resize e generazione thumbnail |
+| **Web Server & Proxy** | [Docker Compose](https://docs.docker.com/compose/), [Nginx](https://nginx.org/) | Reverse proxy interno `/api/` con caching statico |
+
+---
+
+## 📂 Struttura del Repository
 
 ```bash
-# Installa dipendenze
-cd backend && npm install
-cd ../frontend && npm install
-
-# Avvia (Windows)
-.\scripts\dev-all.ps1
-
-# Avvia (Linux/Mac)
-./scripts/dev-all.sh
+rafa/
+├── backend/                  # Server Node.js / Express
+│   ├── routes/admin.js       # Endpoint autenticazione e caricamento progetti
+│   ├── services/             # Pipeline media (imageProcessor, videoProcessor, fileGenerator)
+│   ├── scripts/              # Script di migrazione (migrate-to-avif.js)
+│   ├── Dockerfile.backend    # Container backend
+│   └── package.json
+├── frontend/                 # Client React + TypeScript + Vite
+│   ├── public/               # Asset statici, font e webmanifest
+│   ├── src/
+│   │   ├── pages/            # Home, Gallery, Admin
+│   │   ├── shared/           # Header, Footer, Lightbox, MasonryGrid, PhotoCard
+│   │   └── Root.tsx          # Router e Theme Provider
+│   ├── nginx.conf            # Nginx config con proxy pass verso backend
+│   └── package.json
+├── docker-compose.yml        # Orchestrazione produzione multi-container
+└── README.md
 ```
 
-**Oppure manualmente (2 terminal):**
+---
+
+## 🚀 Guida all'Avvio Locale
+
+### Prerequisiti
+- **Node.js** >= 18
+- **Docker** (opzionale per deploy locale)
+
+### 1. Clonazione del Repository
 ```bash
-# Terminal 1
-cd backend && npm run dev
-
-# Terminal 2  
-cd frontend && npm run dev
+git clone git@github.com:Payd3r/rafa.git
+cd rafa
 ```
 
-**Accedi:**
-- Sito: http://localhost:5173
-- Admin: http://localhost:5173/admin (andrea / andrea2004)
-
-## Deploy Portainer
-
-### 1. Configura Environment Variables in Portainer:
-
+### 2. Configurazione Ambiente
+Crea o verifica i file `.env`:
 ```env
-ADMIN_USER=andrea
-ADMIN_PASS=andrea2004
-BACKEND_PORT=3001
-PROD_PUBLIC_PATH=/app/public
-PROD_SRC_PATH=/app/src
-PROD_DATA_PATH=/app/data/projects.json
-DOCKER_NETWORK=web-proxy
-BACKEND_DATA_VOLUME=backend_data
-FRONTEND_BUILD_VOLUME=frontend_build
+# Backend
+PORT=3001
+ADMIN_USER=admin
+ADMIN_PASS=tua_password_sicura
+JWT_SECRET=super_segreto_jwt
+
+# Frontend
+VITE_BACKEND_URL=http://localhost:3001
 ```
 
-**⚠️ Cambia le credenziali admin per sicurezza!**
-
-### 2. Deploy stack:
+### 3. Avvio in Sviluppo (Due Terminali)
 
 ```bash
-docker-compose up -d
+# Terminale 1: Backend
+cd backend
+npm install
+npm run dev
+
+# Terminale 2: Frontend
+cd ../frontend
+npm install
+npm run dev
 ```
 
-### 3. Configurazione Automatica
+- **Sito Pubblico:** `http://localhost:5173`
+- **Pannello Admin:** `http://localhost:5173/admin`
 
-Il frontend include **Nginx che fa proxy** delle richieste `/api/` al backend interno.
+---
 
-✅ Nessuna configurazione reverse proxy aggiuntiva necessaria!
-✅ Tutto passa attraverso HTTPS automaticamente
+## 🐳 Deploy di Produzione con Docker
 
-## Configurazione Locale
+Lo stack Docker include il container backend e il container frontend (Nginx con reverse proxy interno su `/api/`).
 
-File `.env` (già pronto per dev):
-- `VITE_BACKEND_URL=http://localhost:3001` - Backend locale
-- `ADMIN_USER=andrea` - Username admin
-- `ADMIN_PASS=andrea2004` - Password admin
+```bash
+# Assicurati che esista la rete web-proxy
+docker network create web-proxy || true
 
-## Admin Panel
+# Avvio dei container
+docker compose up -d --build
+```
 
-1. Vai su `/admin`
-2. Login con credenziali
-3. Carica progetto:
-   - **Copertina** (1 immagine obbligatoria) - sarà l'immagine principale nelle card
-   - **Galleria** (max 30 immagini opzionali) - immagini del progetto
-   - Titolo, descrizione, data
-4. Sistema processa automaticamente tutto
+---
 
-Il sistema genera automaticamente:
-- Cover salvata in `{slug}/cover/` con 4 varianti (jpg, webp, thumb, placeholder)
-- Galleria salvata in `{slug}/1/`, `{slug}/2/`, etc.
-- Aggiorna `frontend/src/shared/data/projects.ts`
-- Aggiorna `frontend/src/shared/data/imageMeta.ts`
+## 👤 Autore & Crediti
 
+Realizzato da **Andrea Mauri** (per Farao Studio / client):
+- GitHub: [@Payd3r](https://github.com/Payd3r)

@@ -7,7 +7,8 @@ const RETRY_DELAY = 1000 // 1 secondo
 
 /**
  * Hook per caricare metadati immagini da /imageMeta.json
- * Con retry logic e gestione errori migliorata
+ * Usa stale-while-revalidate: serve subito la cache e aggiorna in background.
+ * Il placeholder è una stringa Base64 inline (no fetch extra per ogni immagine).
  */
 export function useImageMeta() {
   const [imageMeta, setImageMeta] = useState<ImageMetaData>({})
@@ -17,38 +18,30 @@ export function useImageMeta() {
   useEffect(() => {
     const fetchImageMeta = async (retryCount = 0): Promise<void> => {
       try {
-        setLoading(true)
-        setError(null)
-        
-        // Cache busting più aggressivo: timestamp + random
-        const cacheBuster = `?t=${Date.now()}&r=${Math.random()}`
-        const response = await fetch(`/imageMeta.json${cacheBuster}`, {
-          cache: 'no-store',
-          method: 'GET',
+        // stale-while-revalidate: il browser serve subito la versione in cache
+        // e scarica in background una versione fresca (perfetto per JSON semi-dinamico)
+        const response = await fetch('/imageMeta.json', {
+          cache: 'default',
           headers: {
-            'Cache-Control': 'no-cache, no-store, must-revalidate',
-            'Pragma': 'no-cache',
-            'Expires': '0'
+            'Cache-Control': 'stale-while-revalidate=60'
           }
         })
-        
+
         if (!response.ok) {
           throw new Error(`HTTP ${response.status}: ${response.statusText}`)
         }
-        
+
         const data = await response.json()
-        
-        // Verifica che i dati siano validi
+
         if (!data || typeof data !== 'object') {
           throw new Error('Formato dati non valido: imageMeta.json è vuoto o non valido')
         }
-        
+
         setImageMeta(data)
         setError(null)
       } catch (err) {
         const error = err instanceof Error ? err : new Error('Errore sconosciuto nel caricamento di imageMeta.json')
-        
-        // Retry se non è l'ultimo tentativo
+
         if (retryCount < MAX_RETRIES) {
           await new Promise(resolve => setTimeout(resolve, RETRY_DELAY * (retryCount + 1)))
           return fetchImageMeta(retryCount + 1)
@@ -65,4 +58,3 @@ export function useImageMeta() {
 
   return { imageMeta, loading, error }
 }
-
