@@ -1,0 +1,4282 @@
+[
+  {
+    "source": "/optimized/le-figlie-del-fuoco/cover/thumb.avif",
+    "variant": "/optimized/le-figlie-del-fuoco/cover/image-abc6d017ca28cc30fe61-320.avif",
+    "width": 320,
+    "bytes": 12361,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/le-figlie-del-fuoco/cover/thumb.avif",
+    "variant": "/optimized/le-figlie-del-fuoco/cover/image-abc6d017ca28cc30fe61-640.avif",
+    "width": 640,
+    "bytes": 32327,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/le-figlie-del-fuoco/cover/thumb.avif",
+    "variant": "/optimized/le-figlie-del-fuoco/cover/image-abc6d017ca28cc30fe61-960.avif",
+    "width": 960,
+    "bytes": 60306,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/le-figlie-del-fuoco/cover/thumb.avif",
+    "variant": "/optimized/le-figlie-del-fuoco/cover/image-abc6d017ca28cc30fe61-1600.avif",
+    "width": 1600,
+    "bytes": 128939,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/le-figlie-del-fuoco/1/thumb.avif",
+    "variant": "/optimized/le-figlie-del-fuoco/1/image-0c4e0b68731f45d2ae1c-320.avif",
+    "width": 320,
+    "bytes": 7916,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/le-figlie-del-fuoco/1/thumb.avif",
+    "variant": "/optimized/le-figlie-del-fuoco/1/image-0c4e0b68731f45d2ae1c-640.avif",
+    "width": 640,
+    "bytes": 22569,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/le-figlie-del-fuoco/1/thumb.avif",
+    "variant": "/optimized/le-figlie-del-fuoco/1/image-0c4e0b68731f45d2ae1c-960.avif",
+    "width": 960,
+    "bytes": 49414,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/le-figlie-del-fuoco/1/thumb.avif",
+    "variant": "/optimized/le-figlie-del-fuoco/1/image-0c4e0b68731f45d2ae1c-1600.avif",
+    "width": 1600,
+    "bytes": 254325,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/le-figlie-del-fuoco/2/thumb.avif",
+    "variant": "/optimized/le-figlie-del-fuoco/2/image-02aee3621650a091258d-320.avif",
+    "width": 320,
+    "bytes": 10557,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/le-figlie-del-fuoco/2/thumb.avif",
+    "variant": "/optimized/le-figlie-del-fuoco/2/image-02aee3621650a091258d-640.avif",
+    "width": 640,
+    "bytes": 32628,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/le-figlie-del-fuoco/2/thumb.avif",
+    "variant": "/optimized/le-figlie-del-fuoco/2/image-02aee3621650a091258d-960.avif",
+    "width": 960,
+    "bytes": 103151,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/le-figlie-del-fuoco/2/thumb.avif",
+    "variant": "/optimized/le-figlie-del-fuoco/2/image-02aee3621650a091258d-1600.avif",
+    "width": 1600,
+    "bytes": 341084,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/le-figlie-del-fuoco/3/thumb.avif",
+    "variant": "/optimized/le-figlie-del-fuoco/3/image-a4afc20e689356463630-320.avif",
+    "width": 320,
+    "bytes": 13431,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/le-figlie-del-fuoco/3/thumb.avif",
+    "variant": "/optimized/le-figlie-del-fuoco/3/image-a4afc20e689356463630-640.avif",
+    "width": 640,
+    "bytes": 49093,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/le-figlie-del-fuoco/3/thumb.avif",
+    "variant": "/optimized/le-figlie-del-fuoco/3/image-a4afc20e689356463630-960.avif",
+    "width": 960,
+    "bytes": 111291,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/le-figlie-del-fuoco/3/thumb.avif",
+    "variant": "/optimized/le-figlie-del-fuoco/3/image-a4afc20e689356463630-1600.avif",
+    "width": 1600,
+    "bytes": 280068,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/le-figlie-del-fuoco/4/thumb.avif",
+    "variant": "/optimized/le-figlie-del-fuoco/4/image-b439b852557280b24c3e-320.avif",
+    "width": 320,
+    "bytes": 7450,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/le-figlie-del-fuoco/4/thumb.avif",
+    "variant": "/optimized/le-figlie-del-fuoco/4/image-b439b852557280b24c3e-640.avif",
+    "width": 640,
+    "bytes": 20042,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/le-figlie-del-fuoco/4/thumb.avif",
+    "variant": "/optimized/le-figlie-del-fuoco/4/image-b439b852557280b24c3e-960.avif",
+    "width": 960,
+    "bytes": 40228,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/le-figlie-del-fuoco/4/thumb.avif",
+    "variant": "/optimized/le-figlie-del-fuoco/4/image-b439b852557280b24c3e-1600.avif",
+    "width": 1600,
+    "bytes": 169230,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/le-figlie-del-fuoco/5/thumb.avif",
+    "variant": "/optimized/le-figlie-del-fuoco/5/image-90054c14a494ab4275f9-320.avif",
+    "width": 320,
+    "bytes": 14357,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/le-figlie-del-fuoco/5/thumb.avif",
+    "variant": "/optimized/le-figlie-del-fuoco/5/image-90054c14a494ab4275f9-640.avif",
+    "width": 640,
+    "bytes": 44716,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/le-figlie-del-fuoco/5/thumb.avif",
+    "variant": "/optimized/le-figlie-del-fuoco/5/image-90054c14a494ab4275f9-960.avif",
+    "width": 960,
+    "bytes": 113781,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/le-figlie-del-fuoco/5/thumb.avif",
+    "variant": "/optimized/le-figlie-del-fuoco/5/image-90054c14a494ab4275f9-1600.avif",
+    "width": 1600,
+    "bytes": 331875,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/le-figlie-del-fuoco/6/thumb.avif",
+    "variant": "/optimized/le-figlie-del-fuoco/6/image-223187376afe7a09fc5f-320.avif",
+    "width": 320,
+    "bytes": 2291,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/le-figlie-del-fuoco/6/thumb.avif",
+    "variant": "/optimized/le-figlie-del-fuoco/6/image-223187376afe7a09fc5f-640.avif",
+    "width": 640,
+    "bytes": 5819,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/le-figlie-del-fuoco/6/thumb.avif",
+    "variant": "/optimized/le-figlie-del-fuoco/6/image-223187376afe7a09fc5f-960.avif",
+    "width": 960,
+    "bytes": 13748,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/le-figlie-del-fuoco/6/thumb.avif",
+    "variant": "/optimized/le-figlie-del-fuoco/6/image-223187376afe7a09fc5f-1600.avif",
+    "width": 1600,
+    "bytes": 174583,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/le-figlie-del-fuoco/7/thumb.avif",
+    "variant": "/optimized/le-figlie-del-fuoco/7/image-df4b58001e620cee5f05-320.avif",
+    "width": 320,
+    "bytes": 7183,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/le-figlie-del-fuoco/7/thumb.avif",
+    "variant": "/optimized/le-figlie-del-fuoco/7/image-df4b58001e620cee5f05-640.avif",
+    "width": 640,
+    "bytes": 23014,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/le-figlie-del-fuoco/7/thumb.avif",
+    "variant": "/optimized/le-figlie-del-fuoco/7/image-df4b58001e620cee5f05-960.avif",
+    "width": 960,
+    "bytes": 49244,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/le-figlie-del-fuoco/7/thumb.avif",
+    "variant": "/optimized/le-figlie-del-fuoco/7/image-df4b58001e620cee5f05-1600.avif",
+    "width": 1600,
+    "bytes": 136216,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/le-figlie-del-fuoco/8/thumb.avif",
+    "variant": "/optimized/le-figlie-del-fuoco/8/image-e5b9f5cadb65c1461e75-320.avif",
+    "width": 320,
+    "bytes": 4632,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/le-figlie-del-fuoco/8/thumb.avif",
+    "variant": "/optimized/le-figlie-del-fuoco/8/image-e5b9f5cadb65c1461e75-640.avif",
+    "width": 640,
+    "bytes": 17027,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/le-figlie-del-fuoco/8/thumb.avif",
+    "variant": "/optimized/le-figlie-del-fuoco/8/image-e5b9f5cadb65c1461e75-960.avif",
+    "width": 960,
+    "bytes": 36033,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/le-figlie-del-fuoco/8/thumb.avif",
+    "variant": "/optimized/le-figlie-del-fuoco/8/image-e5b9f5cadb65c1461e75-1600.avif",
+    "width": 1600,
+    "bytes": 97182,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/le-figlie-del-fuoco/9/thumb.avif",
+    "variant": "/optimized/le-figlie-del-fuoco/9/image-00b2436e26086efcd897-320.avif",
+    "width": 320,
+    "bytes": 6755,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/le-figlie-del-fuoco/9/thumb.avif",
+    "variant": "/optimized/le-figlie-del-fuoco/9/image-00b2436e26086efcd897-640.avif",
+    "width": 640,
+    "bytes": 19470,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/le-figlie-del-fuoco/9/thumb.avif",
+    "variant": "/optimized/le-figlie-del-fuoco/9/image-00b2436e26086efcd897-960.avif",
+    "width": 960,
+    "bytes": 36837,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/le-figlie-del-fuoco/9/thumb.avif",
+    "variant": "/optimized/le-figlie-del-fuoco/9/image-00b2436e26086efcd897-1600.avif",
+    "width": 1600,
+    "bytes": 83344,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/le-figlie-del-fuoco/10/thumb.avif",
+    "variant": "/optimized/le-figlie-del-fuoco/10/image-f5e092a76d83844cad67-320.avif",
+    "width": 320,
+    "bytes": 5962,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/le-figlie-del-fuoco/10/thumb.avif",
+    "variant": "/optimized/le-figlie-del-fuoco/10/image-f5e092a76d83844cad67-640.avif",
+    "width": 640,
+    "bytes": 13828,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/le-figlie-del-fuoco/10/thumb.avif",
+    "variant": "/optimized/le-figlie-del-fuoco/10/image-f5e092a76d83844cad67-960.avif",
+    "width": 960,
+    "bytes": 31119,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/le-figlie-del-fuoco/10/thumb.avif",
+    "variant": "/optimized/le-figlie-del-fuoco/10/image-f5e092a76d83844cad67-1600.avif",
+    "width": 1600,
+    "bytes": 130171,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/le-figlie-del-fuoco/11/thumb.avif",
+    "variant": "/optimized/le-figlie-del-fuoco/11/image-fbe2357fdac6f7c068a1-320.avif",
+    "width": 320,
+    "bytes": 4058,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/le-figlie-del-fuoco/11/thumb.avif",
+    "variant": "/optimized/le-figlie-del-fuoco/11/image-fbe2357fdac6f7c068a1-640.avif",
+    "width": 640,
+    "bytes": 14001,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/le-figlie-del-fuoco/11/thumb.avif",
+    "variant": "/optimized/le-figlie-del-fuoco/11/image-fbe2357fdac6f7c068a1-960.avif",
+    "width": 960,
+    "bytes": 32444,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/le-figlie-del-fuoco/11/thumb.avif",
+    "variant": "/optimized/le-figlie-del-fuoco/11/image-fbe2357fdac6f7c068a1-1600.avif",
+    "width": 1600,
+    "bytes": 85228,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/le-figlie-del-fuoco/12/thumb.avif",
+    "variant": "/optimized/le-figlie-del-fuoco/12/image-7abf76f29ecccf7bde35-320.avif",
+    "width": 320,
+    "bytes": 6167,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/le-figlie-del-fuoco/12/thumb.avif",
+    "variant": "/optimized/le-figlie-del-fuoco/12/image-7abf76f29ecccf7bde35-640.avif",
+    "width": 640,
+    "bytes": 16796,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/le-figlie-del-fuoco/12/thumb.avif",
+    "variant": "/optimized/le-figlie-del-fuoco/12/image-7abf76f29ecccf7bde35-960.avif",
+    "width": 960,
+    "bytes": 32607,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/le-figlie-del-fuoco/12/thumb.avif",
+    "variant": "/optimized/le-figlie-del-fuoco/12/image-7abf76f29ecccf7bde35-1600.avif",
+    "width": 1600,
+    "bytes": 115433,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/le-figlie-del-fuoco/13/thumb.avif",
+    "variant": "/optimized/le-figlie-del-fuoco/13/image-f117646dcd3547a967ee-320.avif",
+    "width": 320,
+    "bytes": 7527,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/le-figlie-del-fuoco/13/thumb.avif",
+    "variant": "/optimized/le-figlie-del-fuoco/13/image-f117646dcd3547a967ee-640.avif",
+    "width": 640,
+    "bytes": 19445,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/le-figlie-del-fuoco/13/thumb.avif",
+    "variant": "/optimized/le-figlie-del-fuoco/13/image-f117646dcd3547a967ee-960.avif",
+    "width": 960,
+    "bytes": 36963,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/le-figlie-del-fuoco/13/thumb.avif",
+    "variant": "/optimized/le-figlie-del-fuoco/13/image-f117646dcd3547a967ee-1600.avif",
+    "width": 1600,
+    "bytes": 148569,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/le-figlie-del-fuoco/14/thumb.avif",
+    "variant": "/optimized/le-figlie-del-fuoco/14/image-7e84eafcf33b25aa86a6-320.avif",
+    "width": 320,
+    "bytes": 11527,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/le-figlie-del-fuoco/14/thumb.avif",
+    "variant": "/optimized/le-figlie-del-fuoco/14/image-7e84eafcf33b25aa86a6-640.avif",
+    "width": 640,
+    "bytes": 32541,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/le-figlie-del-fuoco/14/thumb.avif",
+    "variant": "/optimized/le-figlie-del-fuoco/14/image-7e84eafcf33b25aa86a6-960.avif",
+    "width": 960,
+    "bytes": 65943,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/le-figlie-del-fuoco/14/thumb.avif",
+    "variant": "/optimized/le-figlie-del-fuoco/14/image-7e84eafcf33b25aa86a6-1600.avif",
+    "width": 1600,
+    "bytes": 225058,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/le-figlie-del-fuoco/15/thumb.avif",
+    "variant": "/optimized/le-figlie-del-fuoco/15/image-1c1d9f15a1fb15d12713-320.avif",
+    "width": 320,
+    "bytes": 8896,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/le-figlie-del-fuoco/15/thumb.avif",
+    "variant": "/optimized/le-figlie-del-fuoco/15/image-1c1d9f15a1fb15d12713-640.avif",
+    "width": 640,
+    "bytes": 27155,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/le-figlie-del-fuoco/15/thumb.avif",
+    "variant": "/optimized/le-figlie-del-fuoco/15/image-1c1d9f15a1fb15d12713-960.avif",
+    "width": 960,
+    "bytes": 55215,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/le-figlie-del-fuoco/15/thumb.avif",
+    "variant": "/optimized/le-figlie-del-fuoco/15/image-1c1d9f15a1fb15d12713-1600.avif",
+    "width": 1600,
+    "bytes": 169440,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/zofi/cover/thumb.avif",
+    "variant": "/optimized/zofi/cover/image-12275bbb39f18b8be48a-320.avif",
+    "width": 320,
+    "bytes": 4193,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/zofi/cover/thumb.avif",
+    "variant": "/optimized/zofi/cover/image-12275bbb39f18b8be48a-640.avif",
+    "width": 640,
+    "bytes": 14135,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/zofi/cover/thumb.avif",
+    "variant": "/optimized/zofi/cover/image-12275bbb39f18b8be48a-960.avif",
+    "width": 960,
+    "bytes": 36624,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/zofi/cover/thumb.avif",
+    "variant": "/optimized/zofi/cover/image-12275bbb39f18b8be48a-1600.avif",
+    "width": 1600,
+    "bytes": 161510,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/zofi/1/thumb.avif",
+    "variant": "/optimized/zofi/1/image-ceac8b733b13a2791273-320.avif",
+    "width": 320,
+    "bytes": 5088,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/zofi/1/thumb.avif",
+    "variant": "/optimized/zofi/1/image-ceac8b733b13a2791273-640.avif",
+    "width": 640,
+    "bytes": 11989,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/zofi/1/thumb.avif",
+    "variant": "/optimized/zofi/1/image-ceac8b733b13a2791273-960.avif",
+    "width": 960,
+    "bytes": 20373,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/zofi/1/thumb.avif",
+    "variant": "/optimized/zofi/1/image-ceac8b733b13a2791273-1600.avif",
+    "width": 1600,
+    "bytes": 41209,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/zofi/2/thumb.avif",
+    "variant": "/optimized/zofi/2/image-159e6a05287f42421aad-320.avif",
+    "width": 320,
+    "bytes": 6677,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/zofi/2/thumb.avif",
+    "variant": "/optimized/zofi/2/image-159e6a05287f42421aad-640.avif",
+    "width": 640,
+    "bytes": 16027,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/zofi/2/thumb.avif",
+    "variant": "/optimized/zofi/2/image-159e6a05287f42421aad-960.avif",
+    "width": 960,
+    "bytes": 26929,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/zofi/2/thumb.avif",
+    "variant": "/optimized/zofi/2/image-159e6a05287f42421aad-1600.avif",
+    "width": 1600,
+    "bytes": 54723,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/zofi/3/thumb.avif",
+    "variant": "/optimized/zofi/3/image-05450d0ceaaafa82befe-320.avif",
+    "width": 320,
+    "bytes": 2723,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/zofi/3/thumb.avif",
+    "variant": "/optimized/zofi/3/image-05450d0ceaaafa82befe-640.avif",
+    "width": 640,
+    "bytes": 6107,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/zofi/3/thumb.avif",
+    "variant": "/optimized/zofi/3/image-05450d0ceaaafa82befe-960.avif",
+    "width": 960,
+    "bytes": 10954,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/zofi/3/thumb.avif",
+    "variant": "/optimized/zofi/3/image-05450d0ceaaafa82befe-1600.avif",
+    "width": 1600,
+    "bytes": 25181,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/zofi/4/thumb.avif",
+    "variant": "/optimized/zofi/4/image-6f82d0a472a8c5f13f55-320.avif",
+    "width": 320,
+    "bytes": 2825,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/zofi/4/thumb.avif",
+    "variant": "/optimized/zofi/4/image-6f82d0a472a8c5f13f55-640.avif",
+    "width": 640,
+    "bytes": 6740,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/zofi/4/thumb.avif",
+    "variant": "/optimized/zofi/4/image-6f82d0a472a8c5f13f55-960.avif",
+    "width": 960,
+    "bytes": 11550,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/zofi/4/thumb.avif",
+    "variant": "/optimized/zofi/4/image-6f82d0a472a8c5f13f55-1600.avif",
+    "width": 1600,
+    "bytes": 24434,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/zofi/5/thumb.avif",
+    "variant": "/optimized/zofi/5/image-2c277b9ec57bb3625c71-320.avif",
+    "width": 320,
+    "bytes": 3687,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/zofi/5/thumb.avif",
+    "variant": "/optimized/zofi/5/image-2c277b9ec57bb3625c71-640.avif",
+    "width": 640,
+    "bytes": 10523,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/zofi/5/thumb.avif",
+    "variant": "/optimized/zofi/5/image-2c277b9ec57bb3625c71-960.avif",
+    "width": 960,
+    "bytes": 20711,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/zofi/5/thumb.avif",
+    "variant": "/optimized/zofi/5/image-2c277b9ec57bb3625c71-1600.avif",
+    "width": 1600,
+    "bytes": 49277,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/zofi/6/thumb.avif",
+    "variant": "/optimized/zofi/6/image-8a947ac9daa147c5b1d0-320.avif",
+    "width": 320,
+    "bytes": 5829,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/zofi/6/thumb.avif",
+    "variant": "/optimized/zofi/6/image-8a947ac9daa147c5b1d0-640.avif",
+    "width": 640,
+    "bytes": 13813,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/zofi/6/thumb.avif",
+    "variant": "/optimized/zofi/6/image-8a947ac9daa147c5b1d0-960.avif",
+    "width": 960,
+    "bytes": 23626,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/zofi/6/thumb.avif",
+    "variant": "/optimized/zofi/6/image-8a947ac9daa147c5b1d0-1600.avif",
+    "width": 1600,
+    "bytes": 46452,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/zofi/7/thumb.avif",
+    "variant": "/optimized/zofi/7/image-12275bbb39f18b8be48a-320.avif",
+    "width": 320,
+    "bytes": 4193,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/zofi/7/thumb.avif",
+    "variant": "/optimized/zofi/7/image-12275bbb39f18b8be48a-640.avif",
+    "width": 640,
+    "bytes": 14135,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/zofi/7/thumb.avif",
+    "variant": "/optimized/zofi/7/image-12275bbb39f18b8be48a-960.avif",
+    "width": 960,
+    "bytes": 36624,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/zofi/7/thumb.avif",
+    "variant": "/optimized/zofi/7/image-12275bbb39f18b8be48a-1600.avif",
+    "width": 1600,
+    "bytes": 161510,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/zofi/8/thumb.avif",
+    "variant": "/optimized/zofi/8/image-bd8d3df5cd2a2f134bdc-320.avif",
+    "width": 320,
+    "bytes": 8017,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/zofi/8/thumb.avif",
+    "variant": "/optimized/zofi/8/image-bd8d3df5cd2a2f134bdc-640.avif",
+    "width": 640,
+    "bytes": 21399,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/zofi/8/thumb.avif",
+    "variant": "/optimized/zofi/8/image-bd8d3df5cd2a2f134bdc-960.avif",
+    "width": 960,
+    "bytes": 42218,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/zofi/8/thumb.avif",
+    "variant": "/optimized/zofi/8/image-bd8d3df5cd2a2f134bdc-1600.avif",
+    "width": 1600,
+    "bytes": 109304,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/beauty/cover/thumb.avif",
+    "variant": "/optimized/beauty/cover/image-3aff8e4fa0f2485406f4-320.avif",
+    "width": 320,
+    "bytes": 5568,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/beauty/cover/thumb.avif",
+    "variant": "/optimized/beauty/cover/image-3aff8e4fa0f2485406f4-640.avif",
+    "width": 640,
+    "bytes": 42160,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/beauty/cover/thumb.avif",
+    "variant": "/optimized/beauty/cover/image-3aff8e4fa0f2485406f4-960.avif",
+    "width": 960,
+    "bytes": 98087,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/beauty/cover/thumb.avif",
+    "variant": "/optimized/beauty/cover/image-3aff8e4fa0f2485406f4-1242.avif",
+    "width": 1242,
+    "bytes": 148889,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/beauty/1/thumb.avif",
+    "variant": "/optimized/beauty/1/image-44fecb887b97122d31d6-320.avif",
+    "width": 320,
+    "bytes": 3741,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/beauty/1/thumb.avif",
+    "variant": "/optimized/beauty/1/image-44fecb887b97122d31d6-640.avif",
+    "width": 640,
+    "bytes": 18532,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/beauty/1/thumb.avif",
+    "variant": "/optimized/beauty/1/image-44fecb887b97122d31d6-911.avif",
+    "width": 911,
+    "bytes": 40086,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/beauty/2/thumb.avif",
+    "variant": "/optimized/beauty/2/image-ec306476da0ae06bf903-320.avif",
+    "width": 320,
+    "bytes": 4185,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/beauty/2/thumb.avif",
+    "variant": "/optimized/beauty/2/image-ec306476da0ae06bf903-640.avif",
+    "width": 640,
+    "bytes": 11020,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/beauty/2/thumb.avif",
+    "variant": "/optimized/beauty/2/image-ec306476da0ae06bf903-960.avif",
+    "width": 960,
+    "bytes": 47740,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/beauty/2/thumb.avif",
+    "variant": "/optimized/beauty/2/image-ec306476da0ae06bf903-1600.avif",
+    "width": 1600,
+    "bytes": 478201,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/beauty/3/thumb.avif",
+    "variant": "/optimized/beauty/3/image-4c9056519aceff88dd80-320.avif",
+    "width": 320,
+    "bytes": 2682,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/beauty/3/thumb.avif",
+    "variant": "/optimized/beauty/3/image-4c9056519aceff88dd80-640.avif",
+    "width": 640,
+    "bytes": 25840,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/beauty/3/thumb.avif",
+    "variant": "/optimized/beauty/3/image-4c9056519aceff88dd80-960.avif",
+    "width": 960,
+    "bytes": 142742,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/beauty/3/thumb.avif",
+    "variant": "/optimized/beauty/3/image-4c9056519aceff88dd80-1600.avif",
+    "width": 1600,
+    "bytes": 639748,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/beauty/4/thumb.avif",
+    "variant": "/optimized/beauty/4/image-3aff8e4fa0f2485406f4-320.avif",
+    "width": 320,
+    "bytes": 5568,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/beauty/4/thumb.avif",
+    "variant": "/optimized/beauty/4/image-3aff8e4fa0f2485406f4-640.avif",
+    "width": 640,
+    "bytes": 42160,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/beauty/4/thumb.avif",
+    "variant": "/optimized/beauty/4/image-3aff8e4fa0f2485406f4-960.avif",
+    "width": 960,
+    "bytes": 98087,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/beauty/4/thumb.avif",
+    "variant": "/optimized/beauty/4/image-3aff8e4fa0f2485406f4-1242.avif",
+    "width": 1242,
+    "bytes": 148889,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/beauty/5/thumb.avif",
+    "variant": "/optimized/beauty/5/image-158914e47b8a4db8b251-320.avif",
+    "width": 320,
+    "bytes": 3085,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/beauty/5/thumb.avif",
+    "variant": "/optimized/beauty/5/image-158914e47b8a4db8b251-640.avif",
+    "width": 640,
+    "bytes": 22119,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/beauty/5/thumb.avif",
+    "variant": "/optimized/beauty/5/image-158914e47b8a4db8b251-960.avif",
+    "width": 960,
+    "bytes": 136180,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/beauty/5/thumb.avif",
+    "variant": "/optimized/beauty/5/image-158914e47b8a4db8b251-1119.avif",
+    "width": 1119,
+    "bytes": 240787,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/beauty/6/thumb.avif",
+    "variant": "/optimized/beauty/6/image-77c119a78f273c777078-320.avif",
+    "width": 320,
+    "bytes": 4900,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/beauty/6/thumb.avif",
+    "variant": "/optimized/beauty/6/image-77c119a78f273c777078-640.avif",
+    "width": 640,
+    "bytes": 39847,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/beauty/6/thumb.avif",
+    "variant": "/optimized/beauty/6/image-77c119a78f273c777078-960.avif",
+    "width": 960,
+    "bytes": 177201,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/beauty/6/thumb.avif",
+    "variant": "/optimized/beauty/6/image-77c119a78f273c777078-1600.avif",
+    "width": 1600,
+    "bytes": 767153,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/beauty/7/thumb.avif",
+    "variant": "/optimized/beauty/7/image-5cb4493e87fe7babe145-320.avif",
+    "width": 320,
+    "bytes": 7599,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/beauty/7/thumb.avif",
+    "variant": "/optimized/beauty/7/image-5cb4493e87fe7babe145-640.avif",
+    "width": 640,
+    "bytes": 45817,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/beauty/7/thumb.avif",
+    "variant": "/optimized/beauty/7/image-5cb4493e87fe7babe145-960.avif",
+    "width": 960,
+    "bytes": 172532,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/beauty/7/thumb.avif",
+    "variant": "/optimized/beauty/7/image-5cb4493e87fe7babe145-1374.avif",
+    "width": 1374,
+    "bytes": 490498,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/fashion-is-never-banal/cover/thumb.avif",
+    "variant": "/optimized/fashion-is-never-banal/cover/image-f009e1a45fe9413b2ce5-320.avif",
+    "width": 320,
+    "bytes": 2666,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/fashion-is-never-banal/cover/thumb.avif",
+    "variant": "/optimized/fashion-is-never-banal/cover/image-f009e1a45fe9413b2ce5-640.avif",
+    "width": 640,
+    "bytes": 5855,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/fashion-is-never-banal/cover/thumb.avif",
+    "variant": "/optimized/fashion-is-never-banal/cover/image-f009e1a45fe9413b2ce5-960.avif",
+    "width": 960,
+    "bytes": 10121,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/fashion-is-never-banal/cover/thumb.avif",
+    "variant": "/optimized/fashion-is-never-banal/cover/image-f009e1a45fe9413b2ce5-1600.avif",
+    "width": 1600,
+    "bytes": 23411,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/fashion-is-never-banal/1/thumb.avif",
+    "variant": "/optimized/fashion-is-never-banal/1/image-7394cd9c3784a2feddbc-320.avif",
+    "width": 320,
+    "bytes": 2771,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/fashion-is-never-banal/1/thumb.avif",
+    "variant": "/optimized/fashion-is-never-banal/1/image-7394cd9c3784a2feddbc-640.avif",
+    "width": 640,
+    "bytes": 5732,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/fashion-is-never-banal/1/thumb.avif",
+    "variant": "/optimized/fashion-is-never-banal/1/image-7394cd9c3784a2feddbc-960.avif",
+    "width": 960,
+    "bytes": 9956,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/fashion-is-never-banal/1/thumb.avif",
+    "variant": "/optimized/fashion-is-never-banal/1/image-7394cd9c3784a2feddbc-1600.avif",
+    "width": 1600,
+    "bytes": 24287,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/fashion-is-never-banal/2/thumb.avif",
+    "variant": "/optimized/fashion-is-never-banal/2/image-a98eedaedab1c6cce9a2-320.avif",
+    "width": 320,
+    "bytes": 2958,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/fashion-is-never-banal/2/thumb.avif",
+    "variant": "/optimized/fashion-is-never-banal/2/image-a98eedaedab1c6cce9a2-640.avif",
+    "width": 640,
+    "bytes": 6545,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/fashion-is-never-banal/2/thumb.avif",
+    "variant": "/optimized/fashion-is-never-banal/2/image-a98eedaedab1c6cce9a2-960.avif",
+    "width": 960,
+    "bytes": 11463,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/fashion-is-never-banal/2/thumb.avif",
+    "variant": "/optimized/fashion-is-never-banal/2/image-a98eedaedab1c6cce9a2-1600.avif",
+    "width": 1600,
+    "bytes": 26162,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/fashion-is-never-banal/3/thumb.avif",
+    "variant": "/optimized/fashion-is-never-banal/3/image-2d012f15592dc3ba815a-320.avif",
+    "width": 320,
+    "bytes": 1513,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/fashion-is-never-banal/3/thumb.avif",
+    "variant": "/optimized/fashion-is-never-banal/3/image-2d012f15592dc3ba815a-640.avif",
+    "width": 640,
+    "bytes": 3330,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/fashion-is-never-banal/3/thumb.avif",
+    "variant": "/optimized/fashion-is-never-banal/3/image-2d012f15592dc3ba815a-960.avif",
+    "width": 960,
+    "bytes": 7393,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/fashion-is-never-banal/3/thumb.avif",
+    "variant": "/optimized/fashion-is-never-banal/3/image-2d012f15592dc3ba815a-1600.avif",
+    "width": 1600,
+    "bytes": 30258,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/fashion-is-never-banal/4/thumb.avif",
+    "variant": "/optimized/fashion-is-never-banal/4/image-bf3bc80d12dc334390b9-320.avif",
+    "width": 320,
+    "bytes": 2759,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/fashion-is-never-banal/4/thumb.avif",
+    "variant": "/optimized/fashion-is-never-banal/4/image-bf3bc80d12dc334390b9-640.avif",
+    "width": 640,
+    "bytes": 6088,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/fashion-is-never-banal/4/thumb.avif",
+    "variant": "/optimized/fashion-is-never-banal/4/image-bf3bc80d12dc334390b9-960.avif",
+    "width": 960,
+    "bytes": 11091,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/fashion-is-never-banal/4/thumb.avif",
+    "variant": "/optimized/fashion-is-never-banal/4/image-bf3bc80d12dc334390b9-1600.avif",
+    "width": 1600,
+    "bytes": 49385,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/fashion-is-never-banal/5/thumb.avif",
+    "variant": "/optimized/fashion-is-never-banal/5/image-b56d91acc4d504a32706-320.avif",
+    "width": 320,
+    "bytes": 3644,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/fashion-is-never-banal/5/thumb.avif",
+    "variant": "/optimized/fashion-is-never-banal/5/image-b56d91acc4d504a32706-640.avif",
+    "width": 640,
+    "bytes": 9662,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/fashion-is-never-banal/5/thumb.avif",
+    "variant": "/optimized/fashion-is-never-banal/5/image-b56d91acc4d504a32706-960.avif",
+    "width": 960,
+    "bytes": 16876,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/fashion-is-never-banal/5/thumb.avif",
+    "variant": "/optimized/fashion-is-never-banal/5/image-b56d91acc4d504a32706-1109.avif",
+    "width": 1109,
+    "bytes": 21226,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/fashion-is-never-banal/6/thumb.avif",
+    "variant": "/optimized/fashion-is-never-banal/6/image-d7772ad0af87bd958545-320.avif",
+    "width": 320,
+    "bytes": 1933,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/fashion-is-never-banal/6/thumb.avif",
+    "variant": "/optimized/fashion-is-never-banal/6/image-d7772ad0af87bd958545-640.avif",
+    "width": 640,
+    "bytes": 3739,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/fashion-is-never-banal/6/thumb.avif",
+    "variant": "/optimized/fashion-is-never-banal/6/image-d7772ad0af87bd958545-960.avif",
+    "width": 960,
+    "bytes": 6441,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/fashion-is-never-banal/6/thumb.avif",
+    "variant": "/optimized/fashion-is-never-banal/6/image-d7772ad0af87bd958545-1600.avif",
+    "width": 1600,
+    "bytes": 52706,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/fashion-is-never-banal/7/thumb.avif",
+    "variant": "/optimized/fashion-is-never-banal/7/image-b3393fb8b51d400eede8-320.avif",
+    "width": 320,
+    "bytes": 2739,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/fashion-is-never-banal/7/thumb.avif",
+    "variant": "/optimized/fashion-is-never-banal/7/image-b3393fb8b51d400eede8-640.avif",
+    "width": 640,
+    "bytes": 8926,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/fashion-is-never-banal/7/thumb.avif",
+    "variant": "/optimized/fashion-is-never-banal/7/image-b3393fb8b51d400eede8-960.avif",
+    "width": 960,
+    "bytes": 24229,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/fashion-is-never-banal/7/thumb.avif",
+    "variant": "/optimized/fashion-is-never-banal/7/image-b3393fb8b51d400eede8-1600.avif",
+    "width": 1600,
+    "bytes": 80308,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/fashion-is-never-banal/8/thumb.avif",
+    "variant": "/optimized/fashion-is-never-banal/8/image-2d62275bdcf0f00ea88f-320.avif",
+    "width": 320,
+    "bytes": 2766,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/fashion-is-never-banal/8/thumb.avif",
+    "variant": "/optimized/fashion-is-never-banal/8/image-2d62275bdcf0f00ea88f-640.avif",
+    "width": 640,
+    "bytes": 8981,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/fashion-is-never-banal/8/thumb.avif",
+    "variant": "/optimized/fashion-is-never-banal/8/image-2d62275bdcf0f00ea88f-960.avif",
+    "width": 960,
+    "bytes": 20323,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/fashion-is-never-banal/8/thumb.avif",
+    "variant": "/optimized/fashion-is-never-banal/8/image-2d62275bdcf0f00ea88f-1303.avif",
+    "width": 1303,
+    "bytes": 34391,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/fashion-is-never-banal/9/thumb.avif",
+    "variant": "/optimized/fashion-is-never-banal/9/image-70af69f4b1b3fdf2c979-320.avif",
+    "width": 320,
+    "bytes": 1543,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/fashion-is-never-banal/9/thumb.avif",
+    "variant": "/optimized/fashion-is-never-banal/9/image-70af69f4b1b3fdf2c979-640.avif",
+    "width": 640,
+    "bytes": 6327,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/fashion-is-never-banal/9/thumb.avif",
+    "variant": "/optimized/fashion-is-never-banal/9/image-70af69f4b1b3fdf2c979-960.avif",
+    "width": 960,
+    "bytes": 17650,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/fashion-is-never-banal/9/thumb.avif",
+    "variant": "/optimized/fashion-is-never-banal/9/image-70af69f4b1b3fdf2c979-1035.avif",
+    "width": 1035,
+    "bytes": 20775,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/fashion-is-never-banal/10/thumb.avif",
+    "variant": "/optimized/fashion-is-never-banal/10/image-f009e1a45fe9413b2ce5-320.avif",
+    "width": 320,
+    "bytes": 2666,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/fashion-is-never-banal/10/thumb.avif",
+    "variant": "/optimized/fashion-is-never-banal/10/image-f009e1a45fe9413b2ce5-640.avif",
+    "width": 640,
+    "bytes": 5855,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/fashion-is-never-banal/10/thumb.avif",
+    "variant": "/optimized/fashion-is-never-banal/10/image-f009e1a45fe9413b2ce5-960.avif",
+    "width": 960,
+    "bytes": 10121,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/fashion-is-never-banal/10/thumb.avif",
+    "variant": "/optimized/fashion-is-never-banal/10/image-f009e1a45fe9413b2ce5-1600.avif",
+    "width": 1600,
+    "bytes": 23411,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/fashion-is-never-banal/11/thumb.avif",
+    "variant": "/optimized/fashion-is-never-banal/11/image-92892e85413c440bbfba-320.avif",
+    "width": 320,
+    "bytes": 2540,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/fashion-is-never-banal/11/thumb.avif",
+    "variant": "/optimized/fashion-is-never-banal/11/image-92892e85413c440bbfba-640.avif",
+    "width": 640,
+    "bytes": 5786,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/fashion-is-never-banal/11/thumb.avif",
+    "variant": "/optimized/fashion-is-never-banal/11/image-92892e85413c440bbfba-960.avif",
+    "width": 960,
+    "bytes": 9993,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/fashion-is-never-banal/11/thumb.avif",
+    "variant": "/optimized/fashion-is-never-banal/11/image-92892e85413c440bbfba-1600.avif",
+    "width": 1600,
+    "bytes": 20398,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/argento/cover/thumb.avif",
+    "variant": "/optimized/argento/cover/image-85693b3696977b3b1367-320.avif",
+    "width": 320,
+    "bytes": 7042,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/argento/cover/thumb.avif",
+    "variant": "/optimized/argento/cover/image-85693b3696977b3b1367-640.avif",
+    "width": 640,
+    "bytes": 16617,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/argento/cover/thumb.avif",
+    "variant": "/optimized/argento/cover/image-85693b3696977b3b1367-960.avif",
+    "width": 960,
+    "bytes": 41194,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/argento/cover/thumb.avif",
+    "variant": "/optimized/argento/cover/image-85693b3696977b3b1367-1600.avif",
+    "width": 1600,
+    "bytes": 177208,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/argento/1/thumb.avif",
+    "variant": "/optimized/argento/1/image-b21ae3fd3d9845eb72ed-320.avif",
+    "width": 320,
+    "bytes": 6551,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/argento/1/thumb.avif",
+    "variant": "/optimized/argento/1/image-b21ae3fd3d9845eb72ed-640.avif",
+    "width": 640,
+    "bytes": 15429,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/argento/1/thumb.avif",
+    "variant": "/optimized/argento/1/image-b21ae3fd3d9845eb72ed-960.avif",
+    "width": 960,
+    "bytes": 28851,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/argento/1/thumb.avif",
+    "variant": "/optimized/argento/1/image-b21ae3fd3d9845eb72ed-1600.avif",
+    "width": 1600,
+    "bytes": 85046,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/argento/2/thumb.avif",
+    "variant": "/optimized/argento/2/image-298ec2aac6f7dba8a2ae-320.avif",
+    "width": 320,
+    "bytes": 5561,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/argento/2/thumb.avif",
+    "variant": "/optimized/argento/2/image-298ec2aac6f7dba8a2ae-640.avif",
+    "width": 640,
+    "bytes": 14961,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/argento/2/thumb.avif",
+    "variant": "/optimized/argento/2/image-298ec2aac6f7dba8a2ae-960.avif",
+    "width": 960,
+    "bytes": 43590,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/argento/2/thumb.avif",
+    "variant": "/optimized/argento/2/image-298ec2aac6f7dba8a2ae-1600.avif",
+    "width": 1600,
+    "bytes": 172709,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/argento/3/thumb.avif",
+    "variant": "/optimized/argento/3/image-d51df662968dbff20269-320.avif",
+    "width": 320,
+    "bytes": 3126,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/argento/3/thumb.avif",
+    "variant": "/optimized/argento/3/image-d51df662968dbff20269-640.avif",
+    "width": 640,
+    "bytes": 6884,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/argento/3/thumb.avif",
+    "variant": "/optimized/argento/3/image-d51df662968dbff20269-960.avif",
+    "width": 960,
+    "bytes": 11300,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/argento/3/thumb.avif",
+    "variant": "/optimized/argento/3/image-d51df662968dbff20269-1600.avif",
+    "width": 1600,
+    "bytes": 36917,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/argento/4/thumb.avif",
+    "variant": "/optimized/argento/4/image-ce996a5dc64f7985a490-320.avif",
+    "width": 320,
+    "bytes": 3244,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/argento/4/thumb.avif",
+    "variant": "/optimized/argento/4/image-ce996a5dc64f7985a490-640.avif",
+    "width": 640,
+    "bytes": 7347,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/argento/4/thumb.avif",
+    "variant": "/optimized/argento/4/image-ce996a5dc64f7985a490-960.avif",
+    "width": 960,
+    "bytes": 15890,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/argento/4/thumb.avif",
+    "variant": "/optimized/argento/4/image-ce996a5dc64f7985a490-1600.avif",
+    "width": 1600,
+    "bytes": 49899,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/argento/5/thumb.avif",
+    "variant": "/optimized/argento/5/image-b332c220f7bd5efa17f9-320.avif",
+    "width": 320,
+    "bytes": 7675,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/argento/5/thumb.avif",
+    "variant": "/optimized/argento/5/image-b332c220f7bd5efa17f9-640.avif",
+    "width": 640,
+    "bytes": 18928,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/argento/5/thumb.avif",
+    "variant": "/optimized/argento/5/image-b332c220f7bd5efa17f9-960.avif",
+    "width": 960,
+    "bytes": 36920,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/argento/5/thumb.avif",
+    "variant": "/optimized/argento/5/image-b332c220f7bd5efa17f9-1600.avif",
+    "width": 1600,
+    "bytes": 144217,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/argento/6/thumb.avif",
+    "variant": "/optimized/argento/6/image-c1bbb2c01c844305356e-320.avif",
+    "width": 320,
+    "bytes": 2878,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/argento/6/thumb.avif",
+    "variant": "/optimized/argento/6/image-c1bbb2c01c844305356e-640.avif",
+    "width": 640,
+    "bytes": 6551,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/argento/6/thumb.avif",
+    "variant": "/optimized/argento/6/image-c1bbb2c01c844305356e-960.avif",
+    "width": 960,
+    "bytes": 12262,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/argento/6/thumb.avif",
+    "variant": "/optimized/argento/6/image-c1bbb2c01c844305356e-1600.avif",
+    "width": 1600,
+    "bytes": 50175,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/argento/7/thumb.avif",
+    "variant": "/optimized/argento/7/image-3111e5981ff837c6d92a-320.avif",
+    "width": 320,
+    "bytes": 2632,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/argento/7/thumb.avif",
+    "variant": "/optimized/argento/7/image-3111e5981ff837c6d92a-640.avif",
+    "width": 640,
+    "bytes": 5117,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/argento/7/thumb.avif",
+    "variant": "/optimized/argento/7/image-3111e5981ff837c6d92a-960.avif",
+    "width": 960,
+    "bytes": 8943,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/argento/7/thumb.avif",
+    "variant": "/optimized/argento/7/image-3111e5981ff837c6d92a-1600.avif",
+    "width": 1600,
+    "bytes": 66881,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/argento/8/thumb.avif",
+    "variant": "/optimized/argento/8/image-85693b3696977b3b1367-320.avif",
+    "width": 320,
+    "bytes": 7042,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/argento/8/thumb.avif",
+    "variant": "/optimized/argento/8/image-85693b3696977b3b1367-640.avif",
+    "width": 640,
+    "bytes": 16617,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/argento/8/thumb.avif",
+    "variant": "/optimized/argento/8/image-85693b3696977b3b1367-960.avif",
+    "width": 960,
+    "bytes": 41194,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/argento/8/thumb.avif",
+    "variant": "/optimized/argento/8/image-85693b3696977b3b1367-1600.avif",
+    "width": 1600,
+    "bytes": 177208,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/argento/9/thumb.avif",
+    "variant": "/optimized/argento/9/image-318d259c38569923d611-320.avif",
+    "width": 320,
+    "bytes": 3588,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/argento/9/thumb.avif",
+    "variant": "/optimized/argento/9/image-318d259c38569923d611-640.avif",
+    "width": 640,
+    "bytes": 8432,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/argento/9/thumb.avif",
+    "variant": "/optimized/argento/9/image-318d259c38569923d611-960.avif",
+    "width": 960,
+    "bytes": 15347,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/argento/9/thumb.avif",
+    "variant": "/optimized/argento/9/image-318d259c38569923d611-1600.avif",
+    "width": 1600,
+    "bytes": 84674,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/argento/10/thumb.avif",
+    "variant": "/optimized/argento/10/image-921d5afedf81577c0b7f-320.avif",
+    "width": 320,
+    "bytes": 11643,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/argento/10/thumb.avif",
+    "variant": "/optimized/argento/10/image-921d5afedf81577c0b7f-640.avif",
+    "width": 640,
+    "bytes": 42308,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/argento/10/thumb.avif",
+    "variant": "/optimized/argento/10/image-921d5afedf81577c0b7f-960.avif",
+    "width": 960,
+    "bytes": 80620,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/argento/10/thumb.avif",
+    "variant": "/optimized/argento/10/image-921d5afedf81577c0b7f-1600.avif",
+    "width": 1600,
+    "bytes": 180176,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/argento/11/thumb.avif",
+    "variant": "/optimized/argento/11/image-c1d59a05dd364cfcf7e9-320.avif",
+    "width": 320,
+    "bytes": 6315,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/argento/11/thumb.avif",
+    "variant": "/optimized/argento/11/image-c1d59a05dd364cfcf7e9-640.avif",
+    "width": 640,
+    "bytes": 15232,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/argento/11/thumb.avif",
+    "variant": "/optimized/argento/11/image-c1d59a05dd364cfcf7e9-960.avif",
+    "width": 960,
+    "bytes": 28398,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/argento/11/thumb.avif",
+    "variant": "/optimized/argento/11/image-c1d59a05dd364cfcf7e9-1600.avif",
+    "width": 1600,
+    "bytes": 81244,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/argento/12/thumb.avif",
+    "variant": "/optimized/argento/12/image-890f2011deb5c5af4d24-320.avif",
+    "width": 320,
+    "bytes": 2248,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/argento/12/thumb.avif",
+    "variant": "/optimized/argento/12/image-890f2011deb5c5af4d24-640.avif",
+    "width": 640,
+    "bytes": 4863,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/argento/12/thumb.avif",
+    "variant": "/optimized/argento/12/image-890f2011deb5c5af4d24-960.avif",
+    "width": 960,
+    "bytes": 9753,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/argento/12/thumb.avif",
+    "variant": "/optimized/argento/12/image-890f2011deb5c5af4d24-1600.avif",
+    "width": 1600,
+    "bytes": 121298,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/argento/13/thumb.avif",
+    "variant": "/optimized/argento/13/image-355ee8705002ca6eeea1-320.avif",
+    "width": 320,
+    "bytes": 3522,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/argento/13/thumb.avif",
+    "variant": "/optimized/argento/13/image-355ee8705002ca6eeea1-640.avif",
+    "width": 640,
+    "bytes": 7430,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/argento/13/thumb.avif",
+    "variant": "/optimized/argento/13/image-355ee8705002ca6eeea1-960.avif",
+    "width": 960,
+    "bytes": 18139,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/argento/13/thumb.avif",
+    "variant": "/optimized/argento/13/image-355ee8705002ca6eeea1-1600.avif",
+    "width": 1600,
+    "bytes": 168751,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/i-put-clean-girls-into-a-coma/cover/thumb.avif",
+    "variant": "/optimized/i-put-clean-girls-into-a-coma/cover/image-5f360fede303dba386e2-320.avif",
+    "width": 320,
+    "bytes": 4605,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/i-put-clean-girls-into-a-coma/cover/thumb.avif",
+    "variant": "/optimized/i-put-clean-girls-into-a-coma/cover/image-5f360fede303dba386e2-640.avif",
+    "width": 640,
+    "bytes": 10776,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/i-put-clean-girls-into-a-coma/cover/thumb.avif",
+    "variant": "/optimized/i-put-clean-girls-into-a-coma/cover/image-5f360fede303dba386e2-960.avif",
+    "width": 960,
+    "bytes": 20738,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/i-put-clean-girls-into-a-coma/cover/thumb.avif",
+    "variant": "/optimized/i-put-clean-girls-into-a-coma/cover/image-5f360fede303dba386e2-1600.avif",
+    "width": 1600,
+    "bytes": 54152,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/i-put-clean-girls-into-a-coma/1/thumb.avif",
+    "variant": "/optimized/i-put-clean-girls-into-a-coma/1/image-d55655e9af9aa45de1e7-320.avif",
+    "width": 320,
+    "bytes": 5640,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/i-put-clean-girls-into-a-coma/1/thumb.avif",
+    "variant": "/optimized/i-put-clean-girls-into-a-coma/1/image-d55655e9af9aa45de1e7-640.avif",
+    "width": 640,
+    "bytes": 13208,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/i-put-clean-girls-into-a-coma/1/thumb.avif",
+    "variant": "/optimized/i-put-clean-girls-into-a-coma/1/image-d55655e9af9aa45de1e7-960.avif",
+    "width": 960,
+    "bytes": 24739,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/i-put-clean-girls-into-a-coma/1/thumb.avif",
+    "variant": "/optimized/i-put-clean-girls-into-a-coma/1/image-d55655e9af9aa45de1e7-1600.avif",
+    "width": 1600,
+    "bytes": 67896,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/i-put-clean-girls-into-a-coma/2/thumb.avif",
+    "variant": "/optimized/i-put-clean-girls-into-a-coma/2/image-8672b7500e187346adc4-320.avif",
+    "width": 320,
+    "bytes": 4091,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/i-put-clean-girls-into-a-coma/2/thumb.avif",
+    "variant": "/optimized/i-put-clean-girls-into-a-coma/2/image-8672b7500e187346adc4-640.avif",
+    "width": 640,
+    "bytes": 10133,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/i-put-clean-girls-into-a-coma/2/thumb.avif",
+    "variant": "/optimized/i-put-clean-girls-into-a-coma/2/image-8672b7500e187346adc4-960.avif",
+    "width": 960,
+    "bytes": 20615,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/i-put-clean-girls-into-a-coma/2/thumb.avif",
+    "variant": "/optimized/i-put-clean-girls-into-a-coma/2/image-8672b7500e187346adc4-1600.avif",
+    "width": 1600,
+    "bytes": 53658,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/i-put-clean-girls-into-a-coma/3/thumb.avif",
+    "variant": "/optimized/i-put-clean-girls-into-a-coma/3/image-5f360fede303dba386e2-320.avif",
+    "width": 320,
+    "bytes": 4605,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/i-put-clean-girls-into-a-coma/3/thumb.avif",
+    "variant": "/optimized/i-put-clean-girls-into-a-coma/3/image-5f360fede303dba386e2-640.avif",
+    "width": 640,
+    "bytes": 10776,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/i-put-clean-girls-into-a-coma/3/thumb.avif",
+    "variant": "/optimized/i-put-clean-girls-into-a-coma/3/image-5f360fede303dba386e2-960.avif",
+    "width": 960,
+    "bytes": 20738,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/i-put-clean-girls-into-a-coma/3/thumb.avif",
+    "variant": "/optimized/i-put-clean-girls-into-a-coma/3/image-5f360fede303dba386e2-1600.avif",
+    "width": 1600,
+    "bytes": 54152,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/i-put-clean-girls-into-a-coma/4/thumb.avif",
+    "variant": "/optimized/i-put-clean-girls-into-a-coma/4/image-ba49e809952e847a079d-320.avif",
+    "width": 320,
+    "bytes": 5557,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/i-put-clean-girls-into-a-coma/4/thumb.avif",
+    "variant": "/optimized/i-put-clean-girls-into-a-coma/4/image-ba49e809952e847a079d-640.avif",
+    "width": 640,
+    "bytes": 15235,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/i-put-clean-girls-into-a-coma/4/thumb.avif",
+    "variant": "/optimized/i-put-clean-girls-into-a-coma/4/image-ba49e809952e847a079d-960.avif",
+    "width": 960,
+    "bytes": 32179,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/i-put-clean-girls-into-a-coma/4/thumb.avif",
+    "variant": "/optimized/i-put-clean-girls-into-a-coma/4/image-ba49e809952e847a079d-1600.avif",
+    "width": 1600,
+    "bytes": 82105,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/i-put-clean-girls-into-a-coma/5/thumb.avif",
+    "variant": "/optimized/i-put-clean-girls-into-a-coma/5/image-c505628315bb76808ec5-320.avif",
+    "width": 320,
+    "bytes": 5944,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/i-put-clean-girls-into-a-coma/5/thumb.avif",
+    "variant": "/optimized/i-put-clean-girls-into-a-coma/5/image-c505628315bb76808ec5-640.avif",
+    "width": 640,
+    "bytes": 16678,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/i-put-clean-girls-into-a-coma/5/thumb.avif",
+    "variant": "/optimized/i-put-clean-girls-into-a-coma/5/image-c505628315bb76808ec5-960.avif",
+    "width": 960,
+    "bytes": 35029,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/i-put-clean-girls-into-a-coma/5/thumb.avif",
+    "variant": "/optimized/i-put-clean-girls-into-a-coma/5/image-c505628315bb76808ec5-1600.avif",
+    "width": 1600,
+    "bytes": 93866,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/i-put-clean-girls-into-a-coma/6/thumb.avif",
+    "variant": "/optimized/i-put-clean-girls-into-a-coma/6/image-9c650ba96d9ff1be3e13-320.avif",
+    "width": 320,
+    "bytes": 6137,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/i-put-clean-girls-into-a-coma/6/thumb.avif",
+    "variant": "/optimized/i-put-clean-girls-into-a-coma/6/image-9c650ba96d9ff1be3e13-640.avif",
+    "width": 640,
+    "bytes": 28622,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/i-put-clean-girls-into-a-coma/6/thumb.avif",
+    "variant": "/optimized/i-put-clean-girls-into-a-coma/6/image-9c650ba96d9ff1be3e13-960.avif",
+    "width": 960,
+    "bytes": 64057,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/i-put-clean-girls-into-a-coma/6/thumb.avif",
+    "variant": "/optimized/i-put-clean-girls-into-a-coma/6/image-9c650ba96d9ff1be3e13-1600.avif",
+    "width": 1600,
+    "bytes": 162874,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/country-travel/cover/thumb.avif",
+    "variant": "/optimized/country-travel/cover/image-34dfa319434977649a4f-320.avif",
+    "width": 320,
+    "bytes": 4290,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/country-travel/cover/thumb.avif",
+    "variant": "/optimized/country-travel/cover/image-34dfa319434977649a4f-640.avif",
+    "width": 640,
+    "bytes": 13103,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/country-travel/cover/thumb.avif",
+    "variant": "/optimized/country-travel/cover/image-34dfa319434977649a4f-960.avif",
+    "width": 960,
+    "bytes": 88111,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/country-travel/cover/thumb.avif",
+    "variant": "/optimized/country-travel/cover/image-34dfa319434977649a4f-1600.avif",
+    "width": 1600,
+    "bytes": 723620,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/country-travel/1/thumb.avif",
+    "variant": "/optimized/country-travel/1/image-d6d032155368a61e9eb2-320.avif",
+    "width": 320,
+    "bytes": 7161,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/country-travel/1/thumb.avif",
+    "variant": "/optimized/country-travel/1/image-d6d032155368a61e9eb2-640.avif",
+    "width": 640,
+    "bytes": 21388,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/country-travel/1/thumb.avif",
+    "variant": "/optimized/country-travel/1/image-d6d032155368a61e9eb2-960.avif",
+    "width": 960,
+    "bytes": 108281,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/country-travel/1/thumb.avif",
+    "variant": "/optimized/country-travel/1/image-d6d032155368a61e9eb2-1600.avif",
+    "width": 1600,
+    "bytes": 779115,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/country-travel/2/thumb.avif",
+    "variant": "/optimized/country-travel/2/image-e750cb3007908776ff8f-320.avif",
+    "width": 320,
+    "bytes": 3464,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/country-travel/2/thumb.avif",
+    "variant": "/optimized/country-travel/2/image-e750cb3007908776ff8f-640.avif",
+    "width": 640,
+    "bytes": 8862,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/country-travel/2/thumb.avif",
+    "variant": "/optimized/country-travel/2/image-e750cb3007908776ff8f-960.avif",
+    "width": 960,
+    "bytes": 21293,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/country-travel/2/thumb.avif",
+    "variant": "/optimized/country-travel/2/image-e750cb3007908776ff8f-1600.avif",
+    "width": 1600,
+    "bytes": 195149,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/country-travel/3/thumb.avif",
+    "variant": "/optimized/country-travel/3/image-34dfa319434977649a4f-320.avif",
+    "width": 320,
+    "bytes": 4290,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/country-travel/3/thumb.avif",
+    "variant": "/optimized/country-travel/3/image-34dfa319434977649a4f-640.avif",
+    "width": 640,
+    "bytes": 13103,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/country-travel/3/thumb.avif",
+    "variant": "/optimized/country-travel/3/image-34dfa319434977649a4f-960.avif",
+    "width": 960,
+    "bytes": 88111,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/country-travel/3/thumb.avif",
+    "variant": "/optimized/country-travel/3/image-34dfa319434977649a4f-1600.avif",
+    "width": 1600,
+    "bytes": 723620,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/country-travel/4/thumb.avif",
+    "variant": "/optimized/country-travel/4/image-2b529468cd68997c3b37-320.avif",
+    "width": 320,
+    "bytes": 10587,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/country-travel/4/thumb.avif",
+    "variant": "/optimized/country-travel/4/image-2b529468cd68997c3b37-640.avif",
+    "width": 640,
+    "bytes": 24670,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/country-travel/4/thumb.avif",
+    "variant": "/optimized/country-travel/4/image-2b529468cd68997c3b37-960.avif",
+    "width": 960,
+    "bytes": 84952,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/country-travel/4/thumb.avif",
+    "variant": "/optimized/country-travel/4/image-2b529468cd68997c3b37-1600.avif",
+    "width": 1600,
+    "bytes": 664511,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/country-travel/5/thumb.avif",
+    "variant": "/optimized/country-travel/5/image-28f8dbce678e8cf4376e-320.avif",
+    "width": 320,
+    "bytes": 9837,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/country-travel/5/thumb.avif",
+    "variant": "/optimized/country-travel/5/image-28f8dbce678e8cf4376e-640.avif",
+    "width": 640,
+    "bytes": 27286,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/country-travel/5/thumb.avif",
+    "variant": "/optimized/country-travel/5/image-28f8dbce678e8cf4376e-960.avif",
+    "width": 960,
+    "bytes": 110084,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/country-travel/5/thumb.avif",
+    "variant": "/optimized/country-travel/5/image-28f8dbce678e8cf4376e-1600.avif",
+    "width": 1600,
+    "bytes": 743061,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/country-travel/6/thumb.avif",
+    "variant": "/optimized/country-travel/6/image-05c9ae209345b4426f3d-320.avif",
+    "width": 320,
+    "bytes": 13877,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/country-travel/6/thumb.avif",
+    "variant": "/optimized/country-travel/6/image-05c9ae209345b4426f3d-640.avif",
+    "width": 640,
+    "bytes": 41314,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/country-travel/6/thumb.avif",
+    "variant": "/optimized/country-travel/6/image-05c9ae209345b4426f3d-960.avif",
+    "width": 960,
+    "bytes": 113353,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/country-travel/6/thumb.avif",
+    "variant": "/optimized/country-travel/6/image-05c9ae209345b4426f3d-1600.avif",
+    "width": 1600,
+    "bytes": 618000,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/country-travel/7/thumb.avif",
+    "variant": "/optimized/country-travel/7/image-d546d28e53517001f687-320.avif",
+    "width": 320,
+    "bytes": 8403,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/country-travel/7/thumb.avif",
+    "variant": "/optimized/country-travel/7/image-d546d28e53517001f687-640.avif",
+    "width": 640,
+    "bytes": 29192,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/country-travel/7/thumb.avif",
+    "variant": "/optimized/country-travel/7/image-d546d28e53517001f687-960.avif",
+    "width": 960,
+    "bytes": 102720,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/country-travel/7/thumb.avif",
+    "variant": "/optimized/country-travel/7/image-d546d28e53517001f687-1600.avif",
+    "width": 1600,
+    "bytes": 682610,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/country-travel/8/thumb.avif",
+    "variant": "/optimized/country-travel/8/image-c0d669cf9dc17b6ede40-320.avif",
+    "width": 320,
+    "bytes": 2664,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/country-travel/8/thumb.avif",
+    "variant": "/optimized/country-travel/8/image-c0d669cf9dc17b6ede40-640.avif",
+    "width": 640,
+    "bytes": 8505,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/country-travel/8/thumb.avif",
+    "variant": "/optimized/country-travel/8/image-c0d669cf9dc17b6ede40-960.avif",
+    "width": 960,
+    "bytes": 43783,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/country-travel/8/thumb.avif",
+    "variant": "/optimized/country-travel/8/image-c0d669cf9dc17b6ede40-1600.avif",
+    "width": 1600,
+    "bytes": 431819,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/country-travel/9/thumb.avif",
+    "variant": "/optimized/country-travel/9/image-65127172a16ecf4fcda2-320.avif",
+    "width": 320,
+    "bytes": 13229,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/country-travel/9/thumb.avif",
+    "variant": "/optimized/country-travel/9/image-65127172a16ecf4fcda2-640.avif",
+    "width": 640,
+    "bytes": 33965,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/country-travel/9/thumb.avif",
+    "variant": "/optimized/country-travel/9/image-65127172a16ecf4fcda2-960.avif",
+    "width": 960,
+    "bytes": 90850,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/country-travel/9/thumb.avif",
+    "variant": "/optimized/country-travel/9/image-65127172a16ecf4fcda2-1600.avif",
+    "width": 1600,
+    "bytes": 607669,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/country-travel/10/thumb.avif",
+    "variant": "/optimized/country-travel/10/image-2b17d779f966bd579df9-320.avif",
+    "width": 320,
+    "bytes": 12773,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/country-travel/10/thumb.avif",
+    "variant": "/optimized/country-travel/10/image-2b17d779f966bd579df9-640.avif",
+    "width": 640,
+    "bytes": 31503,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/country-travel/10/thumb.avif",
+    "variant": "/optimized/country-travel/10/image-2b17d779f966bd579df9-960.avif",
+    "width": 960,
+    "bytes": 116443,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/country-travel/10/thumb.avif",
+    "variant": "/optimized/country-travel/10/image-2b17d779f966bd579df9-1600.avif",
+    "width": 1600,
+    "bytes": 775013,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/country-travel/11/thumb.avif",
+    "variant": "/optimized/country-travel/11/image-4618915e3bdb8dd6d88f-320.avif",
+    "width": 320,
+    "bytes": 15176,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/country-travel/11/thumb.avif",
+    "variant": "/optimized/country-travel/11/image-4618915e3bdb8dd6d88f-640.avif",
+    "width": 640,
+    "bytes": 35889,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/country-travel/11/thumb.avif",
+    "variant": "/optimized/country-travel/11/image-4618915e3bdb8dd6d88f-960.avif",
+    "width": 960,
+    "bytes": 93105,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/country-travel/11/thumb.avif",
+    "variant": "/optimized/country-travel/11/image-4618915e3bdb8dd6d88f-1600.avif",
+    "width": 1600,
+    "bytes": 571356,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/country-travel/12/thumb.avif",
+    "variant": "/optimized/country-travel/12/image-5fe6369a45e34ab8697c-320.avif",
+    "width": 320,
+    "bytes": 9043,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/country-travel/12/thumb.avif",
+    "variant": "/optimized/country-travel/12/image-5fe6369a45e34ab8697c-640.avif",
+    "width": 640,
+    "bytes": 24439,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/country-travel/12/thumb.avif",
+    "variant": "/optimized/country-travel/12/image-5fe6369a45e34ab8697c-960.avif",
+    "width": 960,
+    "bytes": 116646,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/country-travel/12/thumb.avif",
+    "variant": "/optimized/country-travel/12/image-5fe6369a45e34ab8697c-1600.avif",
+    "width": 1600,
+    "bytes": 825377,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/country-travel/13/thumb.avif",
+    "variant": "/optimized/country-travel/13/image-681d8bbe434ac4183efc-320.avif",
+    "width": 320,
+    "bytes": 11509,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/country-travel/13/thumb.avif",
+    "variant": "/optimized/country-travel/13/image-681d8bbe434ac4183efc-640.avif",
+    "width": 640,
+    "bytes": 32621,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/country-travel/13/thumb.avif",
+    "variant": "/optimized/country-travel/13/image-681d8bbe434ac4183efc-960.avif",
+    "width": 960,
+    "bytes": 124940,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/country-travel/13/thumb.avif",
+    "variant": "/optimized/country-travel/13/image-681d8bbe434ac4183efc-1600.avif",
+    "width": 1600,
+    "bytes": 800751,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/blosson-beauty/cover/thumb.avif",
+    "variant": "/optimized/blosson-beauty/cover/image-92dcc4c1f39f68fb4bf3-320.avif",
+    "width": 320,
+    "bytes": 5106,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/blosson-beauty/cover/thumb.avif",
+    "variant": "/optimized/blosson-beauty/cover/image-92dcc4c1f39f68fb4bf3-640.avif",
+    "width": 640,
+    "bytes": 20360,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/blosson-beauty/cover/thumb.avif",
+    "variant": "/optimized/blosson-beauty/cover/image-92dcc4c1f39f68fb4bf3-960.avif",
+    "width": 960,
+    "bytes": 52257,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/blosson-beauty/cover/thumb.avif",
+    "variant": "/optimized/blosson-beauty/cover/image-92dcc4c1f39f68fb4bf3-1600.avif",
+    "width": 1600,
+    "bytes": 158209,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/blosson-beauty/1/thumb.avif",
+    "variant": "/optimized/blosson-beauty/1/image-103866f246e472696511-320.avif",
+    "width": 320,
+    "bytes": 4835,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/blosson-beauty/1/thumb.avif",
+    "variant": "/optimized/blosson-beauty/1/image-103866f246e472696511-640.avif",
+    "width": 640,
+    "bytes": 18434,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/blosson-beauty/1/thumb.avif",
+    "variant": "/optimized/blosson-beauty/1/image-103866f246e472696511-960.avif",
+    "width": 960,
+    "bytes": 49959,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/blosson-beauty/1/thumb.avif",
+    "variant": "/optimized/blosson-beauty/1/image-103866f246e472696511-1600.avif",
+    "width": 1600,
+    "bytes": 194345,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/blosson-beauty/2/thumb.avif",
+    "variant": "/optimized/blosson-beauty/2/image-618548334c8acc7a2e2b-320.avif",
+    "width": 320,
+    "bytes": 18905,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/blosson-beauty/2/thumb.avif",
+    "variant": "/optimized/blosson-beauty/2/image-618548334c8acc7a2e2b-640.avif",
+    "width": 640,
+    "bytes": 61828,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/blosson-beauty/2/thumb.avif",
+    "variant": "/optimized/blosson-beauty/2/image-618548334c8acc7a2e2b-960.avif",
+    "width": 960,
+    "bytes": 114748,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/blosson-beauty/2/thumb.avif",
+    "variant": "/optimized/blosson-beauty/2/image-618548334c8acc7a2e2b-1600.avif",
+    "width": 1600,
+    "bytes": 252388,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/blosson-beauty/3/thumb.avif",
+    "variant": "/optimized/blosson-beauty/3/image-b2c6f4922b14d134d512-320.avif",
+    "width": 320,
+    "bytes": 13256,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/blosson-beauty/3/thumb.avif",
+    "variant": "/optimized/blosson-beauty/3/image-b2c6f4922b14d134d512-640.avif",
+    "width": 640,
+    "bytes": 34904,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/blosson-beauty/3/thumb.avif",
+    "variant": "/optimized/blosson-beauty/3/image-b2c6f4922b14d134d512-960.avif",
+    "width": 960,
+    "bytes": 60690,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/blosson-beauty/3/thumb.avif",
+    "variant": "/optimized/blosson-beauty/3/image-b2c6f4922b14d134d512-1600.avif",
+    "width": 1600,
+    "bytes": 131664,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/blosson-beauty/4/thumb.avif",
+    "variant": "/optimized/blosson-beauty/4/image-6b9a052811f52914a8be-320.avif",
+    "width": 320,
+    "bytes": 5276,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/blosson-beauty/4/thumb.avif",
+    "variant": "/optimized/blosson-beauty/4/image-6b9a052811f52914a8be-640.avif",
+    "width": 640,
+    "bytes": 17129,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/blosson-beauty/4/thumb.avif",
+    "variant": "/optimized/blosson-beauty/4/image-6b9a052811f52914a8be-960.avif",
+    "width": 960,
+    "bytes": 37280,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/blosson-beauty/4/thumb.avif",
+    "variant": "/optimized/blosson-beauty/4/image-6b9a052811f52914a8be-1600.avif",
+    "width": 1600,
+    "bytes": 108042,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/blosson-beauty/5/thumb.avif",
+    "variant": "/optimized/blosson-beauty/5/image-92dcc4c1f39f68fb4bf3-320.avif",
+    "width": 320,
+    "bytes": 5106,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/blosson-beauty/5/thumb.avif",
+    "variant": "/optimized/blosson-beauty/5/image-92dcc4c1f39f68fb4bf3-640.avif",
+    "width": 640,
+    "bytes": 20360,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/blosson-beauty/5/thumb.avif",
+    "variant": "/optimized/blosson-beauty/5/image-92dcc4c1f39f68fb4bf3-960.avif",
+    "width": 960,
+    "bytes": 52257,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/blosson-beauty/5/thumb.avif",
+    "variant": "/optimized/blosson-beauty/5/image-92dcc4c1f39f68fb4bf3-1600.avif",
+    "width": 1600,
+    "bytes": 158209,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/i-don-t-even-know-myself/cover/thumb.avif",
+    "variant": "/optimized/i-don-t-even-know-myself/cover/image-3a3f79ca414a0cfd0083-320.avif",
+    "width": 320,
+    "bytes": 4545,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/i-don-t-even-know-myself/cover/thumb.avif",
+    "variant": "/optimized/i-don-t-even-know-myself/cover/image-3a3f79ca414a0cfd0083-640.avif",
+    "width": 640,
+    "bytes": 9971,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/i-don-t-even-know-myself/cover/thumb.avif",
+    "variant": "/optimized/i-don-t-even-know-myself/cover/image-3a3f79ca414a0cfd0083-960.avif",
+    "width": 960,
+    "bytes": 17855,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/i-don-t-even-know-myself/cover/thumb.avif",
+    "variant": "/optimized/i-don-t-even-know-myself/cover/image-3a3f79ca414a0cfd0083-1600.avif",
+    "width": 1600,
+    "bytes": 39782,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/i-don-t-even-know-myself/1/thumb.avif",
+    "variant": "/optimized/i-don-t-even-know-myself/1/image-b8a29939a9f13615f5ad-320.avif",
+    "width": 320,
+    "bytes": 2168,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/i-don-t-even-know-myself/1/thumb.avif",
+    "variant": "/optimized/i-don-t-even-know-myself/1/image-b8a29939a9f13615f5ad-640.avif",
+    "width": 640,
+    "bytes": 4263,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/i-don-t-even-know-myself/1/thumb.avif",
+    "variant": "/optimized/i-don-t-even-know-myself/1/image-b8a29939a9f13615f5ad-960.avif",
+    "width": 960,
+    "bytes": 6873,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/i-don-t-even-know-myself/1/thumb.avif",
+    "variant": "/optimized/i-don-t-even-know-myself/1/image-b8a29939a9f13615f5ad-1600.avif",
+    "width": 1600,
+    "bytes": 11949,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/i-don-t-even-know-myself/2/thumb.avif",
+    "variant": "/optimized/i-don-t-even-know-myself/2/image-efa5483030d751bba3a4-320.avif",
+    "width": 320,
+    "bytes": 4252,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/i-don-t-even-know-myself/2/thumb.avif",
+    "variant": "/optimized/i-don-t-even-know-myself/2/image-efa5483030d751bba3a4-640.avif",
+    "width": 640,
+    "bytes": 9303,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/i-don-t-even-know-myself/2/thumb.avif",
+    "variant": "/optimized/i-don-t-even-know-myself/2/image-efa5483030d751bba3a4-960.avif",
+    "width": 960,
+    "bytes": 16435,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/i-don-t-even-know-myself/2/thumb.avif",
+    "variant": "/optimized/i-don-t-even-know-myself/2/image-efa5483030d751bba3a4-1600.avif",
+    "width": 1600,
+    "bytes": 35948,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/i-don-t-even-know-myself/3/thumb.avif",
+    "variant": "/optimized/i-don-t-even-know-myself/3/image-3002944c2d97033056fa-320.avif",
+    "width": 320,
+    "bytes": 4639,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/i-don-t-even-know-myself/3/thumb.avif",
+    "variant": "/optimized/i-don-t-even-know-myself/3/image-3002944c2d97033056fa-640.avif",
+    "width": 640,
+    "bytes": 10332,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/i-don-t-even-know-myself/3/thumb.avif",
+    "variant": "/optimized/i-don-t-even-know-myself/3/image-3002944c2d97033056fa-960.avif",
+    "width": 960,
+    "bytes": 18269,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/i-don-t-even-know-myself/3/thumb.avif",
+    "variant": "/optimized/i-don-t-even-know-myself/3/image-3002944c2d97033056fa-1600.avif",
+    "width": 1600,
+    "bytes": 42687,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/i-don-t-even-know-myself/4/thumb.avif",
+    "variant": "/optimized/i-don-t-even-know-myself/4/image-594360a592d28e1a741d-320.avif",
+    "width": 320,
+    "bytes": 3963,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/i-don-t-even-know-myself/4/thumb.avif",
+    "variant": "/optimized/i-don-t-even-know-myself/4/image-594360a592d28e1a741d-640.avif",
+    "width": 640,
+    "bytes": 8568,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/i-don-t-even-know-myself/4/thumb.avif",
+    "variant": "/optimized/i-don-t-even-know-myself/4/image-594360a592d28e1a741d-960.avif",
+    "width": 960,
+    "bytes": 14503,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/i-don-t-even-know-myself/4/thumb.avif",
+    "variant": "/optimized/i-don-t-even-know-myself/4/image-594360a592d28e1a741d-1600.avif",
+    "width": 1600,
+    "bytes": 31201,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/i-don-t-even-know-myself/5/thumb.avif",
+    "variant": "/optimized/i-don-t-even-know-myself/5/image-43ecae038b2d404609d5-320.avif",
+    "width": 320,
+    "bytes": 2344,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/i-don-t-even-know-myself/5/thumb.avif",
+    "variant": "/optimized/i-don-t-even-know-myself/5/image-43ecae038b2d404609d5-640.avif",
+    "width": 640,
+    "bytes": 4751,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/i-don-t-even-know-myself/5/thumb.avif",
+    "variant": "/optimized/i-don-t-even-know-myself/5/image-43ecae038b2d404609d5-960.avif",
+    "width": 960,
+    "bytes": 7695,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/i-don-t-even-know-myself/5/thumb.avif",
+    "variant": "/optimized/i-don-t-even-know-myself/5/image-43ecae038b2d404609d5-1600.avif",
+    "width": 1600,
+    "bytes": 14057,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/i-don-t-even-know-myself/6/thumb.avif",
+    "variant": "/optimized/i-don-t-even-know-myself/6/image-0a73a3b058188587808f-320.avif",
+    "width": 320,
+    "bytes": 4464,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/i-don-t-even-know-myself/6/thumb.avif",
+    "variant": "/optimized/i-don-t-even-know-myself/6/image-0a73a3b058188587808f-640.avif",
+    "width": 640,
+    "bytes": 9988,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/i-don-t-even-know-myself/6/thumb.avif",
+    "variant": "/optimized/i-don-t-even-know-myself/6/image-0a73a3b058188587808f-960.avif",
+    "width": 960,
+    "bytes": 17851,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/i-don-t-even-know-myself/6/thumb.avif",
+    "variant": "/optimized/i-don-t-even-know-myself/6/image-0a73a3b058188587808f-1600.avif",
+    "width": 1600,
+    "bytes": 40944,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/i-don-t-even-know-myself/7/thumb.avif",
+    "variant": "/optimized/i-don-t-even-know-myself/7/image-62980abb2802d12c857d-320.avif",
+    "width": 320,
+    "bytes": 4360,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/i-don-t-even-know-myself/7/thumb.avif",
+    "variant": "/optimized/i-don-t-even-know-myself/7/image-62980abb2802d12c857d-640.avif",
+    "width": 640,
+    "bytes": 9535,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/i-don-t-even-know-myself/7/thumb.avif",
+    "variant": "/optimized/i-don-t-even-know-myself/7/image-62980abb2802d12c857d-960.avif",
+    "width": 960,
+    "bytes": 16474,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/i-don-t-even-know-myself/7/thumb.avif",
+    "variant": "/optimized/i-don-t-even-know-myself/7/image-62980abb2802d12c857d-1600.avif",
+    "width": 1600,
+    "bytes": 34727,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/i-don-t-even-know-myself/8/thumb.avif",
+    "variant": "/optimized/i-don-t-even-know-myself/8/image-3a3f79ca414a0cfd0083-320.avif",
+    "width": 320,
+    "bytes": 4545,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/i-don-t-even-know-myself/8/thumb.avif",
+    "variant": "/optimized/i-don-t-even-know-myself/8/image-3a3f79ca414a0cfd0083-640.avif",
+    "width": 640,
+    "bytes": 9971,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/i-don-t-even-know-myself/8/thumb.avif",
+    "variant": "/optimized/i-don-t-even-know-myself/8/image-3a3f79ca414a0cfd0083-960.avif",
+    "width": 960,
+    "bytes": 17855,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/i-don-t-even-know-myself/8/thumb.avif",
+    "variant": "/optimized/i-don-t-even-know-myself/8/image-3a3f79ca414a0cfd0083-1600.avif",
+    "width": 1600,
+    "bytes": 39782,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/i-don-t-even-know-myself/9/thumb.avif",
+    "variant": "/optimized/i-don-t-even-know-myself/9/image-4b7edf7af30598c5c6cd-320.avif",
+    "width": 320,
+    "bytes": 3057,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/i-don-t-even-know-myself/9/thumb.avif",
+    "variant": "/optimized/i-don-t-even-know-myself/9/image-4b7edf7af30598c5c6cd-640.avif",
+    "width": 640,
+    "bytes": 6343,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/i-don-t-even-know-myself/9/thumb.avif",
+    "variant": "/optimized/i-don-t-even-know-myself/9/image-4b7edf7af30598c5c6cd-960.avif",
+    "width": 960,
+    "bytes": 10342,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/i-don-t-even-know-myself/9/thumb.avif",
+    "variant": "/optimized/i-don-t-even-know-myself/9/image-4b7edf7af30598c5c6cd-1600.avif",
+    "width": 1600,
+    "bytes": 18520,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/i-don-t-even-know-myself/10/thumb.avif",
+    "variant": "/optimized/i-don-t-even-know-myself/10/image-f12a39a0dc94b4a0cffb-320.avif",
+    "width": 320,
+    "bytes": 4757,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/i-don-t-even-know-myself/10/thumb.avif",
+    "variant": "/optimized/i-don-t-even-know-myself/10/image-f12a39a0dc94b4a0cffb-640.avif",
+    "width": 640,
+    "bytes": 9969,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/i-don-t-even-know-myself/10/thumb.avif",
+    "variant": "/optimized/i-don-t-even-know-myself/10/image-f12a39a0dc94b4a0cffb-960.avif",
+    "width": 960,
+    "bytes": 16763,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/i-don-t-even-know-myself/10/thumb.avif",
+    "variant": "/optimized/i-don-t-even-know-myself/10/image-f12a39a0dc94b4a0cffb-1600.avif",
+    "width": 1600,
+    "bytes": 34712,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/i-don-t-even-know-myself/11/thumb.avif",
+    "variant": "/optimized/i-don-t-even-know-myself/11/image-ce8a2b697f4531f8f252-320.avif",
+    "width": 320,
+    "bytes": 4899,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/i-don-t-even-know-myself/11/thumb.avif",
+    "variant": "/optimized/i-don-t-even-know-myself/11/image-ce8a2b697f4531f8f252-640.avif",
+    "width": 640,
+    "bytes": 11126,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/i-don-t-even-know-myself/11/thumb.avif",
+    "variant": "/optimized/i-don-t-even-know-myself/11/image-ce8a2b697f4531f8f252-960.avif",
+    "width": 960,
+    "bytes": 19796,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/i-don-t-even-know-myself/11/thumb.avif",
+    "variant": "/optimized/i-don-t-even-know-myself/11/image-ce8a2b697f4531f8f252-1600.avif",
+    "width": 1600,
+    "bytes": 42602,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/i-don-t-even-know-myself/12/thumb.avif",
+    "variant": "/optimized/i-don-t-even-know-myself/12/image-cb57b5f1e528df4bb7ed-320.avif",
+    "width": 320,
+    "bytes": 4948,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/i-don-t-even-know-myself/12/thumb.avif",
+    "variant": "/optimized/i-don-t-even-know-myself/12/image-cb57b5f1e528df4bb7ed-640.avif",
+    "width": 640,
+    "bytes": 10814,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/i-don-t-even-know-myself/12/thumb.avif",
+    "variant": "/optimized/i-don-t-even-know-myself/12/image-cb57b5f1e528df4bb7ed-960.avif",
+    "width": 960,
+    "bytes": 18930,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/i-don-t-even-know-myself/12/thumb.avif",
+    "variant": "/optimized/i-don-t-even-know-myself/12/image-cb57b5f1e528df4bb7ed-1600.avif",
+    "width": 1600,
+    "bytes": 41053,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/i-don-t-even-know-myself/13/thumb.avif",
+    "variant": "/optimized/i-don-t-even-know-myself/13/image-4eadacecc44c211b0f89-320.avif",
+    "width": 320,
+    "bytes": 3133,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/i-don-t-even-know-myself/13/thumb.avif",
+    "variant": "/optimized/i-don-t-even-know-myself/13/image-4eadacecc44c211b0f89-640.avif",
+    "width": 640,
+    "bytes": 6634,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/i-don-t-even-know-myself/13/thumb.avif",
+    "variant": "/optimized/i-don-t-even-know-myself/13/image-4eadacecc44c211b0f89-960.avif",
+    "width": 960,
+    "bytes": 10947,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/i-don-t-even-know-myself/13/thumb.avif",
+    "variant": "/optimized/i-don-t-even-know-myself/13/image-4eadacecc44c211b0f89-1600.avif",
+    "width": 1600,
+    "bytes": 19892,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/un-volto-per-raccontare/cover/thumb.avif",
+    "variant": "/optimized/un-volto-per-raccontare/cover/image-dc1debc9ec7fe2cba402-320.avif",
+    "width": 320,
+    "bytes": 8103,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/un-volto-per-raccontare/cover/thumb.avif",
+    "variant": "/optimized/un-volto-per-raccontare/cover/image-dc1debc9ec7fe2cba402-640.avif",
+    "width": 640,
+    "bytes": 34002,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/un-volto-per-raccontare/cover/thumb.avif",
+    "variant": "/optimized/un-volto-per-raccontare/cover/image-dc1debc9ec7fe2cba402-960.avif",
+    "width": 960,
+    "bytes": 80333,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/un-volto-per-raccontare/cover/thumb.avif",
+    "variant": "/optimized/un-volto-per-raccontare/cover/image-dc1debc9ec7fe2cba402-1600.avif",
+    "width": 1600,
+    "bytes": 207702,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/un-volto-per-raccontare/1/thumb.avif",
+    "variant": "/optimized/un-volto-per-raccontare/1/image-dc1debc9ec7fe2cba402-320.avif",
+    "width": 320,
+    "bytes": 8103,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/un-volto-per-raccontare/1/thumb.avif",
+    "variant": "/optimized/un-volto-per-raccontare/1/image-dc1debc9ec7fe2cba402-640.avif",
+    "width": 640,
+    "bytes": 34002,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/un-volto-per-raccontare/1/thumb.avif",
+    "variant": "/optimized/un-volto-per-raccontare/1/image-dc1debc9ec7fe2cba402-960.avif",
+    "width": 960,
+    "bytes": 80333,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/un-volto-per-raccontare/1/thumb.avif",
+    "variant": "/optimized/un-volto-per-raccontare/1/image-dc1debc9ec7fe2cba402-1600.avif",
+    "width": 1600,
+    "bytes": 207702,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/un-volto-per-raccontare/2/thumb.avif",
+    "variant": "/optimized/un-volto-per-raccontare/2/image-13885075148b501b4061-320.avif",
+    "width": 320,
+    "bytes": 3057,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/un-volto-per-raccontare/2/thumb.avif",
+    "variant": "/optimized/un-volto-per-raccontare/2/image-13885075148b501b4061-640.avif",
+    "width": 640,
+    "bytes": 7581,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/un-volto-per-raccontare/2/thumb.avif",
+    "variant": "/optimized/un-volto-per-raccontare/2/image-13885075148b501b4061-960.avif",
+    "width": 960,
+    "bytes": 13565,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/un-volto-per-raccontare/2/thumb.avif",
+    "variant": "/optimized/un-volto-per-raccontare/2/image-13885075148b501b4061-1600.avif",
+    "width": 1600,
+    "bytes": 32321,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/un-volto-per-raccontare/3/thumb.avif",
+    "variant": "/optimized/un-volto-per-raccontare/3/image-e90862280c4b540905dd-320.avif",
+    "width": 320,
+    "bytes": 3689,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/un-volto-per-raccontare/3/thumb.avif",
+    "variant": "/optimized/un-volto-per-raccontare/3/image-e90862280c4b540905dd-640.avif",
+    "width": 640,
+    "bytes": 9350,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/un-volto-per-raccontare/3/thumb.avif",
+    "variant": "/optimized/un-volto-per-raccontare/3/image-e90862280c4b540905dd-960.avif",
+    "width": 960,
+    "bytes": 17938,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/un-volto-per-raccontare/3/thumb.avif",
+    "variant": "/optimized/un-volto-per-raccontare/3/image-e90862280c4b540905dd-1600.avif",
+    "width": 1600,
+    "bytes": 49198,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/un-volto-per-raccontare/4/thumb.avif",
+    "variant": "/optimized/un-volto-per-raccontare/4/image-dc8ffe01f013076f134f-320.avif",
+    "width": 320,
+    "bytes": 3589,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/un-volto-per-raccontare/4/thumb.avif",
+    "variant": "/optimized/un-volto-per-raccontare/4/image-dc8ffe01f013076f134f-640.avif",
+    "width": 640,
+    "bytes": 9847,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/un-volto-per-raccontare/4/thumb.avif",
+    "variant": "/optimized/un-volto-per-raccontare/4/image-dc8ffe01f013076f134f-960.avif",
+    "width": 960,
+    "bytes": 22576,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/un-volto-per-raccontare/4/thumb.avif",
+    "variant": "/optimized/un-volto-per-raccontare/4/image-dc8ffe01f013076f134f-1600.avif",
+    "width": 1600,
+    "bytes": 74909,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/un-volto-per-raccontare/5/thumb.avif",
+    "variant": "/optimized/un-volto-per-raccontare/5/image-c60177ccde005f527d81-320.avif",
+    "width": 320,
+    "bytes": 4858,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/un-volto-per-raccontare/5/thumb.avif",
+    "variant": "/optimized/un-volto-per-raccontare/5/image-c60177ccde005f527d81-640.avif",
+    "width": 640,
+    "bytes": 14900,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/un-volto-per-raccontare/5/thumb.avif",
+    "variant": "/optimized/un-volto-per-raccontare/5/image-c60177ccde005f527d81-960.avif",
+    "width": 960,
+    "bytes": 31744,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/un-volto-per-raccontare/5/thumb.avif",
+    "variant": "/optimized/un-volto-per-raccontare/5/image-c60177ccde005f527d81-1600.avif",
+    "width": 1600,
+    "bytes": 74356,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/un-volto-per-raccontare/6/thumb.avif",
+    "variant": "/optimized/un-volto-per-raccontare/6/image-5b3efda6ff5f45edbd7a-320.avif",
+    "width": 320,
+    "bytes": 6110,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/un-volto-per-raccontare/6/thumb.avif",
+    "variant": "/optimized/un-volto-per-raccontare/6/image-5b3efda6ff5f45edbd7a-640.avif",
+    "width": 640,
+    "bytes": 15986,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/un-volto-per-raccontare/6/thumb.avif",
+    "variant": "/optimized/un-volto-per-raccontare/6/image-5b3efda6ff5f45edbd7a-960.avif",
+    "width": 960,
+    "bytes": 30536,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/un-volto-per-raccontare/6/thumb.avif",
+    "variant": "/optimized/un-volto-per-raccontare/6/image-5b3efda6ff5f45edbd7a-1600.avif",
+    "width": 1600,
+    "bytes": 70380,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/un-volto-per-raccontare/7/thumb.avif",
+    "variant": "/optimized/un-volto-per-raccontare/7/image-70eaa300e2d09f804095-320.avif",
+    "width": 320,
+    "bytes": 4208,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/un-volto-per-raccontare/7/thumb.avif",
+    "variant": "/optimized/un-volto-per-raccontare/7/image-70eaa300e2d09f804095-640.avif",
+    "width": 640,
+    "bytes": 12822,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/un-volto-per-raccontare/7/thumb.avif",
+    "variant": "/optimized/un-volto-per-raccontare/7/image-70eaa300e2d09f804095-960.avif",
+    "width": 960,
+    "bytes": 26841,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/un-volto-per-raccontare/7/thumb.avif",
+    "variant": "/optimized/un-volto-per-raccontare/7/image-70eaa300e2d09f804095-1600.avif",
+    "width": 1600,
+    "bytes": 66536,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/un-volto-per-raccontare/8/thumb.avif",
+    "variant": "/optimized/un-volto-per-raccontare/8/image-5439e69a23a3a0380603-320.avif",
+    "width": 320,
+    "bytes": 5706,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/un-volto-per-raccontare/8/thumb.avif",
+    "variant": "/optimized/un-volto-per-raccontare/8/image-5439e69a23a3a0380603-640.avif",
+    "width": 640,
+    "bytes": 16760,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/un-volto-per-raccontare/8/thumb.avif",
+    "variant": "/optimized/un-volto-per-raccontare/8/image-5439e69a23a3a0380603-960.avif",
+    "width": 960,
+    "bytes": 33452,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/un-volto-per-raccontare/8/thumb.avif",
+    "variant": "/optimized/un-volto-per-raccontare/8/image-5439e69a23a3a0380603-1600.avif",
+    "width": 1600,
+    "bytes": 75230,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/un-volto-per-raccontare/9/thumb.avif",
+    "variant": "/optimized/un-volto-per-raccontare/9/image-3aefdd476953eded0b4c-320.avif",
+    "width": 320,
+    "bytes": 3868,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/un-volto-per-raccontare/9/thumb.avif",
+    "variant": "/optimized/un-volto-per-raccontare/9/image-3aefdd476953eded0b4c-640.avif",
+    "width": 640,
+    "bytes": 9223,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/un-volto-per-raccontare/9/thumb.avif",
+    "variant": "/optimized/un-volto-per-raccontare/9/image-3aefdd476953eded0b4c-960.avif",
+    "width": 960,
+    "bytes": 17878,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/un-volto-per-raccontare/9/thumb.avif",
+    "variant": "/optimized/un-volto-per-raccontare/9/image-3aefdd476953eded0b4c-1600.avif",
+    "width": 1600,
+    "bytes": 54083,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/un-volto-per-raccontare/10/thumb.avif",
+    "variant": "/optimized/un-volto-per-raccontare/10/image-67836a417547f18a2d66-320.avif",
+    "width": 320,
+    "bytes": 11002,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/un-volto-per-raccontare/10/thumb.avif",
+    "variant": "/optimized/un-volto-per-raccontare/10/image-67836a417547f18a2d66-640.avif",
+    "width": 640,
+    "bytes": 32479,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/un-volto-per-raccontare/10/thumb.avif",
+    "variant": "/optimized/un-volto-per-raccontare/10/image-67836a417547f18a2d66-960.avif",
+    "width": 960,
+    "bytes": 64650,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/un-volto-per-raccontare/10/thumb.avif",
+    "variant": "/optimized/un-volto-per-raccontare/10/image-67836a417547f18a2d66-1600.avif",
+    "width": 1600,
+    "bytes": 160467,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/un-volto-per-raccontare/11/thumb.avif",
+    "variant": "/optimized/un-volto-per-raccontare/11/image-b8ab684153379fd45595-320.avif",
+    "width": 320,
+    "bytes": 5662,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/un-volto-per-raccontare/11/thumb.avif",
+    "variant": "/optimized/un-volto-per-raccontare/11/image-b8ab684153379fd45595-640.avif",
+    "width": 640,
+    "bytes": 14524,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/un-volto-per-raccontare/11/thumb.avif",
+    "variant": "/optimized/un-volto-per-raccontare/11/image-b8ab684153379fd45595-960.avif",
+    "width": 960,
+    "bytes": 26009,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/un-volto-per-raccontare/11/thumb.avif",
+    "variant": "/optimized/un-volto-per-raccontare/11/image-b8ab684153379fd45595-1600.avif",
+    "width": 1600,
+    "bytes": 56834,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/un-volto-per-raccontare/12/thumb.avif",
+    "variant": "/optimized/un-volto-per-raccontare/12/image-0e5db73f13e370f737b2-320.avif",
+    "width": 320,
+    "bytes": 3012,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/un-volto-per-raccontare/12/thumb.avif",
+    "variant": "/optimized/un-volto-per-raccontare/12/image-0e5db73f13e370f737b2-640.avif",
+    "width": 640,
+    "bytes": 9510,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/un-volto-per-raccontare/12/thumb.avif",
+    "variant": "/optimized/un-volto-per-raccontare/12/image-0e5db73f13e370f737b2-960.avif",
+    "width": 960,
+    "bytes": 19569,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/un-volto-per-raccontare/12/thumb.avif",
+    "variant": "/optimized/un-volto-per-raccontare/12/image-0e5db73f13e370f737b2-1600.avif",
+    "width": 1600,
+    "bytes": 44403,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/un-volto-per-raccontare/13/thumb.avif",
+    "variant": "/optimized/un-volto-per-raccontare/13/image-1a9e76825d3f3b25a793-320.avif",
+    "width": 320,
+    "bytes": 11052,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/un-volto-per-raccontare/13/thumb.avif",
+    "variant": "/optimized/un-volto-per-raccontare/13/image-1a9e76825d3f3b25a793-640.avif",
+    "width": 640,
+    "bytes": 39478,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/un-volto-per-raccontare/13/thumb.avif",
+    "variant": "/optimized/un-volto-per-raccontare/13/image-1a9e76825d3f3b25a793-960.avif",
+    "width": 960,
+    "bytes": 82422,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/un-volto-per-raccontare/13/thumb.avif",
+    "variant": "/optimized/un-volto-per-raccontare/13/image-1a9e76825d3f3b25a793-1600.avif",
+    "width": 1600,
+    "bytes": 183869,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/un-volto-per-raccontare/14/thumb.avif",
+    "variant": "/optimized/un-volto-per-raccontare/14/image-85b2420923639c92ac6e-320.avif",
+    "width": 320,
+    "bytes": 19286,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/un-volto-per-raccontare/14/thumb.avif",
+    "variant": "/optimized/un-volto-per-raccontare/14/image-85b2420923639c92ac6e-640.avif",
+    "width": 640,
+    "bytes": 61323,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/un-volto-per-raccontare/14/thumb.avif",
+    "variant": "/optimized/un-volto-per-raccontare/14/image-85b2420923639c92ac6e-960.avif",
+    "width": 960,
+    "bytes": 118363,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/un-volto-per-raccontare/14/thumb.avif",
+    "variant": "/optimized/un-volto-per-raccontare/14/image-85b2420923639c92ac6e-1600.avif",
+    "width": 1600,
+    "bytes": 253972,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/un-volto-per-raccontare/15/thumb.avif",
+    "variant": "/optimized/un-volto-per-raccontare/15/image-c0cdb1a8c64b66c63d41-320.avif",
+    "width": 320,
+    "bytes": 6202,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/un-volto-per-raccontare/15/thumb.avif",
+    "variant": "/optimized/un-volto-per-raccontare/15/image-c0cdb1a8c64b66c63d41-640.avif",
+    "width": 640,
+    "bytes": 18862,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/un-volto-per-raccontare/15/thumb.avif",
+    "variant": "/optimized/un-volto-per-raccontare/15/image-c0cdb1a8c64b66c63d41-960.avif",
+    "width": 960,
+    "bytes": 39491,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/un-volto-per-raccontare/15/thumb.avif",
+    "variant": "/optimized/un-volto-per-raccontare/15/image-c0cdb1a8c64b66c63d41-1600.avif",
+    "width": 1600,
+    "bytes": 98057,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/un-volto-per-raccontare/16/thumb.avif",
+    "variant": "/optimized/un-volto-per-raccontare/16/image-02b95a9b8c8440970995-320.avif",
+    "width": 320,
+    "bytes": 5857,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/un-volto-per-raccontare/16/thumb.avif",
+    "variant": "/optimized/un-volto-per-raccontare/16/image-02b95a9b8c8440970995-640.avif",
+    "width": 640,
+    "bytes": 21002,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/un-volto-per-raccontare/16/thumb.avif",
+    "variant": "/optimized/un-volto-per-raccontare/16/image-02b95a9b8c8440970995-960.avif",
+    "width": 960,
+    "bytes": 66427,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/un-volto-per-raccontare/16/thumb.avif",
+    "variant": "/optimized/un-volto-per-raccontare/16/image-02b95a9b8c8440970995-1600.avif",
+    "width": 1600,
+    "bytes": 217977,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/un-volto-per-raccontare/17/thumb.avif",
+    "variant": "/optimized/un-volto-per-raccontare/17/image-95420495916d8bedea9d-320.avif",
+    "width": 320,
+    "bytes": 10838,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/un-volto-per-raccontare/17/thumb.avif",
+    "variant": "/optimized/un-volto-per-raccontare/17/image-95420495916d8bedea9d-640.avif",
+    "width": 640,
+    "bytes": 43453,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/un-volto-per-raccontare/17/thumb.avif",
+    "variant": "/optimized/un-volto-per-raccontare/17/image-95420495916d8bedea9d-960.avif",
+    "width": 960,
+    "bytes": 100045,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/un-volto-per-raccontare/17/thumb.avif",
+    "variant": "/optimized/un-volto-per-raccontare/17/image-95420495916d8bedea9d-1600.avif",
+    "width": 1600,
+    "bytes": 255501,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/un-volto-per-raccontare/18/thumb.avif",
+    "variant": "/optimized/un-volto-per-raccontare/18/image-9a6b3203f8a0bd41f7f5-320.avif",
+    "width": 320,
+    "bytes": 6353,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/un-volto-per-raccontare/18/thumb.avif",
+    "variant": "/optimized/un-volto-per-raccontare/18/image-9a6b3203f8a0bd41f7f5-640.avif",
+    "width": 640,
+    "bytes": 14350,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/un-volto-per-raccontare/18/thumb.avif",
+    "variant": "/optimized/un-volto-per-raccontare/18/image-9a6b3203f8a0bd41f7f5-960.avif",
+    "width": 960,
+    "bytes": 24306,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/un-volto-per-raccontare/18/thumb.avif",
+    "variant": "/optimized/un-volto-per-raccontare/18/image-9a6b3203f8a0bd41f7f5-1600.avif",
+    "width": 1600,
+    "bytes": 50660,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/un-volto-per-raccontare/19/thumb.avif",
+    "variant": "/optimized/un-volto-per-raccontare/19/image-ee65c9b22fc044c0cdd6-320.avif",
+    "width": 320,
+    "bytes": 3096,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/un-volto-per-raccontare/19/thumb.avif",
+    "variant": "/optimized/un-volto-per-raccontare/19/image-ee65c9b22fc044c0cdd6-640.avif",
+    "width": 640,
+    "bytes": 7997,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/un-volto-per-raccontare/19/thumb.avif",
+    "variant": "/optimized/un-volto-per-raccontare/19/image-ee65c9b22fc044c0cdd6-960.avif",
+    "width": 960,
+    "bytes": 15422,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/un-volto-per-raccontare/19/thumb.avif",
+    "variant": "/optimized/un-volto-per-raccontare/19/image-ee65c9b22fc044c0cdd6-1600.avif",
+    "width": 1600,
+    "bytes": 46448,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/un-volto-per-raccontare/20/thumb.avif",
+    "variant": "/optimized/un-volto-per-raccontare/20/image-73d2324d0f72753a8556-320.avif",
+    "width": 320,
+    "bytes": 4623,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/un-volto-per-raccontare/20/thumb.avif",
+    "variant": "/optimized/un-volto-per-raccontare/20/image-73d2324d0f72753a8556-640.avif",
+    "width": 640,
+    "bytes": 15673,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/un-volto-per-raccontare/20/thumb.avif",
+    "variant": "/optimized/un-volto-per-raccontare/20/image-73d2324d0f72753a8556-960.avif",
+    "width": 960,
+    "bytes": 30575,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/un-volto-per-raccontare/20/thumb.avif",
+    "variant": "/optimized/un-volto-per-raccontare/20/image-73d2324d0f72753a8556-1600.avif",
+    "width": 1600,
+    "bytes": 71769,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/un-volto-per-raccontare/21/thumb.avif",
+    "variant": "/optimized/un-volto-per-raccontare/21/image-bc135c1d6e926f7f3a86-320.avif",
+    "width": 320,
+    "bytes": 13140,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/un-volto-per-raccontare/21/thumb.avif",
+    "variant": "/optimized/un-volto-per-raccontare/21/image-bc135c1d6e926f7f3a86-640.avif",
+    "width": 640,
+    "bytes": 35205,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/un-volto-per-raccontare/21/thumb.avif",
+    "variant": "/optimized/un-volto-per-raccontare/21/image-bc135c1d6e926f7f3a86-960.avif",
+    "width": 960,
+    "bytes": 68115,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/un-volto-per-raccontare/21/thumb.avif",
+    "variant": "/optimized/un-volto-per-raccontare/21/image-bc135c1d6e926f7f3a86-1600.avif",
+    "width": 1600,
+    "bytes": 163466,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/inside-raw-emotions/cover/thumb.avif",
+    "variant": "/optimized/inside-raw-emotions/cover/image-c3c7c146ba7a87b022aa-320.avif",
+    "width": 320,
+    "bytes": 3269,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/inside-raw-emotions/cover/thumb.avif",
+    "variant": "/optimized/inside-raw-emotions/cover/image-c3c7c146ba7a87b022aa-640.avif",
+    "width": 640,
+    "bytes": 6763,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/inside-raw-emotions/cover/thumb.avif",
+    "variant": "/optimized/inside-raw-emotions/cover/image-c3c7c146ba7a87b022aa-960.avif",
+    "width": 960,
+    "bytes": 11690,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/inside-raw-emotions/cover/thumb.avif",
+    "variant": "/optimized/inside-raw-emotions/cover/image-c3c7c146ba7a87b022aa-1600.avif",
+    "width": 1600,
+    "bytes": 40713,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/inside-raw-emotions/1/thumb.avif",
+    "variant": "/optimized/inside-raw-emotions/1/image-695d506181f7856e3855-320.avif",
+    "width": 320,
+    "bytes": 2768,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/inside-raw-emotions/1/thumb.avif",
+    "variant": "/optimized/inside-raw-emotions/1/image-695d506181f7856e3855-640.avif",
+    "width": 640,
+    "bytes": 6015,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/inside-raw-emotions/1/thumb.avif",
+    "variant": "/optimized/inside-raw-emotions/1/image-695d506181f7856e3855-960.avif",
+    "width": 960,
+    "bytes": 13196,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/inside-raw-emotions/1/thumb.avif",
+    "variant": "/optimized/inside-raw-emotions/1/image-695d506181f7856e3855-1600.avif",
+    "width": 1600,
+    "bytes": 37895,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/inside-raw-emotions/2/thumb.avif",
+    "variant": "/optimized/inside-raw-emotions/2/image-fa5a4bdfa7a98bdb3fe4-320.avif",
+    "width": 320,
+    "bytes": 4184,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/inside-raw-emotions/2/thumb.avif",
+    "variant": "/optimized/inside-raw-emotions/2/image-fa5a4bdfa7a98bdb3fe4-640.avif",
+    "width": 640,
+    "bytes": 10795,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/inside-raw-emotions/2/thumb.avif",
+    "variant": "/optimized/inside-raw-emotions/2/image-fa5a4bdfa7a98bdb3fe4-960.avif",
+    "width": 960,
+    "bytes": 20185,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/inside-raw-emotions/2/thumb.avif",
+    "variant": "/optimized/inside-raw-emotions/2/image-fa5a4bdfa7a98bdb3fe4-1600.avif",
+    "width": 1600,
+    "bytes": 60314,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/inside-raw-emotions/3/thumb.avif",
+    "variant": "/optimized/inside-raw-emotions/3/image-bcaa686868d5288069c5-320.avif",
+    "width": 320,
+    "bytes": 2696,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/inside-raw-emotions/3/thumb.avif",
+    "variant": "/optimized/inside-raw-emotions/3/image-bcaa686868d5288069c5-640.avif",
+    "width": 640,
+    "bytes": 5971,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/inside-raw-emotions/3/thumb.avif",
+    "variant": "/optimized/inside-raw-emotions/3/image-bcaa686868d5288069c5-960.avif",
+    "width": 960,
+    "bytes": 9943,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/inside-raw-emotions/3/thumb.avif",
+    "variant": "/optimized/inside-raw-emotions/3/image-bcaa686868d5288069c5-1600.avif",
+    "width": 1600,
+    "bytes": 19557,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/inside-raw-emotions/4/thumb.avif",
+    "variant": "/optimized/inside-raw-emotions/4/image-0887fe947eb7206b7dc1-320.avif",
+    "width": 320,
+    "bytes": 16458,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/inside-raw-emotions/4/thumb.avif",
+    "variant": "/optimized/inside-raw-emotions/4/image-0887fe947eb7206b7dc1-640.avif",
+    "width": 640,
+    "bytes": 56808,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/inside-raw-emotions/4/thumb.avif",
+    "variant": "/optimized/inside-raw-emotions/4/image-0887fe947eb7206b7dc1-960.avif",
+    "width": 960,
+    "bytes": 130368,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/inside-raw-emotions/4/thumb.avif",
+    "variant": "/optimized/inside-raw-emotions/4/image-0887fe947eb7206b7dc1-1600.avif",
+    "width": 1600,
+    "bytes": 527771,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/inside-raw-emotions/5/thumb.avif",
+    "variant": "/optimized/inside-raw-emotions/5/image-e9db2fba46a31e5ef681-320.avif",
+    "width": 320,
+    "bytes": 5989,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/inside-raw-emotions/5/thumb.avif",
+    "variant": "/optimized/inside-raw-emotions/5/image-e9db2fba46a31e5ef681-640.avif",
+    "width": 640,
+    "bytes": 21932,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/inside-raw-emotions/5/thumb.avif",
+    "variant": "/optimized/inside-raw-emotions/5/image-e9db2fba46a31e5ef681-960.avif",
+    "width": 960,
+    "bytes": 45442,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/inside-raw-emotions/5/thumb.avif",
+    "variant": "/optimized/inside-raw-emotions/5/image-e9db2fba46a31e5ef681-1600.avif",
+    "width": 1600,
+    "bytes": 115871,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/inside-raw-emotions/6/thumb.avif",
+    "variant": "/optimized/inside-raw-emotions/6/image-50a949d60c21ffb27899-320.avif",
+    "width": 320,
+    "bytes": 9091,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/inside-raw-emotions/6/thumb.avif",
+    "variant": "/optimized/inside-raw-emotions/6/image-50a949d60c21ffb27899-640.avif",
+    "width": 640,
+    "bytes": 37980,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/inside-raw-emotions/6/thumb.avif",
+    "variant": "/optimized/inside-raw-emotions/6/image-50a949d60c21ffb27899-960.avif",
+    "width": 960,
+    "bytes": 81828,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/inside-raw-emotions/6/thumb.avif",
+    "variant": "/optimized/inside-raw-emotions/6/image-50a949d60c21ffb27899-1600.avif",
+    "width": 1600,
+    "bytes": 228253,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/inside-raw-emotions/7/thumb.avif",
+    "variant": "/optimized/inside-raw-emotions/7/image-b1b1be5728745ad2eff4-320.avif",
+    "width": 320,
+    "bytes": 2159,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/inside-raw-emotions/7/thumb.avif",
+    "variant": "/optimized/inside-raw-emotions/7/image-b1b1be5728745ad2eff4-640.avif",
+    "width": 640,
+    "bytes": 11747,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/inside-raw-emotions/7/thumb.avif",
+    "variant": "/optimized/inside-raw-emotions/7/image-b1b1be5728745ad2eff4-960.avif",
+    "width": 960,
+    "bytes": 29260,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/inside-raw-emotions/7/thumb.avif",
+    "variant": "/optimized/inside-raw-emotions/7/image-b1b1be5728745ad2eff4-1600.avif",
+    "width": 1600,
+    "bytes": 96274,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/inside-raw-emotions/8/thumb.avif",
+    "variant": "/optimized/inside-raw-emotions/8/image-256fb66890219ba6a62e-320.avif",
+    "width": 320,
+    "bytes": 2649,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/inside-raw-emotions/8/thumb.avif",
+    "variant": "/optimized/inside-raw-emotions/8/image-256fb66890219ba6a62e-640.avif",
+    "width": 640,
+    "bytes": 9594,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/inside-raw-emotions/8/thumb.avif",
+    "variant": "/optimized/inside-raw-emotions/8/image-256fb66890219ba6a62e-960.avif",
+    "width": 960,
+    "bytes": 22805,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/inside-raw-emotions/8/thumb.avif",
+    "variant": "/optimized/inside-raw-emotions/8/image-256fb66890219ba6a62e-1600.avif",
+    "width": 1600,
+    "bytes": 64186,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/inside-raw-emotions/9/thumb.avif",
+    "variant": "/optimized/inside-raw-emotions/9/image-b4706dac1d68d483be1d-320.avif",
+    "width": 320,
+    "bytes": 2623,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/inside-raw-emotions/9/thumb.avif",
+    "variant": "/optimized/inside-raw-emotions/9/image-b4706dac1d68d483be1d-640.avif",
+    "width": 640,
+    "bytes": 6735,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/inside-raw-emotions/9/thumb.avif",
+    "variant": "/optimized/inside-raw-emotions/9/image-b4706dac1d68d483be1d-960.avif",
+    "width": 960,
+    "bytes": 13354,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/inside-raw-emotions/9/thumb.avif",
+    "variant": "/optimized/inside-raw-emotions/9/image-b4706dac1d68d483be1d-1600.avif",
+    "width": 1600,
+    "bytes": 36708,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/inside-raw-emotions/10/thumb.avif",
+    "variant": "/optimized/inside-raw-emotions/10/image-68b78c0838bd631b0871-320.avif",
+    "width": 320,
+    "bytes": 3982,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/inside-raw-emotions/10/thumb.avif",
+    "variant": "/optimized/inside-raw-emotions/10/image-68b78c0838bd631b0871-640.avif",
+    "width": 640,
+    "bytes": 11643,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/inside-raw-emotions/10/thumb.avif",
+    "variant": "/optimized/inside-raw-emotions/10/image-68b78c0838bd631b0871-960.avif",
+    "width": 960,
+    "bytes": 22585,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/inside-raw-emotions/10/thumb.avif",
+    "variant": "/optimized/inside-raw-emotions/10/image-68b78c0838bd631b0871-1600.avif",
+    "width": 1600,
+    "bytes": 75253,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/inside-raw-emotions/11/thumb.avif",
+    "variant": "/optimized/inside-raw-emotions/11/image-d827224d85a8d715786a-320.avif",
+    "width": 320,
+    "bytes": 2751,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/inside-raw-emotions/11/thumb.avif",
+    "variant": "/optimized/inside-raw-emotions/11/image-d827224d85a8d715786a-640.avif",
+    "width": 640,
+    "bytes": 5723,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/inside-raw-emotions/11/thumb.avif",
+    "variant": "/optimized/inside-raw-emotions/11/image-d827224d85a8d715786a-960.avif",
+    "width": 960,
+    "bytes": 9686,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  },
+  {
+    "source": "/optimized/inside-raw-emotions/11/thumb.avif",
+    "variant": "/optimized/inside-raw-emotions/11/image-d827224d85a8d715786a-1600.avif",
+    "width": 1600,
+    "bytes": 20647,
+    "status": 200,
+    "cache": "max-age=31536000, public, max-age=31536000, immutable"
+  }
+]

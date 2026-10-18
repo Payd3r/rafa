@@ -1,59 +1,20 @@
 #!/bin/sh
-set -e
+set -eu
 
-echo "🚀 Inizializzazione frontend container..."
-
-# Salva file dinamici se esistono (preservali durante aggiornamento)
-TEMP_DIR="/tmp/preserve"
-mkdir -p "$TEMP_DIR"
-
-if [ -f "/usr/share/nginx/html/projects.json" ]; then
-    echo "💾 Preservando projects.json..."
-    cp /usr/share/nginx/html/projects.json "$TEMP_DIR/"
-fi
-
-if [ -f "/usr/share/nginx/html/imageMeta.json" ]; then
-    echo "💾 Preservando imageMeta.json..."
-    cp /usr/share/nginx/html/imageMeta.json "$TEMP_DIR/"
-fi
-
-if [ -d "/usr/share/nginx/html/optimized" ]; then
-    echo "💾 Preservando cartella optimized/..."
-    mkdir -p "$TEMP_DIR/optimized"
-    cp -r /usr/share/nginx/html/optimized/* "$TEMP_DIR/optimized/" 2>/dev/null || true
-fi
-
-# Copia sempre il nuovo build (aggiorna JS/CSS/HTML)
-echo "📦 Aggiornamento build..."
-rm -rf /usr/share/nginx/html/*
-cp -r /app/dist/* /usr/share/nginx/html/
-echo "✓ Build aggiornato"
-
-# Ripristina file dinamici preservati
-if [ -f "$TEMP_DIR/projects.json" ]; then
-    echo "♻️  Ripristino projects.json..."
-    cp "$TEMP_DIR/projects.json" /usr/share/nginx/html/
-fi
-
-if [ -f "$TEMP_DIR/imageMeta.json" ]; then
-    echo "♻️  Ripristino imageMeta.json..."
-    cp "$TEMP_DIR/imageMeta.json" /usr/share/nginx/html/
-fi
-
-if [ -d "$TEMP_DIR/optimized" ]; then
-    echo "♻️  Ripristino optimized/..."
-    mkdir -p /usr/share/nginx/html/optimized
-    cp -r "$TEMP_DIR/optimized"/* /usr/share/nginx/html/optimized/ 2>/dev/null || true
-fi
-
-# Cleanup
-rm -rf "$TEMP_DIR"
-
-# Assicurati che le directory esistano
-mkdir -p /usr/share/nginx/html/optimized
-
-echo "✅ Frontend pronto!"
-
-# Avvia nginx
-exec nginx -g "daemon off;"
-
+# Keep CMS data and media in place; only replace application build files.
+PUBLIC_DIR=/usr/share/nginx/html
+mkdir -p "$PUBLIC_DIR"
+find "$PUBLIC_DIR" -mindepth 1 -maxdepth 1 \
+    ! -name optimized ! -name projects.json ! -name imageMeta.json \
+    ! -name masonryLayouts.json -exec rm -rf {} \;
+for asset in /app/dist/*; do
+    name=$(basename "$asset")
+    case "$name" in
+        optimized|projects.json|imageMeta.json|masonryLayouts.json)
+            if [ ! -e "$PUBLIC_DIR/$name" ]; then cp -R "$asset" "$PUBLIC_DIR/"; fi
+            ;;
+        *) cp -R "$asset" "$PUBLIC_DIR/" ;;
+    esac
+done
+mkdir -p "$PUBLIC_DIR/optimized"
+exec nginx -g 'daemon off;'

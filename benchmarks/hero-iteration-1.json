@@ -1,0 +1,44 @@
+[
+  {
+    "run": 0,
+    "cache": "cold",
+    "readyMs": 6492.099999904633,
+    "source": "http://172.19.0.10/optimized/i-put-clean-girls-into-a-coma/3/image-5f360fede303dba386e2-320.avif",
+    "bytes": 242867
+  },
+  {
+    "run": 0,
+    "cache": "warm",
+    "readyMs": 1092.1999998092651,
+    "source": "http://172.19.0.10/optimized/i-put-clean-girls-into-a-coma/3/image-5f360fede303dba386e2-320.avif",
+    "bytes": 600
+  },
+  {
+    "run": 1,
+    "cache": "cold",
+    "readyMs": 6716.699999809265,
+    "source": "http://172.19.0.10/optimized/i-put-clean-girls-into-a-coma/3/image-5f360fede303dba386e2-320.avif",
+    "bytes": 242867
+  },
+  {
+    "run": 1,
+    "cache": "warm",
+    "readyMs": 1013,
+    "source": "http://172.19.0.10/optimized/i-put-clean-girls-into-a-coma/3/image-5f360fede303dba386e2-320.avif",
+    "bytes": 600
+  },
+  {
+    "run": 2,
+    "cache": "cold",
+    "readyMs": 6540.5,
+    "source": "http://172.19.0.10/optimized/i-put-clean-girls-into-a-coma/3/image-5f360fede303dba386e2-320.avif",
+    "bytes": 242867
+  },
+  {
+    "run": 2,
+    "cache": "warm",
+    "readyMs": 1051.8999996185303,
+    "source": "http://172.19.0.10/optimized/i-put-clean-girls-into-a-coma/3/image-5f360fede303dba386e2-320.avif",
+    "bytes": 600
+  }
+]

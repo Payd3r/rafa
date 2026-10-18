@@ -1,93 +1,29 @@
+import { PROJECT_CATEGORIES, categoryLabel, type ProjectCategory } from '../shared/categories'
+import { SmartImage } from '../portfolio/SmartImage'
+import type { Photo } from '../shared/types'
 import { useState, useEffect, useRef, type FormEvent, type ChangeEvent } from 'react'
-import { Header } from '../shared/Header'
-import { Footer } from '../shared/Footer'
 import { resizeImageForPreview, resizeImagesForPreview } from '../shared/utils/imageResize'
-
-interface ImagePreview {
-  file: File
-  preview: string
+interface ImagePreview { file: File; preview: string }
+interface Project { slug: string; title: string; description?: string; dateISO: string; category: ProjectCategory; type: 'photo' | 'video'; hasVideo?: boolean; imageCount: number; instagramUrl?: string }
+const api = (path: string) => `${import.meta.env.VITE_BACKEND_URL || ''}/api/admin${path}`
+async function request(path: string, options?: RequestInit) {
+  const response = await fetch(api(path), options)
+  const data = await response.json()
+  if (!response.ok) throw new Error(data.error || 'Operazione non riuscita')
+  return data
 }
-
-interface Project {
-  slug: string
-  title: string
-  dateISO: string
-  description: string
-  imageCount: number
-  createdAt: string
-  instagramUrl?: string
+function CategoryToggle({ value, onChange, disabled }: { value: string; onChange: (value: ProjectCategory) => void; disabled?: boolean }) {
+  return <div role="group" aria-label="Categoria" className="flex flex-wrap gap-2">{PROJECT_CATEGORIES.map(category => <button type="button" key={category.value} aria-pressed={value === category.value} disabled={disabled} onClick={() => onChange(category.value)} className={`px-4 py-2 border border-charcoal ${value === category.value ? 'bg-black text-white' : 'bg-white text-black'}`}>{category.label}</button>)}</div>
 }
-
-type TabType = 'upload' | 'best-photos' | 'projects'
-
+function Icon({ name }: { name: 'edit' | 'delete' }) {
+  return <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" aria-hidden="true">{name === 'edit' ? <path d="m16 3 5 5-12 12-6 1 1-6L16 3ZM13 6l5 5"/> : <path d="M3 6h18M9 6V3h6v3M5 6l1 15h12l1-15M10 10v7m4-7v7"/>}</svg>
+}
 export default function Admin() {
-  const [activeTab, setActiveTab] = useState<TabType>('upload')
-
-  return (
-    <div className="min-h-screen bg-white dark:bg-black text-black dark:text-white">
-      <Header />
-      
-      <main className="section-y">
-        <div className="max-w-6xl mx-auto px-4">
-          <div className="mb-8">
-            <h1 className="h1-hero text-4xl sm:text-5xl font-bold mb-4">
-              Admin Panel
-            </h1>
-            <p className="text-gray700 dark:text-gray-300">
-              Gestisci i tuoi progetti e le foto migliori
-            </p>
-          </div>
-
-          {/* Tabs Navigation */}
-          <div className="flex border-b border-charcoal dark:border-white mb-8">
-            <button
-              onClick={() => setActiveTab('upload')}
-              className={`px-6 py-3 font-medium transition-colors ${
-                activeTab === 'upload'
-                  ? 'border-b-2 border-charcoal dark:border-white text-charcoal dark:text-white'
-                  : 'text-gray700 dark:text-gray-300 hover:text-charcoal dark:hover:text-white'
-              }`}
-            >
-              Carica Progetto
-            </button>
-            <button
-              onClick={() => setActiveTab('best-photos')}
-              className={`px-6 py-3 font-medium transition-colors ${
-                activeTab === 'best-photos'
-                  ? 'border-b-2 border-charcoal dark:border-white text-charcoal dark:text-white'
-                  : 'text-gray700 dark:text-gray-300 hover:text-charcoal dark:hover:text-white'
-              }`}
-            >
-              Migliori Foto
-            </button>
-            <button
-              onClick={() => setActiveTab('projects')}
-              className={`px-6 py-3 font-medium transition-colors ${
-                activeTab === 'projects'
-                  ? 'border-b-2 border-charcoal dark:border-white text-charcoal dark:text-white'
-                  : 'text-gray700 dark:text-gray-300 hover:text-charcoal dark:hover:text-white'
-              }`}
-            >
-              Gestione Progetti
-            </button>
-          </div>
-
-          {/* Tab Content */}
-          {activeTab === 'upload' && <UploadTab />}
-          {activeTab === 'best-photos' && <BestPhotosTab />}
-          {activeTab === 'projects' && <ProjectsTab />}
-        </div>
-      </main>
-
-      <Footer />
-    </div>
-  )
+  const [tab, setTab] = useState('photo')
+  return <main className="min-h-screen bg-white text-black py-8"><div className="max-w-6xl mx-auto px-4"><h1 className="text-3xl font-bold mb-6">Admin</h1><nav aria-label="Gestione contenuti" className="flex flex-wrap gap-2 border-b border-charcoal mb-8">{[['photo','Carica progetto foto'],['video','Carica progetto video'],['best','Migliori foto'],['projects','Gestione progetti']].map(([value,label]) => <button key={value} onClick={() => setTab(value)} aria-current={tab === value ? 'page' : undefined} className={`px-4 py-3 border-b-2 ${tab === value ? 'border-black font-bold' : 'border-transparent'}`}>{label}</button>)}</nav>{(tab === 'photo' || tab === 'video') && <UploadTab key={tab} type={tab}/ >}{tab === 'best' && <BestPhotosTab/>}{tab === 'projects' && <ProjectsTab/>}</div></main>
 }
-
-// ============================================
-// TAB 1: UPLOAD PROGETTO
-// ============================================
-function UploadTab() {
+function UploadTab({ type }: { type: 'photo' | 'video' }) {
+  const [category, setCategory] = useState<ProjectCategory | ''>('')
   const [title, setTitle] = useState('')
   const [description, setDescription] = useState('')
   const [date, setDate] = useState('')
@@ -108,7 +44,7 @@ function UploadTab() {
 
     const file = files[0]
     const isValid = file.type === 'image/jpeg' || file.type === 'image/jpg' || file.type === 'image/png'
-    
+
     if (!isValid) {
       alert(`File ${file.name} non è un formato valido (usa JPG o PNG)`)
       return
@@ -177,7 +113,7 @@ function UploadTab() {
 
     const file = files[0]
     const isValid = file.type === 'video/mp4' || file.type === 'video/webm' || file.type === 'video/quicktime'
-    
+
     if (!isValid) {
       alert(`File ${file.name} non è un formato valido (usa MP4, WebM o MOV)`)
       return
@@ -195,9 +131,9 @@ function UploadTab() {
     video.src = URL.createObjectURL(file)
     video.muted = true
     video.preload = 'metadata'
-    
+
     video.onloadeddata = () => {
-      video.currentTime = 1
+      video.currentTime = Math.min(1, video.duration / 2)
     }
 
     video.onseeked = () => {
@@ -206,7 +142,7 @@ function UploadTab() {
       canvas.height = video.videoHeight
       const ctx = canvas.getContext('2d')
       ctx?.drawImage(video, 0, 0)
-      
+
       const thumbnailUrl = canvas.toDataURL('image/jpeg', 0.8)
       setVideoThumbnail(thumbnailUrl)
       URL.revokeObjectURL(video.src)
@@ -220,8 +156,8 @@ function UploadTab() {
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault()
-    
-    if (!title || !description || !date) {
+
+    if (!title.trim() || !date || !category) {
       setMessage({ type: 'error', text: 'Compila tutti i campi obbligatori' })
       return
     }
@@ -231,6 +167,9 @@ function UploadTab() {
       return
     }
 
+    if (type === 'video' && !videoFile) {
+      setMessage({ type: 'error', text: 'Carica un video' }); return
+    }
     setUploading(true)
     setProgress(0)
     setMessage(null)
@@ -239,6 +178,8 @@ function UploadTab() {
       const formData = new FormData()
       formData.append('title', title)
       formData.append('description', description)
+      formData.append('category', category)
+      formData.append('type', type)
       formData.append('dateISO', date)
       if (instagramUrl) {
         formData.append('instagramUrl', instagramUrl)
@@ -258,14 +199,14 @@ function UploadTab() {
 
       const response = await new Promise<string>((resolve, reject) => {
         const xhr = new XMLHttpRequest()
-        
+
         xhr.upload.addEventListener('progress', (e) => {
           if (e.lengthComputable) {
             const percentComplete = (e.loaded / e.total) * 100
             setProgress(Math.round(percentComplete))
           }
         })
-        
+
         xhr.addEventListener('load', () => {
           if (xhr.status >= 200 && xhr.status < 300) {
             resolve(xhr.responseText)
@@ -273,11 +214,11 @@ function UploadTab() {
             reject(new Error(`HTTP ${xhr.status}: ${xhr.statusText}`))
           }
         })
-        
+
         xhr.addEventListener('error', () => {
           reject(new Error('Errore di rete durante l\'upload'))
         })
-        
+
                   xhr.open('POST', apiUrl)
           xhr.send(formData)
       })
@@ -288,12 +229,13 @@ function UploadTab() {
         throw new Error(result.error || 'Errore durante l\'upload')
       }
 
-      setMessage({ 
-        type: 'success', 
-        text: `Upload completato! Il progetto "${result.project.title}" sarà disponibile a breve.` 
+      setMessage({
+        type: 'success',
+        text: `Upload completato! Il progetto "${result.project.title}" sarà disponibile a breve.`
       })
 
       // Reset form
+      setCategory('')
       setTitle('')
       setDescription('')
       setDate('')
@@ -307,9 +249,9 @@ function UploadTab() {
       window.scrollTo({ top: 0, behavior: 'smooth' })
 
     } catch (error) {
-      setMessage({ 
-        type: 'error', 
-        text: error instanceof Error ? error.message : 'Errore durante l\'upload' 
+      setMessage({
+        type: 'error',
+        text: error instanceof Error ? error.message : 'Errore durante l\'upload'
       })
       setProgress(0)
     } finally {
@@ -321,9 +263,9 @@ function UploadTab() {
     <div>
       {message && (
         <div className={`mb-6 p-4 rounded-none ${
-          message.type === 'success' 
-            ? 'bg-green-50 dark:bg-green-900/30 border border-green-200 dark:border-green-500 text-green-800 dark:text-green-200' 
-            : 'bg-red-50 dark:bg-red-900/30 border border-red-200 dark:border-red-500 text-red-800 dark:text-red-200'
+          message.type === 'success'
+            ? 'bg-green-50  border border-green-200  text-green-800 '
+            : 'bg-red-50  border border-red-200  text-red-800 '
         }`}>
           {message.text}
         </div>
@@ -340,34 +282,23 @@ function UploadTab() {
             id="title"
             value={title}
             onChange={(e) => setTitle(e.target.value)}
-            className="w-full px-4 py-2 border border-charcoal dark:border-white bg-white dark:bg-black text-black dark:text-white rounded-none focus:outline focus:outline-1 focus:outline-charcoal dark:focus:outline-white"
+            className="w-full px-4 py-2 border border-charcoal  bg-white  text-black  rounded-none focus:outline focus:outline-1 focus:outline-charcoal "
             placeholder="Es: Ritratti Urbani"
             required
             disabled={uploading}
           />
         </div>
 
-        {/* Descrizione */}
         <div>
-          <label htmlFor="description" className="block text-sm font-medium mb-2">
-            Descrizione *
-          </label>
-          <textarea
-            id="description"
-            value={description}
-            onChange={(e) => setDescription(e.target.value)}
-            rows={4}
-            className="w-full px-4 py-2 border border-charcoal dark:border-white bg-white dark:bg-black text-black dark:text-white rounded-none focus:outline focus:outline-1 focus:outline-charcoal dark:focus:outline-white"
-            placeholder="Descrivi il progetto fotografico..."
-            required
-            disabled={uploading}
-          />
+          <label htmlFor="category" className="block text-sm font-medium mb-2">Categoria *</label>
+          <CategoryToggle value={category} onChange={setCategory} disabled={uploading} />
         </div>
 
+        <label className="block">Descrizione del progetto<textarea maxLength={5000} value={description} onChange={e => setDescription(e.target.value)} disabled={uploading} rows={5} className="block border border-black p-2 w-full" placeholder="Descrivi il servizio, il contesto, la località e il tuo ruolo. Usa solo informazioni reali."/></label>
         {/* Data */}
-        <div 
+        <div
           onClick={() => !uploading && dateInputRef.current?.showPicker()}
-          className="cursor-pointer border-2 border-dashed border-gray-300 dark:border-white p-4 rounded-none hover:border-charcoal dark:hover:border-white transition-colors"
+          className="cursor-pointer border-2 border-dashed border-gray-300  p-4 rounded-none hover:border-charcoal  transition-colors"
         >
           <label htmlFor="date" className="block text-sm font-medium mb-2 cursor-pointer">
             Data Progetto *
@@ -382,7 +313,7 @@ function UploadTab() {
             required
             disabled={uploading}
           />
-          <p className="text-xs text-gray600 dark:text-gray-400 mt-2">
+          <p className="text-xs text-gray600  mt-2">
             Clicca ovunque per aprire il calendario
           </p>
         </div>
@@ -397,7 +328,7 @@ function UploadTab() {
             id="instagramUrl"
             value={instagramUrl}
             onChange={(e) => setInstagramUrl(e.target.value)}
-            className="w-full px-4 py-2 border border-charcoal dark:border-white bg-white dark:bg-black text-black dark:text-white rounded-none focus:outline focus:outline-1 focus:outline-charcoal dark:focus:outline-white"
+            className="w-full px-4 py-2 border border-charcoal  bg-white  text-black  rounded-none focus:outline focus:outline-1 focus:outline-charcoal "
             placeholder="https://www.instagram.com/p/..."
             disabled={uploading}
           />
@@ -408,9 +339,9 @@ function UploadTab() {
           <label className="block text-sm font-medium mb-2">
             Immagine Copertina * (1 immagine, JPG/PNG, max 50MB)
           </label>
-          
+
           {!coverImage ? (
-            <div className="border-2 border-dashed border-gray-300 dark:border-white rounded-none p-8 text-center hover:border-charcoal dark:hover:border-white transition-colors">
+            <div className="border-2 border-dashed border-gray-300  rounded-none p-8 text-center hover:border-charcoal  transition-colors">
               <input
                 type="file"
                 id="cover"
@@ -419,23 +350,23 @@ function UploadTab() {
                 className="hidden"
                 disabled={uploading || isProcessingImages}
               />
-              <label 
-                htmlFor="cover" 
+              <label
+                htmlFor="cover"
                 className="cursor-pointer block"
               >
                 <div className="text-4xl mb-2">🖼️</div>
-                <p className="text-gray700 dark:text-gray-300 mb-2">
+                <p className="text-gray700  mb-2">
                   Clicca per selezionare l'immagine di copertina
                 </p>
-                <p className="text-sm text-gray600 dark:text-gray-400">
+                <p className="text-sm text-gray600 ">
                   Questa sarà l'immagine principale del progetto
                 </p>
               </label>
             </div>
           ) : (
             <div className="relative">
-              <img 
-                src={coverImage.preview} 
+              <img
+                src={coverImage.preview}
                 alt="Cover preview"
                 className="w-full max-h-64 object-cover"
               />
@@ -447,7 +378,7 @@ function UploadTab() {
               >
                 Rimuovi
               </button>
-              <p className="text-sm text-gray700 dark:text-gray-300 mt-2">
+              <p className="text-sm text-gray700  mt-2">
                 📸 {coverImage.file.name}
               </p>
             </div>
@@ -455,13 +386,13 @@ function UploadTab() {
         </div>
 
         {/* Upload Video */}
-        <div>
+        {type === 'video' && <div>
           <label className="block text-sm font-medium mb-2">
-            Video Progetto (opzionale, MP4/WebM/MOV, max 1GB)
+            Video Progetto * ( MP4/WebM/MOV, max 1GB)
           </label>
-          
+
           {!videoFile ? (
-            <div className="border-2 border-dashed border-gray-300 dark:border-white rounded-none p-8 text-center hover:border-charcoal dark:hover:border-white transition-colors">
+            <div className="border-2 border-dashed border-gray-300  rounded-none p-8 text-center hover:border-charcoal  transition-colors">
               <input
                 type="file"
                 id="video"
@@ -470,15 +401,15 @@ function UploadTab() {
                 className="hidden"
                 disabled={uploading}
               />
-              <label 
-                htmlFor="video" 
+              <label
+                htmlFor="video"
                 className="cursor-pointer block"
               >
                 <div className="text-4xl mb-2">🎬</div>
-                <p className="text-gray700 dark:text-gray-300 mb-2">
+                <p className="text-gray700  mb-2">
                   Clicca per selezionare un video
                 </p>
-                <p className="text-sm text-gray600 dark:text-gray-400">
+                <p className="text-sm text-gray600 ">
                   Il video sarà mostrato nella pagina del progetto
                 </p>
               </label>
@@ -486,8 +417,8 @@ function UploadTab() {
           ) : (
             <div className="relative">
               {videoThumbnail && (
-                <img 
-                  src={videoThumbnail} 
+                <img
+                  src={videoThumbnail}
                   alt="Video thumbnail"
                   className="w-full max-h-64 object-cover"
                 />
@@ -500,25 +431,25 @@ function UploadTab() {
               >
                 Rimuovi
               </button>
-              <div className="bg-gray-100 dark:bg-gray-800 p-3 mt-2">
-                <p className="text-sm text-gray700 dark:text-gray-300">
+              <div className="bg-gray-100  p-3 mt-2">
+                <p className="text-sm text-gray700 ">
                   🎬 {videoFile.name}
                 </p>
-                <p className="text-xs text-gray600 dark:text-gray-400 mt-1">
+                <p className="text-xs text-gray600  mt-1">
                   {(videoFile.size / (1024 * 1024)).toFixed(2)} MB
                 </p>
               </div>
             </div>
           )}
-        </div>
+        </div>}
 
         {/* Upload Galleria */}
-        <div>
+        {type === 'photo' && <div>
           <label className="block text-sm font-medium mb-2">
             Galleria Immagini (opzionale, max 30, JPG/PNG, max 50MB ciascuna)
           </label>
-          
-          <div className="border-2 border-dashed border-gray-300 dark:border-white rounded-none p-8 text-center hover:border-charcoal dark:hover:border-white transition-colors">
+
+          <div className="border-2 border-dashed border-gray-300  rounded-none p-8 text-center hover:border-charcoal  transition-colors">
             <input
               type="file"
               id="images"
@@ -528,15 +459,15 @@ function UploadTab() {
               className="hidden"
               disabled={uploading || isProcessingImages}
             />
-            <label 
-              htmlFor="images" 
+            <label
+              htmlFor="images"
               className="cursor-pointer block"
             >
               <div className="text-4xl mb-2">📸</div>
-              <p className="text-gray700 dark:text-gray-300 mb-2">
+              <p className="text-gray700  mb-2">
                 Clicca per aggiungere immagini alla galleria
               </p>
-              <p className="text-sm text-gray600 dark:text-gray-400">
+              <p className="text-sm text-gray600 ">
                 oppure trascina qui i file
               </p>
             </label>
@@ -551,14 +482,14 @@ function UploadTab() {
 
           {images.length > 0 && (
             <div className="mt-4">
-              <p className="text-sm text-gray700 dark:text-gray-300 mb-3">
+              <p className="text-sm text-gray700  mb-3">
                 {images.length} {images.length === 1 ? 'immagine' : 'immagini'} nella galleria
               </p>
               <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
                 {images.map((img, index) => (
                   <div key={index} className="relative group">
-                    <img 
-                      src={img.preview} 
+                    <img
+                      src={img.preview}
                       alt={`Gallery ${index + 1}`}
                       className="w-full h-32 object-cover rounded-lg"
                     />
@@ -570,7 +501,7 @@ function UploadTab() {
                     >
                       ×
                     </button>
-                    <p className="text-xs text-gray600 dark:text-gray-400 mt-1 truncate">
+                    <p className="text-xs text-gray600  mt-1 truncate">
                       {img.file.name}
                     </p>
                   </div>
@@ -578,22 +509,22 @@ function UploadTab() {
               </div>
             </div>
           )}
-        </div>
+        </div>}
 
         {/* Progress Bar */}
         {uploading && (
           <div className="space-y-2">
-            <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-3">
-              <div 
-                className="bg-charcoal dark:bg-white h-3 rounded-full transition-all duration-300"
+            <div className="w-full bg-gray-200  rounded-full h-3">
+              <div
+                className="bg-charcoal  h-3 rounded-full transition-all duration-300"
                 style={{ width: `${progress}%` }}
               />
             </div>
             <div className="flex justify-between text-sm">
-              <p className="text-gray700 dark:text-gray-300">
+              <p className="text-gray700 ">
                 {progress < 100 ? 'Caricamento...' : 'Completato!'}
               </p>
-              <p className="text-gray600 dark:text-gray-400 font-mono">
+              <p className="text-gray600  font-mono">
                 {progress}%
               </p>
             </div>
@@ -604,19 +535,20 @@ function UploadTab() {
         <div className="flex gap-4">
           <button
             type="submit"
-            disabled={uploading}
+            disabled={uploading || isProcessingImages}
             className="btn btn-animated flex-1 disabled:opacity-50 disabled:cursor-not-allowed hover:text-white"
           >
             <span className="relative z-10">{uploading ? 'Caricamento...' : 'Crea Progetto'}</span>
           </button>
-          
+
           {!uploading && (
             <button
               type="button"
               onClick={() => {
+                setCategory('')
                 setTitle('')
-                setDescription('')
-                setDate('')
+      setDescription('')
+                          setDate('')
                 setInstagramUrl('')
                 setCoverImage(null)
                 setImages([])
@@ -635,555 +567,54 @@ function UploadTab() {
   )
 }
 
-// ============================================
-// TAB 2: MIGLIORI FOTO
-// ============================================
+
+type Meta = Record<string, Partial<Photo>>
 function BestPhotosTab() {
-  const [imageMeta, setImageMeta] = useState<Record<string, { ratio: number; placeholder: string; isBest?: boolean }>>({})
+  const [meta, setMeta] = useState<Meta>({})
+  const [saved, setSaved] = useState('')
   const [loading, setLoading] = useState(true)
-  const [updating, setUpdating] = useState<string | null>(null)
-
-  useEffect(() => {
-    fetchImageMeta()
-  }, [])
-
-  const fetchImageMeta = async () => {
-    try {
-      setLoading(true)
-              const backendUrl = import.meta.env.VITE_BACKEND_URL || ''
-        const apiUrl = backendUrl ? `${backendUrl}/api/admin/imagemeta` : '/api/admin/imagemeta'
-        
-        const response = await fetch(apiUrl)
-
-        if (!response.ok) {
-          throw new Error(`HTTP ${response.status}`)
-        }
-
-      const data = await response.json()
-      setImageMeta(data.imageMeta)
-    } catch (error) {
-      console.error('Errore caricamento imageMeta:', error)
-      alert('Errore nel caricamento delle foto')
-    } finally {
-      setLoading(false)
-    }
+  const [saving, setSaving] = useState(false)
+  const [error, setError] = useState('')
+  useEffect(() => { request('/imagemeta').then(data => { setMeta(data.imageMeta); setSaved(JSON.stringify(data.imageMeta)) }).catch(e => setError(e.message)).finally(() => setLoading(false)) }, [])
+  const selected = Object.keys(meta).filter(path => meta[path].isBest).sort((a,b) => (meta[a].bestOrder ?? Infinity) - (meta[b].bestOrder ?? Infinity))
+  const dirty = saved !== JSON.stringify(meta)
+  const move = (path: string, position: number) => {
+    const order = selected.filter(item => item !== path)
+    order.splice(Math.max(0, Math.min(order.length, position - 1)), 0, path)
+    setMeta(prev => Object.fromEntries(Object.entries(prev).map(([key,value]) => [key, {...value, bestOrder: order.includes(key) ? order.indexOf(key) + 1 : null}])))
   }
-
-  const toggleBest = async (photoPath: string) => {
-    const currentValue = imageMeta[photoPath]?.isBest || false
-    const newValue = !currentValue
-
-    // Optimistic update
-    setImageMeta(prev => ({
-      ...prev,
-      [photoPath]: {
-        ...prev[photoPath],
-        isBest: newValue
-      }
-    }))
-
-    setUpdating(photoPath)
-
-    try {
-      const backendUrl = import.meta.env.VITE_BACKEND_URL || ''
-      const apiUrl = backendUrl ? `${backendUrl}/api/admin/photos` : '/api/admin/photos'
-      
-      const response = await fetch(apiUrl, {
-        method: 'PATCH',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          photoPath,
-          isBest: newValue
-        })
-      })
-
-      if (!response.ok) {
-        const errorData = await response.json().catch(() => ({ error: 'Unknown error' }))
-        throw new Error(errorData.error || 'Errore aggiornamento')
-      }
-
-      await response.json()
-    } catch (error) {
-      console.error('Errore toggle best:', error)
-      // Rollback su errore
-      setImageMeta(prev => ({
-        ...prev,
-        [photoPath]: {
-          ...prev[photoPath],
-          isBest: currentValue
-        }
-      }))
-      alert('Errore nell\'aggiornamento della foto')
-    } finally {
-      setUpdating(null)
-    }
+  const save = async () => {
+    setSaving(true); setError('')
+    try { await request('/photos/selection', { method: 'PATCH', headers: {'Content-Type':'application/json'}, body: JSON.stringify({ paths: selected }) }); setSaved(JSON.stringify(meta)) }
+    catch(e) { setError(e instanceof Error ? e.message : 'Errore salvataggio') }
+    finally { setSaving(false) }
   }
-
-  const photoEntries = Object.entries(imageMeta)
-  const bestCount = photoEntries.filter(([, meta]) => meta.isBest).length
-
-  if (loading) {
-    return (
-      <div className="text-center py-12">
-        <div className="inline-block w-8 h-8 border-2 border-charcoal dark:border-white border-t-transparent rounded-full animate-spin" />
-        <p className="mt-4 text-gray700 dark:text-gray-300">Caricamento foto...</p>
-      </div>
-    )
-  }
-
-  if (photoEntries.length === 0) {
-    return (
-      <div className="text-center py-12 text-gray700 dark:text-gray-300">
-        Nessuna foto disponibile. Carica prima alcuni progetti.
-      </div>
-    )
-  }
-
-  return (
-    <div>
-      <div className="mb-6 p-4 bg-gray-100 dark:bg-gray-800 rounded-none">
-        <p className="text-sm text-gray700 dark:text-gray-300">
-          <strong>{bestCount}</strong> foto selezionate come "migliori scatti" su <strong>{photoEntries.length}</strong> totali
-        </p>
-        <p className="text-xs text-gray600 dark:text-gray-400 mt-1">
-          Clicca su una foto per aggiungerla o rimuoverla dai migliori scatti
-        </p>
-      </div>
-
-      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
-        {photoEntries.map(([photoPath, meta]) => (
-          <button
-            key={photoPath}
-            onClick={() => toggleBest(photoPath)}
-            disabled={updating === photoPath}
-            className="relative group cursor-pointer disabled:opacity-50"
-          >
-            <img
-              src={photoPath}
-              alt={photoPath}
-              className={`w-full h-32 object-cover transition-all ${
-                meta.isBest
-                  ? 'ring-4 ring-green-500 dark:ring-green-400'
-                  : 'ring-1 ring-gray-300 dark:ring-gray-600 hover:ring-2 hover:ring-charcoal dark:hover:ring-white'
-              }`}
-            />
-            {meta.isBest && (
-              <div className="absolute top-2 right-2 bg-green-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold">
-                ✓
-              </div>
-            )}
-            {updating === photoPath && (
-              <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center">
-                <div className="w-6 h-6 border-2 border-white border-t-transparent rounded-full animate-spin" />
-              </div>
-            )}
-            <p className="text-xs text-gray600 dark:text-gray-400 mt-1 truncate">
-              {photoPath.split('/').pop()}
-            </p>
-          </button>
-        ))}
-      </div>
-    </div>
-  )
+  if (loading) return <p role="status">Caricamento foto...</p>
+  return <div className="pb-28"><p className="mb-6">{selected.length} foto per il carosello iniziale. Seleziona gli scatti e imposta il loro ordine.</p>{error && <p role="alert" className="text-red-700 mb-4">{error}</p>}<div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">{Object.entries(meta).map(([path,photo]) => <div key={path}><button type="button" disabled={saving} aria-pressed={!!photo.isBest} aria-label={`Seleziona ${path}`} onClick={() => setMeta(prev => ({...prev,[path]: {...prev[path], isBest: !prev[path].isBest, bestOrder: prev[path].isBest ? null : selected.length + 1}}))} className={`relative block w-full h-32 ${photo.isBest ? 'ring-4 ring-black' : 'ring-1 ring-gray-300'}`}><SmartImage photo={{...photo,id:path,src:path,originalUrl:path,alt:path}} sizes="(max-width:640px) 45vw, 20vw"/>{photo.isBest && <span className="absolute top-2 right-2 bg-black text-white px-2">{selected.indexOf(path)+1}</span>}</button>{photo.isBest && <label className="flex items-center gap-2 mt-3 text-sm">Ordine<input aria-label={`Ordine ${path}`} type="number" min="1" max={selected.length} value={selected.indexOf(path)+1} disabled={saving} onChange={e => move(path, Number(e.target.value) || 1)} className="border border-black p-1 w-16"/></label>}</div>)}</div>{dirty && <div className="fixed bottom-0 inset-x-0 z-50 bg-white border-t border-black p-4 shadow-lg flex items-center justify-center gap-4"><span>Modifiche da salvare</span><button disabled={saving} onClick={save} className="bg-black text-white px-6 py-3">{saving ? 'Salvataggio...' : 'Salva'}</button><button disabled={saving} onClick={() => setMeta(JSON.parse(saved))}>Annulla</button></div>}</div>
 }
-
-// ============================================
-// TAB 3: GESTIONE PROGETTI
-// ============================================
 function ProjectsTab() {
   const [projects, setProjects] = useState<Project[]>([])
   const [loading, setLoading] = useState(true)
-  const [deleting, setDeleting] = useState<string | null>(null)
-  const [editing, setEditing] = useState<string | null>(null)
-  const [editDate, setEditDate] = useState('')
-  const [editingDescription, setEditingDescription] = useState<string | null>(null)
-  const [editDescription, setEditDescription] = useState('')
-  const [editingInstagram, setEditingInstagram] = useState<string | null>(null)
-  const [editInstagramUrl, setEditInstagramUrl] = useState('')
-  const [updating, setUpdating] = useState<string | null>(null)
-
-  useEffect(() => {
-    fetchProjects()
-  }, [])
-
-  const fetchProjects = async () => {
+  const [draft, setDraft] = useState<Project | null>(null)
+  const [busy, setBusy] = useState(false)
+  const [error, setError] = useState('')
+  useEffect(() => { request('/projects').then(data => setProjects(data.projects)).catch(e => setError(e.message)).finally(() => setLoading(false)) }, [])
+  const save = async (event: FormEvent) => {
+    event.preventDefault(); if (!draft) return
+    setBusy(true); setError('')
     try {
-      setLoading(true)
-              const backendUrl = import.meta.env.VITE_BACKEND_URL || ''
-        const apiUrl = backendUrl ? `${backendUrl}/api/admin/projects` : '/api/admin/projects'
-        
-        const response = await fetch(apiUrl)
-
-        if (!response.ok) {
-          throw new Error(`HTTP ${response.status}`)
-        }
-
-      const data = await response.json()
-      setProjects(data.projects)
-    } catch (error) {
-      console.error('Errore caricamento progetti:', error)
-      alert('Errore nel caricamento dei progetti')
-    } finally {
-      setLoading(false)
-    }
+      const form = event.currentTarget as HTMLFormElement
+      const body = new FormData(form)
+      body.set('description',draft.description || ''); body.set('title',draft.title); body.set('dateISO',draft.dateISO); body.set('category',draft.category); body.set('type',draft.type); body.set('instagramUrl',draft.instagramUrl || '')
+      const data = await request(`/projects/${draft.slug}`, {method:'PATCH',body})
+      setProjects(prev => prev.map(project => project.slug === draft.slug ? data.project : project)); setDraft(null)
+    } catch(e) {setError(e instanceof Error ? e.message : 'Errore salvataggio')} finally {setBusy(false)}
   }
-
-  const updateDate = async (slug: string) => {
-    if (!editDate) {
-      alert('Seleziona una data valida')
-      return
-    }
-
-    setUpdating(slug)
-
-    try {
-      const backendUrl = import.meta.env.VITE_BACKEND_URL || ''
-      const apiUrl = backendUrl ? `${backendUrl}/api/admin/projects/${slug}` : `/api/admin/projects/${slug}`
-      
-              const response = await fetch(apiUrl, {
-          method: 'PATCH',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({ dateISO: editDate })
-        })
-
-        if (!response.ok) {
-          throw new Error('Errore aggiornamento')
-        }
-
-        alert('Data aggiornata con successo!')
-      setEditing(null)
-      setEditDate('')
-      
-      // Ricarica lista
-      await fetchProjects()
-    } catch (error) {
-      console.error('Errore aggiornamento data:', error)
-      alert('Errore nell\'aggiornamento della data')
-    } finally {
-      setUpdating(null)
-    }
+  const remove = async (project: Project) => {
+    if (!window.confirm(`Eliminare il progetto “${project.title}” e tutti i suoi file?`)) return
+    setBusy(true); setError('')
+    try {await request(`/projects/${project.slug}`,{method:'DELETE'}); setProjects(prev => prev.filter(p => p.slug !== project.slug)); if (draft?.slug === project.slug) setDraft(null)} catch(e) {setError(e instanceof Error ? e.message : 'Errore eliminazione')} finally {setBusy(false)}
   }
-
-  const updateDescription = async (slug: string) => {
-    if (!editDescription.trim()) {
-      alert('La descrizione non può essere vuota')
-      return
-    }
-
-    setUpdating(slug)
-
-    try {
-      const backendUrl = import.meta.env.VITE_BACKEND_URL || ''
-      const apiUrl = backendUrl ? `${backendUrl}/api/admin/projects/${slug}` : `/api/admin/projects/${slug}`
-      
-              const response = await fetch(apiUrl, {
-          method: 'PATCH',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({ description: editDescription })
-        })
-
-        if (!response.ok) {
-          throw new Error('Errore aggiornamento')
-        }
-
-        alert('Descrizione aggiornata con successo!')
-      setEditingDescription(null)
-      setEditDescription('')
-      
-      // Ricarica lista
-      await fetchProjects()
-    } catch (error) {
-      console.error('Errore aggiornamento descrizione:', error)
-      alert('Errore nell\'aggiornamento della descrizione')
-    } finally {
-      setUpdating(null)
-    }
-  }
-
-  const updateInstagramUrl = async (slug: string) => {
-    setUpdating(slug)
-
-    try {
-      const backendUrl = import.meta.env.VITE_BACKEND_URL || ''
-      const apiUrl = backendUrl ? `${backendUrl}/api/admin/projects/${slug}` : `/api/admin/projects/${slug}`
-      
-              const response = await fetch(apiUrl, {
-          method: 'PATCH',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({ instagramUrl: editInstagramUrl || null })
-        })
-
-        if (!response.ok) {
-          throw new Error('Errore aggiornamento')
-        }
-
-        alert('Link Instagram aggiornato con successo!')
-      setEditingInstagram(null)
-      setEditInstagramUrl('')
-      
-      // Ricarica lista
-      await fetchProjects()
-    } catch (error) {
-      console.error('Errore aggiornamento link Instagram:', error)
-      alert('Errore nell\'aggiornamento del link Instagram')
-    } finally {
-      setUpdating(null)
-    }
-  }
-
-  const deleteProject = async (slug: string, title: string) => {
-    const confirmed = window.confirm(
-      `Sei sicuro di voler eliminare il progetto "${title}"?\n\nQuesta azione è IRREVERSIBILE e cancellerà:\n- Tutte le foto del progetto\n- Il video (se presente)\n- Tutti i metadati\n\nContinuare?`
-    )
-
-    if (!confirmed) return
-
-    setDeleting(slug)
-
-    try {
-      const backendUrl = import.meta.env.VITE_BACKEND_URL || ''
-      const apiUrl = backendUrl ? `${backendUrl}/api/admin/projects/${slug}` : `/api/admin/projects/${slug}`
-      
-      const response = await fetch(apiUrl, {
-                  method: 'DELETE'
-        })
-
-      if (!response.ok) {
-        throw new Error('Errore eliminazione')
-      }
-
-      const data = await response.json()
-      alert(`Progetto "${title}" eliminato con successo!\n\nProgetti rimanenti: ${data.remainingProjects}`)
-      
-      // Ricarica lista
-      await fetchProjects()
-    } catch (error) {
-      console.error('Errore eliminazione progetto:', error)
-      alert('Errore nell\'eliminazione del progetto')
-    } finally {
-      setDeleting(null)
-    }
-  }
-
-  if (loading) {
-    return (
-      <div className="text-center py-12">
-        <div className="inline-block w-8 h-8 border-2 border-charcoal dark:border-white border-t-transparent rounded-full animate-spin" />
-        <p className="mt-4 text-gray700 dark:text-gray-300">Caricamento progetti...</p>
-      </div>
-    )
-  }
-
-  if (projects.length === 0) {
-    return (
-      <div className="text-center py-12 text-gray700 dark:text-gray-300">
-        Nessun progetto disponibile.
-      </div>
-    )
-  }
-
-  return (
-    <div>
-      <div className="mb-6 p-4 bg-gray-100 dark:bg-gray-800 rounded-none">
-        <p className="text-sm text-gray700 dark:text-gray-300">
-          <strong>{projects.length}</strong> {projects.length === 1 ? 'progetto' : 'progetti'} disponibili
-        </p>
-      </div>
-
-      <div className="space-y-4">
-        {projects.map((project) => (
-          <div
-            key={project.slug}
-            className="flex items-center justify-between p-4 border border-charcoal dark:border-white rounded-none"
-          >
-            <div className="flex-1">
-              <h3 className="font-bold text-lg">{project.title}</h3>
-              
-              {editing === project.slug ? (
-                <div className="mt-2 flex items-center gap-2">
-                  <input
-                    type="date"
-                    value={editDate}
-                    onChange={(e) => setEditDate(e.target.value)}
-                    className="px-3 py-1 border border-charcoal dark:border-white bg-white dark:bg-black text-black dark:text-white rounded-none"
-                    disabled={updating === project.slug}
-                  />
-                  <button
-                    onClick={() => updateDate(project.slug)}
-                    disabled={updating === project.slug}
-                    className="px-3 py-1 bg-green-500 text-white hover:bg-green-600 transition-colors disabled:opacity-50 disabled:cursor-not-allowed text-sm"
-                  >
-                    {updating === project.slug ? (
-                      <span className="flex items-center gap-1">
-                        <div className="w-3 h-3 border-2 border-white border-t-transparent rounded-full animate-spin" />
-                        Salvataggio...
-                      </span>
-                    ) : (
-                      'Salva'
-                    )}
-                  </button>
-                  <button
-                    onClick={() => {
-                      setEditing(null)
-                      setEditDate('')
-                    }}
-                    disabled={updating === project.slug}
-                    className="px-3 py-1 bg-gray-500 text-white hover:bg-gray-600 transition-colors disabled:opacity-50 text-sm"
-                  >
-                    Annulla
-                  </button>
-                </div>
-              ) : (
-                <p className="text-sm text-gray700 dark:text-gray-300 mt-1">
-                  {new Date(project.dateISO).toLocaleDateString('it-IT')} • {project.imageCount} foto
-                </p>
-              )}
-              
-              {editingDescription === project.slug ? (
-                <div className="mt-2 space-y-2">
-                  <textarea
-                    value={editDescription}
-                    onChange={(e) => setEditDescription(e.target.value)}
-                    rows={4}
-                    className="w-full px-3 py-1 border border-charcoal dark:border-white bg-white dark:bg-black text-black dark:text-white rounded-none"
-                    disabled={updating === project.slug}
-                  />
-                  <div className="flex items-center gap-2">
-                    <button
-                      onClick={() => updateDescription(project.slug)}
-                      disabled={updating === project.slug}
-                      className="px-3 py-1 bg-green-500 text-white hover:bg-green-600 transition-colors disabled:opacity-50 disabled:cursor-not-allowed text-sm"
-                    >
-                      {updating === project.slug ? (
-                        <span className="flex items-center gap-1">
-                          <div className="w-3 h-3 border-2 border-white border-t-transparent rounded-full animate-spin" />
-                          Salvataggio...
-                        </span>
-                      ) : (
-                        'Salva'
-                      )}
-                    </button>
-                    <button
-                      onClick={() => {
-                        setEditingDescription(null)
-                        setEditDescription('')
-                      }}
-                      disabled={updating === project.slug}
-                      className="px-3 py-1 bg-gray-500 text-white hover:bg-gray-600 transition-colors disabled:opacity-50 text-sm"
-                    >
-                      Annulla
-                    </button>
-                  </div>
-                </div>
-              ) : (
-                <p className="text-sm text-gray700 dark:text-gray-300 mt-2 max-w-2xl">
-                  {project.description}
-                </p>
-              )}
-              
-              {editingInstagram === project.slug ? (
-                <div className="mt-2 flex items-center gap-2">
-                  <input
-                    type="url"
-                    value={editInstagramUrl}
-                    onChange={(e) => setEditInstagramUrl(e.target.value)}
-                    className="flex-1 px-3 py-1 border border-charcoal dark:border-white bg-white dark:bg-black text-black dark:text-white rounded-none"
-                    placeholder="https://www.instagram.com/p/..."
-                    disabled={updating === project.slug}
-                  />
-                  <button
-                    onClick={() => updateInstagramUrl(project.slug)}
-                    disabled={updating === project.slug}
-                    className="px-3 py-1 bg-green-500 text-white hover:bg-green-600 transition-colors disabled:opacity-50 disabled:cursor-not-allowed text-sm"
-                  >
-                    {updating === project.slug ? (
-                      <span className="flex items-center gap-1">
-                        <div className="w-3 h-3 border-2 border-white border-t-transparent rounded-full animate-spin" />
-                        Salvataggio...
-                      </span>
-                    ) : (
-                      'Salva'
-                    )}
-                  </button>
-                  <button
-                    onClick={() => {
-                      setEditingInstagram(null)
-                      setEditInstagramUrl('')
-                    }}
-                    disabled={updating === project.slug}
-                    className="px-3 py-1 bg-gray-500 text-white hover:bg-gray-600 transition-colors disabled:opacity-50 text-sm"
-                  >
-                    Annulla
-                  </button>
-                </div>
-              ) : null}
-              
-              <p className="text-xs text-gray600 dark:text-gray-400 mt-1">
-                Slug: {project.slug}
-              </p>
-            </div>
-            
-            <div className="flex gap-2 ml-4 flex-wrap">
-              {editing !== project.slug && editingDescription !== project.slug && editingInstagram !== project.slug && (
-                <>
-                  <button
-                    onClick={() => {
-                      setEditing(project.slug)
-                      setEditDate(project.dateISO)
-                    }}
-                    disabled={deleting === project.slug}
-                    className="px-4 py-2 bg-blue-500 text-white hover:bg-blue-600 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
-                  >
-                    Modifica Data
-                  </button>
-                  <button
-                    onClick={() => {
-                      setEditingDescription(project.slug)
-                      setEditDescription(project.description)
-                    }}
-                    disabled={deleting === project.slug}
-                    className="px-4 py-2 bg-blue-500 text-white hover:bg-blue-600 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
-                  >
-                    Modifica Descrizione
-                  </button>
-                  <button
-                    onClick={() => {
-                      setEditingInstagram(project.slug)
-                      setEditInstagramUrl(project.instagramUrl || '')
-                    }}
-                    disabled={deleting === project.slug}
-                    className="px-4 py-2 bg-blue-500 text-white hover:bg-blue-600 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
-                  >
-                    Modifica Link IG
-                  </button>
-                  <button
-                    onClick={() => deleteProject(project.slug, project.title)}
-                    disabled={deleting === project.slug}
-                    className="px-4 py-2 bg-red-500 text-white hover:bg-red-600 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
-                  >
-                    {deleting === project.slug ? (
-                      <span className="flex items-center gap-2">
-                        <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
-                        Eliminazione...
-                      </span>
-                    ) : (
-                      'Elimina'
-                    )}
-                  </button>
-                </>
-              )}
-            </div>
-          </div>
-        ))}
-      </div>
-    </div>
-  )
+  if (loading) return <p role="status">Caricamento progetti...</p>
+  return <div>{error && <p role="alert" className="text-red-700 mb-4">{error}</p>}<p className="mb-6">{projects.length} progetti disponibili</p><div className="space-y-4">{projects.map(project => <article key={project.slug} className="border border-charcoal p-4"><div className="flex justify-between items-center gap-4"><div><h2 className="text-lg font-bold">{project.title}</h2><p className="text-sm mt-1">{categoryLabel(project.category)} · {project.type === 'video' || project.hasVideo ? 'Video' : 'Foto'} · {project.dateISO}</p><p className="text-sm">{project.imageCount} foto</p></div><div className="flex gap-3"><button disabled={busy} aria-label={`Modifica ${project.title}`} aria-expanded={draft?.slug === project.slug} aria-controls={`edit-${project.slug}`} onClick={() => setDraft(draft?.slug === project.slug ? null : {...project,type:project.type || (project.hasVideo ? 'video' : 'photo')})} className="p-2 border border-black"><Icon name="edit"/></button><button disabled={busy} aria-label={`Elimina ${project.title}`} onClick={() => remove(project)} className="p-2 border border-red-700 text-red-700"><Icon name="delete"/></button></div></div>{draft?.slug === project.slug && <form id={`edit-${project.slug}`} onSubmit={save} className="mt-5 pt-5 border-t space-y-4"><fieldset disabled={busy} className="space-y-4"><label className="block">Titolo<input required value={draft.title} onChange={e => setDraft({...draft,title:e.target.value})} className="block border border-black p-2 w-full"/></label><label className="block">Descrizione del progetto<textarea maxLength={5000} rows={5} value={draft.description || ''} onChange={e => setDraft({...draft,description:e.target.value})} className="block border border-black p-2 w-full"/></label><label className="block">Data<input required type="date" value={draft.dateISO} onChange={e => setDraft({...draft,dateISO:e.target.value})} className="block border border-black p-2"/></label><div><p className="mb-2">Categoria</p><CategoryToggle value={draft.category} onChange={category => setDraft({...draft,category})}/></div><label className="block">Tipo<select value={draft.type} onChange={e => setDraft({...draft,type:e.target.value as Project['type']})} className="block border border-black p-2"><option value="photo">Foto</option><option value="video">Video</option></select></label><label className="block">Link Instagram<input type="url" value={draft.instagramUrl || ''} onChange={e => setDraft({...draft,instagramUrl:e.target.value})} className="block border border-black p-2 w-full"/></label><label className="block">Sostituisci copertina<input name="cover" type="file" accept="image/jpeg,image/png" className="block mt-2"/></label>{draft.type === 'photo' ? <label className="block">Sostituisci galleria (max 30 foto)<input name="images" type="file" multiple accept="image/jpeg,image/png" className="block mt-2"/></label> : <label className="block">Sostituisci video<input name="video" type="file" required={!project.hasVideo} accept="video/mp4,video/webm,video/quicktime" className="block mt-2"/></label>}<p className="text-sm">I file selezionati sostituiscono quelli attuali. Cambiando tipo, i contenuti del tipo precedente vengono rimossi.</p><div className="flex gap-4"><button type="submit" className="bg-black text-white px-6 py-2">{busy ? 'Salvataggio...' : 'Salva'}</button><button type="button" onClick={() => setDraft(null)}>Annulla</button></div></fieldset></form>}</article>)}</div></div>
 }

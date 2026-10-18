@@ -1,0 +1,210 @@
+[
+  {
+    "route": "/",
+    "mobile": false,
+    "positions": 18,
+    "viewers": 5,
+    "errors": []
+  },
+  {
+    "route": "/projects",
+    "mobile": false,
+    "positions": 18,
+    "viewers": 5,
+    "errors": []
+  },
+  {
+    "route": "/gallery",
+    "mobile": false,
+    "positions": 136,
+    "viewers": 134,
+    "errors": []
+  },
+  {
+    "route": "/projects/le-figlie-del-fuoco",
+    "mobile": false,
+    "positions": 15,
+    "viewers": 15,
+    "errors": []
+  },
+  {
+    "route": "/projects/zofi",
+    "mobile": false,
+    "positions": 8,
+    "viewers": 8,
+    "errors": []
+  },
+  {
+    "route": "/projects/beauty",
+    "mobile": false,
+    "positions": 7,
+    "viewers": 7,
+    "errors": []
+  },
+  {
+    "route": "/projects/fashion-is-never-banal",
+    "mobile": false,
+    "positions": 11,
+    "viewers": 11,
+    "errors": []
+  },
+  {
+    "route": "/projects/argento",
+    "mobile": false,
+    "positions": 13,
+    "viewers": 13,
+    "errors": []
+  },
+  {
+    "route": "/projects/i-put-clean-girls-into-a-coma",
+    "mobile": false,
+    "positions": 6,
+    "viewers": 6,
+    "errors": []
+  },
+  {
+    "route": "/projects/country-travel",
+    "mobile": false,
+    "positions": 13,
+    "viewers": 13,
+    "errors": []
+  },
+  {
+    "route": "/projects/blosson-beauty",
+    "mobile": false,
+    "positions": 5,
+    "viewers": 5,
+    "errors": []
+  },
+  {
+    "route": "/projects/i-don-t-even-know-myself",
+    "mobile": false,
+    "positions": 13,
+    "viewers": 13,
+    "errors": []
+  },
+  {
+    "route": "/projects/un-volto-per-raccontare",
+    "mobile": false,
+    "positions": 21,
+    "viewers": 21,
+    "errors": []
+  },
+  {
+    "route": "/projects/inside-raw-emotions",
+    "mobile": false,
+    "positions": 11,
+    "viewers": 11,
+    "errors": []
+  },
+  {
+    "route": "/admin#best",
+    "mobile": false,
+    "positions": 139,
+    "errors": []
+  },
+  {
+    "route": "/",
+    "mobile": true,
+    "positions": 18,
+    "viewers": 5,
+    "errors": []
+  },
+  {
+    "route": "/projects",
+    "mobile": true,
+    "positions": 18,
+    "viewers": 5,
+    "errors": []
+  },
+  {
+    "route": "/gallery",
+    "mobile": true,
+    "positions": 136,
+    "viewers": 134,
+    "errors": []
+  },
+  {
+    "route": "/projects/le-figlie-del-fuoco",
+    "mobile": true,
+    "positions": 15,
+    "viewers": 15,
+    "errors": []
+  },
+  {
+    "route": "/projects/zofi",
+    "mobile": true,
+    "positions": 8,
+    "viewers": 8,
+    "errors": []
+  },
+  {
+    "route": "/projects/beauty",
+    "mobile": true,
+    "positions": 7,
+    "viewers": 7,
+    "errors": []
+  },
+  {
+    "route": "/projects/fashion-is-never-banal",
+    "mobile": true,
+    "positions": 11,
+    "viewers": 11,
+    "errors": []
+  },
+  {
+    "route": "/projects/argento",
+    "mobile": true,
+    "positions": 13,
+    "viewers": 13,
+    "errors": []
+  },
+  {
+    "route": "/projects/i-put-clean-girls-into-a-coma",
+    "mobile": true,
+    "positions": 6,
+    "viewers": 6,
+    "errors": []
+  },
+  {
+    "route": "/projects/country-travel",
+    "mobile": true,
+    "positions": 13,
+    "viewers": 13,
+    "errors": []
+  },
+  {
+    "route": "/projects/blosson-beauty",
+    "mobile": true,
+    "positions": 5,
+    "viewers": 5,
+    "errors": []
+  },
+  {
+    "route": "/projects/i-don-t-even-know-myself",
+    "mobile": true,
+    "positions": 13,
+    "viewers": 13,
+    "errors": []
+  },
+  {
+    "route": "/projects/un-volto-per-raccontare",
+    "mobile": true,
+    "positions": 21,
+    "viewers": 21,
+    "errors": []
+  },
+  {
+    "route": "/projects/inside-raw-emotions",
+    "mobile": true,
+    "positions": 11,
+    "viewers": 11,
+    "errors": []
+  },
+  {
+    "route": "/admin#best",
+    "mobile": true,
+    "positions": 139,
+    "errors": []
+  }
+]

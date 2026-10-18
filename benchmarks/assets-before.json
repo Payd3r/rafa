@@ -1,0 +1,672 @@
+[
+  {
+    "src": "/optimized/le-figlie-del-fuoco/cover/thumb.avif",
+    "bytes": 112262,
+    "status": 200
+  },
+  {
+    "src": "/optimized/le-figlie-del-fuoco/1/thumb.avif",
+    "bytes": 97095,
+    "status": 200
+  },
+  {
+    "src": "/optimized/le-figlie-del-fuoco/2/thumb.avif",
+    "bytes": 149596,
+    "status": 200
+  },
+  {
+    "src": "/optimized/le-figlie-del-fuoco/3/thumb.avif",
+    "bytes": 177087,
+    "status": 200
+  },
+  {
+    "src": "/optimized/le-figlie-del-fuoco/4/thumb.avif",
+    "bytes": 83328,
+    "status": 200
+  },
+  {
+    "src": "/optimized/le-figlie-del-fuoco/5/thumb.avif",
+    "bytes": 166029,
+    "status": 200
+  },
+  {
+    "src": "/optimized/le-figlie-del-fuoco/6/thumb.avif",
+    "bytes": 100224,
+    "status": 200
+  },
+  {
+    "src": "/optimized/le-figlie-del-fuoco/7/thumb.avif",
+    "bytes": 84319,
+    "status": 200
+  },
+  {
+    "src": "/optimized/le-figlie-del-fuoco/8/thumb.avif",
+    "bytes": 54717,
+    "status": 200
+  },
+  {
+    "src": "/optimized/le-figlie-del-fuoco/9/thumb.avif",
+    "bytes": 62427,
+    "status": 200
+  },
+  {
+    "src": "/optimized/le-figlie-del-fuoco/10/thumb.avif",
+    "bytes": 100052,
+    "status": 200
+  },
+  {
+    "src": "/optimized/le-figlie-del-fuoco/11/thumb.avif",
+    "bytes": 59084,
+    "status": 200
+  },
+  {
+    "src": "/optimized/le-figlie-del-fuoco/12/thumb.avif",
+    "bytes": 64357,
+    "status": 200
+  },
+  {
+    "src": "/optimized/le-figlie-del-fuoco/13/thumb.avif",
+    "bytes": 78571,
+    "status": 200
+  },
+  {
+    "src": "/optimized/le-figlie-del-fuoco/14/thumb.avif",
+    "bytes": 126860,
+    "status": 200
+  },
+  {
+    "src": "/optimized/le-figlie-del-fuoco/15/thumb.avif",
+    "bytes": 112193,
+    "status": 200
+  },
+  {
+    "src": "/optimized/zofi/cover/thumb.avif",
+    "bytes": 130377,
+    "status": 200
+  },
+  {
+    "src": "/optimized/zofi/1/thumb.avif",
+    "bytes": 42191,
+    "status": 200
+  },
+  {
+    "src": "/optimized/zofi/2/thumb.avif",
+    "bytes": 53924,
+    "status": 200
+  },
+  {
+    "src": "/optimized/zofi/3/thumb.avif",
+    "bytes": 24084,
+    "status": 200
+  },
+  {
+    "src": "/optimized/zofi/4/thumb.avif",
+    "bytes": 28377,
+    "status": 200
+  },
+  {
+    "src": "/optimized/zofi/5/thumb.avif",
+    "bytes": 40083,
+    "status": 200
+  },
+  {
+    "src": "/optimized/zofi/6/thumb.avif",
+    "bytes": 46105,
+    "status": 200
+  },
+  {
+    "src": "/optimized/zofi/7/thumb.avif",
+    "bytes": 130377,
+    "status": 200
+  },
+  {
+    "src": "/optimized/zofi/8/thumb.avif",
+    "bytes": 99915,
+    "status": 200
+  },
+  {
+    "src": "/optimized/beauty/cover/thumb.avif",
+    "bytes": 182164,
+    "status": 200
+  },
+  {
+    "src": "/optimized/beauty/1/thumb.avif",
+    "bytes": 104917,
+    "status": 200
+  },
+  {
+    "src": "/optimized/beauty/2/thumb.avif",
+    "bytes": 197815,
+    "status": 200
+  },
+  {
+    "src": "/optimized/beauty/3/thumb.avif",
+    "bytes": 208342,
+    "status": 200
+  },
+  {
+    "src": "/optimized/beauty/4/thumb.avif",
+    "bytes": 182164,
+    "status": 200
+  },
+  {
+    "src": "/optimized/beauty/5/thumb.avif",
+    "bytes": 221230,
+    "status": 200
+  },
+  {
+    "src": "/optimized/beauty/6/thumb.avif",
+    "bytes": 254396,
+    "status": 200
+  },
+  {
+    "src": "/optimized/beauty/7/thumb.avif",
+    "bytes": 255467,
+    "status": 200
+  },
+  {
+    "src": "/optimized/fashion-is-never-banal/cover/thumb.avif",
+    "bytes": 22677,
+    "status": 200
+  },
+  {
+    "src": "/optimized/fashion-is-never-banal/1/thumb.avif",
+    "bytes": 26756,
+    "status": 200
+  },
+  {
+    "src": "/optimized/fashion-is-never-banal/2/thumb.avif",
+    "bytes": 22354,
+    "status": 200
+  },
+  {
+    "src": "/optimized/fashion-is-never-banal/3/thumb.avif",
+    "bytes": 43018,
+    "status": 200
+  },
+  {
+    "src": "/optimized/fashion-is-never-banal/4/thumb.avif",
+    "bytes": 54183,
+    "status": 200
+  },
+  {
+    "src": "/optimized/fashion-is-never-banal/5/thumb.avif",
+    "bytes": 46649,
+    "status": 200
+  },
+  {
+    "src": "/optimized/fashion-is-never-banal/6/thumb.avif",
+    "bytes": 47235,
+    "status": 200
+  },
+  {
+    "src": "/optimized/fashion-is-never-banal/7/thumb.avif",
+    "bytes": 92608,
+    "status": 200
+  },
+  {
+    "src": "/optimized/fashion-is-never-banal/8/thumb.avif",
+    "bytes": 52150,
+    "status": 200
+  },
+  {
+    "src": "/optimized/fashion-is-never-banal/9/thumb.avif",
+    "bytes": 52324,
+    "status": 200
+  },
+  {
+    "src": "/optimized/fashion-is-never-banal/10/thumb.avif",
+    "bytes": 22677,
+    "status": 200
+  },
+  {
+    "src": "/optimized/fashion-is-never-banal/11/thumb.avif",
+    "bytes": 17622,
+    "status": 200
+  },
+  {
+    "src": "/optimized/argento/cover/thumb.avif",
+    "bytes": 135644,
+    "status": 200
+  },
+  {
+    "src": "/optimized/argento/1/thumb.avif",
+    "bytes": 78286,
+    "status": 200
+  },
+  {
+    "src": "/optimized/argento/2/thumb.avif",
+    "bytes": 130926,
+    "status": 200
+  },
+  {
+    "src": "/optimized/argento/3/thumb.avif",
+    "bytes": 35873,
+    "status": 200
+  },
+  {
+    "src": "/optimized/argento/4/thumb.avif",
+    "bytes": 45371,
+    "status": 200
+  },
+  {
+    "src": "/optimized/argento/5/thumb.avif",
+    "bytes": 106628,
+    "status": 200
+  },
+  {
+    "src": "/optimized/argento/6/thumb.avif",
+    "bytes": 46025,
+    "status": 200
+  },
+  {
+    "src": "/optimized/argento/7/thumb.avif",
+    "bytes": 59624,
+    "status": 200
+  },
+  {
+    "src": "/optimized/argento/8/thumb.avif",
+    "bytes": 135644,
+    "status": 200
+  },
+  {
+    "src": "/optimized/argento/9/thumb.avif",
+    "bytes": 75005,
+    "status": 200
+  },
+  {
+    "src": "/optimized/argento/10/thumb.avif",
+    "bytes": 142796,
+    "status": 200
+  },
+  {
+    "src": "/optimized/argento/11/thumb.avif",
+    "bytes": 73137,
+    "status": 200
+  },
+  {
+    "src": "/optimized/argento/12/thumb.avif",
+    "bytes": 86695,
+    "status": 200
+  },
+  {
+    "src": "/optimized/argento/13/thumb.avif",
+    "bytes": 104494,
+    "status": 200
+  },
+  {
+    "src": "/optimized/i-put-clean-girls-into-a-coma/cover/thumb.avif",
+    "bytes": 50650,
+    "status": 200
+  },
+  {
+    "src": "/optimized/i-put-clean-girls-into-a-coma/1/thumb.avif",
+    "bytes": 61304,
+    "status": 200
+  },
+  {
+    "src": "/optimized/i-put-clean-girls-into-a-coma/2/thumb.avif",
+    "bytes": 49993,
+    "status": 200
+  },
+  {
+    "src": "/optimized/i-put-clean-girls-into-a-coma/3/thumb.avif",
+    "bytes": 50650,
+    "status": 200
+  },
+  {
+    "src": "/optimized/i-put-clean-girls-into-a-coma/4/thumb.avif",
+    "bytes": 73192,
+    "status": 200
+  },
+  {
+    "src": "/optimized/i-put-clean-girls-into-a-coma/5/thumb.avif",
+    "bytes": 80299,
+    "status": 200
+  },
+  {
+    "src": "/optimized/i-put-clean-girls-into-a-coma/6/thumb.avif",
+    "bytes": 121677,
+    "status": 200
+  },
+  {
+    "src": "/optimized/country-travel/cover/thumb.avif",
+    "bytes": 414596,
+    "status": 200
+  },
+  {
+    "src": "/optimized/country-travel/1/thumb.avif",
+    "bytes": 456568,
+    "status": 200
+  },
+  {
+    "src": "/optimized/country-travel/2/thumb.avif",
+    "bytes": 121736,
+    "status": 200
+  },
+  {
+    "src": "/optimized/country-travel/3/thumb.avif",
+    "bytes": 414596,
+    "status": 200
+  },
+  {
+    "src": "/optimized/country-travel/4/thumb.avif",
+    "bytes": 422748,
+    "status": 200
+  },
+  {
+    "src": "/optimized/country-travel/5/thumb.avif",
+    "bytes": 455072,
+    "status": 200
+  },
+  {
+    "src": "/optimized/country-travel/6/thumb.avif",
+    "bytes": 437995,
+    "status": 200
+  },
+  {
+    "src": "/optimized/country-travel/7/thumb.avif",
+    "bytes": 445152,
+    "status": 200
+  },
+  {
+    "src": "/optimized/country-travel/8/thumb.avif",
+    "bytes": 323968,
+    "status": 200
+  },
+  {
+    "src": "/optimized/country-travel/9/thumb.avif",
+    "bytes": 421926,
+    "status": 200
+  },
+  {
+    "src": "/optimized/country-travel/10/thumb.avif",
+    "bytes": 472938,
+    "status": 200
+  },
+  {
+    "src": "/optimized/country-travel/11/thumb.avif",
+    "bytes": 422643,
+    "status": 200
+  },
+  {
+    "src": "/optimized/country-travel/12/thumb.avif",
+    "bytes": 471468,
+    "status": 200
+  },
+  {
+    "src": "/optimized/country-travel/13/thumb.avif",
+    "bytes": 478197,
+    "status": 200
+  },
+  {
+    "src": "/optimized/blosson-beauty/cover/thumb.avif",
+    "bytes": 94586,
+    "status": 200
+  },
+  {
+    "src": "/optimized/blosson-beauty/1/thumb.avif",
+    "bytes": 95461,
+    "status": 200
+  },
+  {
+    "src": "/optimized/blosson-beauty/2/thumb.avif",
+    "bytes": 173994,
+    "status": 200
+  },
+  {
+    "src": "/optimized/blosson-beauty/3/thumb.avif",
+    "bytes": 120925,
+    "status": 200
+  },
+  {
+    "src": "/optimized/blosson-beauty/4/thumb.avif",
+    "bytes": 84507,
+    "status": 200
+  },
+  {
+    "src": "/optimized/blosson-beauty/5/thumb.avif",
+    "bytes": 94586,
+    "status": 200
+  },
+  {
+    "src": "/optimized/i-don-t-even-know-myself/cover/thumb.avif",
+    "bytes": 33741,
+    "status": 200
+  },
+  {
+    "src": "/optimized/i-don-t-even-know-myself/1/thumb.avif",
+    "bytes": 8880,
+    "status": 200
+  },
+  {
+    "src": "/optimized/i-don-t-even-know-myself/2/thumb.avif",
+    "bytes": 30631,
+    "status": 200
+  },
+  {
+    "src": "/optimized/i-don-t-even-know-myself/3/thumb.avif",
+    "bytes": 34622,
+    "status": 200
+  },
+  {
+    "src": "/optimized/i-don-t-even-know-myself/4/thumb.avif",
+    "bytes": 27245,
+    "status": 200
+  },
+  {
+    "src": "/optimized/i-don-t-even-know-myself/5/thumb.avif",
+    "bytes": 9366,
+    "status": 200
+  },
+  {
+    "src": "/optimized/i-don-t-even-know-myself/6/thumb.avif",
+    "bytes": 31055,
+    "status": 200
+  },
+  {
+    "src": "/optimized/i-don-t-even-know-myself/7/thumb.avif",
+    "bytes": 29877,
+    "status": 200
+  },
+  {
+    "src": "/optimized/i-don-t-even-know-myself/8/thumb.avif",
+    "bytes": 33741,
+    "status": 200
+  },
+  {
+    "src": "/optimized/i-don-t-even-know-myself/9/thumb.avif",
+    "bytes": 13767,
+    "status": 200
+  },
+  {
+    "src": "/optimized/i-don-t-even-know-myself/10/thumb.avif",
+    "bytes": 27193,
+    "status": 200
+  },
+  {
+    "src": "/optimized/i-don-t-even-know-myself/11/thumb.avif",
+    "bytes": 33634,
+    "status": 200
+  },
+  {
+    "src": "/optimized/i-don-t-even-know-myself/12/thumb.avif",
+    "bytes": 32463,
+    "status": 200
+  },
+  {
+    "src": "/optimized/i-don-t-even-know-myself/13/thumb.avif",
+    "bytes": 13363,
+    "status": 200
+  },
+  {
+    "src": "/optimized/un-volto-per-raccontare/cover/thumb.avif",
+    "bytes": 111173,
+    "status": 200
+  },
+  {
+    "src": "/optimized/un-volto-per-raccontare/1/thumb.avif",
+    "bytes": 111173,
+    "status": 200
+  },
+  {
+    "src": "/optimized/un-volto-per-raccontare/2/thumb.avif",
+    "bytes": 29232,
+    "status": 200
+  },
+  {
+    "src": "/optimized/un-volto-per-raccontare/3/thumb.avif",
+    "bytes": 31897,
+    "status": 200
+  },
+  {
+    "src": "/optimized/un-volto-per-raccontare/4/thumb.avif",
+    "bytes": 43630,
+    "status": 200
+  },
+  {
+    "src": "/optimized/un-volto-per-raccontare/5/thumb.avif",
+    "bytes": 62916,
+    "status": 200
+  },
+  {
+    "src": "/optimized/un-volto-per-raccontare/6/thumb.avif",
+    "bytes": 48887,
+    "status": 200
+  },
+  {
+    "src": "/optimized/un-volto-per-raccontare/7/thumb.avif",
+    "bytes": 51532,
+    "status": 200
+  },
+  {
+    "src": "/optimized/un-volto-per-raccontare/8/thumb.avif",
+    "bytes": 57473,
+    "status": 200
+  },
+  {
+    "src": "/optimized/un-volto-per-raccontare/9/thumb.avif",
+    "bytes": 38540,
+    "status": 200
+  },
+  {
+    "src": "/optimized/un-volto-per-raccontare/10/thumb.avif",
+    "bytes": 112444,
+    "status": 200
+  },
+  {
+    "src": "/optimized/un-volto-per-raccontare/11/thumb.avif",
+    "bytes": 45887,
+    "status": 200
+  },
+  {
+    "src": "/optimized/un-volto-per-raccontare/12/thumb.avif",
+    "bytes": 38609,
+    "status": 200
+  },
+  {
+    "src": "/optimized/un-volto-per-raccontare/13/thumb.avif",
+    "bytes": 120911,
+    "status": 200
+  },
+  {
+    "src": "/optimized/un-volto-per-raccontare/14/thumb.avif",
+    "bytes": 177500,
+    "status": 200
+  },
+  {
+    "src": "/optimized/un-volto-per-raccontare/15/thumb.avif",
+    "bytes": 86633,
+    "status": 200
+  },
+  {
+    "src": "/optimized/un-volto-per-raccontare/16/thumb.avif",
+    "bytes": 93424,
+    "status": 200
+  },
+  {
+    "src": "/optimized/un-volto-per-raccontare/17/thumb.avif",
+    "bytes": 145116,
+    "status": 200
+  },
+  {
+    "src": "/optimized/un-volto-per-raccontare/18/thumb.avif",
+    "bytes": 42315,
+    "status": 200
+  },
+  {
+    "src": "/optimized/un-volto-per-raccontare/19/thumb.avif",
+    "bytes": 29851,
+    "status": 200
+  },
+  {
+    "src": "/optimized/un-volto-per-raccontare/20/thumb.avif",
+    "bytes": 49532,
+    "status": 200
+  },
+  {
+    "src": "/optimized/un-volto-per-raccontare/21/thumb.avif",
+    "bytes": 111969,
+    "status": 200
+  },
+  {
+    "src": "/optimized/inside-raw-emotions/cover/thumb.avif",
+    "bytes": 0,
+    "status": 200
+  },
+  {
+    "src": "/optimized/inside-raw-emotions/1/thumb.avif",
+    "bytes": 26043,
+    "status": 200
+  },
+  {
+    "src": "/optimized/inside-raw-emotions/2/thumb.avif",
+    "bytes": 47693,
+    "status": 200
+  },
+  {
+    "src": "/optimized/inside-raw-emotions/3/thumb.avif",
+    "bytes": 16394,
+    "status": 200
+  },
+  {
+    "src": "/optimized/inside-raw-emotions/4/thumb.avif",
+    "bytes": 219790,
+    "status": 200
+  },
+  {
+    "src": "/optimized/inside-raw-emotions/5/thumb.avif",
+    "bytes": 98963,
+    "status": 200
+  },
+  {
+    "src": "/optimized/inside-raw-emotions/6/thumb.avif",
+    "bytes": 150748,
+    "status": 200
+  },
+  {
+    "src": "/optimized/inside-raw-emotions/7/thumb.avif",
+    "bytes": 56014,
+    "status": 200
+  },
+  {
+    "src": "/optimized/inside-raw-emotions/8/thumb.avif",
+    "bytes": 46429,
+    "status": 200
+  },
+  {
+    "src": "/optimized/inside-raw-emotions/9/thumb.avif",
+    "bytes": 28577,
+    "status": 200
+  },
+  {
+    "src": "/optimized/inside-raw-emotions/10/thumb.avif",
+    "bytes": 51233,
+    "status": 200
+  },
+  {
+    "src": "/optimized/inside-raw-emotions/11/thumb.avif",
+    "bytes": 19999,
+    "status": 200
+  }
+]

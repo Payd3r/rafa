@@ -36,3 +36,11 @@ optimized/*
 *.webp
 frontend/public/imageMeta.json
 frontend/public/masonryLayouts.json
+
+# Local browser checks and generated artifacts
+.playwright-cli/
+output/
+*.TMP
+
+# Portraits shipped with the portfolio
+!frontend/public/portfolio/images/*.webp

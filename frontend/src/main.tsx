@@ -1,52 +1,48 @@
-import React from 'react'
-import { createRoot } from 'react-dom/client'
-import { createBrowserRouter, RouterProvider } from 'react-router-dom'
-import Root from './Root'
-// LanguageProvider spostato in Root per evitare mismatch durante lazy-loading
-import './style.css'
-
-// Assicurati che React sia disponibile globalmente
-if (typeof window !== 'undefined') {
-  (window as any).React = React
-}
+import React from "react";
+import { createRoot } from "react-dom/client";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import Root from "./Root";
+import { LoadingPage } from "./portfolio/LoadingPage";
+import "./style.css";
 
 // Service worker completamente rimosso per evitare problemi di caching
 // Disabilita service worker in sviluppo E produzione
-if (typeof window !== 'undefined' && 'serviceWorker' in navigator) {
-  navigator.serviceWorker.getRegistrations().then(registrations => {
-    registrations.forEach(registration => {
+if (typeof window !== "undefined" && "serviceWorker" in navigator) {
+  navigator.serviceWorker.getRegistrations().then((registrations) => {
+    registrations.forEach((registration) => {
       registration.unregister().then(() => {
-        console.log('Service Worker disabilitato')
-      })
-    })
-  })
+        console.log("Service Worker disabilitato");
+      });
+    });
+  });
 }
 
 // Lazy con retry per gestire errori di rete/cache temporanei
-function lazyWithRetry<T extends React.ComponentType<any>>(importer: () => Promise<{ default: T }>) {
-  const MAX_RETRIES = 2
-  let retries = 0
+function lazyWithRetry<
+  T extends React.ComponentType<{ detail?: boolean; gallery?: boolean }>,
+>(importer: () => Promise<{ default: T }>) {
+  const MAX_RETRIES = 2;
+  let retries = 0;
   return React.lazy(async () => {
     while (true) {
       try {
-        return await importer()
+        return await importer();
       } catch (e) {
-        if (retries >= MAX_RETRIES) throw e
-        retries++
+        if (retries >= MAX_RETRIES) throw e;
+        retries++;
         // attende e riprova
-        await new Promise(r => setTimeout(r, 300 * retries))
+        await new Promise((r) => setTimeout(r, 300 * retries));
       }
     }
-  })
+  });
 }
 
-const Home = lazyWithRetry(() => import('./pages/Home'))
-const Gallery = lazyWithRetry(() => import('./pages/Gallery'))
-const Projects = lazyWithRetry(() => import('./pages/Projects'))
-const ProjectDetail = lazyWithRetry(() => import('./pages/ProjectDetail'))
+const Home = lazyWithRetry(() => import("./portfolio/Portfolio"));
+const Gallery = lazyWithRetry(() => import("./portfolio/Portfolio"));
+const Projects = lazyWithRetry(() => import("./portfolio/Portfolio"));
+const ProjectDetail = lazyWithRetry(() => import("./portfolio/Portfolio"));
 
-// Admin non lazy-loaded per evitare problemi con hook in dev
-import Admin from './pages/Admin'
+const Admin = React.lazy(() => import("./pages/Admin"));
 
 function RouteError() {
   return (
@@ -54,7 +50,7 @@ function RouteError() {
       <h1 className="h2-title mb-2">Qualcosa è andato storto</h1>
       <p className="text-gray700">Riprova a ricaricare la pagina.</p>
     </div>
-  )
+  );
 }
 
 const router = createBrowserRouter([
@@ -62,29 +58,26 @@ const router = createBrowserRouter([
     element: <Root />,
     errorElement: <RouteError />,
     children: [
-      { path: '/', element: <Home /> },
-      { path: '/gallery', element: <Gallery /> },
-      { path: '/projects', element: <Projects /> },
-      { path: '/projects/:slug', element: <ProjectDetail /> },
-      { path: '/admin', element: <Admin /> },
-    ]
-  }
-])
+      { path: "/", element: <Home /> },
+      { path: "/gallery", element: <Gallery gallery /> },
+      { path: "/projects", element: <Projects /> },
+      { path: "/projects/:slug", element: <ProjectDetail detail /> },
+      { path: "/admin", element: <Admin /> },
+    ],
+  },
+]);
 
-const rootElement = document.getElementById('app')!
+const rootElement = document.getElementById("app")!;
+// Resolve the font faces used above the fold before showing real text.
+void Promise.all([300,400,500].map(weight => document.fonts.load(`${weight} 16px "MADE Tommy"`).catch(() => []))).then(() => {
 createRoot(rootElement).render(
   <React.StrictMode>
-    <React.Suspense fallback={
-      <div className="min-h-screen bg-white flex items-center justify-center">
-        <div className="text-center">
-          <div className="loading-spin w-8 h-8 border-2 border-charcoal border-t-transparent rounded-full mx-auto mb-4"></div>
-          <p className="text-gray700 animate-pulse">Caricamento…</p>
-        </div>
-      </div>
-    }>
+    <React.Suspense
+      fallback={<LoadingPage />}
+    >
       <RouterProvider router={router} />
     </React.Suspense>
-  </React.StrictMode>
-)
+  </React.StrictMode>,
+);
 
-
+});

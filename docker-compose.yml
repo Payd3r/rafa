@@ -1,5 +1,3 @@
-version: '3.8'
-
 services:
   # Backend Node.js - CMS Admin
   sito-rafa-backend:
@@ -11,8 +9,10 @@ services:
     # Porta NON esposta pubblicamente - solo comunicazione interna via Nginx proxy
     environment:
       NODE_ENV: production
-      ADMIN_USER: ${ADMIN_USER:-andrea}
-      ADMIN_PASS: ${ADMIN_PASS:-andrea2004}
+      SITE_URL: ${SITE_URL:-}
+      SEO_INDEXABLE: ${SEO_INDEXABLE:-false}
+      ADMIN_USER: ${ADMIN_USER:?Impostare ADMIN_USER}
+      ADMIN_PASS: ${ADMIN_PASS:?Impostare ADMIN_PASS}
       PUBLIC_PATH: /usr/share/nginx/html
       SRC_PATH: ${PROD_SRC_PATH:-/app/src}
       DATA_PATH: ${PROD_DATA_PATH:-/app/data/projects.json}

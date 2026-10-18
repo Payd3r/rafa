@@ -1,0 +1,12 @@
+[
+  {
+    "mobile": false,
+    "previews": 3,
+    "errors": []
+  },
+  {
+    "mobile": true,
+    "previews": 3,
+    "errors": []
+  }
+]

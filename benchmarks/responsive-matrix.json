@@ -1,0 +1,394 @@
+[
+  {
+    "width": 320,
+    "dpr": 2,
+    "route": "/",
+    "overflow": false,
+    "failed": 0
+  },
+  {
+    "width": 320,
+    "dpr": 2,
+    "route": "/projects",
+    "overflow": false,
+    "failed": 0
+  },
+  {
+    "width": 320,
+    "dpr": 2,
+    "route": "/gallery",
+    "overflow": false,
+    "failed": 0
+  },
+  {
+    "width": 320,
+    "dpr": 2,
+    "route": "/projects/le-figlie-del-fuoco",
+    "overflow": false,
+    "failed": 0
+  },
+  {
+    "width": 320,
+    "dpr": 2,
+    "route": "/projects/zofi",
+    "overflow": false,
+    "failed": 0
+  },
+  {
+    "width": 320,
+    "dpr": 2,
+    "route": "/projects/beauty",
+    "overflow": false,
+    "failed": 0
+  },
+  {
+    "width": 320,
+    "dpr": 2,
+    "route": "/projects/fashion-is-never-banal",
+    "overflow": false,
+    "failed": 0
+  },
+  {
+    "width": 320,
+    "dpr": 2,
+    "route": "/projects/argento",
+    "overflow": false,
+    "failed": 0
+  },
+  {
+    "width": 320,
+    "dpr": 2,
+    "route": "/projects/i-put-clean-girls-into-a-coma",
+    "overflow": false,
+    "failed": 0
+  },
+  {
+    "width": 320,
+    "dpr": 2,
+    "route": "/projects/country-travel",
+    "overflow": false,
+    "failed": 0
+  },
+  {
+    "width": 320,
+    "dpr": 2,
+    "route": "/projects/blosson-beauty",
+    "overflow": false,
+    "failed": 0
+  },
+  {
+    "width": 320,
+    "dpr": 2,
+    "route": "/projects/i-don-t-even-know-myself",
+    "overflow": false,
+    "failed": 0
+  },
+  {
+    "width": 320,
+    "dpr": 2,
+    "route": "/projects/un-volto-per-raccontare",
+    "overflow": false,
+    "failed": 0
+  },
+  {
+    "width": 320,
+    "dpr": 2,
+    "route": "/projects/inside-raw-emotions",
+    "overflow": false,
+    "failed": 0
+  },
+  {
+    "width": 390,
+    "dpr": 3,
+    "route": "/",
+    "overflow": false,
+    "failed": 0
+  },
+  {
+    "width": 390,
+    "dpr": 3,
+    "route": "/projects",
+    "overflow": false,
+    "failed": 0
+  },
+  {
+    "width": 390,
+    "dpr": 3,
+    "route": "/gallery",
+    "overflow": false,
+    "failed": 0
+  },
+  {
+    "width": 390,
+    "dpr": 3,
+    "route": "/projects/le-figlie-del-fuoco",
+    "overflow": false,
+    "failed": 0
+  },
+  {
+    "width": 390,
+    "dpr": 3,
+    "route": "/projects/zofi",
+    "overflow": false,
+    "failed": 0
+  },
+  {
+    "width": 390,
+    "dpr": 3,
+    "route": "/projects/beauty",
+    "overflow": false,
+    "failed": 0
+  },
+  {
+    "width": 390,
+    "dpr": 3,
+    "route": "/projects/fashion-is-never-banal",
+    "overflow": false,
+    "failed": 0
+  },
+  {
+    "width": 390,
+    "dpr": 3,
+    "route": "/projects/argento",
+    "overflow": false,
+    "failed": 0
+  },
+  {
+    "width": 390,
+    "dpr": 3,
+    "route": "/projects/i-put-clean-girls-into-a-coma",
+    "overflow": false,
+    "failed": 0
+  },
+  {
+    "width": 390,
+    "dpr": 3,
+    "route": "/projects/country-travel",
+    "overflow": false,
+    "failed": 0
+  },
+  {
+    "width": 390,
+    "dpr": 3,
+    "route": "/projects/blosson-beauty",
+    "overflow": false,
+    "failed": 0
+  },
+  {
+    "width": 390,
+    "dpr": 3,
+    "route": "/projects/i-don-t-even-know-myself",
+    "overflow": false,
+    "failed": 0
+  },
+  {
+    "width": 390,
+    "dpr": 3,
+    "route": "/projects/un-volto-per-raccontare",
+    "overflow": false,
+    "failed": 0
+  },
+  {
+    "width": 390,
+    "dpr": 3,
+    "route": "/projects/inside-raw-emotions",
+    "overflow": false,
+    "failed": 0
+  },
+  {
+    "width": 768,
+    "dpr": 2,
+    "route": "/",
+    "overflow": false,
+    "failed": 0
+  },
+  {
+    "width": 768,
+    "dpr": 2,
+    "route": "/projects",
+    "overflow": false,
+    "failed": 0
+  },
+  {
+    "width": 768,
+    "dpr": 2,
+    "route": "/gallery",
+    "overflow": false,
+    "failed": 0
+  },
+  {
+    "width": 768,
+    "dpr": 2,
+    "route": "/projects/le-figlie-del-fuoco",
+    "overflow": false,
+    "failed": 0
+  },
+  {
+    "width": 768,
+    "dpr": 2,
+    "route": "/projects/zofi",
+    "overflow": false,
+    "failed": 0
+  },
+  {
+    "width": 768,
+    "dpr": 2,
+    "route": "/projects/beauty",
+    "overflow": false,
+    "failed": 0
+  },
+  {
+    "width": 768,
+    "dpr": 2,
+    "route": "/projects/fashion-is-never-banal",
+    "overflow": false,
+    "failed": 0
+  },
+  {
+    "width": 768,
+    "dpr": 2,
+    "route": "/projects/argento",
+    "overflow": false,
+    "failed": 0
+  },
+  {
+    "width": 768,
+    "dpr": 2,
+    "route": "/projects/i-put-clean-girls-into-a-coma",
+    "overflow": false,
+    "failed": 0
+  },
+  {
+    "width": 768,
+    "dpr": 2,
+    "route": "/projects/country-travel",
+    "overflow": false,
+    "failed": 0
+  },
+  {
+    "width": 768,
+    "dpr": 2,
+    "route": "/projects/blosson-beauty",
+    "overflow": false,
+    "failed": 0
+  },
+  {
+    "width": 768,
+    "dpr": 2,
+    "route": "/projects/i-don-t-even-know-myself",
+    "overflow": false,
+    "failed": 0
+  },
+  {
+    "width": 768,
+    "dpr": 2,
+    "route": "/projects/un-volto-per-raccontare",
+    "overflow": false,
+    "failed": 0
+  },
+  {
+    "width": 768,
+    "dpr": 2,
+    "route": "/projects/inside-raw-emotions",
+    "overflow": false,
+    "failed": 0
+  },
+  {
+    "width": 1440,
+    "dpr": 1,
+    "route": "/",
+    "overflow": false,
+    "failed": 0
+  },
+  {
+    "width": 1440,
+    "dpr": 1,
+    "route": "/projects",
+    "overflow": false,
+    "failed": 0
+  },
+  {
+    "width": 1440,
+    "dpr": 1,
+    "route": "/gallery",
+    "overflow": false,
+    "failed": 0
+  },
+  {
+    "width": 1440,
+    "dpr": 1,
+    "route": "/projects/le-figlie-del-fuoco",
+    "overflow": false,
+    "failed": 0
+  },
+  {
+    "width": 1440,
+    "dpr": 1,
+    "route": "/projects/zofi",
+    "overflow": false,
+    "failed": 0
+  },
+  {
+    "width": 1440,
+    "dpr": 1,
+    "route": "/projects/beauty",
+    "overflow": false,
+    "failed": 0
+  },
+  {
+    "width": 1440,
+    "dpr": 1,
+    "route": "/projects/fashion-is-never-banal",
+    "overflow": false,
+    "failed": 0
+  },
+  {
+    "width": 1440,
+    "dpr": 1,
+    "route": "/projects/argento",
+    "overflow": false,
+    "failed": 0
+  },
+  {
+    "width": 1440,
+    "dpr": 1,
+    "route": "/projects/i-put-clean-girls-into-a-coma",
+    "overflow": false,
+    "failed": 0
+  },
+  {
+    "width": 1440,
+    "dpr": 1,
+    "route": "/projects/country-travel",
+    "overflow": false,
+    "failed": 0
+  },
+  {
+    "width": 1440,
+    "dpr": 1,
+    "route": "/projects/blosson-beauty",
+    "overflow": false,
+    "failed": 0
+  },
+  {
+    "width": 1440,
+    "dpr": 1,
+    "route": "/projects/i-don-t-even-know-myself",
+    "overflow": false,
+    "failed": 0
+  },
+  {
+    "width": 1440,
+    "dpr": 1,
+    "route": "/projects/un-volto-per-raccontare",
+    "overflow": false,
+    "failed": 0
+  },
+  {
+    "width": 1440,
+    "dpr": 1,
+    "route": "/projects/inside-raw-emotions",
+    "overflow": false,
+    "failed": 0
+  }
+]

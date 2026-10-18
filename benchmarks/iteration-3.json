@@ -1,0 +1,2412 @@
+{
+  "base": "http://172.19.0.10",
+  "results": [
+    {
+      "profile": "desktop",
+      "route": "/",
+      "cache": "cold",
+      "initial": {
+        "lcp": 544,
+        "cls": 0,
+        "images": [
+          {
+            "src": "http://172.19.0.10/optimized/le-figlie-del-fuoco/cover/image-abc6d017ca28cc30fe61-640.avif",
+            "loaded": true,
+            "visible": true
+          },
+          {
+            "src": "http://172.19.0.10/optimized/argento/cover/image-85693b3696977b3b1367-640.avif",
+            "loaded": true,
+            "visible": true
+          },
+          {
+            "src": "http://172.19.0.10/optimized/i-put-clean-girls-into-a-coma/3/image-5f360fede303dba386e2-640.avif",
+            "loaded": true,
+            "visible": true
+          },
+          {
+            "src": "http://172.19.0.10/optimized/blosson-beauty/5/image-92dcc4c1f39f68fb4bf3-640.avif",
+            "loaded": true,
+            "visible": true
+          },
+          {
+            "src": "http://172.19.0.10/optimized/inside-raw-emotions/cover/image-c3c7c146ba7a87b022aa-640.avif",
+            "loaded": true,
+            "visible": true
+          },
+          {
+            "src": "http://172.19.0.10/optimized/le-figlie-del-fuoco/cover/image-abc6d017ca28cc30fe61-640.avif",
+            "loaded": true,
+            "visible": false
+          },
+          {
+            "src": "http://172.19.0.10/optimized/zofi/cover/image-12275bbb39f18b8be48a-640.avif",
+            "loaded": true,
+            "visible": false
+          }
+        ],
+        "resources": [
+          {
+            "url": "http://172.19.0.10/portfolio/fonts/made-tommy-regular.woff2",
+            "bytes": 27836,
+            "encoded": 27536,
+            "type": "link"
+          },
+          {
+            "url": "http://172.19.0.10/assets/index-BH_Au8IM.js",
+            "bytes": 57694,
+            "encoded": 57394,
+            "type": "script"
+          },
+          {
+            "url": "http://172.19.0.10/assets/vendor-BP0qhIbX.js",
+            "bytes": 4494,
+            "encoded": 4194,
+            "type": "other"
+          },
+          {
+            "url": "http://172.19.0.10/assets/router-BDQjdA8j.js",
+            "bytes": 27528,
+            "encoded": 27228,
+            "type": "other"
+          },
+          {
+            "url": "http://172.19.0.10/assets/index-B74aTVax.css",
+            "bytes": 4330,
+            "encoded": 4030,
+            "type": "link"
+          },
+          {
+            "url": "http://172.19.0.10/assets/Portfolio-BZLAppt0.js",
+            "bytes": 14455,
+            "encoded": 14155,
+            "type": "script"
+          },
+          {
+            "url": "http://172.19.0.10/assets/SmartImage-B9BBCeQZ.js",
+            "bytes": 1756,
+            "encoded": 1456,
+            "type": "script"
+          },
+          {
+            "url": "http://172.19.0.10/assets/SmartImage-2y1VarfJ.css",
+            "bytes": 1186,
+            "encoded": 886,
+            "type": "link"
+          },
+          {
+            "url": "http://172.19.0.10/portfolio/fonts/made-tommy-regular.woff2",
+            "bytes": 0,
+            "encoded": 27536,
+            "type": "css"
+          },
+          {
+            "url": "http://172.19.0.10/portfolio/fonts/made-tommy-medium.woff2",
+            "bytes": 28260,
+            "encoded": 27960,
+            "type": "css"
+          },
+          {
+            "url": "http://172.19.0.10/projects.json",
+            "bytes": 6372,
+            "encoded": 6072,
+            "type": "fetch"
+          },
+          {
+            "url": "http://172.19.0.10/imageMeta.json",
+            "bytes": 33388,
+            "encoded": 33088,
+            "type": "fetch"
+          },
+          {
+            "url": "http://172.19.0.10/optimized/i-put-clean-girls-into-a-coma/3/image-5f360fede303dba386e2-640.avif",
+            "bytes": 11076,
+            "encoded": 10776,
+            "type": "img"
+          },
+          {
+            "url": "http://172.19.0.10/portfolio/fonts/made-tommy-light.woff2",
+            "bytes": 24976,
+            "encoded": 24676,
+            "type": "css"
+          },
+          {
+            "url": "http://172.19.0.10/optimized/le-figlie-del-fuoco/cover/image-abc6d017ca28cc30fe61-640.avif",
+            "bytes": 32627,
+            "encoded": 32327,
+            "type": "img"
+          },
+          {
+            "url": "http://172.19.0.10/optimized/blosson-beauty/5/image-92dcc4c1f39f68fb4bf3-640.avif",
+            "bytes": 20660,
+            "encoded": 20360,
+            "type": "img"
+          },
+          {
+            "url": "http://172.19.0.10/optimized/argento/cover/image-85693b3696977b3b1367-640.avif",
+            "bytes": 16917,
+            "encoded": 16617,
+            "type": "img"
+          },
+          {
+            "url": "http://172.19.0.10/optimized/inside-raw-emotions/cover/image-c3c7c146ba7a87b022aa-640.avif",
+            "bytes": 7063,
+            "encoded": 6763,
+            "type": "img"
+          },
+          {
+            "url": "http://172.19.0.10/optimized/zofi/cover/image-12275bbb39f18b8be48a-640.avif",
+            "bytes": 14435,
+            "encoded": 14135,
+            "type": "img"
+          }
+        ],
+        "overflow": false
+      },
+      "scan": {
+        "totalImages": 18,
+        "broken": [],
+        "pending": 0
+      },
+      "viewer": {
+        "open": true,
+        "counter": "02 / 05"
+      },
+      "failures": []
+    },
+    {
+      "profile": "desktop",
+      "route": "/projects",
+      "cache": "cold",
+      "initial": {
+        "lcp": 580,
+        "cls": 0,
+        "images": [
+          {
+            "src": "http://172.19.0.10/optimized/le-figlie-del-fuoco/cover/image-abc6d017ca28cc30fe61-640.avif",
+            "loaded": true,
+            "visible": true
+          },
+          {
+            "src": "http://172.19.0.10/optimized/argento/cover/image-85693b3696977b3b1367-640.avif",
+            "loaded": true,
+            "visible": true
+          },
+          {
+            "src": "http://172.19.0.10/optimized/i-put-clean-girls-into-a-coma/3/image-5f360fede303dba386e2-640.avif",
+            "loaded": true,
+            "visible": true
+          },
+          {
+            "src": "http://172.19.0.10/optimized/blosson-beauty/5/image-92dcc4c1f39f68fb4bf3-640.avif",
+            "loaded": true,
+            "visible": true
+          },
+          {
+            "src": "http://172.19.0.10/optimized/inside-raw-emotions/cover/image-c3c7c146ba7a87b022aa-640.avif",
+            "loaded": true,
+            "visible": true
+          },
+          {
+            "src": "http://172.19.0.10/optimized/le-figlie-del-fuoco/cover/image-abc6d017ca28cc30fe61-640.avif",
+            "loaded": true,
+            "visible": false
+          },
+          {
+            "src": "http://172.19.0.10/optimized/zofi/cover/image-12275bbb39f18b8be48a-640.avif",
+            "loaded": true,
+            "visible": false
+          }
+        ],
+        "resources": [
+          {
+            "url": "http://172.19.0.10/portfolio/fonts/made-tommy-regular.woff2",
+            "bytes": 27836,
+            "encoded": 27536,
+            "type": "link"
+          },
+          {
+            "url": "http://172.19.0.10/assets/index-BH_Au8IM.js",
+            "bytes": 57694,
+            "encoded": 57394,
+            "type": "script"
+          },
+          {
+            "url": "http://172.19.0.10/assets/vendor-BP0qhIbX.js",
+            "bytes": 4494,
+            "encoded": 4194,
+            "type": "other"
+          },
+          {
+            "url": "http://172.19.0.10/assets/router-BDQjdA8j.js",
+            "bytes": 27528,
+            "encoded": 27228,
+            "type": "other"
+          },
+          {
+            "url": "http://172.19.0.10/assets/index-B74aTVax.css",
+            "bytes": 4330,
+            "encoded": 4030,
+            "type": "link"
+          },
+          {
+            "url": "http://172.19.0.10/assets/Portfolio-BZLAppt0.js",
+            "bytes": 14455,
+            "encoded": 14155,
+            "type": "script"
+          },
+          {
+            "url": "http://172.19.0.10/assets/SmartImage-B9BBCeQZ.js",
+            "bytes": 1756,
+            "encoded": 1456,
+            "type": "script"
+          },
+          {
+            "url": "http://172.19.0.10/assets/SmartImage-2y1VarfJ.css",
+            "bytes": 1186,
+            "encoded": 886,
+            "type": "link"
+          },
+          {
+            "url": "http://172.19.0.10/portfolio/fonts/made-tommy-medium.woff2",
+            "bytes": 28260,
+            "encoded": 27960,
+            "type": "css"
+          },
+          {
+            "url": "http://172.19.0.10/projects.json",
+            "bytes": 6372,
+            "encoded": 6072,
+            "type": "fetch"
+          },
+          {
+            "url": "http://172.19.0.10/imageMeta.json",
+            "bytes": 33388,
+            "encoded": 33088,
+            "type": "fetch"
+          },
+          {
+            "url": "http://172.19.0.10/optimized/i-put-clean-girls-into-a-coma/3/image-5f360fede303dba386e2-640.avif",
+            "bytes": 11076,
+            "encoded": 10776,
+            "type": "img"
+          },
+          {
+            "url": "http://172.19.0.10/portfolio/fonts/made-tommy-light.woff2",
+            "bytes": 24976,
+            "encoded": 24676,
+            "type": "css"
+          },
+          {
+            "url": "http://172.19.0.10/optimized/le-figlie-del-fuoco/cover/image-abc6d017ca28cc30fe61-640.avif",
+            "bytes": 32627,
+            "encoded": 32327,
+            "type": "img"
+          },
+          {
+            "url": "http://172.19.0.10/optimized/argento/cover/image-85693b3696977b3b1367-640.avif",
+            "bytes": 16917,
+            "encoded": 16617,
+            "type": "img"
+          },
+          {
+            "url": "http://172.19.0.10/optimized/blosson-beauty/5/image-92dcc4c1f39f68fb4bf3-640.avif",
+            "bytes": 20660,
+            "encoded": 20360,
+            "type": "img"
+          },
+          {
+            "url": "http://172.19.0.10/optimized/inside-raw-emotions/cover/image-c3c7c146ba7a87b022aa-640.avif",
+            "bytes": 7063,
+            "encoded": 6763,
+            "type": "img"
+          },
+          {
+            "url": "http://172.19.0.10/optimized/zofi/cover/image-12275bbb39f18b8be48a-640.avif",
+            "bytes": 14435,
+            "encoded": 14135,
+            "type": "img"
+          }
+        ],
+        "overflow": false
+      },
+      "scan": {
+        "totalImages": 18,
+        "broken": [],
+        "pending": 0
+      },
+      "viewer": {
+        "open": true,
+        "counter": "02 / 05"
+      },
+      "failures": []
+    },
+    {
+      "profile": "desktop",
+      "route": "/projects",
+      "cache": "warm",
+      "initial": {
+        "lcp": 492,
+        "cls": 0,
+        "images": [
+          {
+            "src": "http://172.19.0.10/optimized/le-figlie-del-fuoco/cover/image-abc6d017ca28cc30fe61-640.avif",
+            "loaded": true,
+            "visible": true
+          },
+          {
+            "src": "http://172.19.0.10/optimized/argento/cover/image-85693b3696977b3b1367-640.avif",
+            "loaded": true,
+            "visible": true
+          },
+          {
+            "src": "http://172.19.0.10/optimized/i-put-clean-girls-into-a-coma/3/image-5f360fede303dba386e2-640.avif",
+            "loaded": true,
+            "visible": true
+          },
+          {
+            "src": "http://172.19.0.10/optimized/blosson-beauty/5/image-92dcc4c1f39f68fb4bf3-640.avif",
+            "loaded": true,
+            "visible": true
+          },
+          {
+            "src": "http://172.19.0.10/optimized/inside-raw-emotions/cover/image-c3c7c146ba7a87b022aa-640.avif",
+            "loaded": true,
+            "visible": true
+          },
+          {
+            "src": "http://172.19.0.10/optimized/le-figlie-del-fuoco/cover/image-abc6d017ca28cc30fe61-640.avif",
+            "loaded": true,
+            "visible": false
+          },
+          {
+            "src": "http://172.19.0.10/optimized/zofi/cover/image-12275bbb39f18b8be48a-640.avif",
+            "loaded": true,
+            "visible": false
+          }
+        ],
+        "resources": [
+          {
+            "url": "http://172.19.0.10/portfolio/fonts/made-tommy-regular.woff2",
+            "bytes": 0,
+            "encoded": 27536,
+            "type": "link"
+          },
+          {
+            "url": "http://172.19.0.10/assets/index-BH_Au8IM.js",
+            "bytes": 0,
+            "encoded": 57394,
+            "type": "script"
+          },
+          {
+            "url": "http://172.19.0.10/assets/vendor-BP0qhIbX.js",
+            "bytes": 0,
+            "encoded": 4194,
+            "type": "other"
+          },
+          {
+            "url": "http://172.19.0.10/assets/router-BDQjdA8j.js",
+            "bytes": 0,
+            "encoded": 27228,
+            "type": "other"
+          },
+          {
+            "url": "http://172.19.0.10/assets/index-B74aTVax.css",
+            "bytes": 0,
+            "encoded": 4030,
+            "type": "link"
+          },
+          {
+            "url": "http://172.19.0.10/assets/Portfolio-BZLAppt0.js",
+            "bytes": 0,
+            "encoded": 14155,
+            "type": "script"
+          },
+          {
+            "url": "http://172.19.0.10/assets/SmartImage-B9BBCeQZ.js",
+            "bytes": 0,
+            "encoded": 1456,
+            "type": "script"
+          },
+          {
+            "url": "http://172.19.0.10/assets/SmartImage-2y1VarfJ.css",
+            "bytes": 0,
+            "encoded": 886,
+            "type": "link"
+          },
+          {
+            "url": "http://172.19.0.10/projects.json",
+            "bytes": 0,
+            "encoded": 6072,
+            "type": "fetch"
+          },
+          {
+            "url": "http://172.19.0.10/imageMeta.json",
+            "bytes": 0,
+            "encoded": 33088,
+            "type": "fetch"
+          },
+          {
+            "url": "http://172.19.0.10/portfolio/fonts/made-tommy-medium.woff2",
+            "bytes": 0,
+            "encoded": 27960,
+            "type": "css"
+          },
+          {
+            "url": "http://172.19.0.10/portfolio/fonts/made-tommy-light.woff2",
+            "bytes": 0,
+            "encoded": 24676,
+            "type": "css"
+          },
+          {
+            "url": "http://172.19.0.10/optimized/i-put-clean-girls-into-a-coma/3/image-5f360fede303dba386e2-640.avif",
+            "bytes": 0,
+            "encoded": 10776,
+            "type": "img"
+          },
+          {
+            "url": "http://172.19.0.10/optimized/le-figlie-del-fuoco/cover/image-abc6d017ca28cc30fe61-640.avif",
+            "bytes": 0,
+            "encoded": 32327,
+            "type": "img"
+          },
+          {
+            "url": "http://172.19.0.10/optimized/argento/cover/image-85693b3696977b3b1367-640.avif",
+            "bytes": 0,
+            "encoded": 16617,
+            "type": "img"
+          },
+          {
+            "url": "http://172.19.0.10/optimized/blosson-beauty/5/image-92dcc4c1f39f68fb4bf3-640.avif",
+            "bytes": 0,
+            "encoded": 20360,
+            "type": "img"
+          },
+          {
+            "url": "http://172.19.0.10/optimized/inside-raw-emotions/cover/image-c3c7c146ba7a87b022aa-640.avif",
+            "bytes": 0,
+            "encoded": 6763,
+            "type": "img"
+          },
+          {
+            "url": "http://172.19.0.10/optimized/zofi/cover/image-12275bbb39f18b8be48a-640.avif",
+            "bytes": 0,
+            "encoded": 14135,
+            "type": "img"
+          }
+        ],
+        "overflow": false
+      },
+      "scan": {
+        "totalImages": 18,
+        "broken": [],
+        "pending": 0
+      },
+      "viewer": {
+        "open": true,
+        "counter": "02 / 05"
+      },
+      "failures": []
+    },
+    {
+      "profile": "desktop",
+      "route": "/",
+      "cache": "warm",
+      "initial": {
+        "lcp": 556,
+        "cls": 0,
+        "images": [
+          {
+            "src": "http://172.19.0.10/optimized/le-figlie-del-fuoco/cover/image-abc6d017ca28cc30fe61-640.avif",
+            "loaded": true,
+            "visible": true
+          },
+          {
+            "src": "http://172.19.0.10/optimized/argento/cover/image-85693b3696977b3b1367-640.avif",
+            "loaded": true,
+            "visible": true
+          },
+          {
+            "src": "http://172.19.0.10/optimized/i-put-clean-girls-into-a-coma/3/image-5f360fede303dba386e2-640.avif",
+            "loaded": true,
+            "visible": true
+          },
+          {
+            "src": "http://172.19.0.10/optimized/blosson-beauty/5/image-92dcc4c1f39f68fb4bf3-640.avif",
+            "loaded": true,
+            "visible": true
+          },
+          {
+            "src": "http://172.19.0.10/optimized/inside-raw-emotions/cover/image-c3c7c146ba7a87b022aa-640.avif",
+            "loaded": true,
+            "visible": true
+          },
+          {
+            "src": "http://172.19.0.10/optimized/le-figlie-del-fuoco/cover/image-abc6d017ca28cc30fe61-640.avif",
+            "loaded": true,
+            "visible": false
+          },
+          {
+            "src": "http://172.19.0.10/optimized/zofi/cover/image-12275bbb39f18b8be48a-640.avif",
+            "loaded": true,
+            "visible": false
+          }
+        ],
+        "resources": [
+          {
+            "url": "http://172.19.0.10/portfolio/fonts/made-tommy-regular.woff2",
+            "bytes": 0,
+            "encoded": 27536,
+            "type": "css"
+          },
+          {
+            "url": "http://172.19.0.10/assets/index-BH_Au8IM.js",
+            "bytes": 0,
+            "encoded": 57394,
+            "type": "script"
+          },
+          {
+            "url": "http://172.19.0.10/assets/vendor-BP0qhIbX.js",
+            "bytes": 0,
+            "encoded": 4194,
+            "type": "other"
+          },
+          {
+            "url": "http://172.19.0.10/assets/router-BDQjdA8j.js",
+            "bytes": 0,
+            "encoded": 27228,
+            "type": "other"
+          },
+          {
+            "url": "http://172.19.0.10/assets/index-B74aTVax.css",
+            "bytes": 0,
+            "encoded": 4030,
+            "type": "link"
+          },
+          {
+            "url": "http://172.19.0.10/portfolio/fonts/made-tommy-light.woff2",
+            "bytes": 0,
+            "encoded": 24676,
+            "type": "css"
+          },
+          {
+            "url": "http://172.19.0.10/portfolio/fonts/made-tommy-medium.woff2",
+            "bytes": 0,
+            "encoded": 27960,
+            "type": "css"
+          },
+          {
+            "url": "http://172.19.0.10/assets/Portfolio-BZLAppt0.js",
+            "bytes": 0,
+            "encoded": 14155,
+            "type": "script"
+          },
+          {
+            "url": "http://172.19.0.10/assets/SmartImage-B9BBCeQZ.js",
+            "bytes": 0,
+            "encoded": 1456,
+            "type": "script"
+          },
+          {
+            "url": "http://172.19.0.10/assets/SmartImage-2y1VarfJ.css",
+            "bytes": 0,
+            "encoded": 886,
+            "type": "link"
+          },
+          {
+            "url": "http://172.19.0.10/projects.json",
+            "bytes": 0,
+            "encoded": 6072,
+            "type": "fetch"
+          },
+          {
+            "url": "http://172.19.0.10/imageMeta.json",
+            "bytes": 0,
+            "encoded": 33088,
+            "type": "fetch"
+          },
+          {
+            "url": "http://172.19.0.10/optimized/i-put-clean-girls-into-a-coma/3/image-5f360fede303dba386e2-640.avif",
+            "bytes": 0,
+            "encoded": 10776,
+            "type": "img"
+          },
+          {
+            "url": "http://172.19.0.10/optimized/le-figlie-del-fuoco/cover/image-abc6d017ca28cc30fe61-640.avif",
+            "bytes": 0,
+            "encoded": 32327,
+            "type": "img"
+          },
+          {
+            "url": "http://172.19.0.10/optimized/argento/cover/image-85693b3696977b3b1367-640.avif",
+            "bytes": 0,
+            "encoded": 16617,
+            "type": "img"
+          },
+          {
+            "url": "http://172.19.0.10/optimized/blosson-beauty/5/image-92dcc4c1f39f68fb4bf3-640.avif",
+            "bytes": 0,
+            "encoded": 20360,
+            "type": "img"
+          },
+          {
+            "url": "http://172.19.0.10/optimized/inside-raw-emotions/cover/image-c3c7c146ba7a87b022aa-640.avif",
+            "bytes": 0,
+            "encoded": 6763,
+            "type": "img"
+          },
+          {
+            "url": "http://172.19.0.10/optimized/zofi/cover/image-12275bbb39f18b8be48a-640.avif",
+            "bytes": 0,
+            "encoded": 14135,
+            "type": "img"
+          }
+        ],
+        "overflow": false
+      },
+      "scan": {
+        "totalImages": 18,
+        "broken": [],
+        "pending": 0
+      },
+      "viewer": {
+        "open": true,
+        "counter": "02 / 05"
+      },
+      "failures": []
+    },
+    {
+      "profile": "desktop",
+      "route": "/gallery",
+      "cache": "cold",
+      "initial": {
+        "lcp": 1000,
+        "cls": 0.000019040490504972567,
+        "images": [
+          {
+            "src": "http://172.19.0.10/optimized/le-figlie-del-fuoco/cover/image-abc6d017ca28cc30fe61-640.avif",
+            "loaded": true,
+            "visible": true
+          },
+          {
+            "src": "http://172.19.0.10/optimized/le-figlie-del-fuoco/1/image-0c4e0b68731f45d2ae1c-640.avif",
+            "loaded": true,
+            "visible": true
+          },
+          {
+            "src": "http://172.19.0.10/optimized/le-figlie-del-fuoco/2/image-02aee3621650a091258d-640.avif",
+            "loaded": true,
+            "visible": false
+          },
+          {
+            "src": "http://172.19.0.10/optimized/le-figlie-del-fuoco/3/image-a4afc20e689356463630-640.avif",
+            "loaded": true,
+            "visible": false
+          }
+        ],
+        "resources": [
+          {
+            "url": "http://172.19.0.10/portfolio/fonts/made-tommy-regular.woff2",
+            "bytes": 27836,
+            "encoded": 27536,
+            "type": "link"
+          },
+          {
+            "url": "http://172.19.0.10/assets/index-BH_Au8IM.js",
+            "bytes": 57694,
+            "encoded": 57394,
+            "type": "script"
+          },
+          {
+            "url": "http://172.19.0.10/assets/vendor-BP0qhIbX.js",
+            "bytes": 4494,
+            "encoded": 4194,
+            "type": "other"
+          },
+          {
+            "url": "http://172.19.0.10/assets/index-B74aTVax.css",
+            "bytes": 4330,
+            "encoded": 4030,
+            "type": "link"
+          },
+          {
+            "url": "http://172.19.0.10/assets/router-BDQjdA8j.js",
+            "bytes": 27528,
+            "encoded": 27228,
+            "type": "other"
+          },
+          {
+            "url": "http://172.19.0.10/assets/Portfolio-BZLAppt0.js",
+            "bytes": 14455,
+            "encoded": 14155,
+            "type": "script"
+          },
+          {
+            "url": "http://172.19.0.10/assets/SmartImage-B9BBCeQZ.js",
+            "bytes": 1756,
+            "encoded": 1456,
+            "type": "script"
+          },
+          {
+            "url": "http://172.19.0.10/assets/SmartImage-2y1VarfJ.css",
+            "bytes": 1186,
+            "encoded": 886,
+            "type": "link"
+          },
+          {
+            "url": "http://172.19.0.10/projects.json",
+            "bytes": 6372,
+            "encoded": 6072,
+            "type": "fetch"
+          },
+          {
+            "url": "http://172.19.0.10/imageMeta.json",
+            "bytes": 33388,
+            "encoded": 33088,
+            "type": "fetch"
+          },
+          {
+            "url": "http://172.19.0.10/portfolio/fonts/made-tommy-medium.woff2",
+            "bytes": 28260,
+            "encoded": 27960,
+            "type": "css"
+          },
+          {
+            "url": "http://172.19.0.10/portfolio/fonts/made-tommy-light.woff2",
+            "bytes": 24976,
+            "encoded": 24676,
+            "type": "css"
+          },
+          {
+            "url": "http://172.19.0.10/optimized/le-figlie-del-fuoco/cover/image-abc6d017ca28cc30fe61-640.avif",
+            "bytes": 32627,
+            "encoded": 32327,
+            "type": "img"
+          },
+          {
+            "url": "http://172.19.0.10/optimized/le-figlie-del-fuoco/1/image-0c4e0b68731f45d2ae1c-640.avif",
+            "bytes": 22869,
+            "encoded": 22569,
+            "type": "img"
+          },
+          {
+            "url": "http://172.19.0.10/optimized/le-figlie-del-fuoco/2/image-02aee3621650a091258d-640.avif",
+            "bytes": 32928,
+            "encoded": 32628,
+            "type": "img"
+          },
+          {
+            "url": "http://172.19.0.10/optimized/le-figlie-del-fuoco/3/image-a4afc20e689356463630-640.avif",
+            "bytes": 49393,
+            "encoded": 49093,
+            "type": "img"
+          }
+        ],
+        "overflow": false
+      },
+      "scan": {
+        "totalImages": 136,
+        "broken": [],
+        "pending": 0
+      },
+      "viewer": {
+        "open": true,
+        "counter": "02 / 134"
+      },
+      "failures": []
+    },
+    {
+      "profile": "desktop",
+      "route": "/projects/zofi",
+      "cache": "cold",
+      "initial": {
+        "lcp": 840,
+        "cls": 0.14446940586419751,
+        "images": [
+          {
+            "src": "http://172.19.0.10/optimized/zofi/1/image-ceac8b733b13a2791273-960.avif",
+            "loaded": true,
+            "visible": true
+          },
+          {
+            "src": "http://172.19.0.10/optimized/zofi/2/image-159e6a05287f42421aad-960.avif",
+            "loaded": true,
+            "visible": false
+          },
+          {
+            "src": "http://172.19.0.10/optimized/zofi/5/image-2c277b9ec57bb3625c71-960.avif",
+            "loaded": true,
+            "visible": true
+          }
+        ],
+        "resources": [
+          {
+            "url": "http://172.19.0.10/portfolio/fonts/made-tommy-regular.woff2",
+            "bytes": 27836,
+            "encoded": 27536,
+            "type": "link"
+          },
+          {
+            "url": "http://172.19.0.10/assets/index-BH_Au8IM.js",
+            "bytes": 57694,
+            "encoded": 57394,
+            "type": "script"
+          },
+          {
+            "url": "http://172.19.0.10/assets/vendor-BP0qhIbX.js",
+            "bytes": 4494,
+            "encoded": 4194,
+            "type": "other"
+          },
+          {
+            "url": "http://172.19.0.10/assets/router-BDQjdA8j.js",
+            "bytes": 27528,
+            "encoded": 27228,
+            "type": "other"
+          },
+          {
+            "url": "http://172.19.0.10/assets/index-B74aTVax.css",
+            "bytes": 4330,
+            "encoded": 4030,
+            "type": "link"
+          },
+          {
+            "url": "http://172.19.0.10/assets/Portfolio-BZLAppt0.js",
+            "bytes": 14455,
+            "encoded": 14155,
+            "type": "script"
+          },
+          {
+            "url": "http://172.19.0.10/assets/SmartImage-B9BBCeQZ.js",
+            "bytes": 1756,
+            "encoded": 1456,
+            "type": "script"
+          },
+          {
+            "url": "http://172.19.0.10/assets/SmartImage-2y1VarfJ.css",
+            "bytes": 1186,
+            "encoded": 886,
+            "type": "link"
+          },
+          {
+            "url": "http://172.19.0.10/projects.json",
+            "bytes": 6372,
+            "encoded": 6072,
+            "type": "fetch"
+          },
+          {
+            "url": "http://172.19.0.10/imageMeta.json",
+            "bytes": 33388,
+            "encoded": 33088,
+            "type": "fetch"
+          },
+          {
+            "url": "http://172.19.0.10/portfolio/fonts/made-tommy-medium.woff2",
+            "bytes": 28260,
+            "encoded": 27960,
+            "type": "css"
+          },
+          {
+            "url": "http://172.19.0.10/optimized/zofi/1/image-ceac8b733b13a2791273-960.avif",
+            "bytes": 20673,
+            "encoded": 20373,
+            "type": "img"
+          },
+          {
+            "url": "http://172.19.0.10/optimized/zofi/2/image-159e6a05287f42421aad-960.avif",
+            "bytes": 27229,
+            "encoded": 26929,
+            "type": "img"
+          },
+          {
+            "url": "http://172.19.0.10/portfolio/fonts/made-tommy-light.woff2",
+            "bytes": 24976,
+            "encoded": 24676,
+            "type": "css"
+          },
+          {
+            "url": "http://172.19.0.10/optimized/zofi/5/image-2c277b9ec57bb3625c71-960.avif",
+            "bytes": 21011,
+            "encoded": 20711,
+            "type": "img"
+          }
+        ],
+        "overflow": false
+      },
+      "scan": {
+        "totalImages": 8,
+        "broken": [],
+        "pending": 0
+      },
+      "viewer": {
+        "open": true,
+        "counter": "02 / 08"
+      },
+      "failures": []
+    },
+    {
+      "profile": "desktop",
+      "route": "/projects/le-figlie-del-fuoco",
+      "cache": "cold",
+      "initial": {
+        "lcp": 936,
+        "cls": 0.24456330161179698,
+        "images": [
+          {
+            "src": "http://172.19.0.10/optimized/le-figlie-del-fuoco/1/image-0c4e0b68731f45d2ae1c-960.avif",
+            "loaded": true,
+            "visible": true
+          },
+          {
+            "src": "http://172.19.0.10/optimized/le-figlie-del-fuoco/2/image-02aee3621650a091258d-960.avif",
+            "loaded": true,
+            "visible": false
+          },
+          {
+            "src": "http://172.19.0.10/optimized/le-figlie-del-fuoco/8/image-e5b9f5cadb65c1461e75-960.avif",
+            "loaded": true,
+            "visible": true
+          }
+        ],
+        "resources": [
+          {
+            "url": "http://172.19.0.10/portfolio/fonts/made-tommy-regular.woff2",
+            "bytes": 27836,
+            "encoded": 27536,
+            "type": "link"
+          },
+          {
+            "url": "http://172.19.0.10/assets/index-BH_Au8IM.js",
+            "bytes": 57694,
+            "encoded": 57394,
+            "type": "script"
+          },
+          {
+            "url": "http://172.19.0.10/assets/vendor-BP0qhIbX.js",
+            "bytes": 4494,
+            "encoded": 4194,
+            "type": "other"
+          },
+          {
+            "url": "http://172.19.0.10/assets/index-B74aTVax.css",
+            "bytes": 4330,
+            "encoded": 4030,
+            "type": "link"
+          },
+          {
+            "url": "http://172.19.0.10/assets/router-BDQjdA8j.js",
+            "bytes": 27528,
+            "encoded": 27228,
+            "type": "other"
+          },
+          {
+            "url": "http://172.19.0.10/assets/Portfolio-BZLAppt0.js",
+            "bytes": 14455,
+            "encoded": 14155,
+            "type": "script"
+          },
+          {
+            "url": "http://172.19.0.10/assets/SmartImage-B9BBCeQZ.js",
+            "bytes": 1756,
+            "encoded": 1456,
+            "type": "script"
+          },
+          {
+            "url": "http://172.19.0.10/assets/SmartImage-2y1VarfJ.css",
+            "bytes": 1186,
+            "encoded": 886,
+            "type": "link"
+          },
+          {
+            "url": "http://172.19.0.10/projects.json",
+            "bytes": 6372,
+            "encoded": 6072,
+            "type": "fetch"
+          },
+          {
+            "url": "http://172.19.0.10/imageMeta.json",
+            "bytes": 33388,
+            "encoded": 33088,
+            "type": "fetch"
+          },
+          {
+            "url": "http://172.19.0.10/portfolio/fonts/made-tommy-regular.woff2",
+            "bytes": 0,
+            "encoded": 27536,
+            "type": "css"
+          },
+          {
+            "url": "http://172.19.0.10/portfolio/fonts/made-tommy-medium.woff2",
+            "bytes": 28260,
+            "encoded": 27960,
+            "type": "css"
+          },
+          {
+            "url": "http://172.19.0.10/portfolio/fonts/made-tommy-regular.woff2",
+            "bytes": 0,
+            "encoded": 27536,
+            "type": "css"
+          },
+          {
+            "url": "http://172.19.0.10/optimized/le-figlie-del-fuoco/1/image-0c4e0b68731f45d2ae1c-960.avif",
+            "bytes": 49714,
+            "encoded": 49414,
+            "type": "img"
+          },
+          {
+            "url": "http://172.19.0.10/optimized/le-figlie-del-fuoco/2/image-02aee3621650a091258d-960.avif",
+            "bytes": 103451,
+            "encoded": 103151,
+            "type": "img"
+          },
+          {
+            "url": "http://172.19.0.10/portfolio/fonts/made-tommy-light.woff2",
+            "bytes": 24976,
+            "encoded": 24676,
+            "type": "css"
+          },
+          {
+            "url": "http://172.19.0.10/optimized/le-figlie-del-fuoco/8/image-e5b9f5cadb65c1461e75-960.avif",
+            "bytes": 36333,
+            "encoded": 36033,
+            "type": "img"
+          }
+        ],
+        "overflow": false
+      },
+      "scan": {
+        "totalImages": 15,
+        "broken": [],
+        "pending": 0
+      },
+      "viewer": {
+        "open": true,
+        "counter": "02 / 15"
+      },
+      "failures": []
+    },
+    {
+      "profile": "desktop",
+      "route": "/projects/zofi",
+      "cache": "warm",
+      "initial": {
+        "lcp": 812,
+        "cls": 0,
+        "images": [
+          {
+            "src": "http://172.19.0.10/optimized/zofi/1/image-ceac8b733b13a2791273-960.avif",
+            "loaded": true,
+            "visible": true
+          },
+          {
+            "src": "http://172.19.0.10/optimized/zofi/2/image-159e6a05287f42421aad-960.avif",
+            "loaded": true,
+            "visible": false
+          },
+          {
+            "src": "http://172.19.0.10/optimized/zofi/5/image-2c277b9ec57bb3625c71-960.avif",
+            "loaded": true,
+            "visible": true
+          }
+        ],
+        "resources": [
+          {
+            "url": "http://172.19.0.10/portfolio/fonts/made-tommy-regular.woff2",
+            "bytes": 0,
+            "encoded": 27536,
+            "type": "link"
+          },
+          {
+            "url": "http://172.19.0.10/assets/index-BH_Au8IM.js",
+            "bytes": 0,
+            "encoded": 57394,
+            "type": "script"
+          },
+          {
+            "url": "http://172.19.0.10/assets/vendor-BP0qhIbX.js",
+            "bytes": 0,
+            "encoded": 4194,
+            "type": "other"
+          },
+          {
+            "url": "http://172.19.0.10/assets/router-BDQjdA8j.js",
+            "bytes": 0,
+            "encoded": 27228,
+            "type": "other"
+          },
+          {
+            "url": "http://172.19.0.10/assets/index-B74aTVax.css",
+            "bytes": 0,
+            "encoded": 4030,
+            "type": "link"
+          },
+          {
+            "url": "http://172.19.0.10/assets/Portfolio-BZLAppt0.js",
+            "bytes": 0,
+            "encoded": 14155,
+            "type": "script"
+          },
+          {
+            "url": "http://172.19.0.10/assets/SmartImage-B9BBCeQZ.js",
+            "bytes": 0,
+            "encoded": 1456,
+            "type": "script"
+          },
+          {
+            "url": "http://172.19.0.10/assets/SmartImage-2y1VarfJ.css",
+            "bytes": 0,
+            "encoded": 886,
+            "type": "link"
+          },
+          {
+            "url": "http://172.19.0.10/projects.json",
+            "bytes": 0,
+            "encoded": 6072,
+            "type": "fetch"
+          },
+          {
+            "url": "http://172.19.0.10/imageMeta.json",
+            "bytes": 0,
+            "encoded": 33088,
+            "type": "fetch"
+          },
+          {
+            "url": "http://172.19.0.10/optimized/zofi/1/image-ceac8b733b13a2791273-960.avif",
+            "bytes": 0,
+            "encoded": 20373,
+            "type": "img"
+          },
+          {
+            "url": "http://172.19.0.10/optimized/zofi/2/image-159e6a05287f42421aad-960.avif",
+            "bytes": 0,
+            "encoded": 26929,
+            "type": "img"
+          },
+          {
+            "url": "http://172.19.0.10/portfolio/fonts/made-tommy-medium.woff2",
+            "bytes": 0,
+            "encoded": 27960,
+            "type": "css"
+          },
+          {
+            "url": "http://172.19.0.10/portfolio/fonts/made-tommy-light.woff2",
+            "bytes": 0,
+            "encoded": 24676,
+            "type": "css"
+          },
+          {
+            "url": "http://172.19.0.10/optimized/zofi/5/image-2c277b9ec57bb3625c71-960.avif",
+            "bytes": 0,
+            "encoded": 20711,
+            "type": "img"
+          }
+        ],
+        "overflow": false
+      },
+      "scan": {
+        "totalImages": 8,
+        "broken": [],
+        "pending": 0
+      },
+      "viewer": {
+        "open": true,
+        "counter": "02 / 08"
+      },
+      "failures": []
+    },
+    {
+      "profile": "desktop",
+      "route": "/projects/le-figlie-del-fuoco",
+      "cache": "warm",
+      "initial": {
+        "lcp": 408,
+        "cls": 0,
+        "images": [
+          {
+            "src": "http://172.19.0.10/optimized/le-figlie-del-fuoco/1/image-0c4e0b68731f45d2ae1c-960.avif",
+            "loaded": true,
+            "visible": true
+          },
+          {
+            "src": "http://172.19.0.10/optimized/le-figlie-del-fuoco/2/image-02aee3621650a091258d-960.avif",
+            "loaded": true,
+            "visible": false
+          },
+          {
+            "src": "http://172.19.0.10/optimized/le-figlie-del-fuoco/8/image-e5b9f5cadb65c1461e75-960.avif",
+            "loaded": true,
+            "visible": true
+          }
+        ],
+        "resources": [
+          {
+            "url": "http://172.19.0.10/portfolio/fonts/made-tommy-regular.woff2",
+            "bytes": 0,
+            "encoded": 27536,
+            "type": "css"
+          },
+          {
+            "url": "http://172.19.0.10/assets/index-BH_Au8IM.js",
+            "bytes": 0,
+            "encoded": 57394,
+            "type": "script"
+          },
+          {
+            "url": "http://172.19.0.10/assets/vendor-BP0qhIbX.js",
+            "bytes": 0,
+            "encoded": 4194,
+            "type": "other"
+          },
+          {
+            "url": "http://172.19.0.10/assets/router-BDQjdA8j.js",
+            "bytes": 0,
+            "encoded": 27228,
+            "type": "other"
+          },
+          {
+            "url": "http://172.19.0.10/assets/index-B74aTVax.css",
+            "bytes": 0,
+            "encoded": 4030,
+            "type": "link"
+          },
+          {
+            "url": "http://172.19.0.10/portfolio/fonts/made-tommy-light.woff2",
+            "bytes": 0,
+            "encoded": 24676,
+            "type": "css"
+          },
+          {
+            "url": "http://172.19.0.10/portfolio/fonts/made-tommy-medium.woff2",
+            "bytes": 0,
+            "encoded": 27960,
+            "type": "css"
+          },
+          {
+            "url": "http://172.19.0.10/assets/Portfolio-BZLAppt0.js",
+            "bytes": 0,
+            "encoded": 14155,
+            "type": "script"
+          },
+          {
+            "url": "http://172.19.0.10/assets/SmartImage-B9BBCeQZ.js",
+            "bytes": 0,
+            "encoded": 1456,
+            "type": "script"
+          },
+          {
+            "url": "http://172.19.0.10/assets/SmartImage-2y1VarfJ.css",
+            "bytes": 0,
+            "encoded": 886,
+            "type": "link"
+          },
+          {
+            "url": "http://172.19.0.10/projects.json",
+            "bytes": 0,
+            "encoded": 6072,
+            "type": "fetch"
+          },
+          {
+            "url": "http://172.19.0.10/imageMeta.json",
+            "bytes": 0,
+            "encoded": 33088,
+            "type": "fetch"
+          },
+          {
+            "url": "http://172.19.0.10/optimized/le-figlie-del-fuoco/1/image-0c4e0b68731f45d2ae1c-960.avif",
+            "bytes": 0,
+            "encoded": 49414,
+            "type": "img"
+          },
+          {
+            "url": "http://172.19.0.10/optimized/le-figlie-del-fuoco/2/image-02aee3621650a091258d-960.avif",
+            "bytes": 0,
+            "encoded": 103151,
+            "type": "img"
+          },
+          {
+            "url": "http://172.19.0.10/optimized/le-figlie-del-fuoco/8/image-e5b9f5cadb65c1461e75-960.avif",
+            "bytes": 0,
+            "encoded": 36033,
+            "type": "img"
+          }
+        ],
+        "overflow": false
+      },
+      "scan": {
+        "totalImages": 15,
+        "broken": [],
+        "pending": 0
+      },
+      "viewer": {
+        "open": true,
+        "counter": "02 / 15"
+      },
+      "failures": []
+    },
+    {
+      "profile": "desktop",
+      "route": "/gallery",
+      "cache": "warm",
+      "initial": {
+        "lcp": 536,
+        "cls": 0,
+        "images": [
+          {
+            "src": "http://172.19.0.10/optimized/le-figlie-del-fuoco/cover/image-abc6d017ca28cc30fe61-640.avif",
+            "loaded": true,
+            "visible": true
+          },
+          {
+            "src": "http://172.19.0.10/optimized/le-figlie-del-fuoco/1/image-0c4e0b68731f45d2ae1c-640.avif",
+            "loaded": true,
+            "visible": true
+          },
+          {
+            "src": "http://172.19.0.10/optimized/le-figlie-del-fuoco/2/image-02aee3621650a091258d-640.avif",
+            "loaded": true,
+            "visible": false
+          },
+          {
+            "src": "http://172.19.0.10/optimized/le-figlie-del-fuoco/3/image-a4afc20e689356463630-640.avif",
+            "loaded": true,
+            "visible": false
+          }
+        ],
+        "resources": [
+          {
+            "url": "http://172.19.0.10/portfolio/fonts/made-tommy-regular.woff2",
+            "bytes": 0,
+            "encoded": 27536,
+            "type": "link"
+          },
+          {
+            "url": "http://172.19.0.10/assets/index-BH_Au8IM.js",
+            "bytes": 0,
+            "encoded": 57394,
+            "type": "script"
+          },
+          {
+            "url": "http://172.19.0.10/assets/vendor-BP0qhIbX.js",
+            "bytes": 0,
+            "encoded": 4194,
+            "type": "other"
+          },
+          {
+            "url": "http://172.19.0.10/assets/router-BDQjdA8j.js",
+            "bytes": 0,
+            "encoded": 27228,
+            "type": "other"
+          },
+          {
+            "url": "http://172.19.0.10/assets/index-B74aTVax.css",
+            "bytes": 0,
+            "encoded": 4030,
+            "type": "link"
+          },
+          {
+            "url": "http://172.19.0.10/assets/Portfolio-BZLAppt0.js",
+            "bytes": 0,
+            "encoded": 14155,
+            "type": "script"
+          },
+          {
+            "url": "http://172.19.0.10/assets/SmartImage-B9BBCeQZ.js",
+            "bytes": 0,
+            "encoded": 1456,
+            "type": "script"
+          },
+          {
+            "url": "http://172.19.0.10/assets/SmartImage-2y1VarfJ.css",
+            "bytes": 0,
+            "encoded": 886,
+            "type": "link"
+          },
+          {
+            "url": "http://172.19.0.10/projects.json",
+            "bytes": 0,
+            "encoded": 6072,
+            "type": "fetch"
+          },
+          {
+            "url": "http://172.19.0.10/imageMeta.json",
+            "bytes": 0,
+            "encoded": 33088,
+            "type": "fetch"
+          },
+          {
+            "url": "http://172.19.0.10/portfolio/fonts/made-tommy-medium.woff2",
+            "bytes": 0,
+            "encoded": 27960,
+            "type": "css"
+          },
+          {
+            "url": "http://172.19.0.10/portfolio/fonts/made-tommy-light.woff2",
+            "bytes": 0,
+            "encoded": 24676,
+            "type": "css"
+          },
+          {
+            "url": "http://172.19.0.10/optimized/le-figlie-del-fuoco/cover/image-abc6d017ca28cc30fe61-640.avif",
+            "bytes": 0,
+            "encoded": 32327,
+            "type": "img"
+          },
+          {
+            "url": "http://172.19.0.10/optimized/le-figlie-del-fuoco/1/image-0c4e0b68731f45d2ae1c-640.avif",
+            "bytes": 0,
+            "encoded": 22569,
+            "type": "img"
+          },
+          {
+            "url": "http://172.19.0.10/optimized/le-figlie-del-fuoco/3/image-a4afc20e689356463630-640.avif",
+            "bytes": 0,
+            "encoded": 49093,
+            "type": "img"
+          },
+          {
+            "url": "http://172.19.0.10/optimized/le-figlie-del-fuoco/2/image-02aee3621650a091258d-640.avif",
+            "bytes": 0,
+            "encoded": 32628,
+            "type": "img"
+          }
+        ],
+        "overflow": false
+      },
+      "scan": {
+        "totalImages": 136,
+        "broken": [],
+        "pending": 0
+      },
+      "viewer": {
+        "open": true,
+        "counter": "02 / 134"
+      },
+      "failures": []
+    },
+    {
+      "profile": "desktop",
+      "route": "/projects/beauty",
+      "cache": "cold",
+      "initial": {
+        "lcp": 980,
+        "cls": 0.000047252229080932786,
+        "images": [
+          {
+            "src": "http://172.19.0.10/optimized/beauty/1/image-44fecb887b97122d31d6-911.avif",
+            "loaded": true,
+            "visible": true
+          },
+          {
+            "src": "http://172.19.0.10/optimized/beauty/2/image-ec306476da0ae06bf903-960.avif",
+            "loaded": true,
+            "visible": false
+          },
+          {
+            "src": "http://172.19.0.10/optimized/beauty/4/image-3aff8e4fa0f2485406f4-960.avif",
+            "loaded": true,
+            "visible": true
+          },
+          {
+            "src": "http://172.19.0.10/optimized/beauty/5/image-158914e47b8a4db8b251-960.avif",
+            "loaded": true,
+            "visible": false
+          }
+        ],
+        "resources": [
+          {
+            "url": "http://172.19.0.10/portfolio/fonts/made-tommy-regular.woff2",
+            "bytes": 27836,
+            "encoded": 27536,
+            "type": "link"
+          },
+          {
+            "url": "http://172.19.0.10/assets/index-BH_Au8IM.js",
+            "bytes": 57694,
+            "encoded": 57394,
+            "type": "script"
+          },
+          {
+            "url": "http://172.19.0.10/assets/vendor-BP0qhIbX.js",
+            "bytes": 4494,
+            "encoded": 4194,
+            "type": "other"
+          },
+          {
+            "url": "http://172.19.0.10/assets/index-B74aTVax.css",
+            "bytes": 4330,
+            "encoded": 4030,
+            "type": "link"
+          },
+          {
+            "url": "http://172.19.0.10/assets/router-BDQjdA8j.js",
+            "bytes": 27528,
+            "encoded": 27228,
+            "type": "other"
+          },
+          {
+            "url": "http://172.19.0.10/assets/Portfolio-BZLAppt0.js",
+            "bytes": 14455,
+            "encoded": 14155,
+            "type": "script"
+          },
+          {
+            "url": "http://172.19.0.10/assets/SmartImage-B9BBCeQZ.js",
+            "bytes": 1756,
+            "encoded": 1456,
+            "type": "script"
+          },
+          {
+            "url": "http://172.19.0.10/assets/SmartImage-2y1VarfJ.css",
+            "bytes": 1186,
+            "encoded": 886,
+            "type": "link"
+          },
+          {
+            "url": "http://172.19.0.10/projects.json",
+            "bytes": 6372,
+            "encoded": 6072,
+            "type": "fetch"
+          },
+          {
+            "url": "http://172.19.0.10/imageMeta.json",
+            "bytes": 33388,
+            "encoded": 33088,
+            "type": "fetch"
+          },
+          {
+            "url": "http://172.19.0.10/portfolio/fonts/made-tommy-medium.woff2",
+            "bytes": 28260,
+            "encoded": 27960,
+            "type": "css"
+          },
+          {
+            "url": "http://172.19.0.10/optimized/beauty/1/image-44fecb887b97122d31d6-911.avif",
+            "bytes": 40386,
+            "encoded": 40086,
+            "type": "img"
+          },
+          {
+            "url": "http://172.19.0.10/optimized/beauty/2/image-ec306476da0ae06bf903-960.avif",
+            "bytes": 48040,
+            "encoded": 47740,
+            "type": "img"
+          },
+          {
+            "url": "http://172.19.0.10/portfolio/fonts/made-tommy-light.woff2",
+            "bytes": 24976,
+            "encoded": 24676,
+            "type": "css"
+          },
+          {
+            "url": "http://172.19.0.10/optimized/beauty/4/image-3aff8e4fa0f2485406f4-960.avif",
+            "bytes": 98387,
+            "encoded": 98087,
+            "type": "img"
+          },
+          {
+            "url": "http://172.19.0.10/optimized/beauty/5/image-158914e47b8a4db8b251-960.avif",
+            "bytes": 136480,
+            "encoded": 136180,
+            "type": "img"
+          }
+        ],
+        "overflow": false
+      },
+      "scan": {
+        "totalImages": 7,
+        "broken": [],
+        "pending": 0
+      },
+      "viewer": {
+        "open": true,
+        "counter": "02 / 07"
+      },
+      "failures": []
+    },
+    {
+      "profile": "desktop",
+      "route": "/projects/fashion-is-never-banal",
+      "cache": "cold",
+      "initial": {
+        "lcp": 764,
+        "cls": 0.14459244255829903,
+        "images": [
+          {
+            "src": "http://172.19.0.10/optimized/fashion-is-never-banal/1/image-7394cd9c3784a2feddbc-960.avif",
+            "loaded": true,
+            "visible": true
+          },
+          {
+            "src": "http://172.19.0.10/optimized/fashion-is-never-banal/2/image-a98eedaedab1c6cce9a2-960.avif",
+            "loaded": true,
+            "visible": false
+          },
+          {
+            "src": "http://172.19.0.10/optimized/fashion-is-never-banal/6/image-d7772ad0af87bd958545-960.avif",
+            "loaded": true,
+            "visible": true
+          }
+        ],
+        "resources": [
+          {
+            "url": "http://172.19.0.10/portfolio/fonts/made-tommy-regular.woff2",
+            "bytes": 27836,
+            "encoded": 27536,
+            "type": "link"
+          },
+          {
+            "url": "http://172.19.0.10/assets/index-BH_Au8IM.js",
+            "bytes": 57694,
+            "encoded": 57394,
+            "type": "script"
+          },
+          {
+            "url": "http://172.19.0.10/assets/vendor-BP0qhIbX.js",
+            "bytes": 4494,
+            "encoded": 4194,
+            "type": "other"
+          },
+          {
+            "url": "http://172.19.0.10/assets/index-B74aTVax.css",
+            "bytes": 4330,
+            "encoded": 4030,
+            "type": "link"
+          },
+          {
+            "url": "http://172.19.0.10/assets/router-BDQjdA8j.js",
+            "bytes": 27528,
+            "encoded": 27228,
+            "type": "other"
+          },
+          {
+            "url": "http://172.19.0.10/assets/Portfolio-BZLAppt0.js",
+            "bytes": 14455,
+            "encoded": 14155,
+            "type": "script"
+          },
+          {
+            "url": "http://172.19.0.10/assets/SmartImage-B9BBCeQZ.js",
+            "bytes": 1756,
+            "encoded": 1456,
+            "type": "script"
+          },
+          {
+            "url": "http://172.19.0.10/assets/SmartImage-2y1VarfJ.css",
+            "bytes": 1186,
+            "encoded": 886,
+            "type": "link"
+          },
+          {
+            "url": "http://172.19.0.10/projects.json",
+            "bytes": 6372,
+            "encoded": 6072,
+            "type": "fetch"
+          },
+          {
+            "url": "http://172.19.0.10/imageMeta.json",
+            "bytes": 33388,
+            "encoded": 33088,
+            "type": "fetch"
+          },
+          {
+            "url": "http://172.19.0.10/portfolio/fonts/made-tommy-medium.woff2",
+            "bytes": 28260,
+            "encoded": 27960,
+            "type": "css"
+          },
+          {
+            "url": "http://172.19.0.10/optimized/fashion-is-never-banal/1/image-7394cd9c3784a2feddbc-960.avif",
+            "bytes": 10256,
+            "encoded": 9956,
+            "type": "img"
+          },
+          {
+            "url": "http://172.19.0.10/optimized/fashion-is-never-banal/2/image-a98eedaedab1c6cce9a2-960.avif",
+            "bytes": 11763,
+            "encoded": 11463,
+            "type": "img"
+          },
+          {
+            "url": "http://172.19.0.10/portfolio/fonts/made-tommy-light.woff2",
+            "bytes": 24976,
+            "encoded": 24676,
+            "type": "css"
+          },
+          {
+            "url": "http://172.19.0.10/optimized/fashion-is-never-banal/6/image-d7772ad0af87bd958545-960.avif",
+            "bytes": 6741,
+            "encoded": 6441,
+            "type": "img"
+          }
+        ],
+        "overflow": false
+      },
+      "scan": {
+        "totalImages": 11,
+        "broken": [],
+        "pending": 0
+      },
+      "viewer": {
+        "open": true,
+        "counter": "02 / 11"
+      },
+      "failures": []
+    },
+    {
+      "profile": "desktop",
+      "route": "/projects/argento",
+      "cache": "cold",
+      "initial": {
+        "lcp": 860,
+        "cls": 0.00005532407407407407,
+        "images": [
+          {
+            "src": "http://172.19.0.10/optimized/argento/1/image-b21ae3fd3d9845eb72ed-960.avif",
+            "loaded": true,
+            "visible": true
+          },
+          {
+            "src": "http://172.19.0.10/optimized/argento/2/image-298ec2aac6f7dba8a2ae-960.avif",
+            "loaded": true,
+            "visible": false
+          },
+          {
+            "src": "http://172.19.0.10/optimized/argento/8/image-85693b3696977b3b1367-960.avif",
+            "loaded": true,
+            "visible": true
+          }
+        ],
+        "resources": [
+          {
+            "url": "http://172.19.0.10/portfolio/fonts/made-tommy-regular.woff2",
+            "bytes": 27836,
+            "encoded": 27536,
+            "type": "link"
+          },
+          {
+            "url": "http://172.19.0.10/assets/vendor-BP0qhIbX.js",
+            "bytes": 4494,
+            "encoded": 4194,
+            "type": "other"
+          },
+          {
+            "url": "http://172.19.0.10/assets/index-BH_Au8IM.js",
+            "bytes": 57694,
+            "encoded": 57394,
+            "type": "script"
+          },
+          {
+            "url": "http://172.19.0.10/assets/router-BDQjdA8j.js",
+            "bytes": 27528,
+            "encoded": 27228,
+            "type": "other"
+          },
+          {
+            "url": "http://172.19.0.10/assets/index-B74aTVax.css",
+            "bytes": 4330,
+            "encoded": 4030,
+            "type": "link"
+          },
+          {
+            "url": "http://172.19.0.10/assets/Portfolio-BZLAppt0.js",
+            "bytes": 14455,
+            "encoded": 14155,
+            "type": "script"
+          },
+          {
+            "url": "http://172.19.0.10/assets/SmartImage-B9BBCeQZ.js",
+            "bytes": 1756,
+            "encoded": 1456,
+            "type": "script"
+          },
+          {
+            "url": "http://172.19.0.10/assets/SmartImage-2y1VarfJ.css",
+            "bytes": 1186,
+            "encoded": 886,
+            "type": "link"
+          },
+          {
+            "url": "http://172.19.0.10/projects.json",
+            "bytes": 6372,
+            "encoded": 6072,
+            "type": "fetch"
+          },
+          {
+            "url": "http://172.19.0.10/imageMeta.json",
+            "bytes": 33388,
+            "encoded": 33088,
+            "type": "fetch"
+          },
+          {
+            "url": "http://172.19.0.10/portfolio/fonts/made-tommy-medium.woff2",
+            "bytes": 28260,
+            "encoded": 27960,
+            "type": "css"
+          },
+          {
+            "url": "http://172.19.0.10/optimized/argento/1/image-b21ae3fd3d9845eb72ed-960.avif",
+            "bytes": 29151,
+            "encoded": 28851,
+            "type": "img"
+          },
+          {
+            "url": "http://172.19.0.10/optimized/argento/2/image-298ec2aac6f7dba8a2ae-960.avif",
+            "bytes": 43890,
+            "encoded": 43590,
+            "type": "img"
+          },
+          {
+            "url": "http://172.19.0.10/portfolio/fonts/made-tommy-light.woff2",
+            "bytes": 24976,
+            "encoded": 24676,
+            "type": "css"
+          },
+          {
+            "url": "http://172.19.0.10/optimized/argento/8/image-85693b3696977b3b1367-960.avif",
+            "bytes": 41494,
+            "encoded": 41194,
+            "type": "img"
+          }
+        ],
+        "overflow": false
+      },
+      "scan": {
+        "totalImages": 13,
+        "broken": [],
+        "pending": 0
+      },
+      "viewer": {
+        "open": true,
+        "counter": "02 / 13"
+      },
+      "failures": []
+    },
+    {
+      "profile": "desktop",
+      "route": "/projects/beauty",
+      "cache": "warm",
+      "initial": {
+        "lcp": 904,
+        "cls": 0,
+        "images": [
+          {
+            "src": "http://172.19.0.10/optimized/beauty/1/image-44fecb887b97122d31d6-911.avif",
+            "loaded": true,
+            "visible": true
+          },
+          {
+            "src": "http://172.19.0.10/optimized/beauty/2/image-ec306476da0ae06bf903-960.avif",
+            "loaded": true,
+            "visible": false
+          },
+          {
+            "src": "http://172.19.0.10/optimized/beauty/4/image-3aff8e4fa0f2485406f4-960.avif",
+            "loaded": true,
+            "visible": true
+          },
+          {
+            "src": "http://172.19.0.10/optimized/beauty/5/image-158914e47b8a4db8b251-960.avif",
+            "loaded": true,
+            "visible": false
+          }
+        ],
+        "resources": [
+          {
+            "url": "http://172.19.0.10/portfolio/fonts/made-tommy-regular.woff2",
+            "bytes": 0,
+            "encoded": 27536,
+            "type": "link"
+          },
+          {
+            "url": "http://172.19.0.10/assets/index-BH_Au8IM.js",
+            "bytes": 0,
+            "encoded": 57394,
+            "type": "script"
+          },
+          {
+            "url": "http://172.19.0.10/assets/vendor-BP0qhIbX.js",
+            "bytes": 0,
+            "encoded": 4194,
+            "type": "other"
+          },
+          {
+            "url": "http://172.19.0.10/assets/router-BDQjdA8j.js",
+            "bytes": 0,
+            "encoded": 27228,
+            "type": "other"
+          },
+          {
+            "url": "http://172.19.0.10/assets/index-B74aTVax.css",
+            "bytes": 0,
+            "encoded": 4030,
+            "type": "link"
+          },
+          {
+            "url": "http://172.19.0.10/assets/Portfolio-BZLAppt0.js",
+            "bytes": 0,
+            "encoded": 14155,
+            "type": "script"
+          },
+          {
+            "url": "http://172.19.0.10/assets/SmartImage-B9BBCeQZ.js",
+            "bytes": 0,
+            "encoded": 1456,
+            "type": "script"
+          },
+          {
+            "url": "http://172.19.0.10/assets/SmartImage-2y1VarfJ.css",
+            "bytes": 0,
+            "encoded": 886,
+            "type": "link"
+          },
+          {
+            "url": "http://172.19.0.10/projects.json",
+            "bytes": 0,
+            "encoded": 6072,
+            "type": "fetch"
+          },
+          {
+            "url": "http://172.19.0.10/imageMeta.json",
+            "bytes": 0,
+            "encoded": 33088,
+            "type": "fetch"
+          },
+          {
+            "url": "http://172.19.0.10/portfolio/fonts/made-tommy-medium.woff2",
+            "bytes": 0,
+            "encoded": 27960,
+            "type": "css"
+          },
+          {
+            "url": "http://172.19.0.10/optimized/beauty/1/image-44fecb887b97122d31d6-911.avif",
+            "bytes": 0,
+            "encoded": 40086,
+            "type": "img"
+          },
+          {
+            "url": "http://172.19.0.10/optimized/beauty/2/image-ec306476da0ae06bf903-960.avif",
+            "bytes": 0,
+            "encoded": 47740,
+            "type": "img"
+          },
+          {
+            "url": "http://172.19.0.10/portfolio/fonts/made-tommy-light.woff2",
+            "bytes": 0,
+            "encoded": 24676,
+            "type": "css"
+          },
+          {
+            "url": "http://172.19.0.10/optimized/beauty/4/image-3aff8e4fa0f2485406f4-960.avif",
+            "bytes": 0,
+            "encoded": 98087,
+            "type": "img"
+          },
+          {
+            "url": "http://172.19.0.10/optimized/beauty/5/image-158914e47b8a4db8b251-960.avif",
+            "bytes": 0,
+            "encoded": 136180,
+            "type": "img"
+          }
+        ],
+        "overflow": false
+      },
+      "scan": {
+        "totalImages": 7,
+        "broken": [],
+        "pending": 0
+      },
+      "viewer": {
+        "open": true,
+        "counter": "02 / 07"
+      },
+      "failures": []
+    },
+    {
+      "profile": "desktop",
+      "route": "/projects/fashion-is-never-banal",
+      "cache": "warm",
+      "initial": {
+        "lcp": 684,
+        "cls": 0.00014799811385459536,
+        "images": [
+          {
+            "src": "http://172.19.0.10/optimized/fashion-is-never-banal/1/image-7394cd9c3784a2feddbc-960.avif",
+            "loaded": true,
+            "visible": true
+          },
+          {
+            "src": "http://172.19.0.10/optimized/fashion-is-never-banal/2/image-a98eedaedab1c6cce9a2-960.avif",
+            "loaded": true,
+            "visible": false
+          },
+          {
+            "src": "http://172.19.0.10/optimized/fashion-is-never-banal/6/image-d7772ad0af87bd958545-960.avif",
+            "loaded": true,
+            "visible": true
+          }
+        ],
+        "resources": [
+          {
+            "url": "http://172.19.0.10/portfolio/fonts/made-tommy-regular.woff2",
+            "bytes": 0,
+            "encoded": 27536,
+            "type": "link"
+          },
+          {
+            "url": "http://172.19.0.10/assets/index-BH_Au8IM.js",
+            "bytes": 0,
+            "encoded": 57394,
+            "type": "script"
+          },
+          {
+            "url": "http://172.19.0.10/assets/vendor-BP0qhIbX.js",
+            "bytes": 0,
+            "encoded": 4194,
+            "type": "other"
+          },
+          {
+            "url": "http://172.19.0.10/assets/router-BDQjdA8j.js",
+            "bytes": 0,
+            "encoded": 27228,
+            "type": "other"
+          },
+          {
+            "url": "http://172.19.0.10/assets/index-B74aTVax.css",
+            "bytes": 0,
+            "encoded": 4030,
+            "type": "link"
+          },
+          {
+            "url": "http://172.19.0.10/assets/Portfolio-BZLAppt0.js",
+            "bytes": 0,
+            "encoded": 14155,
+            "type": "script"
+          },
+          {
+            "url": "http://172.19.0.10/assets/SmartImage-B9BBCeQZ.js",
+            "bytes": 0,
+            "encoded": 1456,
+            "type": "script"
+          },
+          {
+            "url": "http://172.19.0.10/assets/SmartImage-2y1VarfJ.css",
+            "bytes": 0,
+            "encoded": 886,
+            "type": "link"
+          },
+          {
+            "url": "http://172.19.0.10/projects.json",
+            "bytes": 0,
+            "encoded": 6072,
+            "type": "fetch"
+          },
+          {
+            "url": "http://172.19.0.10/imageMeta.json",
+            "bytes": 0,
+            "encoded": 33088,
+            "type": "fetch"
+          },
+          {
+            "url": "http://172.19.0.10/optimized/fashion-is-never-banal/1/image-7394cd9c3784a2feddbc-960.avif",
+            "bytes": 0,
+            "encoded": 9956,
+            "type": "img"
+          },
+          {
+            "url": "http://172.19.0.10/optimized/fashion-is-never-banal/2/image-a98eedaedab1c6cce9a2-960.avif",
+            "bytes": 0,
+            "encoded": 11463,
+            "type": "img"
+          },
+          {
+            "url": "http://172.19.0.10/portfolio/fonts/made-tommy-medium.woff2",
+            "bytes": 0,
+            "encoded": 27960,
+            "type": "css"
+          },
+          {
+            "url": "http://172.19.0.10/portfolio/fonts/made-tommy-light.woff2",
+            "bytes": 0,
+            "encoded": 24676,
+            "type": "css"
+          },
+          {
+            "url": "http://172.19.0.10/optimized/fashion-is-never-banal/6/image-d7772ad0af87bd958545-960.avif",
+            "bytes": 0,
+            "encoded": 6441,
+            "type": "img"
+          }
+        ],
+        "overflow": false
+      },
+      "scan": {
+        "totalImages": 11,
+        "broken": [],
+        "pending": 0
+      },
+      "viewer": {
+        "open": true,
+        "counter": "02 / 11"
+      },
+      "failures": []
+    },
+    {
+      "profile": "desktop",
+      "route": "/projects/argento",
+      "cache": "warm",
+      "initial": {
+        "lcp": 396,
+        "cls": 0,
+        "images": [
+          {
+            "src": "http://172.19.0.10/optimized/argento/1/image-b21ae3fd3d9845eb72ed-960.avif",
+            "loaded": true,
+            "visible": true
+          },
+          {
+            "src": "http://172.19.0.10/optimized/argento/2/image-298ec2aac6f7dba8a2ae-960.avif",
+            "loaded": true,
+            "visible": false
+          },
+          {
+            "src": "http://172.19.0.10/optimized/argento/8/image-85693b3696977b3b1367-960.avif",
+            "loaded": true,
+            "visible": true
+          }
+        ],
+        "resources": [
+          {
+            "url": "http://172.19.0.10/portfolio/fonts/made-tommy-regular.woff2",
+            "bytes": 0,
+            "encoded": 27536,
+            "type": "link"
+          },
+          {
+            "url": "http://172.19.0.10/assets/index-BH_Au8IM.js",
+            "bytes": 0,
+            "encoded": 57394,
+            "type": "script"
+          },
+          {
+            "url": "http://172.19.0.10/assets/vendor-BP0qhIbX.js",
+            "bytes": 0,
+            "encoded": 4194,
+            "type": "other"
+          },
+          {
+            "url": "http://172.19.0.10/assets/router-BDQjdA8j.js",
+            "bytes": 0,
+            "encoded": 27228,
+            "type": "other"
+          },
+          {
+            "url": "http://172.19.0.10/assets/index-B74aTVax.css",
+            "bytes": 0,
+            "encoded": 4030,
+            "type": "link"
+          },
+          {
+            "url": "http://172.19.0.10/assets/Portfolio-BZLAppt0.js",
+            "bytes": 0,
+            "encoded": 14155,
+            "type": "script"
+          },
+          {
+            "url": "http://172.19.0.10/assets/SmartImage-B9BBCeQZ.js",
+            "bytes": 0,
+            "encoded": 1456,
+            "type": "script"
+          },
+          {
+            "url": "http://172.19.0.10/assets/SmartImage-2y1VarfJ.css",
+            "bytes": 0,
+            "encoded": 886,
+            "type": "link"
+          },
+          {
+            "url": "http://172.19.0.10/portfolio/fonts/made-tommy-medium.woff2",
+            "bytes": 0,
+            "encoded": 27960,
+            "type": "css"
+          },
+          {
+            "url": "http://172.19.0.10/portfolio/fonts/made-tommy-light.woff2",
+            "bytes": 0,
+            "encoded": 24676,
+            "type": "css"
+          },
+          {
+            "url": "http://172.19.0.10/projects.json",
+            "bytes": 0,
+            "encoded": 6072,
+            "type": "fetch"
+          },
+          {
+            "url": "http://172.19.0.10/imageMeta.json",
+            "bytes": 0,
+            "encoded": 33088,
+            "type": "fetch"
+          },
+          {
+            "url": "http://172.19.0.10/optimized/argento/1/image-b21ae3fd3d9845eb72ed-960.avif",
+            "bytes": 0,
+            "encoded": 28851,
+            "type": "img"
+          },
+          {
+            "url": "http://172.19.0.10/optimized/argento/2/image-298ec2aac6f7dba8a2ae-960.avif",
+            "bytes": 0,
+            "encoded": 43590,
+            "type": "img"
+          },
+          {
+            "url": "http://172.19.0.10/optimized/argento/8/image-85693b3696977b3b1367-960.avif",
+            "bytes": 0,
+            "encoded": 41194,
+            "type": "img"
+          }
+        ],
+        "overflow": false
+      },
+      "scan": {
+        "totalImages": 13,
+        "broken": [],
+        "pending": 0
+      },
+      "viewer": {
+        "open": true,
+        "counter": "02 / 13"
+      },
+      "failures": []
+    },
+    {
+      "profile": "desktop",
+      "route": "/projects/i-put-clean-girls-into-a-coma",
+      "cache": "cold",
+      "initial": {
+        "lcp": 1136,
+        "cls": 0.00018257030178326473,
+        "images": [
+          {
+            "src": "http://172.19.0.10/optimized/i-put-clean-girls-into-a-coma/1/image-d55655e9af9aa45de1e7-960.avif",
+            "loaded": true,
+            "visible": true
+          },
+          {
+            "src": "http://172.19.0.10/optimized/i-put-clean-girls-into-a-coma/2/image-8672b7500e187346adc4-960.avif",
+            "loaded": true,
+            "visible": false
+          },
+          {
+            "src": "http://172.19.0.10/optimized/i-put-clean-girls-into-a-coma/4/image-ba49e809952e847a079d-960.avif",
+            "loaded": true,
+            "visible": true
+          }
+        ],
+        "resources": [
+          {
+            "url": "http://172.19.0.10/portfolio/fonts/made-tommy-regular.woff2",
+            "bytes": 27836,
+            "encoded": 27536,
+            "type": "link"
+          },
+          {
+            "url": "http://172.19.0.10/assets/index-BH_Au8IM.js",
+            "bytes": 57694,
+            "encoded": 57394,
+            "type": "script"
+          },
+          {
+            "url": "http://172.19.0.10/assets/vendor-BP0qhIbX.js",
+            "bytes": 4494,
+            "encoded": 4194,
+            "type": "other"
+          },
+          {
+            "url": "http://172.19.0.10/assets/router-BDQjdA8j.js",
+            "bytes": 27528,
+            "encoded": 27228,
+            "type": "other"
+          },
+          {
+            "url": "http://172.19.0.10/assets/index-B74aTVax.css",
+            "bytes": 4330,
+            "encoded": 4030,
+            "type": "link"
+          },
+          {
+            "url": "http://172.19.0.10/assets/Portfolio-BZLAppt0.js",
+            "bytes": 14455,
+            "encoded": 14155,
+            "type": "script"
+          },
+          {
+            "url": "http://172.19.0.10/assets/SmartImage-B9BBCeQZ.js",
+            "bytes": 1756,
+            "encoded": 1456,
+            "type": "script"
+          },
+          {
+            "url": "http://172.19.0.10/assets/SmartImage-2y1VarfJ.css",
+            "bytes": 1186,
+            "encoded": 886,
+            "type": "link"
+          },
+          {
+            "url": "http://172.19.0.10/projects.json",
+            "bytes": 6372,
+            "encoded": 6072,
+            "type": "fetch"
+          },
+          {
+            "url": "http://172.19.0.10/imageMeta.json",
+            "bytes": 33388,
+            "encoded": 33088,
+            "type": "fetch"
+          },
+          {
+            "url": "http://172.19.0.10/portfolio/fonts/made-tommy-medium.woff2",
+            "bytes": 28260,
+            "encoded": 27960,
+            "type": "css"
+          },
+          {
+            "url": "http://172.19.0.10/optimized/i-put-clean-girls-into-a-coma/1/image-d55655e9af9aa45de1e7-960.avif",
+            "bytes": 25039,
+            "encoded": 24739,
+            "type": "img"
+          },
+          {
+            "url": "http://172.19.0.10/optimized/i-put-clean-girls-into-a-coma/2/image-8672b7500e187346adc4-960.avif",
+            "bytes": 20915,
+            "encoded": 20615,
+            "type": "img"
+          },
+          {
+            "url": "http://172.19.0.10/portfolio/fonts/made-tommy-light.woff2",
+            "bytes": 24976,
+            "encoded": 24676,
+            "type": "css"
+          },
+          {
+            "url": "http://172.19.0.10/optimized/i-put-clean-girls-into-a-coma/4/image-ba49e809952e847a079d-960.avif",
+            "bytes": 32479,
+            "encoded": 32179,
+            "type": "img"
+          }
+        ],
+        "overflow": false
+      },
+      "scan": {
+        "totalImages": 6,
+        "broken": [],
+        "pending": 0
+      },
+      "viewer": {
+        "open": true,
+        "counter": "02 / 06"
+      },
+      "failures": []
+    }
+  ]
+}

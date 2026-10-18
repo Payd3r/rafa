@@ -1,3 +1,4 @@
+import { isProjectCategory } from '../services/projectCategories.js';
 import express from 'express';
 import multer from 'multer';
 import path from 'path';
@@ -20,7 +21,7 @@ const upload = multer({
     const allowedImageMimes = ['image/jpeg', 'image/jpg', 'image/png'];
     const allowedVideoMimes = ['video/mp4', 'video/webm', 'video/quicktime'];
     const allAllowedMimes = [...allowedImageMimes, ...allowedVideoMimes];
-    
+
     if (allAllowedMimes.includes(file.mimetype)) {
       cb(null, true);
     } else {
@@ -32,10 +33,10 @@ const upload = multer({
 // Inizializza i servizi
 // In produzione usa PROD_* paths, in development usa DEV_* paths
 const isDev = process.env.NODE_ENV !== 'production';
-const publicPath = process.env.PUBLIC_PATH || (isDev 
+const publicPath = process.env.PUBLIC_PATH || (isDev
   ? path.join(process.cwd(), process.env.DEV_PUBLIC_PATH || '../frontend/public')
   : process.env.PROD_PUBLIC_PATH || '/app/public');
-const srcPath = process.env.SRC_PATH || (isDev 
+const srcPath = process.env.SRC_PATH || (isDev
   ? path.join(process.cwd(), process.env.DEV_SRC_PATH || '../frontend/src')
   : process.env.PROD_SRC_PATH || '/app/src');
 const dataPath = process.env.DATA_PATH || (isDev
@@ -45,6 +46,39 @@ const dataPath = process.env.DATA_PATH || (isDev
 const imageProcessor = new ImageProcessor(publicPath);
 const videoProcessor = new VideoProcessor(publicPath);
 const fileGenerator = new FileGenerator(publicPath, srcPath);
+
+function validateMedia(type, images, video, existingVideo = false) {
+  if (!['photo', 'video'].includes(type)) return 'Tipo progetto non valido';
+  if (type === 'photo' && video) return 'Un progetto foto non può contenere video';
+  if (type === 'video' && images.length) return 'Un progetto video non può contenere una galleria foto';
+  if (type === 'video' && !video && !existingVideo) return 'Video obbligatorio';
+  if (images.some(file => !file.mimetype.startsWith('image/'))) return 'La galleria deve contenere solo immagini';
+  if (video && !video.mimetype.startsWith('video/')) return 'File video non valido';
+  return null;
+}
+
+router.patch('/photos/selection', async (req, res) => {
+  try {
+    const { paths } = req.body;
+    const meta = JSON.parse(await fs.readFile(path.join(publicPath, 'imageMeta.json'), 'utf8'));
+    if (!Array.isArray(paths) || new Set(paths).size !== paths.length || paths.some(item => typeof item !== 'string' || !Object.hasOwn(meta, item))) {
+      return res.status(400).json({ success: false, error: 'Selezione foto non valida' });
+    }
+    for (const photoPath of Object.keys(meta)) {
+      const order = paths.indexOf(photoPath);
+      const updates = { isBest: order !== -1, bestOrder: order === -1 ? null : order + 1 };
+      const local = path.resolve(publicPath, '.' + path.dirname(photoPath), 'meta.json');
+      if (!local.startsWith(path.resolve(publicPath, 'optimized') + path.sep)) throw new Error('Percorso foto non valido');
+      const localMeta = JSON.parse(await fs.readFile(local, 'utf8'));
+      await fs.writeFile(local, JSON.stringify({...localMeta, ...updates}, null, 2));
+      Object.assign(meta[photoPath], updates);
+    }
+    const output = path.join(publicPath, 'imageMeta.json');
+    await fs.writeFile(output + '.tmp', JSON.stringify(meta));
+    await fs.rename(output + '.tmp', output);
+    res.json({ success: true });
+  } catch (error) { res.status(500).json({ success: false, error: error.message }); }
+});
 
 /**
  * GET /api/admin/projects
@@ -75,7 +109,7 @@ router.get('/imagemeta', async (req, res) => {
     const imageMetaPath = path.join(publicPath, 'imageMeta.json');
     const imageMetaContent = await import('fs/promises').then(fs => fs.readFile(imageMetaPath, 'utf-8'));
     const imageMeta = JSON.parse(imageMetaContent);
-    
+
     res.json({
       success: true,
       imageMeta
@@ -124,11 +158,12 @@ router.patch('/photos', async (req, res) => {
  * PATCH /api/admin/projects/:slug
  * Aggiorna la data, descrizione o instagramUrl di un progetto
  */
-router.patch('/projects/:slug', async (req, res) => {
+router.patch('/projects/:slug', upload.fields([{ name: 'cover', maxCount: 1 }, { name: 'images', maxCount: 30 }, { name: 'video', maxCount: 1 }]), async (req, res) => {
   try {
     const { slug } = req.params;
-    const { dateISO, description, instagramUrl } = req.body;
+    const { dateISO, title, instagramUrl, category, type, description } = req.body;
 
+    if (description !== undefined && (typeof description !== 'string' || description.length > 5000)) return res.status(400).json({success:false,error:'Descrizione non valida (massimo 5000 caratteri)'});
     if (!slug) {
       return res.status(400).json({
         success: false,
@@ -137,11 +172,15 @@ router.patch('/projects/:slug', async (req, res) => {
     }
 
     // Valida che almeno un campo sia presente
-    if (dateISO === undefined && description === undefined && instagramUrl === undefined) {
+    if (description === undefined && dateISO === undefined && title === undefined && instagramUrl === undefined && category === undefined && type === undefined && !Object.keys(req.files || {}).length) {
       return res.status(400).json({
         success: false,
-        error: 'Almeno un campo da aggiornare è richiesto: dateISO, description, instagramUrl'
+        error: 'Almeno un campo da aggiornare è richiesto: dateISO, title, instagramUrl, category, type'
       });
+    }
+
+    if (category !== undefined && !isProjectCategory(category)) {
+      return res.status(400).json({ success: false, error: 'Categoria non valida' });
     }
 
     // Valida formato data se presente
@@ -155,11 +194,11 @@ router.patch('/projects/:slug', async (req, res) => {
       }
     }
 
-    console.log(`Aggiornamento progetto: ${slug}`, { dateISO, description: description ? 'presente' : undefined, instagramUrl });
+
 
     // Leggi progetti
     const projects = await fileGenerator.readProjectsData(dataPath);
-    
+
     // Trova e aggiorna progetto
     const projectIndex = projects.findIndex(p => p.slug === slug);
     if (projectIndex === -1) {
@@ -169,22 +208,56 @@ router.patch('/projects/:slug', async (req, res) => {
       });
     }
 
+    if (category !== undefined) projects[projectIndex].category = category;
+
     // Aggiorna solo i campi presenti
     if (dateISO !== undefined) {
       projects[projectIndex].dateISO = dateISO;
     }
-    if (description !== undefined) {
-      projects[projectIndex].description = description;
+    const project = projects[projectIndex];
+    if (description !== undefined) project.description = description.trim();
+    if (title !== undefined) {
+      if (!title.trim()) return res.status(400).json({ success: false, error: 'Titolo obbligatorio' });
+      project.title = title.trim();
     }
+    const nextType = type || project.type || (project.hasVideo ? 'video' : 'photo');
+    const gallery = req.files?.images || [];
+    const video = req.files?.video?.[0];
+    const mediaError = validateMedia(nextType, gallery, video, nextType === 'video' && project.hasVideo);
+    if (mediaError) return res.status(400).json({ success: false, error: mediaError });
+    if (req.files?.cover?.[0] && !req.files.cover[0].mimetype.startsWith('image/')) return res.status(400).json({success:false,error:'Copertina non valida'});
+    if (req.files?.cover?.[0]) {
+      await imageProcessor.processImage(req.files.cover[0].buffer, slug, 'cover');
+      project.hasCover = true;
+    }
+    // Preserve legacy covers stored as gallery image 1 before replacing media.
+    if (!project.hasCover && (gallery.length || nextType === 'video')) {
+      await fs.cp(path.join(publicPath, 'optimized', slug, '1'), path.join(publicPath, 'optimized', slug, 'cover'), {recursive:true});
+      project.hasCover = true;
+    }
+    if (video) await videoProcessor.processVideo(video.buffer, slug);
+    if (gallery.length || nextType === 'video') {
+      const folder = path.join(publicPath, 'optimized', slug);
+      for (const entry of await fs.readdir(folder).catch(() => [])) {
+        if (/^\d+$/.test(entry) && !(entry === '1' && !project.hasCover)) await fs.rm(path.join(folder, entry), {recursive:true,force:true});
+      }
+      if (gallery.length) await imageProcessor.processProjectImages(gallery, slug);
+      project.imageCount = gallery.length;
+    }
+    if (nextType === 'photo') await fs.rm(path.join(publicPath, 'optimized', slug, 'video'), {recursive:true,force:true});
+    project.type = nextType;
+    project.hasVideo = nextType === 'video';
     if (instagramUrl !== undefined) {
       projects[projectIndex].instagramUrl = instagramUrl || null;
     }
-    
+
     // Salva progetti
     await fileGenerator.saveProjectsData(dataPath, projects);
-    
+
     // Rigenera projects.json pubblico
     await fileGenerator.regenerateProjectsFile(projects);
+    await fileGenerator.regenerateImageMetaFile();
+    await fileGenerator.regenerateMasonryLayoutsFile();
 
     res.json({
       success: true,
@@ -242,58 +315,54 @@ router.delete('/projects/:slug', async (req, res) => {
 /**
  * Funzione async separata per processing in background
  */
-async function processProjectInBackground(slug, title, description, dateISO, coverFiles, galleryFiles, videoFile = null, instagramUrl = null) {
+async function processProjectInBackground(slug, title, type, dateISO, coverFiles, galleryFiles, videoFile = null, instagramUrl = null, category, description = '') {
   console.log(`[Background] Inizio processing progetto: ${slug}`);
-  
+
   try {
     // Processa cover
     await imageProcessor.processImage(coverFiles[0].buffer, slug, 'cover');
     console.log(`[Background] Cover processata: ${slug}`);
-    
+
     // Processa galleria
     if (galleryFiles.length > 0) {
       await imageProcessor.processProjectImages(galleryFiles, slug);
       console.log(`[Background] Galleria processata: ${slug} (${galleryFiles.length} immagini)`);
     }
-    
+
     // Processa video (se presente)
     let hasVideo = false;
     if (videoFile) {
-      try {
-        await videoProcessor.processVideo(videoFile.buffer, slug);
-        hasVideo = true;
-        console.log(`[Background] Video processato: ${slug}`);
-      } catch (error) {
-        console.error(`[Background] Errore processing video per ${slug}:`, error);
-        // Continua anche se il video fallisce
-      }
+      await videoProcessor.processVideo(videoFile.buffer, slug);
+      hasVideo = true;
     }
-    
+
     // Crea progetto
     const newProject = {
       slug,
       title,
-      description,
+      type,
       dateISO,
+      category,
+      description: description.trim(),
       hasCover: true,
       imageCount: galleryFiles.length,
       hasVideo,
       createdAt: new Date().toISOString(),
       instagramUrl: instagramUrl || null
     };
-    
+
     // Leggi e salva projects.json
     const existingProjects = await fileGenerator.readProjectsData(dataPath);
     const updatedProjects = [newProject, ...existingProjects];
     await fileGenerator.saveProjectsData(dataPath, updatedProjects);
-    
+
     // Rigenera file TS e layout
     await fileGenerator.regenerateProjectsFile(updatedProjects);
     await fileGenerator.regenerateImageMetaFile();
     await fileGenerator.regenerateMasonryLayoutsFile();
-    
+
     console.log(`[Background] ✓ Progetto completato: ${slug}`);
-    
+
   } catch (error) {
     console.error(`[Background] ✗ Errore processing ${slug}:`, error);
   }
@@ -309,16 +378,21 @@ router.post('/projects', upload.fields([
   { name: 'video', maxCount: 1 }
 ]), async (req, res) => {
   try {
-    const { title, description, dateISO, instagramUrl } = req.body;
+    const { title, type, dateISO, instagramUrl, category, description } = req.body;
     const coverFiles = req.files?.cover;
     const galleryFiles = req.files?.images || [];
     const videoFile = req.files?.video?.[0] || null;
 
+    if (!isProjectCategory(category)) {
+      return res.status(400).json({ success: false, error: 'Categoria obbligatoria non valida' });
+    }
+
     // Validazione
-    if (!title || !description || !dateISO) {
+    if (description !== undefined && (typeof description !== 'string' || description.length > 5000)) return res.status(400).json({success:false,error:'Descrizione non valida (massimo 5000 caratteri)'});
+    if (!title?.trim() || !dateISO || isNaN(new Date(dateISO).getTime())) {
       return res.status(400).json({
         success: false,
-        error: 'Campi obbligatori mancanti: title, description, dateISO'
+        error: 'Campi obbligatori mancanti: title, type, dateISO'
       });
     }
 
@@ -328,6 +402,10 @@ router.post('/projects', upload.fields([
         error: 'Devi caricare un\'immagine di copertina'
       });
     }
+
+    const mediaError = validateMedia(type, galleryFiles, videoFile);
+    if (mediaError) return res.status(400).json({ success: false, error: mediaError });
+    if (!coverFiles[0].mimetype.startsWith('image/')) return res.status(400).json({success:false,error:'Copertina non valida'});
 
     // Leggi progetti esistenti
     const existingProjects = await fileGenerator.readProjectsData(dataPath);
@@ -344,8 +422,9 @@ router.post('/projects', upload.fields([
       project: {
         slug,
         title,
-        description,
+        type,
         dateISO,
+        category,
         instagramUrl: instagramUrl || null
       },
       message: `Upload completato! Il progetto "${title}" sarà disponibile a breve.`
@@ -353,7 +432,7 @@ router.post('/projects', upload.fields([
 
     // 🔥 PROCESSING IN BACKGROUND (fire-and-forget)
     // Non usa await = non blocca la risposta
-    processProjectInBackground(slug, title, description, dateISO, coverFiles, galleryFiles, videoFile, instagramUrl)
+    processProjectInBackground(slug, title, type, dateISO, coverFiles, galleryFiles, videoFile, instagramUrl, category, description || '')
       .catch(err => console.error('Errore processing background:', err));
 
   } catch (error) {
@@ -372,7 +451,7 @@ router.post('/projects', upload.fields([
 router.post('/regenerate-imagemeta', async (req, res) => {
   try {
     await fileGenerator.regenerateImageMetaFile();
-    
+
     res.json({
       success: true,
       message: 'imageMeta.json rigenerato con successo'
@@ -394,7 +473,7 @@ router.get('/debug/imagemeta', async (req, res) => {
   try {
     const imageMetaPath = path.join(publicPath, 'imageMeta.json');
     const optimizedPath = path.join(publicPath, 'optimized');
-    
+
     // Leggi imageMeta.json
     let imageMeta = {};
     let imageMetaExists = false;
@@ -424,19 +503,19 @@ router.get('/debug/imagemeta', async (req, res) => {
 
     try {
       const projects = await fs.readdir(optimizedPath);
-      
+
       for (const projectSlug of projects) {
         const projectPath = path.join(optimizedPath, projectSlug);
         const stat = await fs.stat(projectPath);
-        
+
         if (!stat.isDirectory()) continue;
 
         const images = await fs.readdir(projectPath);
-        
+
         for (const imageIndex of images) {
           const imagePath = path.join(projectPath, imageIndex);
           const imageStat = await fs.stat(imagePath);
-          
+
           if (!imageStat.isDirectory()) continue;
 
           const metaPath = path.join(imagePath, 'meta.json');
@@ -444,7 +523,7 @@ router.get('/debug/imagemeta', async (req, res) => {
             const metaContent = await fs.readFile(metaPath, 'utf-8');
             const meta = JSON.parse(metaContent);
             localMetaStats.total++;
-            
+
             if (meta.isBest !== undefined) {
               localMetaStats.withIsBest++;
               if (meta.isBest === true) {

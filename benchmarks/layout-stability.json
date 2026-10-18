@@ -1,0 +1,112 @@
+[
+  {
+    "route": "le-figlie-del-fuoco",
+    "mobile": false,
+    "cls": 0.00011885716735253773
+  },
+  {
+    "route": "zofi",
+    "mobile": false,
+    "cls": 0.000024961419753086422
+  },
+  {
+    "route": "beauty",
+    "mobile": false,
+    "cls": 0.000047252229080932786
+  },
+  {
+    "route": "fashion-is-never-banal",
+    "mobile": false,
+    "cls": 0.00014799811385459536
+  },
+  {
+    "route": "argento",
+    "mobile": false,
+    "cls": 0.00005532407407407407
+  },
+  {
+    "route": "i-put-clean-girls-into-a-coma",
+    "mobile": false,
+    "cls": 0.00018257030178326473
+  },
+  {
+    "route": "country-travel",
+    "mobile": false,
+    "cls": 0.00009459447873799727
+  },
+  {
+    "route": "blosson-beauty",
+    "mobile": false,
+    "cls": 0.00010269633058984911
+  },
+  {
+    "route": "i-don-t-even-know-myself",
+    "mobile": false,
+    "cls": 0.00016555641289437586
+  },
+  {
+    "route": "un-volto-per-raccontare",
+    "mobile": false,
+    "cls": 0.00015996656378600824
+  },
+  {
+    "route": "inside-raw-emotions",
+    "mobile": false,
+    "cls": 0.00013976337448559672
+  },
+  {
+    "route": "le-figlie-del-fuoco",
+    "mobile": true,
+    "cls": 0.00015819025766578606
+  },
+  {
+    "route": "zofi",
+    "mobile": true,
+    "cls": 0.0000335299849854779
+  },
+  {
+    "route": "beauty",
+    "mobile": true,
+    "cls": 0.00006326962384216264
+  },
+  {
+    "route": "fashion-is-never-banal",
+    "mobile": true,
+    "cls": 0.000293076905798992
+  },
+  {
+    "route": "argento",
+    "mobile": true,
+    "cls": 0.00007357159024349787
+  },
+  {
+    "route": "i-put-clean-girls-into-a-coma",
+    "mobile": true,
+    "cls": 0.000293076905798992
+  },
+  {
+    "route": "country-travel",
+    "mobile": true,
+    "cls": 0.0001263772670805307
+  },
+  {
+    "route": "blosson-beauty",
+    "mobile": true,
+    "cls": 0.00013603131106668763
+  },
+  {
+    "route": "i-don-t-even-know-myself",
+    "mobile": true,
+    "cls": 0.000293076905798992
+  },
+  {
+    "route": "un-volto-per-raccontare",
+    "mobile": true,
+    "cls": 0.000293076905798992
+  },
+  {
+    "route": "inside-raw-emotions",
+    "mobile": true,
+    "cls": 0.000293076905798992
+  }
+]

@@ -1,0 +1,160 @@
+dialog {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  max-width: 100%;
+  max-height: 100%;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: #191a18;
+  color: #f4f2ed;
+  overflow: hidden;
+}
+dialog::backdrop {
+  background: #191a18;
+}
+.viewer-layout {
+  height: 100%;
+  height: 100dvh;
+  display: grid;
+  grid-template-rows: 70px minmax(0, 1fr) 70px;
+}
+.viewer-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 25px;
+  padding: 0 var(--pad);
+}
+.viewer-project {
+  font-size: 13px;
+  max-width: 75%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.close {
+  width: 44px;
+  height: 44px;
+  color: inherit;
+  font-size: 29px;
+}
+.viewer-stage {
+  position: relative;
+  min-height: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 80px;
+  touch-action: pan-y pinch-zoom;
+}
+.viewer-image {
+  display: block;
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+}
+.viewer-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 48px;
+  height: 60px;
+  color: inherit;
+  font-size: 28px;
+  opacity: 0.8;
+}
+.viewer-arrow:hover {
+  opacity: 1;
+}
+.previous {
+  left: 15px;
+}
+.next {
+  right: 15px;
+}
+.viewer-footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 35px;
+}
+.counter {
+  font-size: 12px;
+  font-variant-numeric: tabular-nums;
+}
+.mobile-arrow {
+  display: none;
+  color: inherit;
+  font-size: 23px;
+  width: 44px;
+  height: 44px;
+}
+.loading-image .viewer-image {
+  opacity: 0.4;
+}
+.viewer-image {
+  transition: opacity 0.2s;
+}
+
+@media (max-width: 760px) {
+  .viewer-stage {
+    padding: 0 10px;
+  }
+  .viewer-arrow {
+    display: none;
+  }
+  .mobile-arrow {
+    display: block;
+  }
+  .viewer-layout {
+    grid-template-rows: 65px minmax(0, 1fr) 75px;
+  }
+}
+
+/* One shared frame for the heading, photograph and navigation. */
+dialog {
+  background: transparent;
+}
+dialog::backdrop {
+  background: rgba(24, 25, 23, .62);
+  backdrop-filter: blur(22px);
+  -webkit-backdrop-filter: blur(22px);
+}
+.viewer-layout {
+  width: min(1240px, calc(100% - 2 * var(--pad)));
+  margin-inline: auto;
+  padding-top: env(safe-area-inset-top);
+  padding-bottom: env(safe-area-inset-bottom);
+  box-sizing: border-box;
+}
+.viewer-bar {
+  padding: 0;
+}
+.viewer-stage {
+  padding-inline: 64px;
+}
+.viewer-arrow.previous {
+  left: 0;
+}
+.viewer-arrow.next {
+  right: 0;
+}
+.viewer-footer {
+  padding-bottom: 0;
+}
+@media (max-width: 760px) {
+  .viewer-layout {
+    width: calc(100% - 20px);
+  }
+  .viewer-bar {
+    padding: 0;
+  }
+  .viewer-stage {
+    padding: 0;
+  }
+}

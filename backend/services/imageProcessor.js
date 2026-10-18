@@ -1,3 +1,4 @@
+import { generateResponsiveImages } from './responsiveImages.js';
 import sharp from 'sharp';
 import fs from 'fs/promises';
 import path from 'path';
@@ -74,16 +75,8 @@ export class ImageProcessor {
       .avif({ quality: 70, speed: 6 })
       .toFile(path.join(outputDir, 'thumb-sm.avif'));
 
-    // 4. Placeholder Base64 inline (nessuna richiesta HTTP extra!)
-    const placeholderBase64 = await this.generatePlaceholderBase64(image);
-
-    // 5. Meta.json con placeholder Base64 inline
-    const metaData = {
-      width,
-      height,
-      ratio,
-      placeholder: placeholderBase64
-    };
+    const responsive = await generateResponsiveImages(imageBuffer, outputDir, `/optimized/${projectSlug}/${imageIndex}`);
+    const metaData = responsive;
 
     await fs.writeFile(
       path.join(outputDir, 'meta.json'),
@@ -94,7 +87,7 @@ export class ImageProcessor {
       width,
       height,
       ratio,
-      placeholder: placeholderBase64
+      placeholder: responsive.placeholder
     };
   }
 

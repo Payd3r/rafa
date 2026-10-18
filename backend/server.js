@@ -3,6 +3,8 @@ import cors from 'cors';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import { config } from 'dotenv';
+import multer from 'multer';
+import { installSeo } from './services/seo.js';
 import adminRoutes from './routes/admin.js';
 
 // Carica .env dalla root del progetto
@@ -39,26 +41,12 @@ app.get('/api/users/me', (req, res) => {
   });
 });
 
-// Root endpoint
-app.get('/', (req, res) => {
-  res.json({
-    name: 'Rafa Backend CMS',
-    version: '1.0.0',
-    status: 'running',
-    endpoints: {
-      health: '/api/admin/health',
-      projects: {
-        list: 'GET /api/admin/projects',
-        create: 'POST /api/admin/projects'
-      }
-    }
-  });
-});
+installSeo(app, { publicPath: process.env.PUBLIC_PATH || path.join(__dirname, '../frontend/dist') });
 
 // Error handling middleware
 app.use((err, req, res, next) => {
   console.error('Error:', err);
-  
+
   if (err instanceof multer.MulterError) {
     if (err.code === 'LIMIT_FILE_SIZE') {
       return res.status(400).json({
@@ -73,7 +61,7 @@ app.use((err, req, res, next) => {
       });
     }
   }
-  
+
   res.status(500).json({
     success: false,
     error: err.message || 'Errore interno del server'

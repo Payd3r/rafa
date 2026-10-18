@@ -1,0 +1,193 @@
+.smart-image {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background-color: #dedbd3;
+  background-size: cover;
+  background-position: center;
+  isolation: isolate;
+}
+.smart-image picture {
+  display: contents;
+}
+.smart-image img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transition: opacity .65s cubic-bezier(.22, 1, .36, 1);
+}
+.smart-image.is-loaded img {
+  opacity: 1;
+}
+.image-skeleton {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(
+    110deg,
+    #ffffff00 20%,
+    #ffffff35 45%,
+    #ffffff00 70%
+  );
+  background-size: 240% 100%;
+  animation: image-shimmer 1.7s linear infinite;
+}
+.image-retry {
+  position: absolute;
+  inset: 40% 10%;
+  background: #f4f2ed;
+  padding: 12px;
+  font-size: 12px;
+}
+.photo .smart-image {
+  height: auto;
+}
+.viewer-stage {
+  container-type: size;
+}
+.viewer-stage .smart-image {
+  width: min(100cqw, calc(100cqh * var(--image-ratio, .8)));
+  height: auto;
+  aspect-ratio: var(--image-ratio, .8) !important;
+  background-color: transparent;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+.viewer-stage .smart-image img {
+  object-fit: contain;
+}
+.portfolio-skeleton {
+  padding: 40px var(--pad);
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 18px;
+}
+.portfolio-skeleton span {
+  display: block;
+  background: #dedbd3;
+  aspect-ratio: 4/5;
+  animation: image-shimmer 2s linear infinite;
+}
+.portfolio-skeleton.hero-loading {
+  height: calc(100svh - 76px);
+  grid-template-columns: repeat(5, 1fr);
+  align-items: center;
+}
+.portfolio-skeleton.hero-loading span {
+  height: 74%;
+  aspect-ratio: auto;
+}
+.portfolio-skeleton.hero-loading span:nth-child(3) {
+  height: 100%;
+}
+@keyframes image-shimmer {
+  to {
+    background-position: -140% 0;
+  }
+}
+@media (max-width: 760px) {
+  .portfolio-skeleton.hero-loading {
+    grid-template-columns: 12vw 72vw 12vw;
+    overflow: hidden;
+    margin-inline: -6vw;
+    gap: 12px;
+  }
+  .portfolio-skeleton.hero-loading span:nth-child(n + 4) {
+    display: none;
+  }
+  .portfolio-skeleton.hero-loading span:nth-child(2) {
+    height: 100%;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .image-skeleton,
+  .portfolio-skeleton span {
+    animation: none;
+  }
+  .smart-image img {
+    transition: none;
+  }
+}
+.image-retry {
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+}
+.image-retry:focus-visible {
+  outline: 2px solid #927963;
+}
+.about-frame .smart-image {
+  height: auto;
+}
+.portfolio-status:has(.portfolio-skeleton) {
+  padding: 0;
+}
+.portfolio-skeleton.hero-loading {
+  padding-top: 48px;
+  padding-bottom: 92px;
+}
+.photo .smart-image img {
+  height: 100%;
+  max-height: none;
+}
+.hero-shot .smart-image img {
+  height: 100%;
+}
+.hero-shot{min-width:0}.hero-shot .smart-image{aspect-ratio:auto!important;min-width:0;max-width:100%}.project-button .smart-image{aspect-ratio:auto!important;min-width:0;max-width:100%}
+.about-primary .smart-image{aspect-ratio:3/4!important}.about-secondary .smart-image{aspect-ratio:2/3!important}.about-frame .smart-image img{height:100%;aspect-ratio:auto}@media(max-width:760px){.about-primary .smart-image{aspect-ratio:2/3!important}}
+
+/* The frame owns the crop; the portrait fills it independently of intrinsic size. */
+.portfolio .about-frame .smart-image img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  max-height: none;
+  max-width: none;
+  aspect-ratio: auto;
+}
+
+.viewer-image-loading {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  background: #00000018;
+}
+.viewer-image-spinner {
+  width: 30px;
+  height: 30px;
+  fill: none;
+  stroke: #fff;
+  stroke-width: 2;
+  stroke-linecap: round;
+
+}
+@keyframes viewer-image-spin {
+  to { transform: rotate(360deg); }
+}
+
+.image-preview {
+  position: absolute;
+  inset: 0;
+  background-position: center;
+  background-repeat: no-repeat;
+  pointer-events: none;
+}
+.smart-image img { position: relative; }
+.image-skeleton {
+  pointer-events: none;
+  transition: opacity .65s ease;
+}
+.smart-image.is-loaded .image-skeleton { opacity: 0; }
+.spinner-track { stroke: #ffffff50; }
+
+/* Keep the track still and move the loading arc, including when page motion is reduced. */
+.viewer-image-spinner path {
+  transform-box: view-box;
+  transform-origin: 50% 50%;
+  animation: viewer-image-spin 1.8s linear infinite !important;
+}

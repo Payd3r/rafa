@@ -1,3 +1,4 @@
+import crypto from 'node:crypto';
 import fs from 'fs/promises';
 import path from 'path';
 import { MasonryLayoutGenerator } from './masonryLayoutGenerator.js';
@@ -16,24 +17,26 @@ export class FileGenerator {
    */
   async regenerateProjectsFile(projectsData) {
     // Trasforma i progetti in formato completo con cover e gallery
-    const projects = projectsData.map(project => {
+    const projects = await Promise.all(projectsData.map(async project => {
       // Nuovi progetti usano /cover/, progetti vecchi usano /1/
       const coverPath = project.hasCover ? 'cover' : '1';
-      
+
       // Genera gallery photos con path AVIF e thumb-sm per mobile
-      const gallery = Array.from({ length: project.imageCount }, (_, i) => ({
+      const gallery = Array.from({ length: (project.type === "video" || project.hasVideo) ? 0 : project.imageCount }, (_, i) => ({
         id: `${project.slug}-${i + 1}`,
         src: `/optimized/${project.slug}/${i + 1}/thumb.avif`,
         srcSm: `/optimized/${project.slug}/${i + 1}/thumb-sm.avif`,
         originalUrl: `/optimized/${project.slug}/${i + 1}/original.avif`,
         alt: `Foto ${i + 1} del progetto ${project.slug}`
       }));
-      
+
       const projectData = {
         slug: project.slug,
         title: project.title,
+        description: project.description || '',
+        category: project.category,
         dateISO: project.dateISO,
-        description: project.description,
+        type: project.type || (project.hasVideo ? 'video' : 'photo'),
         cover: {
           id: `${project.slug}-cover`,
           src: `/optimized/${project.slug}/${coverPath}/thumb.avif`,
@@ -58,15 +61,22 @@ export class FileGenerator {
         projectData.instagramUrl = project.instagramUrl;
       }
 
+      for (const photo of [projectData.cover, ...projectData.gallery]) {
+        try {
+          const meta = JSON.parse(await fs.readFile(path.join(this.publicPath, path.dirname(photo.src), 'meta.json'), 'utf8'));
+          Object.assign(photo, {width:meta.width,height:meta.height,ratio:meta.ratio});
+        } catch { /* Legacy assets remain usable before optimization. */ }
+      }
       return projectData;
-    });
+    }));
 
     // Scrivi JSON in public/ (servito da Nginx)
     const outputPath = path.join(this.publicPath, 'projects.json');
-    await fs.writeFile(outputPath, JSON.stringify(projects, null, 2));
-    
+    await fs.writeFile(outputPath + '.tmp', JSON.stringify(projects));
+    await fs.rename(outputPath + '.tmp', outputPath);
+
     console.log(`Generato ${outputPath} con ${projects.length} progetti`);
-    
+
     return outputPath;
   }
 
@@ -77,7 +87,7 @@ export class FileGenerator {
   async regenerateImageMetaFile() {
     const optimizedPath = path.join(this.publicPath, 'optimized');
     const metaObject = {};
-    
+
     // Leggi il file imageMeta.json esistente per preservare i valori isBest
     // (nel caso ci siano stati aggiornamenti diretti che non sono ancora nei meta.json locali)
     let existingImageMeta = {};
@@ -99,19 +109,19 @@ export class FileGenerator {
 
     try {
       const projects = await fs.readdir(optimizedPath);
-      
+
       for (const projectSlug of projects) {
         const projectPath = path.join(optimizedPath, projectSlug);
         const stat = await fs.stat(projectPath);
-        
+
         if (!stat.isDirectory()) continue;
 
         const images = await fs.readdir(projectPath);
-        
+
         for (const imageIndex of images) {
           const imagePath = path.join(projectPath, imageIndex);
           const imageStat = await fs.stat(imagePath);
-          
+
           if (!imageStat.isDirectory()) continue;
 
           // Leggi meta.json
@@ -119,11 +129,11 @@ export class FileGenerator {
           try {
             const metaContent = await fs.readFile(metaPath, 'utf-8');
             const meta = JSON.parse(metaContent);
-            
+
             const thumbPath = `/optimized/${projectSlug}/${imageIndex}/thumb.avif`;
             // Fallback per immagini vecchie in WebP ancora su disco
             const thumbPathLegacy = `/optimized/${projectSlug}/${imageIndex}/thumb.webp`;
-            
+
             // Logica migliorata per preservare isBest:
             // 1. Se meta.json locale ha isBest definito (true o false), usalo
             // 2. Altrimenti, usa il valore da imageMeta.json esistente (anche chiave legacy)
@@ -137,11 +147,16 @@ export class FileGenerator {
               // Fallback per immagini migrate da WebP
               isBest = existingImageMeta[thumbPathLegacy].isBest === true;
             }
-            
+
             // Il placeholder è ora una stringa Base64 inline (nessun URL a file separato)
             metaObject[thumbPath] = {
+              width: meta.width,
+              height: meta.height,
+              hash: meta.hash,
+              variants: meta.variants,
               ratio: meta.ratio,
               placeholder: meta.placeholder || '',
+              bestOrder: meta.bestOrder ?? existingImageMeta[thumbPath]?.bestOrder ?? existingImageMeta[thumbPathLegacy]?.bestOrder ?? null,
               isBest: isBest
             };
           } catch (err) {
@@ -152,11 +167,12 @@ export class FileGenerator {
 
       // Scrivi JSON in public/ (servito da Nginx)
       const outputPath = path.join(this.publicPath, 'imageMeta.json');
-      await fs.writeFile(outputPath, JSON.stringify(metaObject, null, 2));
-      
+      await fs.writeFile(outputPath + '.tmp', JSON.stringify(metaObject));
+      await fs.rename(outputPath + '.tmp', outputPath);
+
       const bestCount = Object.values(metaObject).filter(m => m.isBest === true).length;
       console.log(`Generato ${outputPath} con ${Object.keys(metaObject).length} immagini (${bestCount} preferite)`);
-      
+
       return outputPath;
     } catch (error) {
       console.error('Errore durante la rigenerazione di imageMeta.json:', error);
@@ -170,7 +186,7 @@ export class FileGenerator {
   async readProjectsData(dataPath) {
     try {
       const content = await fs.readFile(dataPath, 'utf-8');
-      return JSON.parse(content);
+      return JSON.parse(content).map(project => ({...project, type: project.type || (project.hasVideo ? 'video' : 'photo')}));
     } catch (error) {
       // Se il file non esiste, ritorna array vuoto
       if (error.code === 'ENOENT') {
@@ -185,7 +201,9 @@ export class FileGenerator {
    */
   async saveProjectsData(dataPath, projectsData) {
     await fs.mkdir(path.dirname(dataPath), { recursive: true });
-    await fs.writeFile(dataPath, JSON.stringify(projectsData, null, 2));
+    const temporary = `${dataPath}.${process.pid}.${crypto.randomUUID()}.tmp`;
+    await fs.writeFile(temporary, JSON.stringify(projectsData, null, 2));
+    await fs.rename(temporary, dataPath);
   }
 
   /**
@@ -195,7 +213,7 @@ export class FileGenerator {
   async updatePhotoMeta(photoPath, updates) {
     try {
       const imageMetaPath = path.join(this.publicPath, 'imageMeta.json');
-      
+
       // Leggi o crea imageMeta.json
       let imageMeta = {};
       let needsRegeneration = false;
@@ -219,7 +237,7 @@ export class FileGenerator {
       if (needsRegeneration || !imageMeta[photoPath]) {
         console.log(`Rigenerazione imageMeta.json necessaria (file vuoto o immagine ${photoPath} non trovata)`);
         await this.regenerateImageMetaFile();
-        
+
         // Ricarica imageMeta.json dopo la rigenerazione
         try {
           const regeneratedContent = await fs.readFile(imageMetaPath, 'utf-8');
@@ -249,13 +267,13 @@ export class FileGenerator {
       try {
         const existingMetaContent = await fs.readFile(imageMetaFilePath, 'utf-8');
         const existingMeta = JSON.parse(existingMetaContent);
-        
+
         // Aggiorna i campi nel meta.json locale
         const updatedMeta = {
           ...existingMeta,
           ...updates
         };
-        
+
         // Salva il meta.json locale aggiornato
         await fs.writeFile(imageMetaFilePath, JSON.stringify(updatedMeta, null, 2));
         console.log(`Aggiornato meta.json locale per ${projectSlug}/${imageIndex} con isBest=${updates.isBest}`);
@@ -295,7 +313,7 @@ export class FileGenerator {
 
       // Salva imageMeta.json
       await fs.writeFile(imageMetaPath, JSON.stringify(imageMeta, null, 2));
-      
+
       // Conta quante immagini preferite ci sono ora
       const bestCount = Object.values(imageMeta).filter(m => m?.isBest === true).length;
       console.log(`✅ Aggiornato ${photoPath} in imageMeta.json:`, {
@@ -304,7 +322,7 @@ export class FileGenerator {
         totalImages: Object.keys(imageMeta).length,
         totalBest: bestCount
       });
-      
+
       return imageMeta;
     } catch (error) {
       console.error('Errore durante l\'aggiornamento di imageMeta.json:', error);
@@ -358,7 +376,7 @@ export class FileGenerator {
       await fs.writeFile(outputPath, JSON.stringify(layouts, null, 2));
 
       console.log(`Generato ${outputPath} con ${Object.keys(layouts).length} configurazioni di layout`);
-      
+
       return outputPath;
     } catch (error) {
       console.error('Errore durante la rigenerazione di masonryLayouts.json:', error);

@@ -1,138 +1,152 @@
-# 📷 Farao Studio (Rafa) — Portfolio Fotografico & CMS Admin
+# Andrea Farao — Photography & Film
 
-<p align="center">
-  <img src="https://img.shields.io/badge/Status-Completed-success?style=for-the-badge&logo=git" alt="Status" />
-  <img src="https://img.shields.io/badge/Frontend-React_+_Vite-61DAFB?style=for-the-badge&logo=react" alt="React" />
-  <img src="https://img.shields.io/badge/Language-TypeScript-3178C6?style=for-the-badge&logo=typescript" alt="TypeScript" />
-  <img src="https://img.shields.io/badge/Backend-Node.js_+_Express-339933?style=for-the-badge&logo=nodedotjs" alt="Node.js" />
-  <img src="https://img.shields.io/badge/Image_Engine-Sharp_+_FFmpeg-99CC00?style=for-the-badge&logo=sharp" alt="Sharp" />
-  <img src="https://img.shields.io/badge/Layout-Masonry_Grid-FF6B6B?style=for-the-badge" alt="Masonry" />
-  <img src="https://img.shields.io/badge/DevOps-Docker_+_Nginx-2496ED?style=for-the-badge&logo=docker" alt="Docker" />
-</p>
+Portfolio fotografico con frontend React, TypeScript e Vite, CMS Node.js/Express
+e distribuzione Docker/Nginx.
 
----
+## Struttura
 
-## 📖 Panoramica
+- `frontend/src/portfolio/`: interfaccia pubblica editoriale, stili e contenuti About/Contact.
+- `frontend/src/pages/Admin.tsx`: pannello di gestione dei progetti.
+- `frontend/src/shared/`: componenti, contesti e hook condivisi con il CMS.
+- `frontend/public/portfolio/`: font e ritratti della sezione About.
+- `backend/`: autenticazione, API di amministrazione ed elaborazione immagini/video.
+- `docker-compose.yml`: frontend e backend sulla rete esterna `web-proxy`.
 
-**Farao Studio** (noto anche come *Portfolio Rafa*) è una piattaforma web fotografica e multimediale ad altissima resa visiva, dotata di un CMS headless integrato per la gestione autonoma di progetti, scatti fotografici e video.
+## Pagine e contenuti
 
-Il frontend offre un layout fluido a griglia **Masonry** dinamica, visualizzatore **Lightbox** immersivo per fotografie ad altissima risoluzione, player video ottimizzato e commutazione tema Dark/Light. Il backend include una pipeline automatizzata di elaborazione delle immagini con **Sharp** che genera in tempo reale formati moderni (WebP, AVIF, thumbnail e placeholder LQIP sfocati per caricamento istantaneo).
+- `/`: fotografie in evidenza, archivio progetti, About e Contact.
+- `/projects`: archivio con la stessa interfaccia della home.
+- `/gallery`: raccolta delle fotografie dei progetti, senza duplicati.
+- `/projects/:slug`: descrizione, galleria, eventuale video e collegamento Instagram.
+- `/admin`: gestione e caricamento dei contenuti.
 
----
+Il portfolio legge `/projects.json` e `/imageMeta.json` generati dal CMS. Le foto
+in evidenza seguono la selezione "migliori scatti", con le copertine come alternativa.
+Ogni progetto appartiene a una categoria: Moda, Beauty, Club, Video o Sport.
+I filtri pubblici usano la categoria scelta nel CMS, indipendentemente dalla presenza
+di un file video. La categoria è obbligatoria al caricamento e modificabile dalla
+gestione progetti. La lightbox supporta
+frecce da tastiera, Escape e scorrimento touch.
 
-## ✨ Funzionalità della Piattaforma
+Il collegamento Instagram è attivo. La preview statica e il suo container sono stati rimossi.
 
-### 🎨 Visual Portfolio & UI/UX
-- **Griglia Masonry Reattiva:** Layout a colonne asimmetriche dinamiche (`MasonryGrid.tsx`, `MasonryColumns.tsx`) che rispetta l'aspect ratio naturale di ogni fotografia.
-- **Lightbox Interattivo:** Esperienza di visualizzazione a tutto schermo con zoom, navigazione da tastiera/touch e prefetching.
-- **Supporto Video & Reel:** Riproduzione di video promozionali e reel con lazy loading e anteprime generate (`VideoCard.tsx`).
-- **Tema Scuro / Chiaro:** Theme Context con persistenza della preferenza utente e palette colore adattiva.
+## Sviluppo
 
-### ⚙️ Headless CMS & Pannello Amministratore (`/admin`)
-- **Pannello di Controllo Progetti:** Interfaccia riservata protetta da credenziali JWT per caricare e organizzare servizi fotografici.
-- **Pipeline Automatica di Elaborazione:**
-  - Caricamento di una copertina e fino a 30 scatti per progetto.
-  - Conversione automatica in formati compressi a bassissimo peso (**AVIF / WebP / JPEG progressive**).
-  - Generazione di miniature (thumbnail) e segnaposto a bassissima risoluzione (LQIP) per un caricamento perceived-instant.
-  - Generazione e aggiornamento automatico dei dataset JSON (`projects.json`, `imageMeta.ts`).
-
----
-
-## 🛠️ Stack Tecnologico
-
-| Layer | Tecnologie | Ruolo |
-| :--- | :--- | :--- |
-| **Frontend** | [React](https://react.dev/), [TypeScript](https://www.typescriptlang.org/), [Vite](https://vitejs.dev/) | Client SPA moderno e reattivo |
-| **Styling** | [Tailwind CSS](https://tailwindcss.com/) | Design minimalista, tipografia curata e transizioni fluide |
-| **Backend API** | [Node.js](https://nodejs.org/), [Express](https://expressjs.com/) | API REST per upload, autenticazione e generazione file |
-| **Elaborazione Media** | [Sharp](https://sharp.pixelplumbing.com/), [FFmpeg](https://ffmpeg.org/) | Pipeline di transcodifica, resize e generazione thumbnail |
-| **Web Server & Proxy** | [Docker Compose](https://docs.docker.com/compose/), [Nginx](https://nginx.org/) | Reverse proxy interno `/api/` con caching statico |
-
----
-
-## 📂 Struttura del Repository
+Richiesti Node.js 20.19+ o una versione successiva supportata da Vite, npm e,
+per la distribuzione, Docker Compose.
 
 ```bash
-rafa/
-├── backend/                  # Server Node.js / Express
-│   ├── routes/admin.js       # Endpoint autenticazione e caricamento progetti
-│   ├── services/             # Pipeline media (imageProcessor, videoProcessor, fileGenerator)
-│   ├── scripts/              # Script di migrazione (migrate-to-avif.js)
-│   ├── Dockerfile.backend    # Container backend
-│   └── package.json
-├── frontend/                 # Client React + TypeScript + Vite
-│   ├── public/               # Asset statici, font e webmanifest
-│   ├── src/
-│   │   ├── pages/            # Home, Gallery, Admin
-│   │   ├── shared/           # Header, Footer, Lightbox, MasonryGrid, PhotoCard
-│   │   └── Root.tsx          # Router e Theme Provider
-│   ├── nginx.conf            # Nginx config con proxy pass verso backend
-│   └── package.json
-├── docker-compose.yml        # Orchestrazione produzione multi-container
-└── README.md
-```
-
----
-
-## 🚀 Guida all'Avvio Locale
-
-### Prerequisiti
-- **Node.js** >= 18
-- **Docker** (opzionale per deploy locale)
-
-### 1. Clonazione del Repository
-```bash
-git clone git@github.com:Payd3r/rafa.git
-cd rafa
-```
-
-### 2. Configurazione Ambiente
-Crea o verifica i file `.env`:
-```env
-# Backend
-PORT=3001
-ADMIN_USER=admin
-ADMIN_PASS=tua_password_sicura
-JWT_SECRET=super_segreto_jwt
-
-# Frontend
-VITE_BACKEND_URL=http://localhost:3001
-```
-
-### 3. Avvio in Sviluppo (Due Terminali)
-
-```bash
-# Terminale 1: Backend
 cd backend
-npm install
-npm run dev
-
-# Terminale 2: Frontend
-cd ../frontend
-npm install
+npm ci
 npm run dev
 ```
 
-- **Sito Pubblico:** `http://localhost:5173`
-- **Pannello Admin:** `http://localhost:5173/admin`
-
----
-
-## 🐳 Deploy di Produzione con Docker
-
-Lo stack Docker include il container backend e il container frontend (Nginx con reverse proxy interno su `/api/`).
+In un secondo terminale:
 
 ```bash
-# Assicurati che esista la rete web-proxy
-docker network create web-proxy || true
+cd frontend
+npm ci
+npm run dev
+```
 
-# Avvio dei container
+Vite serve il sito su `http://localhost:5173` e inoltra `/api` al backend sulla porta
+3001. Per usare i contenuti di produzione in sviluppo occorre fornire una copia
+locale dei JSON e dei media nel percorso pubblico; non modificare i volumi di
+produzione per le prove locali.
+
+Configurare le credenziali e i percorsi attraverso `.env`, senza versionare segreti.
+Vedere `docker-compose.yml` e `backend/server.js` per le variabili utilizzate.
+
+## Distribuzione
+
+La configurazione richiede la rete `web-proxy` e i volumi esterni
+`faraostudio_public_assets` e `faraostudio_backend_data` già predisposti.
+
+```bash
 docker compose up -d --build
 ```
 
----
+Per aggiornare solo il frontend:
 
-## 👤 Autore & Crediti
+```bash
+docker compose build sito-rafa
+docker compose up -d --no-deps sito-rafa
+```
 
-Realizzato da **Andrea Mauri** (per Farao Studio / client):
-- GitHub: [@Payd3r](https://github.com/Payd3r)
+L'entrypoint sostituisce i file dell'app conservando nel volume condiviso
+`projects.json`, `imageMeta.json`, `masonryLayouts.json` e `optimized/`, senza
+ricopiare l'archivio multimediale. Nginx inoltra `/api/` al backend.
+Non eliminare i volumi durante gli aggiornamenti.
+
+## Verifiche
+
+```bash
+cd frontend
+npm ci
+npm run lint
+npx tsc --noEmit
+npm run build
+```
+
+Prima di rimuovere materiale di lavoro, verificare home desktop/mobile,
+apertura dei progetti, lightbox, filtri, login admin e `/api/admin/health`.
+
+Realizzato da Andrea Mauri — [@Payd3r](https://github.com/Payd3r).
+
+## Immagini responsive e verifiche delle prestazioni
+
+Non sono previsti selettori di lingua o tema. I contatti sono attivi:
+`insidefaraostudio@gmail.com` e WhatsApp `+39 349 215 2369`.
+
+Ogni nuovo upload genera varianti AVIF/WebP a 320, 640, 960 e 1600 pixel
+(senza ingrandire gli originali), dimensioni reali e un placeholder inline.
+I nomi includono un hash SHA-256 del contenuto e della ricetta di compressione:
+Nginx può conservarli per un anno con `immutable`; i JSON usano una cache breve di 30 secondi con rivalidazione in background e ETag.
+I file originali restano disponibili sul server e non vengono scaricati per le griglie.
+
+Il componente `SmartImage` usa `picture`, `srcset` e `sizes`, riserva spazio tramite
+aspect ratio, mostra skeleton e placeholder, carica prima la foto principale e
+rinvia quelle fuori schermo. Quando Network Information segnala Save-Data o rete
+lenta, limita le varianti a 640 px, riduce l'anticipo e disattiva il prefetch della
+lightbox. Nei browser senza questa API restano attivi responsive images e lazy loading.
+Un errore prova le alternative disponibili e poi offre un nuovo tentativo; il ritorno
+online riattiva le immagini fallite. La durata effettiva dipende comunque dalla rete.
+
+Per migrare un archivio esistente, dopo un backup dei JSON:
+
+```bash
+docker compose exec sito-rafa-backend node scripts/optimize-responsive.js
+docker compose exec sito-rafa-backend node scripts/publish-responsive.js
+```
+
+La generazione è ripetibile: riusa le varianti già presenti e pubblica i nuovi
+metadati dopo la codifica. Non cancella originali o vecchie varianti.
+
+Test della pipeline: `node --test backend/scripts/test-responsive.mjs`.
+I benchmark e le verifiche browser sono in `scripts/`. Dopo `npm ci` nel frontend,
+eseguire `npx playwright install chromium` dalla stessa cartella. Dalla root,
+impostare `BENCH_URL` all'indirizzo del sito; `PLAYWRIGHT_MODULE` è un override
+opzionale del percorso del modulo Playwright. I risultati e i limiti di misurazione sono in
+`benchmarks/REPORT.md`. I benchmark non inviano né modificano progetti del CMS.
+
+## Categorie dei progetti
+
+Valori API: `moda`, `beauty`, `eventi-club`, `video`, `sport`.
+`POST /api/admin/projects` richiede `category`; `PATCH /api/admin/projects/:slug`
+consente di modificarla e rifiuta valori non previsti con HTTP 400.
+
+Test di creazione, modifica e pubblicazione:
+`node --test backend/scripts/test-project-categories.mjs`.
+
+Per assegnare categorie temporanee ai soli progetti senza una categoria valida:
+`docker compose exec sito-rafa-backend node scripts/assign-temporary-categories.js`.
+Lo script salva prima un backup nel volume dati, distribuisce casualmente le
+categorie e rigenera il JSON pubblico. Le categorie già valide vengono preservate.
+
+## SEO e dominio pubblico
+
+Procedura DNS/HTTPS, configurazione, Search Console, strategia locale e AI:
+[docs/PUBBLICAZIONE-SEO.md](docs/PUBBLICAZIONE-SEO.md).
+Usare `.env.example` come riferimento; non sovrascrivere `.env` esistenti.
+L'indicizzazione richiede `SITE_URL` definitivo e `SEO_INDEXABLE=true` nel backend.
+La distribuzione SEO richiede la ricostruzione di **frontend e backend**.
