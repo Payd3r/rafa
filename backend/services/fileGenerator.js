@@ -19,21 +19,20 @@ export class FileGenerator {
     // Trasforma i progetti in formato completo con cover e gallery
     const projects = await Promise.all(projectsData.map(async project => {
       // Nuovi progetti usano /cover/, progetti vecchi usano /1/
-      const coverPath = project.hasCover ? 'cover' : '1';
+      const coverPath = project.coverImageIndex || (project.hasCover ? 'cover' : '1');
 
       // Genera gallery photos con path AVIF e thumb-sm per mobile
-      const gallery = Array.from({ length: (project.type === "video" || project.hasVideo) ? 0 : project.imageCount }, (_, i) => ({
-        id: `${project.slug}-${i + 1}`,
-        src: `/optimized/${project.slug}/${i + 1}/thumb.avif`,
-        srcSm: `/optimized/${project.slug}/${i + 1}/thumb-sm.avif`,
-        originalUrl: `/optimized/${project.slug}/${i + 1}/original.avif`,
-        alt: `Foto ${i + 1} del progetto ${project.slug}`
+      const gallery = ((project.type === "video" || project.hasVideo) ? [] : (project.galleryIndices || Array.from({length: project.imageCount}, (_, i) => i + 1))).map(i => ({
+        id: `${project.slug}-${i}`,
+        src: `/optimized/${project.slug}/${i}/thumb.avif`,
+        srcSm: `/optimized/${project.slug}/${i}/thumb-sm.avif`,
+        originalUrl: `/optimized/${project.slug}/${i}/original.avif`,
+        alt: `Foto ${i} del progetto ${project.slug}`
       }));
 
       const projectData = {
         slug: project.slug,
         title: project.title,
-        description: project.description || '',
         category: project.category,
         dateISO: project.dateISO,
         type: project.type || (project.hasVideo ? 'video' : 'photo'),
@@ -186,7 +185,7 @@ export class FileGenerator {
   async readProjectsData(dataPath) {
     try {
       const content = await fs.readFile(dataPath, 'utf-8');
-      return JSON.parse(content).map(project => ({...project, type: project.type || (project.hasVideo ? 'video' : 'photo')}));
+      return JSON.parse(content).map(({description, ...project}) => ({...project, type: project.type || (project.hasVideo ? 'video' : 'photo')}));
     } catch (error) {
       // Se il file non esiste, ritorna array vuoto
       if (error.code === 'ENOENT') {
@@ -202,7 +201,7 @@ export class FileGenerator {
   async saveProjectsData(dataPath, projectsData) {
     await fs.mkdir(path.dirname(dataPath), { recursive: true });
     const temporary = `${dataPath}.${process.pid}.${crypto.randomUUID()}.tmp`;
-    await fs.writeFile(temporary, JSON.stringify(projectsData, null, 2));
+    await fs.writeFile(temporary, JSON.stringify(projectsData.map(({description, ...project}) => project), null, 2));
     await fs.rename(temporary, dataPath);
   }
 

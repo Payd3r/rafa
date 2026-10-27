@@ -1,5 +1,5 @@
 {
-  "name": "Andrea Farao \u2014 Photography & Film",
+  "name": "Andrea Farao — Photography & Film",
   "short_name": "Andrea Farao",
   "description": "Photography and moving images",
   "start_url": "/",
@@ -9,16 +9,22 @@
   "orientation": "portrait-primary",
   "icons": [
     {
-      "src": "/logo.png",
+      "src": "/icon-192.png?v=2",
       "sizes": "192x192",
       "type": "image/png",
-      "purpose": "any maskable"
+      "purpose": "any"
     },
     {
-      "src": "/logo.png",
+      "src": "/icon-512.png?v=2",
       "sizes": "512x512",
       "type": "image/png",
-      "purpose": "any maskable"
+      "purpose": "any"
+    },
+    {
+      "src": "/icon-maskable-512.png?v=2",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
     }
   ],
   "categories": [
@@ -26,6 +32,6 @@
     "art",
     "portfolio"
   ],
-  "lang": "en",
+  "lang": "it",
   "dir": "ltr"
 }

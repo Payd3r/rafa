@@ -43,6 +43,59 @@ export function HeroCarousel({ photos, mobile, onOpen }: {
     return () => window.clearTimeout(timer);
   }, [settling, offset, count]);
 
+  // Claim diagonal swipes before the browser starts scrolling the page.
+  useEffect(() => {
+    const element = root.current;
+    if (!element || !mobile) return;
+    let active: { x: number; y: number; axis: "horizontal" | "vertical" | null } | null = null;
+    const start = (event: TouchEvent) => {
+      if (settling || count < 2 || event.touches.length !== 1) return;
+      const touch = event.touches[0];
+      active = { x: touch.clientX, y: touch.clientY, axis: null };
+      suppressClick.current = false;
+    };
+    const move = (event: TouchEvent) => {
+      if (!active) return;
+      if (event.touches.length !== 1) {
+        active = null;
+        element.classList.remove("is-dragging");
+        setOffset(0);
+        return;
+      }
+      const dx = event.touches[0].clientX - active.x;
+      const dy = event.touches[0].clientY - active.y;
+      if (!active.axis && Math.max(Math.abs(dx), Math.abs(dy)) > 7) {
+        active.axis = Math.abs(dx) >= Math.abs(dy) * 0.6 ? "horizontal" : "vertical";
+        suppressClick.current = true;
+      }
+      if (active.axis !== "horizontal") return;
+      event.preventDefault();
+      element.classList.add("is-dragging");
+      setOffset(Math.max(-step, Math.min(step, dx)));
+    };
+    const end = (event: TouchEvent) => {
+      if (!active) return;
+      const current = active;
+      active = null;
+      element.classList.remove("is-dragging");
+      if (current.axis !== "horizontal") return;
+      const dx = event.changedTouches[0].clientX - current.x;
+      setOffset(event.type !== "touchcancel" && Math.abs(dx) > Math.min(40, step * 0.14)
+        ? (dx < 0 ? -step : step) : 0);
+      setSettling(true);
+    };
+    element.addEventListener("touchstart", start, { passive: true });
+    element.addEventListener("touchmove", move, { passive: false });
+    element.addEventListener("touchend", end);
+    element.addEventListener("touchcancel", end);
+    return () => {
+      element.removeEventListener("touchstart", start);
+      element.removeEventListener("touchmove", move);
+      element.removeEventListener("touchend", end);
+      element.removeEventListener("touchcancel", end);
+    };
+  }, [mobile, settling, count, step]);
+
   const advance = (direction: number) => {
     if (settling || count < 2) return;
     setOffset(-direction * step);
@@ -71,7 +124,7 @@ export function HeroCarousel({ photos, mobile, onOpen }: {
         }
       }}
       onPointerDown={event => {
-        if (!event.isPrimary || event.button !== 0 || settling || count < 2) return;
+        if ((mobile && event.pointerType === "touch") || !event.isPrimary || event.button !== 0 || settling || count < 2) return;
         suppressClick.current = false;
         gesture.current = { id: event.pointerId, x: event.clientX, y: event.clientY, moved: false, horizontal: false };
       }}
@@ -102,6 +155,7 @@ export function HeroCarousel({ photos, mobile, onOpen }: {
         setSettling(true);
       }}
       onPointerCancel={() => {
+        if (!gesture.current) return;
         gesture.current = null;
         root.current?.classList.remove("is-dragging");
         setOffset(0);
@@ -116,7 +170,8 @@ export function HeroCarousel({ photos, mobile, onOpen }: {
       }}
     >
       {Array.from({ length: mobile ? 5 : 7 }, (_, i) => i - (mobile ? 2 : 3)).map(slot => {
-        const photoIndex = wrap(frame + slot);
+        // Desktop opens with selections 1–5 from left to right; mobile starts on 1.
+        const photoIndex = wrap(frame + slot + (mobile ? 0 : 2));
         const position = slot + (step ? offset / step : 0);
         const distance = Math.min(2, Math.abs(position));
         return (
@@ -125,7 +180,7 @@ export function HeroCarousel({ photos, mobile, onOpen }: {
             key={slot}
             tabIndex={slot === 0 ? 0 : -1}
             aria-hidden={Math.abs(slot) > (mobile ? 1 : 2) || undefined}
-            aria-label={`Open featured photograph ${photoIndex + 1} of ${count}`}
+            aria-label={`Apri il progetto della fotografia ${photoIndex + 1} di ${count}`}
             onClick={() => onOpen(photoIndex)}
             style={{
               "--shot-x": `${mobile ? slot * step + offset : desktopPosition(position)}px`,
@@ -134,18 +189,11 @@ export function HeroCarousel({ photos, mobile, onOpen }: {
             } as CSSProperties}
           >
             <SmartImage photo={photos[photoIndex]} priority={slot === 0} sizes="(max-width:760px) 72vw, 26vw" />
-            {!mobile && Math.abs(slot) === 2 && <span aria-hidden="true" className={`hero-decoration corner-${slot < 0 ? "left" : "right"}`} />}
-            {!mobile && Math.abs(slot) === 1 && <span aria-hidden="true" className={`hero-decoration line-${slot < 0 ? "left" : "right"}`} />}
             <span className="shot-number">{String(photoIndex + 1).padStart(2, "0")}</span>
           </button>
         );
       })}
-      {mobile && (
-        <div className="hero-mobile-inserts" aria-hidden="true">
-          <span className="hero-insert-line hero-insert-top" />
-          <span className="hero-insert-line hero-insert-bottom" />
-        </div>
-      )}
+
     </div>
   );
 }

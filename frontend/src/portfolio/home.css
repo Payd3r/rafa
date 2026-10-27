@@ -1269,7 +1269,7 @@ select {
   align-items: center;
   margin-top: 35px;
   padding-bottom: 9px;
-  border-bottom: 1px solid var(--rule);
+  border-bottom: 0;
   font-size: 13px;
 }
 .about-contact span {
@@ -2149,7 +2149,6 @@ html {
   width: 100%;
   margin: 0;
   border: 0;
-  border-top: 1px solid #24232035;
   border-radius: 0;
   background: none;
   padding: 23px 0;
@@ -2158,7 +2157,7 @@ html {
   transform: none;
 }
 .contact-channel:nth-child(3) {
-  border-bottom: 1px solid #24232035;
+  border-bottom: 0;
 }
 .contact-channel:before {
   display: none;
@@ -2284,13 +2283,7 @@ header {
     row-gap: 8px;
   }
 }
-@media (max-width: 479px) {
-  .filters {
-    display: grid;
-    grid-template-columns: repeat(3, max-content);
-    justify-content: space-between;
-  }
-}
+
 
 /* Compact mobile typography and an opaque header matching Safari's theme color. */
 @media (max-width: 760px) {
@@ -2325,72 +2318,27 @@ header {
   }
 }
 
-/* The desktop folio spans the title line, metadata line and their 8px gap. */
-@media (min-width: 761px) {
-  .caption > span {
-    font-size: calc(var(--text-project-title) * 1.625 + var(--text-project-meta) * 1.875 + 10px);
-    line-height: 0.8;
-    font-variant-numeric: tabular-nums;
-  }
+/* Slightly larger project sequence numbers. */
+.caption > span {
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--muted);
+}
+.work-projects {
+  padding-top: 75px;
+}
+.work-projects .section-heading {
+  margin-bottom: 30px;
 }
 @media (max-width: 760px) {
   .caption > span {
-    font-size: 0.6875rem;
+    font-size: 10px;
   }
-}
-
-/* Sparse edge marks repeat around project images without covering the photographs. */
-.project-artwork {
-  position: relative;
-  --insert-offset: 10px;
-  --insert-width: 44px;
-  --insert-height: 56px;
-}
-.project-artwork::before,
-.project-artwork::after {
-  position: absolute;
-  pointer-events: none;
-  z-index: 2;
-}
-.project:nth-child(6n + 1) .project-artwork::before {
-  content: "";
-  top: calc(-1 * var(--insert-offset));
-  left: calc(-1 * var(--insert-offset));
-  width: var(--insert-width);
-  height: var(--insert-height);
-  border-top: 2px solid var(--accent);
-  border-left: 2px solid var(--accent);
-}
-.project:nth-child(6n + 2) .project-artwork::after {
-  content: "";
-  bottom: calc(-1 * var(--insert-offset));
-  right: 12px;
-  width: var(--insert-height);
-  height: 2px;
-  background: var(--accent);
-}
-.project:nth-child(6n + 4) .project-artwork::after {
-  content: "";
-  bottom: calc(-1 * var(--insert-offset));
-  right: calc(-1 * var(--insert-offset));
-  width: var(--insert-width);
-  height: var(--insert-height);
-  border-bottom: 2px solid var(--accent);
-  border-right: 2px solid var(--accent);
-}
-.project:nth-child(6n + 5) .project-artwork::before {
-  content: "";
-  top: calc(-1 * var(--insert-offset));
-  left: 12px;
-  width: var(--insert-height);
-  height: 2px;
-  background: var(--accent);
-}
-@media (max-width: 760px) {
-  .project-artwork {
-    --insert-offset: 7px;
-    --insert-width: 26px;
-    --insert-height: 34px;
+  .work-projects {
+    padding-top: 45px;
+  }
+  .work-projects .section-heading {
+    margin-bottom: 22px;
   }
 }
 
@@ -2521,79 +2469,69 @@ header {
   }
 }
 
-/* Decorative marks occupy the paper around the images. */
-.hero-decoration {
-  position: absolute;
-  pointer-events: none;
-  z-index: 2;
-  color: var(--accent);
-}
-.hero-decoration.corner-left,
-.hero-decoration.corner-right {
-  width: 45px;
-  height: 60px;
-  border: 2px solid currentColor;
-}
-.hero-decoration.corner-left {
-  top: -10px;
-  left: -10px;
-  border-right: 0;
-  border-bottom: 0;
-}
-.hero-decoration.corner-right {
-  bottom: -10px;
-  right: -10px;
-  border-left: 0;
-  border-top: 0;
-}
-.hero-decoration.line-left,
-.hero-decoration.line-right {
-  width: 58px;
-  height: 2px;
-  background: currentColor;
-}
-.hero-decoration.line-left {
-  bottom: -10px;
-  left: 12px;
-}
-.hero-decoration.line-right {
-  top: -10px;
-  right: 12px;
-}
+/* Preserve the mobile photograph spacing. */
 .interactive-gallery.is-mobile .hero-shot:nth-child(n) {
   height: calc(var(--shot-height) - 48px);
 }
-.hero-mobile-inserts {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
+
+/* Place the archive menu beside the opening photograph. */
+.work-projects .section-heading {
+  border-top: 0;
+  padding-top: 0;
+  align-items: flex-end;
 }
-.hero-insert-line {
-  position: absolute;
-  width: 42px;
-  height: 2px;
-  background: var(--accent);
+.work-projects .filters {
+  margin-left: auto;
+  justify-content: flex-end;
+  padding-top: 0;
 }
-.hero-insert-top {
-  top: 14px;
-  left: 14%;
+@media (min-width: 761px) {
+  .work-projects .section-heading {
+    position: relative;
+    z-index: 3;
+    width: 48%;
+    margin: 0 0 0 auto;
+    height: 0;
+    overflow: visible;
+    align-items: flex-start;
+  }
+  .work-projects .filters {
+    flex-wrap: wrap;
+  }
+  .work-projects .project-archive .project:nth-child(2) {
+    margin-top: max(110px, 7vw);
+  }
 }
-.hero-insert-bottom {
-  bottom: 14px;
-  right: 14%;
+.hero-gallery.interactive-gallery.is-mobile {
+  touch-action: auto;
 }
 
-/* Let the photographs move without carrying the desktop folio marks. */
-.interactive-gallery .hero-decoration {
-  opacity: 1;
-  transition: opacity 180ms ease-in-out;
-}
-.interactive-gallery.is-dragging .hero-decoration,
-.interactive-gallery.is-settling .hero-decoration {
-  opacity: 0;
-}
-@media (prefers-reduced-motion: reduce) {
-  .interactive-gallery .hero-decoration {
-    transition: none;
+/* Six equally sized category tabs across the mobile content width. */
+@media (max-width: 760px) {
+  .work-projects .section-heading {
+    width: 100%;
+    align-items: stretch;
   }
+  .work-projects .filters {
+    display: grid;
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+    width: 100%;
+    gap: 0;
+    margin-inline: 0;
+  }
+  .work-projects .filter {
+    min-width: 0;
+    text-align: center;
+  }
+}
+.channel-arrow svg {
+  display: block;
+}
+
+/* Contact symbols share a fixed box; individual SVG bounds balance their visual size. */
+.contact-channel > svg {
+  display: block;
+  width: 24px;
+  height: 24px;
+  flex: 0 0 24px;
 }

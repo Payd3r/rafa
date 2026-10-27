@@ -1,0 +1,23 @@
+.admin-media-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  gap: 12px;
+}
+.admin-media-photo { position: relative; }
+.admin-media-delete {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  background: white;
+  color: #a01919;
+  border-radius: 50%;
+}
+@media (hover: hover) and (pointer: fine) {
+  .admin-media-delete { opacity: 0; }
+  .admin-media-photo:hover .admin-media-delete,
+  .admin-media-photo:focus-within .admin-media-delete { opacity: 1; }
+}

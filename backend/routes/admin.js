@@ -156,14 +156,13 @@ router.patch('/photos', async (req, res) => {
 
 /**
  * PATCH /api/admin/projects/:slug
- * Aggiorna la data, descrizione o instagramUrl di un progetto
+ * Aggiorna i dati e i media di un progetto
  */
 router.patch('/projects/:slug', upload.fields([{ name: 'cover', maxCount: 1 }, { name: 'images', maxCount: 30 }, { name: 'video', maxCount: 1 }]), async (req, res) => {
   try {
     const { slug } = req.params;
-    const { dateISO, title, instagramUrl, category, type, description } = req.body;
+    const { dateISO, title, instagramUrl, category, type, retainedImages, coverImageIndex } = req.body;
 
-    if (description !== undefined && (typeof description !== 'string' || description.length > 5000)) return res.status(400).json({success:false,error:'Descrizione non valida (massimo 5000 caratteri)'});
     if (!slug) {
       return res.status(400).json({
         success: false,
@@ -172,7 +171,7 @@ router.patch('/projects/:slug', upload.fields([{ name: 'cover', maxCount: 1 }, {
     }
 
     // Valida che almeno un campo sia presente
-    if (description === undefined && dateISO === undefined && title === undefined && instagramUrl === undefined && category === undefined && type === undefined && !Object.keys(req.files || {}).length) {
+    if (retainedImages === undefined && coverImageIndex === undefined && dateISO === undefined && title === undefined && instagramUrl === undefined && category === undefined && type === undefined && !Object.keys(req.files || {}).length) {
       return res.status(400).json({
         success: false,
         error: 'Almeno un campo da aggiornare è richiesto: dateISO, title, instagramUrl, category, type'
@@ -215,7 +214,6 @@ router.patch('/projects/:slug', upload.fields([{ name: 'cover', maxCount: 1 }, {
       projects[projectIndex].dateISO = dateISO;
     }
     const project = projects[projectIndex];
-    if (description !== undefined) project.description = description.trim();
     if (title !== undefined) {
       if (!title.trim()) return res.status(400).json({ success: false, error: 'Titolo obbligatorio' });
       project.title = title.trim();
@@ -226,23 +224,43 @@ router.patch('/projects/:slug', upload.fields([{ name: 'cover', maxCount: 1 }, {
     const mediaError = validateMedia(nextType, gallery, video, nextType === 'video' && project.hasVideo);
     if (mediaError) return res.status(400).json({ success: false, error: mediaError });
     if (req.files?.cover?.[0] && !req.files.cover[0].mimetype.startsWith('image/')) return res.status(400).json({success:false,error:'Copertina non valida'});
+    const previousIndices = project.galleryIndices || Array.from({length: project.imageCount}, (_, i) => i + 1);
+    let keep = previousIndices;
+    if (retainedImages !== undefined) {
+      try { keep = JSON.parse(retainedImages); } catch { return res.status(400).json({success:false,error:'Selezione foto non valida'}); }
+      if (!Array.isArray(keep) || new Set(keep).size !== keep.length || keep.some(id => !Number.isInteger(id) || !previousIndices.includes(id))) return res.status(400).json({success:false,error:'Selezione foto non valida'});
+    }
+    const chosenCover = coverImageIndex === undefined ? (project.coverImageIndex || (project.hasCover ? 'cover' : '1')) : coverImageIndex;
+    if (typeof chosenCover !== 'string' || (chosenCover !== 'cover' && !previousIndices.map(String).includes(chosenCover))) return res.status(400).json({success:false,error:'Copertina non valida'});
+    if (chosenCover === 'cover' && !project.hasCover && !req.files?.cover?.[0]) return res.status(400).json({success:false,error:'Copertina non disponibile'});
+    if (nextType === 'photo' && keep.length + gallery.length > 30) return res.status(400).json({success:false,error:'Massimo 30 foto per progetto'});
+    const folder = path.join(publicPath, 'optimized', slug);
+    // Keep stable image identifiers: deleting a photo never renumbers the others.
     if (req.files?.cover?.[0]) {
       await imageProcessor.processImage(req.files.cover[0].buffer, slug, 'cover');
       project.hasCover = true;
-    }
-    // Preserve legacy covers stored as gallery image 1 before replacing media.
-    if (!project.hasCover && (gallery.length || nextType === 'video')) {
-      await fs.cp(path.join(publicPath, 'optimized', slug, '1'), path.join(publicPath, 'optimized', slug, 'cover'), {recursive:true});
-      project.hasCover = true;
-    }
-    if (video) await videoProcessor.processVideo(video.buffer, slug);
-    if (gallery.length || nextType === 'video') {
-      const folder = path.join(publicPath, 'optimized', slug);
-      for (const entry of await fs.readdir(folder).catch(() => [])) {
-        if (/^\d+$/.test(entry) && !(entry === '1' && !project.hasCover)) await fs.rm(path.join(folder, entry), {recursive:true,force:true});
+      project.coverImageIndex = 'cover';
+    } else if (nextType === 'video' || !keep.includes(Number(chosenCover))) {
+      if (chosenCover !== 'cover') {
+        const buffer = await fs.readFile(path.join(folder, chosenCover, 'original.avif'));
+        await imageProcessor.processImage(buffer, slug, 'cover');
+        project.hasCover = true;
       }
-      if (gallery.length) await imageProcessor.processProjectImages(gallery, slug);
-      project.imageCount = gallery.length;
+      project.coverImageIndex = 'cover';
+    } else project.coverImageIndex = String(chosenCover);
+    if (video) await videoProcessor.processVideo(video.buffer, slug);
+    const added = [];
+    let nextId = Math.max(project.nextImageId || 1, Math.max(0, ...previousIndices) + 1);
+    for (const file of gallery) {
+      await imageProcessor.processImage(file.buffer, slug, nextId);
+      added.push(nextId++);
+    }
+    if (nextType === 'video') keep = [];
+    project.nextImageId = nextId;
+    project.galleryIndices = [...keep, ...added];
+    project.imageCount = project.galleryIndices.length;
+    for (const id of previousIndices) {
+      if (!keep.includes(id)) await fs.rm(path.join(folder, String(id)), {recursive:true,force:true});
     }
     if (nextType === 'photo') await fs.rm(path.join(publicPath, 'optimized', slug, 'video'), {recursive:true,force:true});
     project.type = nextType;
@@ -315,7 +333,7 @@ router.delete('/projects/:slug', async (req, res) => {
 /**
  * Funzione async separata per processing in background
  */
-async function processProjectInBackground(slug, title, type, dateISO, coverFiles, galleryFiles, videoFile = null, instagramUrl = null, category, description = '') {
+async function processProjectInBackground(slug, title, type, dateISO, coverFiles, galleryFiles, videoFile = null, instagramUrl = null, category) {
   console.log(`[Background] Inizio processing progetto: ${slug}`);
 
   try {
@@ -343,7 +361,6 @@ async function processProjectInBackground(slug, title, type, dateISO, coverFiles
       type,
       dateISO,
       category,
-      description: description.trim(),
       hasCover: true,
       imageCount: galleryFiles.length,
       hasVideo,
@@ -378,7 +395,7 @@ router.post('/projects', upload.fields([
   { name: 'video', maxCount: 1 }
 ]), async (req, res) => {
   try {
-    const { title, type, dateISO, instagramUrl, category, description } = req.body;
+    const { title, type, dateISO, instagramUrl, category } = req.body;
     const coverFiles = req.files?.cover;
     const galleryFiles = req.files?.images || [];
     const videoFile = req.files?.video?.[0] || null;
@@ -388,7 +405,6 @@ router.post('/projects', upload.fields([
     }
 
     // Validazione
-    if (description !== undefined && (typeof description !== 'string' || description.length > 5000)) return res.status(400).json({success:false,error:'Descrizione non valida (massimo 5000 caratteri)'});
     if (!title?.trim() || !dateISO || isNaN(new Date(dateISO).getTime())) {
       return res.status(400).json({
         success: false,
@@ -432,7 +448,7 @@ router.post('/projects', upload.fields([
 
     // 🔥 PROCESSING IN BACKGROUND (fire-and-forget)
     // Non usa await = non blocca la risposta
-    processProjectInBackground(slug, title, type, dateISO, coverFiles, galleryFiles, videoFile, instagramUrl, category, description || '')
+    processProjectInBackground(slug, title, type, dateISO, coverFiles, galleryFiles, videoFile, instagramUrl, category)
       .catch(err => console.error('Errore processing background:', err));
 
   } catch (error) {

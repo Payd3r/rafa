@@ -17,7 +17,7 @@ e distribuzione Docker/Nginx.
 - `/`: fotografie in evidenza, archivio progetti, About e Contact.
 - `/projects`: archivio con la stessa interfaccia della home.
 - `/gallery`: raccolta delle fotografie dei progetti, senza duplicati.
-- `/projects/:slug`: descrizione, galleria, eventuale video e collegamento Instagram.
+- `/projects/:slug`: galleria, eventuale video e collegamento Instagram.
 - `/admin`: gestione e caricamento dei contenuti.
 
 Il portfolio legge `/projects.json` e `/imageMeta.json` generati dal CMS. Le foto

@@ -1,3 +1,4 @@
+import { ArrowIcon } from "../shared/ArrowIcon";
 import { SmartImage } from "./SmartImage";
 import portraits from "./portraits.json";
 export function About() {
@@ -31,7 +32,7 @@ export function About() {
           Realizzo servizi fotografici e video in Lombardia e nel Nord Italia.
         </p>
         <a className="about-contact" href="#contact">
-          Creiamo qualcosa insieme <span>↗</span>
+          Creiamo qualcosa insieme <span><ArrowIcon direction="up-right" size={20} /></span>
         </a>
       </div>
       <figure className="about-frame about-secondary">

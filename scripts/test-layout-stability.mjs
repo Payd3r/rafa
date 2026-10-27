@@ -30,7 +30,7 @@ for (const mobile of [false, true]) {
     await page.goto(base + "/projects/" + project.slug, {
       waitUntil: "domcontentloaded",
     });
-    await page.locator(".project-description,.photo").first().waitFor();
+    await page.locator(".photo").first().waitFor();
     await page.waitForTimeout(700);
     const cls = await page.evaluate(() => window.__cls);
     results.push({ route: project.slug, mobile, cls });

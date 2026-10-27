@@ -1,5 +1,6 @@
+import { ArrowIcon } from "../shared/ArrowIcon";
 import { PROJECT_CATEGORIES, categoryLabel } from "../shared/categories";
-import { useEffect, useRef, useState, type CSSProperties } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { useProjects } from "../shared/hooks/useProjects";
 
@@ -11,6 +12,8 @@ import detailStyles from "./detail.css?inline";
 import { useConnection } from "../shared/hooks/useConnection";
 import { About } from "./About";
 import { SmartImage } from "./SmartImage";
+import { ProjectVideo } from "./ProjectVideo";
+import { ProjectGallery } from "./ProjectGallery";
 import { HeroCarousel } from "./HeroCarousel";
 import { useImageMetaContext } from "../shared/contexts/ImageMetaContext";
 import viewerStyles from "./viewer.css?inline";
@@ -111,14 +114,14 @@ function Viewer({
             aria-label="Fotografia precedente"
             onClick={() => move(-1)}
           >
-            ←
+            <ArrowIcon direction="left" />
           </button>
           <button
             className="viewer-arrow next"
             aria-label="Fotografia successiva"
             onClick={() => move(1)}
           >
-            →
+            <ArrowIcon />
           </button>
         </div>
         <div className="viewer-footer">
@@ -127,7 +130,7 @@ function Viewer({
             aria-label="Fotografia precedente"
             onClick={() => move(-1)}
           >
-            ←
+            <ArrowIcon direction="left" />
           </button>
           <span className="counter" role="status" aria-live="polite">
             {String((index ?? 0) + 1).padStart(2, "0")} /{" "}
@@ -138,7 +141,7 @@ function Viewer({
             aria-label="Fotografia successiva"
             onClick={() => move(1)}
           >
-            →
+            <ArrowIcon />
           </button>
         </div>
       </div>
@@ -162,6 +165,7 @@ export default function Portfolio({
     ...imageMeta[photo.src],
   });
   const [index, setIndex] = useState<number | null>(null);
+  const [detailViewerPhotos, setDetailViewerPhotos] = useState<Photo[] | null>(null);
   const [filter, setFilter] = useState("all");
   const [mobile, setMobile] = useState(
     () => window.matchMedia("(max-width:760px)").matches,
@@ -198,6 +202,7 @@ export default function Portfolio({
     ];
   useEffect(() => {
     setIndex(null);
+    setDetailViewerPhotos(null);
 
   }, [slug, detail, project]);
   const status =
@@ -217,7 +222,7 @@ export default function Portfolio({
           "\n" +
           (detail ? detailStyles : "") +
           viewerStyles +
-          "\n.portfolio{background:var(--paper);color:var(--ink);min-height:100vh}.project-description{padding:0 var(--pad) 35px;white-space:pre-line;max-width:900px;line-height:1.8}.project-video{display:block;width:calc(100% - 2 * var(--pad));max-height:80vh;margin:0 auto 35px}.portfolio-status{padding:60px var(--pad)}"}
+          "\n.portfolio{background:var(--paper);color:var(--ink);min-height:100vh}.portfolio-status{padding:60px var(--pad)}"}
       </style>
       <a className="skip" href={detail ? "#photos" : "#work"}>
         Vai alle fotografie
@@ -226,7 +231,7 @@ export default function Portfolio({
       {status ? (
         loading ? <LoadingContent detail={detail} gallery={gallery}/> : <main className="portfolio-status" role="status">
           {status}
-          {detail && <p><Link to="/">← Tutti i progetti</Link></p>}
+          {detail && <p><Link to="/"><ArrowIcon direction="left" size={18} /> Tutti i progetti</Link></p>}
         </main>
       ) : detail && project ? (
         <main>
@@ -263,44 +268,11 @@ export default function Portfolio({
               )}
             </div>
           </div>
-          {project.description && <p className="project-description">{project.description}</p>}
-          {project.video && (
-            <video
-              className="project-video"
-              controls
-              playsInline
-              preload="metadata"
-              src={project.video.src}
-              poster={project.video.thumbnail}
-              aria-label={project.video.alt}
-            />
-          )}
-          <section
-            className="project-gallery"
-            id="photos"
-            aria-label="Fotografie del progetto"
-          >
-            {photos.map((photo, i) => (
-              <figure className="photo" key={photo.id} style={{ '--photo-ratio': photo.ratio || (photo.width && photo.height ? photo.width / photo.height : 4 / 5) } as CSSProperties}>
-                <button
-                  className="photo-button"
-                  onClick={() => setIndex(i)}
-                  aria-label={`Apri fotografia ${i + 1}`}
-                >
-                  <SmartImage
-                    key={photo.src}
-                    photo={photo}
-                    priority={detail && i < 2}
-                    sizes={
-                      detail
-                        ? "(max-width:760px) 43vw, 46vw"
-                        : "(max-width:760px) 88vw, 42vw"
-                    }
-                  />
-                </button>
-              </figure>
-            ))}
-          </section>
+          {project.video && <ProjectVideo key={project.video.src} video={project.video} />}
+          <ProjectGallery photos={photos} onOpen={(photoIndex, orderedPhotos) => {
+            setDetailViewerPhotos(orderedPhotos);
+            setIndex(photoIndex);
+          }} />
           <footer className="project-closing" aria-label="Project navigation">
             {next && next.slug !== project.slug && (
               <Link className="project-follow" to={`/projects/${next.slug}`} aria-label={`Prossimo progetto: ${next.title}`}>
@@ -329,7 +301,11 @@ export default function Portfolio({
             <section className="hero" aria-label="Fotografie in evidenza">
               <h1>ANDREA FARAO</h1>
               <div className="gallery-shell">
-                <HeroCarousel photos={featured} mobile={mobile} onOpen={setIndex} />
+                <HeroCarousel photos={featured} mobile={mobile} onOpen={(photoIndex) => {
+                  const photo = featured[photoIndex];
+                  const owner = projects.find(item => item.cover.src === photo.src || item.gallery.some(image => image.src === photo.src));
+                  if (owner) void navigate(`/projects/${owner.slug}`);
+                }} />
               </div>
               <div className="hero-bottom">
                 <a href="#work" aria-label="Esplora i progetti">
@@ -351,12 +327,13 @@ export default function Portfolio({
               </div>
             </section>
           )}
-          <section className="work" id="work">
+          <section className={`work${gallery ? "" : " work-projects"}`} id="work">
             <div className="section-heading">
-              <h2>
-                {gallery ? "Fotografie" : "Fotografie selezionate"}
-                {gallery && <sup>({allPhotos.length})</sup>}
-              </h2>
+              {gallery && (
+                <h2>
+                  Fotografie<sup>({allPhotos.length})</sup>
+                </h2>
+              )}
               {!gallery && (
                 <div className="filters" aria-label="Filtra i progetti">
                   {[{ value: "all", label: "Tutti" }, ...PROJECT_CATEGORIES].map(({ value, label }) => (
@@ -399,6 +376,7 @@ export default function Portfolio({
                         filter === "all" ||
                         project.category === filter,
                     )
+                    .sort((a, b) => b.dateISO.localeCompare(a.dateISO))
                     .map((project, i) => (
                       <figure
                         className={`project ${filter !== "all" ? "filtered" : ""}`}
@@ -447,7 +425,7 @@ export default function Portfolio({
         </main>
       )}
       <Viewer
-        photos={photos}
+        photos={detail ? detailViewerPhotos || photos : photos}
         index={index}
         setIndex={setIndex}
         title={project?.title ?? "Andrea Farao"}

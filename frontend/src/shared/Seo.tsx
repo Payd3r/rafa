@@ -6,7 +6,7 @@ export function Seo() {
   useEffect(() => {
     const controller = new AbortController();
     // Prevent metadata from the previous route surviving while the request runs.
-    document.querySelectorAll('link[rel="canonical"],meta[property^="og:"],meta[name="twitter:card"],#seo-schema').forEach(node => node.remove());
+    document.querySelectorAll('link[rel="canonical"],meta[property^="og:"],meta[name^="twitter:"],#seo-schema').forEach(node => node.remove());
     const meta = (key: string, value: string, property = false) => {
       const attribute = property ? 'property' : 'name';
       let node = document.head.querySelector<HTMLMetaElement>(`meta[${attribute}="${key}"]`);
@@ -25,7 +25,12 @@ export function Seo() {
         meta('og:type', 'website', true); meta('og:site_name', 'Andrea Farao', true);
         meta('twitter:card', data.image ? 'summary_large_image' : 'summary');
         if (data.canonical) { const node = document.createElement('link'); node.rel = 'canonical'; node.href = data.canonical; document.head.append(node); meta('og:url', data.canonical, true); }
-        if (data.image) {meta('og:image', data.image, true); meta('og:image:alt',data.project.title,true);}
+        if (data.image) {
+          meta('og:image', data.image, true); meta('og:image:secure_url', data.image, true);
+          meta('og:image:alt', data.imageAlt, true); meta('og:image:type', data.imageType, true);
+          meta('og:image:width', String(data.imageWidth), true); meta('og:image:height', String(data.imageHeight), true);
+          meta('twitter:image', data.image); meta('twitter:image:alt', data.imageAlt);
+        }
         if (data.schema) {const node = document.createElement('script'); node.id = 'seo-schema'; node.type = 'application/ld+json'; node.textContent = JSON.stringify(data.schema); document.head.append(node);}
       }).catch(() => { /* Keep noindex when metadata cannot be verified. */ });
     return () => controller.abort();

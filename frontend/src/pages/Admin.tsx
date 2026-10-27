@@ -1,10 +1,11 @@
+import { ProjectMediaEditor } from './ProjectMediaEditor'
 import { PROJECT_CATEGORIES, categoryLabel, type ProjectCategory } from '../shared/categories'
 import { SmartImage } from '../portfolio/SmartImage'
 import type { Photo } from '../shared/types'
 import { useState, useEffect, useRef, type FormEvent, type ChangeEvent } from 'react'
 import { resizeImageForPreview, resizeImagesForPreview } from '../shared/utils/imageResize'
 interface ImagePreview { file: File; preview: string }
-interface Project { slug: string; title: string; description?: string; dateISO: string; category: ProjectCategory; type: 'photo' | 'video'; hasVideo?: boolean; imageCount: number; instagramUrl?: string }
+interface Project { slug: string; title: string; hasCover?: boolean; galleryIndices?: number[]; coverImageIndex?: string; dateISO: string; category: ProjectCategory; type: 'photo' | 'video'; hasVideo?: boolean; imageCount: number; instagramUrl?: string }
 const api = (path: string) => `${import.meta.env.VITE_BACKEND_URL || ''}/api/admin${path}`
 async function request(path: string, options?: RequestInit) {
   const response = await fetch(api(path), options)
@@ -25,7 +26,6 @@ export default function Admin() {
 function UploadTab({ type }: { type: 'photo' | 'video' }) {
   const [category, setCategory] = useState<ProjectCategory | ''>('')
   const [title, setTitle] = useState('')
-  const [description, setDescription] = useState('')
   const [date, setDate] = useState('')
   const [instagramUrl, setInstagramUrl] = useState('')
   const [coverImage, setCoverImage] = useState<ImagePreview | null>(null)
@@ -177,7 +177,6 @@ function UploadTab({ type }: { type: 'photo' | 'video' }) {
     try {
       const formData = new FormData()
       formData.append('title', title)
-      formData.append('description', description)
       formData.append('category', category)
       formData.append('type', type)
       formData.append('dateISO', date)
@@ -237,7 +236,6 @@ function UploadTab({ type }: { type: 'photo' | 'video' }) {
       // Reset form
       setCategory('')
       setTitle('')
-      setDescription('')
       setDate('')
       setInstagramUrl('')
       setCoverImage(null)
@@ -294,7 +292,7 @@ function UploadTab({ type }: { type: 'photo' | 'video' }) {
           <CategoryToggle value={category} onChange={setCategory} disabled={uploading} />
         </div>
 
-        <label className="block">Descrizione del progetto<textarea maxLength={5000} value={description} onChange={e => setDescription(e.target.value)} disabled={uploading} rows={5} className="block border border-black p-2 w-full" placeholder="Descrivi il servizio, il contesto, la località e il tuo ruolo. Usa solo informazioni reali."/></label>
+        
         {/* Data */}
         <div
           onClick={() => !uploading && dateInputRef.current?.showPicker()}
@@ -547,7 +545,6 @@ function UploadTab({ type }: { type: 'photo' | 'video' }) {
               onClick={() => {
                 setCategory('')
                 setTitle('')
-      setDescription('')
                           setDate('')
                 setInstagramUrl('')
                 setCoverImage(null)
@@ -605,7 +602,7 @@ function ProjectsTab() {
     try {
       const form = event.currentTarget as HTMLFormElement
       const body = new FormData(form)
-      body.set('description',draft.description || ''); body.set('title',draft.title); body.set('dateISO',draft.dateISO); body.set('category',draft.category); body.set('type',draft.type); body.set('instagramUrl',draft.instagramUrl || '')
+      body.set('title',draft.title); body.set('dateISO',draft.dateISO); body.set('category',draft.category); body.set('type',draft.type); body.set('instagramUrl',draft.instagramUrl || '')
       const data = await request(`/projects/${draft.slug}`, {method:'PATCH',body})
       setProjects(prev => prev.map(project => project.slug === draft.slug ? data.project : project)); setDraft(null)
     } catch(e) {setError(e instanceof Error ? e.message : 'Errore salvataggio')} finally {setBusy(false)}
@@ -616,5 +613,5 @@ function ProjectsTab() {
     try {await request(`/projects/${project.slug}`,{method:'DELETE'}); setProjects(prev => prev.filter(p => p.slug !== project.slug)); if (draft?.slug === project.slug) setDraft(null)} catch(e) {setError(e instanceof Error ? e.message : 'Errore eliminazione')} finally {setBusy(false)}
   }
   if (loading) return <p role="status">Caricamento progetti...</p>
-  return <div>{error && <p role="alert" className="text-red-700 mb-4">{error}</p>}<p className="mb-6">{projects.length} progetti disponibili</p><div className="space-y-4">{projects.map(project => <article key={project.slug} className="border border-charcoal p-4"><div className="flex justify-between items-center gap-4"><div><h2 className="text-lg font-bold">{project.title}</h2><p className="text-sm mt-1">{categoryLabel(project.category)} · {project.type === 'video' || project.hasVideo ? 'Video' : 'Foto'} · {project.dateISO}</p><p className="text-sm">{project.imageCount} foto</p></div><div className="flex gap-3"><button disabled={busy} aria-label={`Modifica ${project.title}`} aria-expanded={draft?.slug === project.slug} aria-controls={`edit-${project.slug}`} onClick={() => setDraft(draft?.slug === project.slug ? null : {...project,type:project.type || (project.hasVideo ? 'video' : 'photo')})} className="p-2 border border-black"><Icon name="edit"/></button><button disabled={busy} aria-label={`Elimina ${project.title}`} onClick={() => remove(project)} className="p-2 border border-red-700 text-red-700"><Icon name="delete"/></button></div></div>{draft?.slug === project.slug && <form id={`edit-${project.slug}`} onSubmit={save} className="mt-5 pt-5 border-t space-y-4"><fieldset disabled={busy} className="space-y-4"><label className="block">Titolo<input required value={draft.title} onChange={e => setDraft({...draft,title:e.target.value})} className="block border border-black p-2 w-full"/></label><label className="block">Descrizione del progetto<textarea maxLength={5000} rows={5} value={draft.description || ''} onChange={e => setDraft({...draft,description:e.target.value})} className="block border border-black p-2 w-full"/></label><label className="block">Data<input required type="date" value={draft.dateISO} onChange={e => setDraft({...draft,dateISO:e.target.value})} className="block border border-black p-2"/></label><div><p className="mb-2">Categoria</p><CategoryToggle value={draft.category} onChange={category => setDraft({...draft,category})}/></div><label className="block">Tipo<select value={draft.type} onChange={e => setDraft({...draft,type:e.target.value as Project['type']})} className="block border border-black p-2"><option value="photo">Foto</option><option value="video">Video</option></select></label><label className="block">Link Instagram<input type="url" value={draft.instagramUrl || ''} onChange={e => setDraft({...draft,instagramUrl:e.target.value})} className="block border border-black p-2 w-full"/></label><label className="block">Sostituisci copertina<input name="cover" type="file" accept="image/jpeg,image/png" className="block mt-2"/></label>{draft.type === 'photo' ? <label className="block">Sostituisci galleria (max 30 foto)<input name="images" type="file" multiple accept="image/jpeg,image/png" className="block mt-2"/></label> : <label className="block">Sostituisci video<input name="video" type="file" required={!project.hasVideo} accept="video/mp4,video/webm,video/quicktime" className="block mt-2"/></label>}<p className="text-sm">I file selezionati sostituiscono quelli attuali. Cambiando tipo, i contenuti del tipo precedente vengono rimossi.</p><div className="flex gap-4"><button type="submit" className="bg-black text-white px-6 py-2">{busy ? 'Salvataggio...' : 'Salva'}</button><button type="button" onClick={() => setDraft(null)}>Annulla</button></div></fieldset></form>}</article>)}</div></div>
+  return <div>{error && <p role="alert" className="text-red-700 mb-4">{error}</p>}<p className="mb-6">{projects.length} progetti disponibili</p><div className="space-y-4">{projects.map(project => <article key={project.slug} className="border border-charcoal p-4"><div className="flex justify-between items-center gap-4"><div><h2 className="text-lg font-bold">{project.title}</h2><p className="text-sm mt-1">{categoryLabel(project.category)} · {project.type === 'video' || project.hasVideo ? 'Video' : 'Foto'} · {project.dateISO}</p><p className="text-sm">{project.imageCount} foto</p></div><div className="flex gap-3"><button disabled={busy} aria-label={`Modifica ${project.title}`} aria-expanded={draft?.slug === project.slug} aria-controls={`edit-${project.slug}`} onClick={() => setDraft(draft?.slug === project.slug ? null : {...project,type:project.type || (project.hasVideo ? 'video' : 'photo')})} className="p-2 border border-black"><Icon name="edit"/></button><button disabled={busy} aria-label={`Elimina ${project.title}`} onClick={() => remove(project)} className="p-2 border border-red-700 text-red-700"><Icon name="delete"/></button></div></div>{draft?.slug === project.slug && <form id={`edit-${project.slug}`} onSubmit={save} className="mt-5 pt-5 border-t space-y-4"><fieldset disabled={busy} className="space-y-4"><label className="block">Titolo<input required value={draft.title} onChange={e => setDraft({...draft,title:e.target.value})} className="block border border-black p-2 w-full"/></label><label className="block">Data<input required type="date" value={draft.dateISO} onChange={e => setDraft({...draft,dateISO:e.target.value})} className="block border border-black p-2"/></label><div><p className="mb-2">Categoria</p><CategoryToggle value={draft.category} onChange={category => setDraft({...draft,category})}/></div><label className="block">Tipo<select value={draft.type} onChange={e => setDraft({...draft,type:e.target.value as Project['type']})} className="block border border-black p-2"><option value="photo">Foto</option><option value="video">Video</option></select></label><label className="block">Link Instagram<input type="url" value={draft.instagramUrl || ''} onChange={e => setDraft({...draft,instagramUrl:e.target.value})} className="block border border-black p-2 w-full"/></label><ProjectMediaEditor key={draft.slug} project={project} type={draft.type} /><div className="flex gap-4"><button type="submit" className="bg-black text-white px-6 py-2">{busy ? 'Salvataggio...' : 'Salva'}</button><button type="button" onClick={() => setDraft(null)}>Annulla</button></div></fieldset></form>}</article>)}</div></div>
 }

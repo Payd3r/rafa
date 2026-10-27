@@ -21,7 +21,6 @@ export type Project = {
   category: ProjectCategory;
   slug: string;
   title: string;
-  description?: string;
   dateISO: string;
   type: 'photo' | 'video';
   cover: Photo;
